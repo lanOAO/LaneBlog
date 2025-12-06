@@ -6,7 +6,7 @@
   <link href="http://blog.lanouo.xyz/atom.xml" rel="self"/>
   
   <link href="http://blog.lanouo.xyz/"/>
-  <updated>2025-12-02T07:56:19.826Z</updated>
+  <updated>2025-12-06T11:28:50.814Z</updated>
   <id>http://blog.lanouo.xyz/</id>
   
   <author>
@@ -15,6 +15,47 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>12.4人工智能</title>
+    <link href="http://blog.lanouo.xyz/zhineng.html"/>
+    <id>http://blog.lanouo.xyz/zhineng.html</id>
+    <published>2025-12-04T00:02:36.000Z</published>
+    <updated>2025-12-06T11:28:50.814Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span><p>1、角色定位<br>明确模型身份（决定语气、专业度）<br>2、核心目标<br>定义任务边界（避免偏离需求）<br>3、行为准则<br>规范输出风格&#x2F;逻辑（保证一致性）<br>4、场景约束<br>适配具体的使用场景（提升实用性）<br>5、参考依据<br>提供决策支持（增强准确性）</p><p><code>tavily-python</code>是一个强大的 AI 搜索 API 客户端，获取<strong>实时的网络搜索结果</strong></p><h2 id="应用层通信技术——网络通信库"><a href="#应用层通信技术——网络通信库" class="headerlink" title="应用层通信技术——网络通信库"></a><strong>应用层通信技术</strong>——网络通信库</h2><p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512041955810.png" alt="image-20251204195550725"></p><h4 id="中间层"><a href="#中间层" class="headerlink" title="中间层"></a><strong>中间层</strong></h4><p>【1. WebSocket 实时通信】</p><ul><li>socket.io</li><li>ws</li><li>websocket-client<br>特点：双向通信，既能收请求又能发消息</li></ul><p>【2. RPC 框架（非 HTTP，但行为像接口）】</p><ul><li>gRPC</li><li>Thrift</li><li>Dubbo<br>特点：像调用本地函数一样调用远程服务</li></ul><p>【3. 消息队列（MQ）】</p><ul><li>RabbitMQ</li><li>Kafka</li><li>Redis Pub&#x2F;Sub<br>特点：不直接处理请求，负责“传递消息”<em>顺序输出</em></li></ul><p>【4. 代理 &#x2F; 转发层（Proxy）】</p><ul><li>Nginx</li><li>HAProxy</li><li>mitmproxy<br>特点：接收请求 → 转发 → 返回，不做业务逻辑</li></ul><p>【5. 低层网络库（Socket）】</p><ul><li>Python socket</li><li>Java Socket</li><li>Node.js net<br>特点：自己手写协议，HTTP 都是它封出来的</li></ul><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="智能体的运行机制"><a href="#智能体的运行机制" class="headerlink" title="智能体的运行机制"></a>智能体的运行机制</h2><p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/1-figures/1757242319667-5.png" alt="**智能体循环 (Agent Loop)**"></p><p>⬆️<strong>智能体循环 (Agent Loop)</strong></p><blockquote><p><a href="https://book.heterocat.com.cn/">https://book.heterocat.com.cn/</a></p><p>学校扩展培训课程2025.12</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+&lt;p&gt;1、角色定位&lt;br&gt;	明确模</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://blog.lanouo.xyz/undefined.html"/>
+    <id>http://blog.lanouo.xyz/undefined.html</id>
+    <published>2025-12-02T10:39:23.524Z</published>
+    <updated>2025-12-02T10:40:49.037Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>gemini3 审美极佳，动画效果流畅，没有ai性审美<br>chatgpt 前端有点生硬了。 报错解决极佳</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;p&gt;gemini3 审美极佳，动画效果流畅，没有ai性审美&lt;br&gt;chatgpt</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>报错记录</title>
