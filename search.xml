@@ -1,85 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AutoHotkey —— 自动热键软件</title>
-    <url>/AutoHotkey1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-
-<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
-<span id="more"></span>
-
-<blockquote>
-<p>以下全部建立在2.0.19版本的的基础上</p>
-</blockquote>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
-<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
-<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
-<li>双击脚本，即可运行</li>
-</ul>
-<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
-<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
-</blockquote>
-<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
-<ul>
-<li><code>#</code> ：win 键</li>
-<li><code>!</code> ：alt</li>
-<li><code>^</code> ：ctrl</li>
-<li><code>+</code> ：shift</li>
-<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
-</ul>
-<blockquote>
-<p><code>^q</code> 即代表ctrl + q</p>
-</blockquote>
-<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
-<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
-<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
-<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
-<li>一个脚本里可以有多个热键</li>
-<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
-</ul>
-<hr>
-<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-
-<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
-<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
-]]></content>
-      <categories>
-        <category>利器OuO</category>
-      </categories>
-      <tags>
-        <tag>AutoHotkey</tag>
-        <tag>脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 学习——远程仓库部分</title>
-    <url>/git_2.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——远程仓库部分 oio</p>
+    <title>Git 学习——基础篇</title>
+    <url>/git_1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——基础篇 oio</p>
 <style>
     .inline-note {
       display: inline-block;
@@ -102,33 +26,104 @@
     }
 </style>
 <span id="more"></span>
-<p><code>git clone</code>在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。</p>
-<p>远程分支反映了远程仓库**(在你上次和它通信时)的状态。**</p>
-<p>远程分支的命名格式：- <code>&lt;remote name&gt;/&lt;branch name&gt;</code><br>e.g. 如果你看到一个名为 <code>origin/main</code> 的分支，那么这个分支就叫 <code>main</code>，远程仓库的名称就是 <code>origin</code>(git的默认远程仓库名称就是这个)</p>
-<p>远程分支有一个特别的属性，在你切换到远程分支时，自动进入分离 HEAD 状态。<br><code>git checkout o/main; git commit</code><br><font color="grey">当添加新的提交时 <code>o/main</code> 也不会更新。这是因为 <code>o/main</code> 只有在远程仓库中相应的分支更新了以后才会更新。</font></p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511231939516.png?40l" alt="image-20251123193905423"></p>
-<p><code>git fetch</code>从远程仓库<strong>获取数据</strong><br>将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
-<p>&#x2F;&#x2F; 通常通过互联网（使用 <code>http://</code> 或 <code>git://</code> 协议) 与远程仓库通信。<br>&#x2F;&#x2F;单纯的下载操作,但是<strong>并没有</strong>修改你本地的文件</p>
-<p><code>git pull</code> 下载他人的分享</p>
-<p><code>git pull</code> 就是 git fetch 和 git merge 的缩写</p>
-<p><code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
-<p>&#x2F;&#x2F;替代方法：</p>
-<ul>
-<li><code>git cherry-pick o/main</code></li>
-<li><code>git rebase o/main</code></li>
-<li><code>git merge o/main</code></li>
-</ul>
-<p><code>git fakeTeamwork &lt;分支名&gt; &lt;数量&gt;</code><br>默认操作就是在远程仓库的 main 分支上做一次提交，但通过参数可以调整分支和数量。</p>
-<p><code>git push</code> 将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录</p>
+
 <blockquote>
-<p>[!NOTE]<br> <em>注意 —— <code>git push</code> 不带任何参数时的行为与 Git 的一个名为 <code>push.default</code> 的配置有关。它的默认值取决于你正使用的 Git 的版本，但是在教程中我们使用的是 <code>upstream</code>。 这没什么太大的影响，但是在你的项目中进行推送之前，最好检查一下这个配置。</em></p>
+<p>学习网站：<a href="https://learngitbranching.js.org/?locale=zh_CN">Learn Git Branching</a></p>
 </blockquote>
+<p>Git 希望提交记录尽可能地轻量，因此在你每次进行提交时，它并不会盲目地复制整个目录。条件允许的情况下，它会将当前版本与仓库中的上一个版本进行对比，并把所有的差异打包到一起作为一个提交记录。</p>
+<h1 id="Git-主要命令"><a href="#Git-主要命令" class="headerlink" title="Git 主要命令"></a>Git 主要命令</h1><p><code>Git Commit</code>：提交新记录，添加新节点</p>
+<p><code>Git Branch &lt;name&gt;</code>：基于这个提交及他所有的parent新建分支<em>仅新建分支</em></p>
+<blockquote>
+<p><code>main*</code>代表你当前在main分支下</p>
+</blockquote>
+<p><code>git checkout &lt;name&gt;</code>：切换分支</p>
+<blockquote>
+<p>创建一个新的分支同时切换到新创建的分支的话，可以通过 <code>git checkout -b &lt;your-branch-name&gt;</code></p>
+<blockquote>
+<p><em>新版本使用</em><code>git</code> <code>switch</code> [<em><options></em>] [<code>--no-guess</code>] <em><branch></em></p>
+</blockquote>
+</blockquote>
+<p><code>git merge &lt;your-branch-name&gt;</code> 合并分支<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181543273.png?40l" alt="git merge"></p>
+<p><code>git rebase &lt;your-branch-name&gt; [your-rebase-name]</code>线性合并分支<br>Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。<br>Rebase 的优势就是可以创造更线性的提交历史。<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181548515.png?40l" alt="git rebase"></p>
+<hr>
+<h1 id="Git-特性"><a href="#Git-特性" class="headerlink" title="Git 特性"></a>Git 特性</h1><h2 id="关于HEAD变量"><a href="#关于HEAD变量" class="headerlink" title="关于HEAD变量:"></a>关于<code>HEAD</code>变量:</h2><p>通过<code>git chekout &lt;name&gt;</code>命令可以切换<code>HEAD</code>的指向</p>
+<blockquote>
+<p> <em>可以<code>HEAD</code>→<code>main</code> →<code>C4</code>（<code>main</code>→<code>C4</code>）</em><br><em>也可以<code>HEAD</code>→<code>C4</code></em></p>
+</blockquote>
+<h2 id="相对引用——"><a href="#相对引用——" class="headerlink" title="相对引用——^,~"></a>相对引用——<code>^</code>,<code>~</code></h2><p><code>git log</code> 查看提交记录的哈希值</p>
+<p>其哈希值可以只输入前几个字母进行匹配<br>但是这样太麻烦了</p>
+<p><strong>^</strong>: 使用 <code>^</code> 向上移动 1 个提交记录 (父节点，且可叠用。<code>HEAD^</code>,<code>main^^</code>)<br><span class = "inline-note" title ="小提示"><br>当<code>^</code>后面加数字时，表示的是移动到他的第几个<code>parent</code>（当我们使用<code>git merge</code>命令时可能会有一个以上的parent）<br></span><br><strong>~</strong>: 使用 <code>~&lt;num&gt;</code> 向上移动多个提交记录，如 <code>~3</code>,<code>HEAD~3</code></p>
+<p>两个符号可以链式操作，例如<code>git checkout HEAD~^2~2</code><br>结合之前的命令实用：<br><strong><code>git branch -f main HEAD~3</code>：将 main 分支强制指向 HEAD 的第 3 级 parent 提交。</strong></p>
+<h2 id="撤销变更-——-git-reset和git-revert"><a href="#撤销变更-——-git-reset和git-revert" class="headerlink" title="撤销变更 —— git reset和git revert"></a>撤销变更 —— <code>git reset</code>和<code>git revert</code></h2><p><code>git reset &lt;参数&gt;</code><br>在reset后， 撤销部分所做的变更还在，但是处于未加入暂存区状态。<strong>本地常用</strong><br><code>git revert &lt;参数&gt;</code><br>把撤销之前的部分作为新分支提交<strong>远程常用</strong></p>
+<hr>
+<h1 id="整理提交记录"><a href="#整理提交记录" class="headerlink" title="整理提交记录"></a>整理提交记录</h1><h2 id="复制git-cherry-pick"><a href="#复制git-cherry-pick" class="headerlink" title="复制git cherry-pick"></a>复制<code>git cherry-pick</code></h2><p><code>git cherry-pick &lt;提交号&gt;...</code><br>将一些提交<strong>复制</strong>到当前所在的位置（<code>HEAD</code>）下面</p>
+<h2 id="交互式的-rebase"><a href="#交互式的-rebase" class="headerlink" title="交互式的 rebase"></a>交互式的 rebase</h2><p><code>git rebase -i HEAD~4</code><br>会有一个交互式的页面供你进行<strong>排序、删除、合并</strong><br>在你完成后，会将处理好的分支放在当前分支下</p>
+<h2 id="只取一个提交记录（实战结合）"><a href="#只取一个提交记录（实战结合）" class="headerlink" title="只取一个提交记录（实战结合）"></a>只取一个提交记录（实战结合）</h2><p>通过以上两个命令把修改bug中最后解决bug的提交记录复制或移动到main分支下</p>
+<h1 id="提交的技巧"><a href="#提交的技巧" class="headerlink" title="提交的技巧"></a>提交的技巧</h1><blockquote>
+<p>当你希望对之前的提交记录进行小小的修改，这里有两个方法。</p>
+</blockquote>
+<p><code>git commit --amend</code>追加提交<br>将不会重复提交而是修改之前的提交于同一位置</p>
+<p>可以先移动顺序，将要修改的放前面来，修改后再排序放回去。最后合并main分支。</p>
+<p>使用<code>git cherry-pick</code>一步步复制修改</p>
+<h1 id="Git-tag-——-标签-锚点"><a href="#Git-tag-——-标签-锚点" class="headerlink" title="Git tag —— 标签&#x2F;锚点"></a>Git tag —— 标签&#x2F;锚点</h1><p><code>git tag &lt;标签名&gt; &lt;指向位置&gt;</code><br><em>可以通过<code>git check</code>移动到标签</em></p>
+<p><code>git describe </code>可以 <strong>描述</strong>离你最近的锚点（也就是标签)</p>
+<p>语法：<code>git describe &lt;ref&gt;</code>^1<br>返回值:<code>&lt;tag&gt;-&lt;numCommits&gt;-g&lt;hash&gt;</code>^2</p>
+<ol>
+<li><p><code>&lt;ref&gt;</code> 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会使用你目前所在的位置（<code>HEAD</code>）。</p>
+</li>
+<li><p><code>tag</code> 表示的是离 <code>ref</code> 最近的标签， <br><code>numCommits</code> 是表示这个 <code>ref</code> 与 <code>tag</code> 相差有多少个提交记录，<br><code>hash</code> 表示的是你所给定的 <code>ref</code> 所表示的提交记录哈希值的前几位。</p>
+</li>
+</ol>
+<h1 id="多分支-rebase"><a href="#多分支-rebase" class="headerlink" title="多分支 rebase"></a>多分支 rebase</h1><p> <code>git rebase &lt;1&gt; &lt;2&gt;</code>1→2<br>2分支中所有的提交记录都将合并到1分支之下</p>
 ]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博文编写</title>
+    <url>/hexo-optimize.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>编写博文的笔记，分为入门和实用进阶两篇。</p>
+<span id="more"></span>
+<h1 id="实用进阶"><a href="#实用进阶" class="headerlink" title="实用进阶"></a>实用进阶</h1><h3 id="Q1：hexo中如何简洁的调整图片的大小"><a href="#Q1：hexo中如何简洁的调整图片的大小" class="headerlink" title="Q1：hexo中如何简洁的调整图片的大小"></a>Q1：hexo中如何简洁的调整图片的大小</h3><p><strong>这里推荐<a href="https://bobcn.github.io/2018/03/24/hexo_reset_image_size/"> Hexo 中扩展 Markdown 语法设置图片的大小</a></strong><br>可以通过在image的链接后添加文本的方式修改图片大小<br>实用方法：下载js到hexo根目录下的scripts文件夹，并在页面对应位置添加<script></script>标签</p>
+<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><h2 id="侧栏"><a href="#侧栏" class="headerlink" title="侧栏"></a>侧栏</h2><p>名字: 链接 || 图标名<br>social:<br>图标名必须在<a href="http://fontawesome.dashgame.com/" title="external" target="">Fontawesome</a>里有</p>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>在Font-matter加：</p>
+<figure class="highlight plaintext"><figcaption><span>tag-e.g.</span></figcaption><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">    - 笔记</span><br><span class="line">    - 博客</span><br></pre></td></tr></table></figure>
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% link text url [external] [title] %&#125;</span><br></pre></td></tr></table></figure>
+<p>text：链接显示的文字<br>url：链接的地址<br>[external]：可选，如果加上 external，链接会在新标签页打开（即添加 target&#x3D;”_blank”）<br>[title]：可选，设置 title 属性（鼠标悬停时显示的文字）</p>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>有两种写法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock [title] %&#125;</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
+<p>或者三个&#96;</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% blockquote [作者[, 来源]] [链接地址] [链接标题] %&#125;</span><br><span class="line">内容</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote><p>内容</p>
+<footer><strong>[作者[</strong><cite>来源]] [链接地址] [链接标题]</cite></footer></blockquote>
+
+<h2 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note warning %&#125;</span><br><span class="line">🤔 **随手记：** 这个 API 文档写得跟谜语一样，看三遍才明白……</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<div class="note warning"><p>🤔 <strong>随手记：</strong> 这个 API 文档写得跟谜语一样，看三遍才明白……</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>效果说明</th>
+<th>常见用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>博客</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -480,46 +475,134 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo博文编写</title>
-    <url>/hexo-optimize.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>编写博文的笔记，分为入门和实用进阶两篇。</p>
+    <title>AutoHotkey —— 自动热键软件</title>
+    <url>/AutoHotkey1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+
+<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
 <span id="more"></span>
-<h1 id="实用进阶"><a href="#实用进阶" class="headerlink" title="实用进阶"></a>实用进阶</h1><h3 id="Q1：hexo中如何简洁的调整图片的大小"><a href="#Q1：hexo中如何简洁的调整图片的大小" class="headerlink" title="Q1：hexo中如何简洁的调整图片的大小"></a>Q1：hexo中如何简洁的调整图片的大小</h3><p><strong>这里推荐<a href="https://bobcn.github.io/2018/03/24/hexo_reset_image_size/"> Hexo 中扩展 Markdown 语法设置图片的大小</a></strong><br>可以通过在image的链接后添加文本的方式修改图片大小<br>实用方法：下载js到hexo根目录下的scripts文件夹，并在页面对应位置添加<script></script>标签</p>
-<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><h2 id="侧栏"><a href="#侧栏" class="headerlink" title="侧栏"></a>侧栏</h2><p>名字: 链接 || 图标名<br>social:<br>图标名必须在<a href="http://fontawesome.dashgame.com/" title="external" target="">Fontawesome</a>里有</p>
-<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>在Font-matter加：</p>
-<figure class="highlight plaintext"><figcaption><span>tag-e.g.</span></figcaption><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">    - 笔记</span><br><span class="line">    - 博客</span><br></pre></td></tr></table></figure>
 
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% link text url [external] [title] %&#125;</span><br></pre></td></tr></table></figure>
-<p>text：链接显示的文字<br>url：链接的地址<br>[external]：可选，如果加上 external，链接会在新标签页打开（即添加 target&#x3D;”_blank”）<br>[title]：可选，设置 title 属性（鼠标悬停时显示的文字）</p>
-<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>有两种写法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% codeblock [title] %&#125;</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br></pre></td></tr></table></figure>
-<p>或者三个&#96;</p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% blockquote [作者[, 来源]] [链接地址] [链接标题] %&#125;</span><br><span class="line">内容</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以下全部建立在2.0.19版本的的基础上</p>
+</blockquote>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
+<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
+<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
+<li>双击脚本，即可运行</li>
+</ul>
+<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
+<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
+</blockquote>
+<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
+<ul>
+<li><code>#</code> ：win 键</li>
+<li><code>!</code> ：alt</li>
+<li><code>^</code> ：ctrl</li>
+<li><code>+</code> ：shift</li>
+<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
+</ul>
+<blockquote>
+<p><code>^q</code> 即代表ctrl + q</p>
+</blockquote>
+<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
+<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
 
-<blockquote><p>内容</p>
-<footer><strong>[作者[</strong><cite>来源]] [链接地址] [链接标题]</cite></footer></blockquote>
+<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
+<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
+<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
+<li>一个脚本里可以有多个热键</li>
+<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
+</ul>
+<hr>
+<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
 
-<h2 id="标签插件"><a href="#标签插件" class="headerlink" title="标签插件"></a>标签插件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note warning %&#125;</span><br><span class="line">🤔 **随手记：** 这个 API 文档写得跟谜语一样，看三遍才明白……</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<div class="note warning"><p>🤔 <strong>随手记：</strong> 这个 API 文档写得跟谜语一样，看三遍才明白……</p>
-</div>
-<table>
-<thead>
-<tr>
-<th>语法</th>
-<th>效果说明</th>
-<th>常见用途</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
+<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
+<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
 ]]></content>
+      <categories>
+        <category>利器OuO</category>
+      </categories>
       <tags>
-        <tag>博客</tag>
-        <tag>Hexo</tag>
+        <tag>AutoHotkey</tag>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 学习——远程仓库部分</title>
+    <url>/git_2.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——远程仓库部分 oio</p>
+<style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+<p><code>git clone</code>在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。</p>
+<p>远程分支反映了远程仓库**(在你上次和它通信时)的状态。**</p>
+<p>远程分支的命名格式：- <code>&lt;remote name&gt;/&lt;branch name&gt;</code><br>e.g. 如果你看到一个名为 <code>origin/main</code> 的分支，那么这个分支就叫 <code>main</code>，远程仓库的名称就是 <code>origin</code>(git的默认远程仓库名称就是这个)</p>
+<p>远程分支有一个特别的属性，在你切换到远程分支时，自动进入分离 HEAD 状态。<br><code>git checkout o/main; git commit</code><br><font color="grey">当添加新的提交时 <code>o/main</code> 也不会更新。这是因为 <code>o/main</code> 只有在远程仓库中相应的分支更新了以后才会更新。</font></p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511231939516.png?40l" alt="image-20251123193905423"></p>
+<p><code>git fetch</code>从远程仓库<strong>获取数据</strong><br>将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
+<p>&#x2F;&#x2F; 通常通过互联网（使用 <code>http://</code> 或 <code>git://</code> 协议) 与远程仓库通信。<br>&#x2F;&#x2F;单纯的下载操作,但是<strong>并没有</strong>修改你本地的文件</p>
+<p><code>git pull</code> 下载他人的分享</p>
+<p><code>git pull</code> 就是 git fetch 和 git merge 的缩写</p>
+<p><code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
+<p>&#x2F;&#x2F;替代方法：</p>
+<ul>
+<li><code>git cherry-pick o/main</code></li>
+<li><code>git rebase o/main</code></li>
+<li><code>git merge o/main</code></li>
+</ul>
+<p><code>git fakeTeamwork &lt;分支名&gt; &lt;数量&gt;</code><br>默认操作就是在远程仓库的 main 分支上做一次提交，但通过参数可以调整分支和数量。</p>
+<p><code>git push</code> 将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录</p>
+<blockquote>
+<p>[!NOTE]<br> <em>注意 —— <code>git push</code> 不带任何参数时的行为与 Git 的一个名为 <code>push.default</code> 的配置有关。它的默认值取决于你正使用的 Git 的版本，但是在教程中我们使用的是 <code>upstream</code>。 这没什么太大的影响，但是在你的项目中进行推送之前，最好检查一下这个配置。</em></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -702,86 +785,23 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 学习——基础篇</title>
-    <url>/git_1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——基础篇 oio</p>
-<style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
+    <title>Ubuntu24.04使用记录</title>
+    <url>/ubuntu_demo.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
 <span id="more"></span>
 
-<blockquote>
-<p>学习网站：<a href="https://learngitbranching.js.org/?locale=zh_CN">Learn Git Branching</a></p>
-</blockquote>
-<p>Git 希望提交记录尽可能地轻量，因此在你每次进行提交时，它并不会盲目地复制整个目录。条件允许的情况下，它会将当前版本与仓库中的上一个版本进行对比，并把所有的差异打包到一起作为一个提交记录。</p>
-<h1 id="Git-主要命令"><a href="#Git-主要命令" class="headerlink" title="Git 主要命令"></a>Git 主要命令</h1><p><code>Git Commit</code>：提交新记录，添加新节点</p>
-<p><code>Git Branch &lt;name&gt;</code>：基于这个提交及他所有的parent新建分支<em>仅新建分支</em></p>
-<blockquote>
-<p><code>main*</code>代表你当前在main分支下</p>
-</blockquote>
-<p><code>git checkout &lt;name&gt;</code>：切换分支</p>
-<blockquote>
-<p>创建一个新的分支同时切换到新创建的分支的话，可以通过 <code>git checkout -b &lt;your-branch-name&gt;</code></p>
-<blockquote>
-<p><em>新版本使用</em><code>git</code> <code>switch</code> [<em><options></em>] [<code>--no-guess</code>] <em><branch></em></p>
-</blockquote>
-</blockquote>
-<p><code>git merge &lt;your-branch-name&gt;</code> 合并分支<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181543273.png?40l" alt="git merge"></p>
-<p><code>git rebase &lt;your-branch-name&gt; [your-rebase-name]</code>线性合并分支<br>Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。<br>Rebase 的优势就是可以创造更线性的提交历史。<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181548515.png?40l" alt="git rebase"></p>
-<hr>
-<h1 id="Git-特性"><a href="#Git-特性" class="headerlink" title="Git 特性"></a>Git 特性</h1><h2 id="关于HEAD变量"><a href="#关于HEAD变量" class="headerlink" title="关于HEAD变量:"></a>关于<code>HEAD</code>变量:</h2><p>通过<code>git chekout &lt;name&gt;</code>命令可以切换<code>HEAD</code>的指向</p>
-<blockquote>
-<p> <em>可以<code>HEAD</code>→<code>main</code> →<code>C4</code>（<code>main</code>→<code>C4</code>）</em><br><em>也可以<code>HEAD</code>→<code>C4</code></em></p>
-</blockquote>
-<h2 id="相对引用——"><a href="#相对引用——" class="headerlink" title="相对引用——^,~"></a>相对引用——<code>^</code>,<code>~</code></h2><p><code>git log</code> 查看提交记录的哈希值</p>
-<p>其哈希值可以只输入前几个字母进行匹配<br>但是这样太麻烦了</p>
-<p><strong>^</strong>: 使用 <code>^</code> 向上移动 1 个提交记录 (父节点，且可叠用。<code>HEAD^</code>,<code>main^^</code>)<br><span class = "inline-note" title ="小提示"><br>当<code>^</code>后面加数字时，表示的是移动到他的第几个<code>parent</code>（当我们使用<code>git merge</code>命令时可能会有一个以上的parent）<br></span><br><strong>~</strong>: 使用 <code>~&lt;num&gt;</code> 向上移动多个提交记录，如 <code>~3</code>,<code>HEAD~3</code></p>
-<p>两个符号可以链式操作，例如<code>git checkout HEAD~^2~2</code><br>结合之前的命令实用：<br><strong><code>git branch -f main HEAD~3</code>：将 main 分支强制指向 HEAD 的第 3 级 parent 提交。</strong></p>
-<h2 id="撤销变更-——-git-reset和git-revert"><a href="#撤销变更-——-git-reset和git-revert" class="headerlink" title="撤销变更 —— git reset和git revert"></a>撤销变更 —— <code>git reset</code>和<code>git revert</code></h2><p><code>git reset &lt;参数&gt;</code><br>在reset后， 撤销部分所做的变更还在，但是处于未加入暂存区状态。<strong>本地常用</strong><br><code>git revert &lt;参数&gt;</code><br>把撤销之前的部分作为新分支提交<strong>远程常用</strong></p>
-<hr>
-<h1 id="整理提交记录"><a href="#整理提交记录" class="headerlink" title="整理提交记录"></a>整理提交记录</h1><h2 id="复制git-cherry-pick"><a href="#复制git-cherry-pick" class="headerlink" title="复制git cherry-pick"></a>复制<code>git cherry-pick</code></h2><p><code>git cherry-pick &lt;提交号&gt;...</code><br>将一些提交<strong>复制</strong>到当前所在的位置（<code>HEAD</code>）下面</p>
-<h2 id="交互式的-rebase"><a href="#交互式的-rebase" class="headerlink" title="交互式的 rebase"></a>交互式的 rebase</h2><p><code>git rebase -i HEAD~4</code><br>会有一个交互式的页面供你进行<strong>排序、删除、合并</strong><br>在你完成后，会将处理好的分支放在当前分支下</p>
-<h2 id="只取一个提交记录（实战结合）"><a href="#只取一个提交记录（实战结合）" class="headerlink" title="只取一个提交记录（实战结合）"></a>只取一个提交记录（实战结合）</h2><p>通过以上两个命令把修改bug中最后解决bug的提交记录复制或移动到main分支下</p>
-<h1 id="提交的技巧"><a href="#提交的技巧" class="headerlink" title="提交的技巧"></a>提交的技巧</h1><blockquote>
-<p>当你希望对之前的提交记录进行小小的修改，这里有两个方法。</p>
-</blockquote>
-<p><code>git commit --amend</code>追加提交<br>将不会重复提交而是修改之前的提交于同一位置</p>
-<p>可以先移动顺序，将要修改的放前面来，修改后再排序放回去。最后合并main分支。</p>
-<p>使用<code>git cherry-pick</code>一步步复制修改</p>
-<h1 id="Git-tag-——-标签-锚点"><a href="#Git-tag-——-标签-锚点" class="headerlink" title="Git tag —— 标签&#x2F;锚点"></a>Git tag —— 标签&#x2F;锚点</h1><p><code>git tag &lt;标签名&gt; &lt;指向位置&gt;</code><br><em>可以通过<code>git check</code>移动到标签</em></p>
-<p><code>git describe </code>可以 <strong>描述</strong>离你最近的锚点（也就是标签)</p>
-<p>语法：<code>git describe &lt;ref&gt;</code>^1<br>返回值:<code>&lt;tag&gt;-&lt;numCommits&gt;-g&lt;hash&gt;</code>^2</p>
-<ol>
-<li><p><code>&lt;ref&gt;</code> 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会使用你目前所在的位置（<code>HEAD</code>）。</p>
-</li>
-<li><p><code>tag</code> 表示的是离 <code>ref</code> 最近的标签， <br><code>numCommits</code> 是表示这个 <code>ref</code> 与 <code>tag</code> 相差有多少个提交记录，<br><code>hash</code> 表示的是你所给定的 <code>ref</code> 所表示的提交记录哈希值的前几位。</p>
-</li>
-</ol>
-<h1 id="多分支-rebase"><a href="#多分支-rebase" class="headerlink" title="多分支 rebase"></a>多分支 rebase</h1><p> <code>git rebase &lt;1&gt; &lt;2&gt;</code>1→2<br>2分支中所有的提交记录都将合并到1分支之下</p>
+<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>[^更新并安装]: </p>
+<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>笔记</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>Linux</tag>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -809,297 +829,6 @@
       <tags>
         <tag>Python</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>docker 学习笔记</title>
-    <url>/docker_note1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<p>初学者的docker入门笔记</p>
-<span id="more"></span>
-<p><a href="https://docs.docker.com/">Docker文档</a></p>
-<h1 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h1><h2 id="Docker-出现的原因"><a href="#Docker-出现的原因" class="headerlink" title="Docker 出现的原因"></a>Docker 出现的原因</h2><p><u>解决环境一致性问题</u><br>当我们开发一个项目时，通常需要依赖大量的框架、库、插件、环境变量等。例如，某个项目可能依赖：</p>
-<ul>
-<li>Node.js 特定版本</li>
-<li>MySQL 数据库</li>
-<li>Redis 缓存</li>
-<li>某些 C++ 编译器或 Python 包</li>
-</ul>
-<p>这些依赖项在我们本地电脑上能正常运行，并不意味着在他人的电脑或线上服务器上也能顺利部署。<strong>不同系统、不同版本、配置差异</strong>都会带来兼容性问题，这就是我们常说的 <strong>“环境不一致”</strong> 问题。</p>
-<p>在docker之前，大家使用虚拟机技术解决这个问题<br> ——但是它的本质是运用<strong>使用软件模拟一整套硬件系统</strong>，体积大、速度慢、资源消耗高<br> 而 Docker 是通过 <strong>操作系统级虚拟化</strong>，模拟出 轻量 隔离 的运行环境。</p>
-<h2 id="Docker-基本结构"><a href="#Docker-基本结构" class="headerlink" title="Docker 基本结构"></a>Docker 基本结构</h2><p><img src="https://docs.docker.com/get-started/images/docker-architecture.webp"></p>
-<div class="tabs" id="docker-基础概念"><ul class="nav-tabs"><li class="tab active"><a href="#docker-基础概念-1">镜像（Image）</a></li><li class="tab"><a href="#docker-基础概念-2">容器（Container）</a></li><li class="tab"><a href="#docker-基础概念-3">仓库（Repository）</a></li></ul><div class="tab-content"><div class="tab-pane active" id="docker-基础概念-1"><p>类似于虚拟机中的镜像，是一个包含有文件系统的面向Docker引擎的只读模板。<br>任何应用程序运行都需要环境，而镜像就是用来提供这种运行环境的。例如一个Ubuntu镜像就是一个包含Ubuntu操作系统环境的模板，同理在该镜像上装上Apache软件，就可以称为Apache镜像。</p></div><div class="tab-pane" id="docker-基础概念-2"><p>Docker 容器就像一台台运行的虚拟机，<br>里面运行你的应用程序。<br>它们是相互隔离的，互不影响。</p></div><div class="tab-pane" id="docker-基础概念-3"><p>类似于代码仓库，这里是镜像仓库，是Docker用来集中存放镜像文件的地方。<br>注意与注册服务器（Registry）的区别：注册服务器是存放仓库的地方，一般会有多个仓库；而仓库是存放镜像的地方，一般每个仓库存放一类镜像，每个镜像利用tag进行区分，比如Ubuntu仓库存放有多个版本（12.04、14.04等）的Ubuntu镜像。</p></div></div></div>
-
-
-<p>除了以上几个结构组成中重要的概念外，还有另一个重要的概念<br><strong>Dockerfile</strong>：<br>它像一个自动化的脚本，它主要用来创建我们之前讲到的镜像。</p>
-<blockquote>
-<p>他就好比把虚拟机中创建虚拟机并安装软件的过程压缩为一个脚本。</p>
-</blockquote>
-<h1 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h1><div class="note info"><p><a href="https://docs.docker.com/get-started/get-docker/">Docker Desktop 安装文档</a><br><a href="https://docs.docker.com/engine/install/">Docker Engine 安装文档</a></p>
-</div>
-<p>安装完成后可以使用<code>docker version</code>查看Docker的版本信息<br>查看Docker的帮助信息：<code>docker --help</code></p>
-<h1 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h1><div class="note warning"><p><strong>列举所有的容器:</strong> <code>docker ps</code><br><strong>停止容器:</strong> <code>docker stop &lt;容器 ID&gt;</code><br><strong>重启容器:</strong> <code>docker restart &lt;容器 ID&gt;</code><br><strong>删除容器:</strong> <code>docker rm &lt;容器 ID&gt;</code><br><strong>启动一个远程 Shell:</strong> <code>docker exec -it&lt;容器 ID&gt; /bin/bash</code><br>只用 <code>-i</code> 参数时，由于没有分配伪终端，界面没有我们熟悉的 Linux 命令提示符，但命令执行结果仍然可以返回。</p>
-<p>当 <code>-i</code> <code>-t</code> 参数一起使用时，则可以看到我们熟悉的 Linux 命令提示符。</p>
-</div>
-
-
-<ol>
-<li><p><code>docker run</code>: 运行一个容器。<br>示例：<code>docker run </code></p>
-</li>
-<li><p><code>docker ps</code>: 列出正在运行的容器。<br>示例：<code>docker ps</code></p>
-</li>
-<li><p><code>docker images</code>: 列出本地已有的镜像。<br>示例：<code>docker images</code></p>
-</li>
-<li><p><code>docker pull</code>: 从远程仓库下载镜像。<br>示例：<code>docker pull </code></p>
-</li>
-<li><p><code>docker stop</code>: 停止一个运行中的容器。<br>示例：<code>docker stop </code></p>
-</li>
-<li><p><code>docker rm</code>: 删除一个容器。<br>示例：<code>docker rm </code></p>
-</li>
-<li><p><code>docker rmi</code>: 删除一个镜像。<br>示例：<code>docker rmi </code></p>
-</li>
-<li><p><code>docker build</code>: 构建一个镜像。<br>示例：<code>docker build -t  </code></p>
-</li>
-<li><p><code>docker exec</code>: 在运行中的容器中执行命令。<br>示例：<code>docker exec  </code></p>
-</li>
-<li><p><code>docker logs</code>: 查看容器的日志。<br>示例：<code>docker logs </code></p>
-</li>
-<li><p><code>docker-compose up</code>: 使用Docker Compose启动容器。<br>示例：<code>docker-compose up</code></p>
-</li>
-<li><p><code>docker-compose down</code>: 停止并移除使用Docker Compose启动的容器。<br>示例：<code>docker-compose down</code></p>
-</li>
-<li><p><code>docker network ls</code>: 列出Docker网络。<br>示例：<code>docker network ls</code></p>
-</li>
-<li><p><code>docker network create</code>: 创建一个Docker网络。<br>示例：<code>docker network create </code></p>
-</li>
-<li><p><code>docker network connect</code>: 将容器连接到一个Docker网络。<br>示例：<code>docker network connect  </code></p>
-</li>
-<li><p><code>docker volume ls</code>: 列出Docker卷。<br>示例：<code>docker volume ls</code></p>
-</li>
-<li><p><code>docker volume create</code>: 创建一个Docker卷。<br>示例：<code>docker volume create </code></p>
-</li>
-<li><p><code>docker volume rm</code>: 删除一个Docker卷。<br>示例：<code>docker volume rm </code></p>
-</li>
-<li><p><code>docker inspect</code>: 检查容器、镜像、网络等的详细信息。<br>示例：<code>docker inspect </code></p>
-</li>
-<li><p><code>docker tag</code>: 创建一个标签来标识镜像。<br>示例：<code>docker tag  </code></p>
-</li>
-<li><p><code>docker push</code>: 将镜像推送到远程仓库。<br>示例：<code>docker push </code></p>
-</li>
-<li><p><code>docker login</code>: 登录到远程Docker仓库。<br>示例：<code>docker login</code></p>
-</li>
-<li><p><code>docker logout</code>: 从远程Docker仓库注销。<br>示例：<code>docker logout</code></p>
-</li>
-<li><p><code>docker restart</code>: 重启一个容器。<br>示例：<code>docker restart </code></p>
-</li>
-<li><p><code>docker pause</code>: 暂停一个容器的所有进程。<br>示例：<code>docker pause </code></p>
-</li>
-<li><p><code>docker unpause</code>: 恢复一个暂停的容器。<br>示例：<code>docker unpause </code></p>
-</li>
-<li><p><code>docker kill</code>: 强制停止一个容器。<br>示例：<code>docker kill </code></p>
-</li>
-<li><p><code>docker inspect</code>: 检查容器、镜像、网络等的详细信息。<br>示例：<code>docker inspect </code></p>
-</li>
-<li><p><code>docker cp</code>: 在容器和主机之间复制文件或目录。<br>示例：<code>docker cp : </code></p>
-</li>
-<li><p><code>docker stats</code>: 实时显示容器的资源使用情况。<br>示例：<code>docker stats </code></p>
-</li>
-<li><p><code>docker attach</code>: 连接到正在运行的容器的标准输入、输出和错误流。<br>示例：<code>docker attach </code></p>
-</li>
-<li><p><code>docker top</code>: 显示容器中运行的进程列表。<br>示例：<code>docker top </code></p>
-</li>
-<li><p><code>docker commit</code>: 创建一个新的镜像，基于正在运行的容器。<br>示例：<code>docker commit  </code></p>
-</li>
-<li><p><code>docker system prune</code>: 清理无用的镜像、容器和卷。<br>示例：<code>docker system prune</code></p>
-</li>
-<li><p><code>docker version</code>: 显示Docker客户端和服务器的版本信息。<br>示例：<code>docker version</code></p>
-</li>
-</ol>
-<hr>
-<p>参考：<br><a href="https://zhuanlan.zhihu.com/p/23599229">只要一小时，零基础入门Docker - 知乎</a><br><a href="https://blog.csdn.net/leah126/article/details/131871717">Docker入门教程（非常详细）从零基础入门到精通，看完这一篇就够了_docker教程-CSDN博客</a><br><a href="https://github.com/feixuek/docker?tab=readme-ov-file">Github-Docker中文</a></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu24.04使用记录</title>
-    <url>/ubuntu_demo.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
-<span id="more"></span>
-
-<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
-
-<p>[^更新并安装]: </p>
-<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>centos更换yum源</title>
-    <url>/centos_yum.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<p>centos7更换为国内yum源</p>
-<span id="more"></span>
-<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.bak</p>
-<h1 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h1><p><span class=“inline-note” title="看什么看，没有注释EmE">这里的命令是centos7的更新命令，可以根据自己的的版本替换一下</span><br>wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
-<h1 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h1><p>yum makecache</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>yum</tag>
-        <tag>Centos</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>明日清单</title>
-    <url>/todo_list.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>明天要完成的ioi</p>
-<span id="more"></span>
-<ul>
-<li><input disabled="" type="checkbox"> Spring boot</li>
-<li><input disabled="" type="checkbox"> flask</li>
-<li><input disabled="" type="checkbox"> 80% python 进阶</li>
-<li><input disabled="" type="checkbox"> 外卖项目</li>
-<li><input checked="" disabled="" type="checkbox"> ccf比赛赛题</li>
-</ul>
-]]></content>
-      <categories>
-        <category>记录</category>
-      </categories>
-      <tags>
-        <tag>清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>报错记录</title>
-    <url>/errorlist.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-
-<h2 id="flutter"><a href="#flutter" class="headerlink" title="flutter"></a>flutter</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先查看下报错信息：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; flutter doctor</span><br><span class="line">Doctor summary (to see all details, run flutter doctor -v):</span><br><span class="line">[✓] Flutter (Channel stable, 3.38.3, on Microsoft Windows [版本 10.0.26100.4946], locale zh-CN)</span><br><span class="line">[✓] Windows Version (11 家庭中文版 64-bit, 24H2, 2009)</span><br><span class="line">[✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0)</span><br><span class="line">[✓] Chrome - develop for the web</span><br><span class="line">[✓] Visual Studio - develop Windows apps (Visual Studio 生成工具 2022 17.14.16)</span><br><span class="line">[✓] Connected device (3 available)</span><br><span class="line">[!] Network resources</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://pub.dev/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://storage.googleapis.com/&quot;: Connection terminated during</span><br><span class="line">      handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://maven.google.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://cocoapods.org/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://github.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br></pre></td></tr></table></figure>
-
-<p>报错信息为：连接不上</p>
-<ul>
-<li><p>pub.dev</p>
-</li>
-<li><p>storage.googleapis.com</p>
-</li>
-<li><p>maven.google.com</p>
-</li>
-<li><p>cocoapods.org</p>
-</li>
-<li><p>github.com</p>
-</li>
-</ul>
-<p>环境为：Win11+Clash Verge全局+系统代理</p>
-<hr>
-<h4 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h4><p>首先使用浏览器查看，发现以上页面都能打开。</p>
-<p>感觉可能是终端没走代理的原因，就把代理调整为TUN模式</p>
-<p>使用终端curl github，成功返回页面</p>
-<p>使用终端curl <a href="https://maven.google.com/com/">https://maven.google.com/com/</a><br>→ 404 That’s an error.（但成功返回页面）</p>
-<p>AI的解释为</p>
-<blockquote>
-<p>因为 <strong>Flutter&#x2F;Gradle 访问 maven.google.com 不是访问 &#x2F;com&#x2F;</strong><br> 它访问的是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">https://maven.google.com/master-index.xml</span><br><span class="line">https://maven.google.com/com/android/tools/build/group-index.xml</span><br></pre></td></tr></table></figure>
-
-<p>并且这些文件需要：</p>
-<ul>
-<li><strong>TLS 1.2 &#x2F; TLS 1.3</strong></li>
-<li><strong>正确的 CA 证书链</strong></li>
-<li><strong>完整的网络握手</strong></li>
-</ul>
-<p>你之前出现的错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Connection terminated during handshake</span><br></pre></td></tr></table></figure>
-
-<p>这说明 <strong>TLS 握手阶段就失败了</strong><br> 而 curl 能成功 → 说明：</p>
-<ul>
-<li>你使用的 curl 内置证书是 OK 的</li>
-<li><strong>Java &#x2F; Flutter &#x2F; Dart 使用的证书链不 OK</strong></li>
-</ul>
-<p>❗ <strong>这类问题绝大多数都是 Windows 环境里的 CA 证书缺失&#x2F;损坏 或 代理&#x2F;杀软注入了假证书（MITM）</strong></p>
-</blockquote>
-<p>然后又去检查CA证书</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; certutil -verifystore -user root</span><br><span class="line">root &quot;受信任的根证书颁发机构&quot;</span><br><span class="line">================ 证书 0 ================</span><br><span class="line">序列号: 0aa8d1ed03648306256b92500fd33b224a44f0ea</span><br><span class="line">颁发者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line"> NotBefore: 2023/12/7 16:01</span><br><span class="line"> NotAfter: 2033/12/4 16:01</span><br><span class="line">使用者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line">签名与公钥匹配</span><br><span class="line">根证书: 使用者与颁发者匹配</span><br><span class="line">证书哈希(sha1): 66f8b18f84b329d2aef25446d4e6c3dec0103a95</span><br><span class="line">没有密钥提供程序信息</span><br><span class="line">找不到解密的证书和私钥。</span><br><span class="line">已验证的颁发策略: 全部</span><br><span class="line">已验证的应用程序策略: 全部</span><br><span class="line">证书有效</span><br><span class="line">CertUtil: -verifystore 命令成功完成。</span><br></pre></td></tr></table></figure>
-
-<p>我看到了堡塔……然后把堡塔的证书删掉再次尝试，发现成功</p>
-<p>结束</p>
-<blockquote>
-<p>早知道就不拿电脑瞎折腾了，当初想试一下win安装堡塔来着QAQ</p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>云原生实践：智能计算平台构建与研发</title>
@@ -1471,38 +1200,70 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>docker</tag>
-        <tag>Centos</tag>
         <tag>ccf</tag>
         <tag>dify</tag>
+        <tag>Centos</tag>
         <tag>Gradio</tag>
         <tag>Ollama</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
-    <title>各种各样的参考页面</title>
-    <url>/reference.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="47d238a3d6a1d855e4c45a56e5d6f9225940ac099657b26398762e089661494f">c32395f63df771905c259445e1aa88f3899ee4804f798168a843621515b7539500991886f73e55266910bee5a5b66327e524d8162e2ec9fec6fcfda26661a9930eec9caf050ca5f9c108385159c0f1e968a1b5e142c0c85994af2c696ecc181ce436acc974aa63818589a52609ba5f3a9ad4010ae889f1894b4a9d9e64e2ece134003aab3794ea4436ae924ab54b02accb5b1ea9aba8acbd6abdf03218c8b53bc23a6b11578ff36c383887e99236a09a41e0489303999a2305b8961edd5d9e8017d2237ba846cb2d49e247f457936c1d6891e56c693d86e41fa9a187bd5a4c00b052e9f7ec3faf4cdd3d532d44f6fefa88ce7e06a99b145f57de3deb6599ffd1ed58513371739dc35705cdb74b10b1c927705b553e236c1fb5b2029b6eec53405522a6d42050ccd4756af71dd7134109a567c19a8b0ea663a6ea5db9c9e45b7b04f070ee1352c19a435b5caa75efdc5898372caa257405dee494e723e3d6e068931a5b597a0fded981c717c1811c8b44d98475ef290ad1e2b09710f02f5263398bf87ff4ab0872ac934d900768d632ecec7ff7ac1af1d230d36c12ca300d5eef5646a49eae352984cf9b83bb4f09be3eee51d3e0b56706421729b7e0f5d31ea081349287ab7b21fae891b5b73812921036dbccf9b0e193294c72f09921e7447ee8c06b0932cdedf282f40d73bb727c2a082a1ee8cdffd969f89f5c7988f0dacc75b5b09733090d4f6159df1d76c6b35041eaff47343f7c7ab4a0e900be17b662b292191fd69f363c9bef52f77a56b418fd67ead66543142ea3ee540ec8776891eb8c6273d8f1f70aaaa1135d1ca8d3946fddcde7382e8f10d0bff690c51a433fd6bbc7d6e9a6cad1aa8a9da9b8b25da9ead4ffad254ee88dcd3492733970f1ff8dcccf1d7e00e1a554eb515981c88da13afe81a15104ec87d8b2b06f38e22aa0260f55931cdaed7ba01cd064ef902a9d9084f84fbfca049d4180c1f12019a932085e010ca2339f3adc8bc1564a2e2549f828112fd8d1c724c6b78cda73f1fb517a044ab42e13ea007e1ac0facec239e2d01f90fc5685c3c4f0f9be7ff2187780c14ff1a853df48ea08ec965e4fce6bbd20398d37de1e1c1fec53781709824ab24a0394dcf67d48969f5dcb3204c710fd5a4c4f3ccb7bf2c4be12cf416abdd2baef6fa2d637fa4be636905144e14f07b6bd7118d0378be60995f0cc30528387dc915ab44262a10a3ece914b6f234b340747bd82234be7c519e3ab12a1abe5b362dd9db679a43fe1a1b7944f99d1f4153defcfaa4152b831f33258290fd637af61c25adf14ccc265a8705bfa5d19d478ca4784b58117d1cb67921d7821b1112c4be9a357d2242f64299d8be64d7ba3759a95a039b61b4b809f8747789dd62bc6969f99b12879b2ccc341758e3f85f678d5b40ed442b5d092fa6d924553a9f0fbbcf072c622f663ec0dd34e5ff43a40c4f3a1f0b4f5b79a26850d5f22ac8df5e4bfb6d838e0c2ffb68d5c31e94651edbd2e04e8b813d56fc37f219924b90a2c42b9ac2b4a35e91ddd077b32b809e07acdb44fbfa35a4d84ec74d687bdfeb0dd218ea2ac5bfcb555d34ffe53e5c77b71520cbdaadb22949c18ff5d6d74cfe4cf75998fb4eac5cab10932705033a9fb391ec44cefef2ddc601d9a4bb66d942449e5bbdf958292aa8e8fcc9d3c85e83d8a26754ac107ca0846a0ba66885463fec0f3d19ed31ce0623a6d3d1f2bc1d1d92d298100acce697450e7403d8a31e078a672a3053d0aae72db16a6cd37b617a5d9616c47d68a76d0bb9a99096eba0681ee3ebef986b1b0d82d89ff315071569ca38c866af5ab5a855d2fa4e6777ee5fc0d0a9416132c7f71a0dbe4bf58ed27cd2b6367f46ca51d3e4d341db4e2ce9d2bde14486f9afb1fcd879969c2263ad87890afb42646172afdc24fd05f8a5d9ff1ac9970143cf9932e88b445514fa0815418b09d744001d2be5e79aa7c8c6f2a26ff3fd4f5101729b4b948228a96b9efb3b60820a7e230f224c8280c3348b65bd6fec8f44ff165ef90edc76361ef4697c2ee9ae0a31bc0a85d53626425090cb8fae4e51a4966195926f8bb3ca3b8ad6969de5125f873645637cd27f7de10703b2c4a50dc059c05499b6365b99c654d83b59e1988dfb5bab64c661f8d0f4e2d1100e18be72f878172adaa80ed2ff24def28311d220ed67a6d4d64bc1be4d390e517af8d428f51f0a5c60184dd09b3a8dd78e1bef520f7b4088ac9cfca4c1a0981312b0673acd6f9f263d0d123171f445c3beb6db679cc4ea67268d8c7bbae4df53abad312f2afa24f8abbaa944a91a21d6b0a0942e0c9567c0a290c6da0dc367bbec24aad</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    <title>明日清单</title>
+    <url>/todo_list.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>明天要完成的ioi</p>
+<span id="more"></span>
+<ul>
+<li><input disabled="" type="checkbox"> Spring boot</li>
+<li><input disabled="" type="checkbox"> flask</li>
+<li><input disabled="" type="checkbox"> 80% python 进阶</li>
+<li><input disabled="" type="checkbox"> 外卖项目</li>
+<li><input checked="" disabled="" type="checkbox"> ccf比赛赛题</li>
+</ul>
+]]></content>
       <categories>
         <category>记录</category>
       </categories>
       <tags>
-        <tag>参考记录</tag>
+        <tag>清单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos更换yum源</title>
+    <url>/centos_yum.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p>centos7更换为国内yum源</p>
+<span id="more"></span>
+<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.bak</p>
+<h1 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h1><p><span class=“inline-note” title="看什么看，没有注释EmE">这里的命令是centos7的更新命令，可以根据自己的的版本替换一下</span><br>wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
+<h1 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h1><p>yum makecache</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Centos</tag>
+        <tag>yum</tag>
       </tags>
   </entry>
   <entry>
@@ -1561,6 +1322,29 @@
 <li>Java Socket</li>
 <li>Node.js net<br>特点：自己手写协议，HTTP 都是它封出来的</li>
 </ul>
+<h2 id="项目实施"><a href="#项目实施" class="headerlink" title="项目实施"></a>项目实施</h2><h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5minute/</span><br><span class="line">├─ main.py            # 主程序，运行 Thought-Action-Observation 循环</span><br><span class="line">├─ OpenAIClient.py    # LLM 客户端类，封装 DashScope / OpenAI 调用逻辑</span><br><span class="line">├─ system_prompt.py   # 系统提示（Prompt）模板，如 AGENT_SYSTEM_PROMPT</span><br><span class="line">└─ tools.py           # 工具函数，包括 get_weather、get_attraction 等</span><br></pre></td></tr></table></figure>
+
+<p>（1）指令模板</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">AGENT_SYSTEM_PROMPT = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">你是一个智能旅行助手。你的任务是分析用户的请求，并使用可用工具一步步地解决问题。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 可用工具:</span></span><br><span class="line"><span class="string">- `get_weather(city: str)`: 查询指定城市的实时天气。</span></span><br><span class="line"><span class="string">- `get_attraction(city: str, weather: str)`: 根据城市和天气搜索推荐的旅游景点。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 行动格式:</span></span><br><span class="line"><span class="string">你的回答必须严格遵循以下格式。首先是你的思考过程，然后是你要执行的具体行动，每次回复只输出一对Thought-Action：</span></span><br><span class="line"><span class="string">Thought: [这里是你的思考过程和下一步计划]</span></span><br><span class="line"><span class="string">Action: [这里是你要调用的工具，格式为 function_name(arg_name=&quot;arg_value&quot;)]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 任务完成:</span></span><br><span class="line"><span class="string">当你收集到足够的信息，能够回答用户的最终问题时，你必须在`Action:`字段后使用 `finish(answer=&quot;...&quot;)` 来输出最终答案。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请开始吧！</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）工具 1：查询真实天气</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">get_weather(city: <span class="built_in">str</span>) -&gt; <span class="built_in">str</span>:<span class="comment">#  wttr.in提取当前天气状况+格式化成自然语言返回</span></span><br></pre></td></tr></table></figure>
+
+<p>（3）工具 2：搜索并推荐旅游景点</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">get_attraction(city: <span class="built_in">str</span>, weather: <span class="built_in">str</span>) -&gt; <span class="built_in">str</span>:Tavily客户端search_attraction构造一个精确的查询</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将所有工具函数放入一个字典，方便后续调用</span></span><br><span class="line">available_tools = &#123;</span><br><span class="line">    <span class="string">&quot;get_weather&quot;</span>: get_weather,</span><br><span class="line">    <span class="string">&quot;get_attraction&quot;</span>: get_attraction,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）接入大语言模型</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">OpenAICompatibleClient类: OpenAI+API_KEY、BASE_URL 和 MODEL_ID</span><br></pre></td></tr></table></figure>
+
+<p>（5）执行行动循环</p>
+<p>下面的主循环将整合所有组件，并通过格式化后的 Prompt 驱动 LLM 进行决策。</p>
+<h2 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--- 循环 1 ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 首先需要查询大连今天的天气情况，因此第一步是调用 get_weather 工具。</span><br><span class="line">Action: get_weather(city=&quot;大连&quot;)</span><br><span class="line"></span><br><span class="line">Observation: 大连当前天气:Clear，气温6摄氏度</span><br><span class="line">========================================</span><br><span class="line">--- 循环 2 ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 已获取大连的天气为晴天（Clear），气温6摄氏度。接下来根据该天气条件，调用 get_attraction 工具推荐合适的旅游景点。</span><br><span class="line">Action: get_attraction(city=&quot;大连&quot;, weather=&quot;Clear&quot;)</span><br><span class="line"></span><br><span class="line">Observation: In clear weather, Dalian&#x27;s best attractions are Xinghai Square, Golden Pebble Beach Scenic Area, and Dalian Forest Zoo. These spots offer great views and activities.</span><br><span class="line">========================================</span><br><span class="line">--- 循环 3 ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Action: finish(answer=&quot;今天大连天气晴朗，气温6摄氏度。推荐的旅游景点包括星海广场、金石滩风景区和大连森林动物园，这些地方在晴天时景色优美，非 常适合游览。&quot;)</span><br><span class="line"></span><br><span class="line">任务完成，最终答案: 今天大连天气晴朗，气温6摄氏度。推荐的旅游景点包括星海广场、金石滩风景区和大连森林动物园，这些地方在晴天时景色优美，非常适合游览。</span><br></pre></td></tr></table></figure>
+
+
+
 <blockquote>
 <p><a href="https://book.heterocat.com.cn/">https://book.heterocat.com.cn/</a></p>
 <p>学校扩展培训课程2025.12</p>
@@ -1568,6 +1352,245 @@
 ]]></content>
       <tags>
         <tag>杂文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>各种各样的参考页面</title>
+    <url>/reference.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="47d238a3d6a1d855e4c45a56e5d6f9225940ac099657b26398762e089661494f">c32395f63df771905c259445e1aa88f3899ee4804f798168a843621515b7539500991886f73e55266910bee5a5b66327e524d8162e2ec9fec6fcfda26661a9930eec9caf050ca5f9c108385159c0f1e968a1b5e142c0c85994af2c696ecc181ce436acc974aa63818589a52609ba5f3a9ad4010ae889f1894b4a9d9e64e2ece134003aab3794ea4436ae924ab54b02accb5b1ea9aba8acbd6abdf03218c8b53bc23a6b11578ff36c383887e99236a09a41e0489303999a2305b8961edd5d9e8017d2237ba846cb2d49e247f457936c1d6891e56c693d86e41fa9a187bd5a4c00b052e9f7ec3faf4cdd3d532d44f6fefa88ce7e06a99b145f57de3deb6599ffd1ed58513371739dc35705cdb74b10b1c927705b553e236c1fb5b2029b6eec53405522a6d42050ccd4756af71dd7134109a567c19a8b0ea663a6ea5db9c9e45b7b04f070ee1352c19a435b5caa75efdc5898372caa257405dee494e723e3d6e068931a5b597a0fded981c717c1811c8b44d98475ef290ad1e2b09710f02f5263398bf87ff4ab0872ac934d900768d632ecec7ff7ac1af1d230d36c12ca300d5eef5646a49eae352984cf9b83bb4f09be3eee51d3e0b56706421729b7e0f5d31ea081349287ab7b21fae891b5b73812921036dbccf9b0e193294c72f09921e7447ee8c06b0932cdedf282f40d73bb727c2a082a1ee8cdffd969f89f5c7988f0dacc75b5b09733090d4f6159df1d76c6b35041eaff47343f7c7ab4a0e900be17b662b292191fd69f363c9bef52f77a56b418fd67ead66543142ea3ee540ec8776891eb8c6273d8f1f70aaaa1135d1ca8d3946fddcde7382e8f10d0bff690c51a433fd6bbc7d6e9a6cad1aa8a9da9b8b25da9ead4ffad254ee88dcd3492733970f1ff8dcccf1d7e00e1a554eb515981c88da13afe81a15104ec87d8b2b06f38e22aa0260f55931cdaed7ba01cd064ef902a9d9084f84fbfca049d4180c1f12019a932085e010ca2339f3adc8bc1564a2e2549f828112fd8d1c724c6b78cda73f1fb517a044ab42e13ea007e1ac0facec239e2d01f90fc5685c3c4f0f9be7ff2187780c14ff1a853df48ea08ec965e4fce6bbd20398d37de1e1c1fec53781709824ab24a0394dcf67d48969f5dcb3204c710fd5a4c4f3ccb7bf2c4be12cf416abdd2baef6fa2d637fa4be636905144e14f07b6bd7118d0378be60995f0cc30528387dc915ab44262a10a3ece914b6f234b340747bd82234be7c519e3ab12a1abe5b362dd9db679a43fe1a1b7944f99d1f4153defcfaa4152b831f33258290fd637af61c25adf14ccc265a8705bfa5d19d478ca4784b58117d1cb67921d7821b1112c4be9a357d2242f64299d8be64d7ba3759a95a039b61b4b809f8747789dd62bc6969f99b12879b2ccc341758e3f85f678d5b40ed442b5d092fa6d924553a9f0fbbcf072c622f663ec0dd34e5ff43a40c4f3a1f0b4f5b79a26850d5f22ac8df5e4bfb6d838e0c2ffb68d5c31e94651edbd2e04e8b813d56fc37f219924b90a2c42b9ac2b4a35e91ddd077b32b809e07acdb44fbfa35a4d84ec74d687bdfeb0dd218ea2ac5bfcb555d34ffe53e5c77b71520cbdaadb22949c18ff5d6d74cfe4cf75998fb4eac5cab10932705033a9fb391ec44cefef2ddc601d9a4bb66d942449e5bbdf958292aa8e8fcc9d3c85e83d8a26754ac107ca0846a0ba66885463fec0f3d19ed31ce0623a6d3d1f2bc1d1d92d298100acce697450e7403d8a31e078a672a3053d0aae72db16a6cd37b617a5d9616c47d68a76d0bb9a99096eba0681ee3ebef986b1b0d82d89ff315071569ca38c866af5ab5a855d2fa4e6777ee5fc0d0a9416132c7f71a0dbe4bf58ed27cd2b6367f46ca51d3e4d341db4e2ce9d2bde14486f9afb1fcd879969c2263ad87890afb42646172afdc24fd05f8a5d9ff1ac9970143cf9932e88b445514fa0815418b09d744001d2be5e79aa7c8c6f2a26ff3fd4f5101729b4b948228a96b9efb3b60820a7e230f224c8280c3348b65bd6fec8f44ff165ef90edc76361ef4697c2ee9ae0a31bc0a85d53626425090cb8fae4e51a4966195926f8bb3ca3b8ad6969de5125f873645637cd27f7de10703b2c4a50dc059c05499b6365b99c654d83b59e1988dfb5bab64c661f8d0f4e2d1100e18be72f878172adaa80ed2ff24def28311d220ed67a6d4d64bc1be4d390e517af8d428f51f0a5c60184dd09b3a8dd78e1bef520f7b4088ac9cfca4c1a0981312b0673acd6f9f263d0d123171f445c3beb6db679cc4ea67268d8c7bbae4df53abad312f2afa24f8abbaa944a91a21d6b0a0942e0c9567c0a290c6da0dc367bbec24aad</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>参考记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>报错记录</title>
+    <url>/errorlist.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+
+<h2 id="flutter"><a href="#flutter" class="headerlink" title="flutter"></a>flutter</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先查看下报错信息：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; flutter doctor</span><br><span class="line">Doctor summary (to see all details, run flutter doctor -v):</span><br><span class="line">[✓] Flutter (Channel stable, 3.38.3, on Microsoft Windows [版本 10.0.26100.4946], locale zh-CN)</span><br><span class="line">[✓] Windows Version (11 家庭中文版 64-bit, 24H2, 2009)</span><br><span class="line">[✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0)</span><br><span class="line">[✓] Chrome - develop for the web</span><br><span class="line">[✓] Visual Studio - develop Windows apps (Visual Studio 生成工具 2022 17.14.16)</span><br><span class="line">[✓] Connected device (3 available)</span><br><span class="line">[!] Network resources</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://pub.dev/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://storage.googleapis.com/&quot;: Connection terminated during</span><br><span class="line">      handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://maven.google.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://cocoapods.org/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://github.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br></pre></td></tr></table></figure>
+
+<p>报错信息为：连接不上</p>
+<ul>
+<li><p>pub.dev</p>
+</li>
+<li><p>storage.googleapis.com</p>
+</li>
+<li><p>maven.google.com</p>
+</li>
+<li><p>cocoapods.org</p>
+</li>
+<li><p>github.com</p>
+</li>
+</ul>
+<p>环境为：Win11+Clash Verge全局+系统代理</p>
+<hr>
+<h4 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h4><p>首先使用浏览器查看，发现以上页面都能打开。</p>
+<p>感觉可能是终端没走代理的原因，就把代理调整为TUN模式</p>
+<p>使用终端curl github，成功返回页面</p>
+<p>使用终端curl <a href="https://maven.google.com/com/">https://maven.google.com/com/</a><br>→ 404 That’s an error.（但成功返回页面）</p>
+<p>AI的解释为</p>
+<blockquote>
+<p>因为 <strong>Flutter&#x2F;Gradle 访问 maven.google.com 不是访问 &#x2F;com&#x2F;</strong><br> 它访问的是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">https://maven.google.com/master-index.xml</span><br><span class="line">https://maven.google.com/com/android/tools/build/group-index.xml</span><br></pre></td></tr></table></figure>
+
+<p>并且这些文件需要：</p>
+<ul>
+<li><strong>TLS 1.2 &#x2F; TLS 1.3</strong></li>
+<li><strong>正确的 CA 证书链</strong></li>
+<li><strong>完整的网络握手</strong></li>
+</ul>
+<p>你之前出现的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Connection terminated during handshake</span><br></pre></td></tr></table></figure>
+
+<p>这说明 <strong>TLS 握手阶段就失败了</strong><br> 而 curl 能成功 → 说明：</p>
+<ul>
+<li>你使用的 curl 内置证书是 OK 的</li>
+<li><strong>Java &#x2F; Flutter &#x2F; Dart 使用的证书链不 OK</strong></li>
+</ul>
+<p>❗ <strong>这类问题绝大多数都是 Windows 环境里的 CA 证书缺失&#x2F;损坏 或 代理&#x2F;杀软注入了假证书（MITM）</strong></p>
+</blockquote>
+<p>然后又去检查CA证书</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; certutil -verifystore -user root</span><br><span class="line">root &quot;受信任的根证书颁发机构&quot;</span><br><span class="line">================ 证书 0 ================</span><br><span class="line">序列号: 0aa8d1ed03648306256b92500fd33b224a44f0ea</span><br><span class="line">颁发者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line"> NotBefore: 2023/12/7 16:01</span><br><span class="line"> NotAfter: 2033/12/4 16:01</span><br><span class="line">使用者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line">签名与公钥匹配</span><br><span class="line">根证书: 使用者与颁发者匹配</span><br><span class="line">证书哈希(sha1): 66f8b18f84b329d2aef25446d4e6c3dec0103a95</span><br><span class="line">没有密钥提供程序信息</span><br><span class="line">找不到解密的证书和私钥。</span><br><span class="line">已验证的颁发策略: 全部</span><br><span class="line">已验证的应用程序策略: 全部</span><br><span class="line">证书有效</span><br><span class="line">CertUtil: -verifystore 命令成功完成。</span><br></pre></td></tr></table></figure>
+
+<p>我看到了堡塔……然后把堡塔的证书删掉再次尝试，发现成功</p>
+<p>结束</p>
+<blockquote>
+<p>早知道就不拿电脑瞎折腾了，当初想试一下win安装堡塔来着QAQ</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>docker 学习笔记</title>
+    <url>/docker_note1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p>初学者的docker入门笔记</p>
+<span id="more"></span>
+<p><a href="https://docs.docker.com/">Docker文档</a></p>
+<h1 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h1><h2 id="Docker-出现的原因"><a href="#Docker-出现的原因" class="headerlink" title="Docker 出现的原因"></a>Docker 出现的原因</h2><p><u>解决环境一致性问题</u><br>当我们开发一个项目时，通常需要依赖大量的框架、库、插件、环境变量等。例如，某个项目可能依赖：</p>
+<ul>
+<li>Node.js 特定版本</li>
+<li>MySQL 数据库</li>
+<li>Redis 缓存</li>
+<li>某些 C++ 编译器或 Python 包</li>
+</ul>
+<p>这些依赖项在我们本地电脑上能正常运行，并不意味着在他人的电脑或线上服务器上也能顺利部署。<strong>不同系统、不同版本、配置差异</strong>都会带来兼容性问题，这就是我们常说的 <strong>“环境不一致”</strong> 问题。</p>
+<p>在docker之前，大家使用虚拟机技术解决这个问题<br> ——但是它的本质是运用<strong>使用软件模拟一整套硬件系统</strong>，体积大、速度慢、资源消耗高<br> 而 Docker 是通过 <strong>操作系统级虚拟化</strong>，模拟出 轻量 隔离 的运行环境。</p>
+<h2 id="Docker-基本结构"><a href="#Docker-基本结构" class="headerlink" title="Docker 基本结构"></a>Docker 基本结构</h2><p><img src="https://docs.docker.com/get-started/images/docker-architecture.webp"></p>
+<div class="tabs" id="docker-基础概念"><ul class="nav-tabs"><li class="tab active"><a href="#docker-基础概念-1">镜像（Image）</a></li><li class="tab"><a href="#docker-基础概念-2">容器（Container）</a></li><li class="tab"><a href="#docker-基础概念-3">仓库（Repository）</a></li></ul><div class="tab-content"><div class="tab-pane active" id="docker-基础概念-1"><p>类似于虚拟机中的镜像，是一个包含有文件系统的面向Docker引擎的只读模板。<br>任何应用程序运行都需要环境，而镜像就是用来提供这种运行环境的。例如一个Ubuntu镜像就是一个包含Ubuntu操作系统环境的模板，同理在该镜像上装上Apache软件，就可以称为Apache镜像。</p></div><div class="tab-pane" id="docker-基础概念-2"><p>Docker 容器就像一台台运行的虚拟机，<br>里面运行你的应用程序。<br>它们是相互隔离的，互不影响。</p></div><div class="tab-pane" id="docker-基础概念-3"><p>类似于代码仓库，这里是镜像仓库，是Docker用来集中存放镜像文件的地方。<br>注意与注册服务器（Registry）的区别：注册服务器是存放仓库的地方，一般会有多个仓库；而仓库是存放镜像的地方，一般每个仓库存放一类镜像，每个镜像利用tag进行区分，比如Ubuntu仓库存放有多个版本（12.04、14.04等）的Ubuntu镜像。</p></div></div></div>
+
+
+<p>除了以上几个结构组成中重要的概念外，还有另一个重要的概念<br><strong>Dockerfile</strong>：<br>它像一个自动化的脚本，它主要用来创建我们之前讲到的镜像。</p>
+<blockquote>
+<p>他就好比把虚拟机中创建虚拟机并安装软件的过程压缩为一个脚本。</p>
+</blockquote>
+<h1 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h1><div class="note info"><p><a href="https://docs.docker.com/get-started/get-docker/">Docker Desktop 安装文档</a><br><a href="https://docs.docker.com/engine/install/">Docker Engine 安装文档</a></p>
+</div>
+<p>安装完成后可以使用<code>docker version</code>查看Docker的版本信息<br>查看Docker的帮助信息：<code>docker --help</code></p>
+<h1 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h1><div class="note warning"><p><strong>列举所有的容器:</strong> <code>docker ps</code><br><strong>停止容器:</strong> <code>docker stop &lt;容器 ID&gt;</code><br><strong>重启容器:</strong> <code>docker restart &lt;容器 ID&gt;</code><br><strong>删除容器:</strong> <code>docker rm &lt;容器 ID&gt;</code><br><strong>启动一个远程 Shell:</strong> <code>docker exec -it&lt;容器 ID&gt; /bin/bash</code><br>只用 <code>-i</code> 参数时，由于没有分配伪终端，界面没有我们熟悉的 Linux 命令提示符，但命令执行结果仍然可以返回。</p>
+<p>当 <code>-i</code> <code>-t</code> 参数一起使用时，则可以看到我们熟悉的 Linux 命令提示符。</p>
+</div>
+
+
+<ol>
+<li><p><code>docker run</code>: 运行一个容器。<br>示例：<code>docker run </code></p>
+</li>
+<li><p><code>docker ps</code>: 列出正在运行的容器。<br>示例：<code>docker ps</code></p>
+</li>
+<li><p><code>docker images</code>: 列出本地已有的镜像。<br>示例：<code>docker images</code></p>
+</li>
+<li><p><code>docker pull</code>: 从远程仓库下载镜像。<br>示例：<code>docker pull </code></p>
+</li>
+<li><p><code>docker stop</code>: 停止一个运行中的容器。<br>示例：<code>docker stop </code></p>
+</li>
+<li><p><code>docker rm</code>: 删除一个容器。<br>示例：<code>docker rm </code></p>
+</li>
+<li><p><code>docker rmi</code>: 删除一个镜像。<br>示例：<code>docker rmi </code></p>
+</li>
+<li><p><code>docker build</code>: 构建一个镜像。<br>示例：<code>docker build -t  </code></p>
+</li>
+<li><p><code>docker exec</code>: 在运行中的容器中执行命令。<br>示例：<code>docker exec  </code></p>
+</li>
+<li><p><code>docker logs</code>: 查看容器的日志。<br>示例：<code>docker logs </code></p>
+</li>
+<li><p><code>docker-compose up</code>: 使用Docker Compose启动容器。<br>示例：<code>docker-compose up</code></p>
+</li>
+<li><p><code>docker-compose down</code>: 停止并移除使用Docker Compose启动的容器。<br>示例：<code>docker-compose down</code></p>
+</li>
+<li><p><code>docker network ls</code>: 列出Docker网络。<br>示例：<code>docker network ls</code></p>
+</li>
+<li><p><code>docker network create</code>: 创建一个Docker网络。<br>示例：<code>docker network create </code></p>
+</li>
+<li><p><code>docker network connect</code>: 将容器连接到一个Docker网络。<br>示例：<code>docker network connect  </code></p>
+</li>
+<li><p><code>docker volume ls</code>: 列出Docker卷。<br>示例：<code>docker volume ls</code></p>
+</li>
+<li><p><code>docker volume create</code>: 创建一个Docker卷。<br>示例：<code>docker volume create </code></p>
+</li>
+<li><p><code>docker volume rm</code>: 删除一个Docker卷。<br>示例：<code>docker volume rm </code></p>
+</li>
+<li><p><code>docker inspect</code>: 检查容器、镜像、网络等的详细信息。<br>示例：<code>docker inspect </code></p>
+</li>
+<li><p><code>docker tag</code>: 创建一个标签来标识镜像。<br>示例：<code>docker tag  </code></p>
+</li>
+<li><p><code>docker push</code>: 将镜像推送到远程仓库。<br>示例：<code>docker push </code></p>
+</li>
+<li><p><code>docker login</code>: 登录到远程Docker仓库。<br>示例：<code>docker login</code></p>
+</li>
+<li><p><code>docker logout</code>: 从远程Docker仓库注销。<br>示例：<code>docker logout</code></p>
+</li>
+<li><p><code>docker restart</code>: 重启一个容器。<br>示例：<code>docker restart </code></p>
+</li>
+<li><p><code>docker pause</code>: 暂停一个容器的所有进程。<br>示例：<code>docker pause </code></p>
+</li>
+<li><p><code>docker unpause</code>: 恢复一个暂停的容器。<br>示例：<code>docker unpause </code></p>
+</li>
+<li><p><code>docker kill</code>: 强制停止一个容器。<br>示例：<code>docker kill </code></p>
+</li>
+<li><p><code>docker inspect</code>: 检查容器、镜像、网络等的详细信息。<br>示例：<code>docker inspect </code></p>
+</li>
+<li><p><code>docker cp</code>: 在容器和主机之间复制文件或目录。<br>示例：<code>docker cp : </code></p>
+</li>
+<li><p><code>docker stats</code>: 实时显示容器的资源使用情况。<br>示例：<code>docker stats </code></p>
+</li>
+<li><p><code>docker attach</code>: 连接到正在运行的容器的标准输入、输出和错误流。<br>示例：<code>docker attach </code></p>
+</li>
+<li><p><code>docker top</code>: 显示容器中运行的进程列表。<br>示例：<code>docker top </code></p>
+</li>
+<li><p><code>docker commit</code>: 创建一个新的镜像，基于正在运行的容器。<br>示例：<code>docker commit  </code></p>
+</li>
+<li><p><code>docker system prune</code>: 清理无用的镜像、容器和卷。<br>示例：<code>docker system prune</code></p>
+</li>
+<li><p><code>docker version</code>: 显示Docker客户端和服务器的版本信息。<br>示例：<code>docker version</code></p>
+</li>
+</ol>
+<hr>
+<p>参考：<br><a href="https://zhuanlan.zhihu.com/p/23599229">只要一小时，零基础入门Docker - 知乎</a><br><a href="https://blog.csdn.net/leah126/article/details/131871717">Docker入门教程（非常详细）从零基础入门到精通，看完这一篇就够了_docker教程-CSDN博客</a><br><a href="https://github.com/feixuek/docker?tab=readme-ov-file">Github-Docker中文</a></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
