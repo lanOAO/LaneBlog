@@ -84,6 +84,307 @@
       </tags>
   </entry>
   <entry>
+    <title>AutoHotkey —— 自动热键软件</title>
+    <url>/AutoHotkey1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+
+<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>以下全部建立在2.0.19版本的的基础上</p>
+</blockquote>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
+<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
+<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
+<li>双击脚本，即可运行</li>
+</ul>
+<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
+<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
+</blockquote>
+<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
+<ul>
+<li><code>#</code> ：win 键</li>
+<li><code>!</code> ：alt</li>
+<li><code>^</code> ：ctrl</li>
+<li><code>+</code> ：shift</li>
+<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
+</ul>
+<blockquote>
+<p><code>^q</code> 即代表ctrl + q</p>
+</blockquote>
+<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
+<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
+<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
+<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
+<li>一个脚本里可以有多个热键</li>
+<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
+</ul>
+<hr>
+<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+
+<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
+<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
+]]></content>
+      <categories>
+        <category>利器OuO</category>
+      </categories>
+      <tags>
+        <tag>AutoHotkey</tag>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop搭建教程</title>
+    <url>/hadoop2.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p>在<a href="../hadoop1.html">Hadoop入门 </a>中，为大家简单介绍了 <a href="https://hadoop.apache.org/docs/">Hadoop</a> 。</p>
+<!--  [[Hadoop入门]]  -->
+<p>在本文，我将为大家演示基于 linux 的 Hadoop 搭建。</p>
+<span id="more"></span>
+
+<blockquote>
+<p><strong>本文所用软件版本:</strong></p>
+<p>CentOS 7<!--  [[centos7更换yum源]]  --><br>Vmware 16<br>Xshell 7<br>Xftp 7</p>
+</blockquote>
+<div class="note primary"><p><strong>在开始之前你需要提前下载：</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">VMwareWworkstation Pro</a> 虚拟机管理软件</li>
+<li><input checked="" disabled="" type="checkbox"> <a href="https://mirrors.aliyun.com/centos/7/isos/x86_64/">CentOS 7 镜像</a>或者其他版本的镜像</li>
+</ul>
+<p>PS. 镜像下载时间超长</p>
+<p><strong>你需要提前准备:</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 一台配置好 <em><a href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE">网络</a>&amp;主机名&amp;配置好xshell</em> 的虚拟机</li>
+</ul>
+</div>
+
+
+
+<hr>
+<p><span class = "inline-note" title ="小提示">本文将以初学者的视角进行详细讲解，左侧配有目录，大家按需选择阅读章节OuO。</p>
+<p>全文中的重点内容都采用与本条相同的样式，鼠标悬停即可显示简要说明，方便快速理解。</p>
+</span>
+
+<h1 id="VMware-软件使用"><a href="#VMware-软件使用" class="headerlink" title="VMware 软件使用"></a>VMware 软件使用</h1><p>具体从软件配置到创建虚拟机这里不再赘述，大家可以自行搜索，这里只展示我觉得需要注意的点</p>
+<h2 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h2><p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/image-20250814221946282.png"></p>
+<div class="tabs" id="vmware"><ul class="nav-tabs"><li class="tab active"><a href="#vmware-1">桥接模式</a></li><li class="tab"><a href="#vmware-2">NAT模式</a></li><li class="tab"><a href="#vmware-3">仅主机模式</a></li></ul><div class="tab-content"><div class="tab-pane active" id="vmware-1"><p>桥接模式会直接把虚拟机连接到物理网络，就像一台真实电脑。<br><strong>虚拟机直接使用主机所在的局域网IP</strong></p></div><div class="tab-pane" id="vmware-2"><p>NAT模式会通过主机共享网络连接，虚拟机和外网通信时由主机做中转。<br><strong>虚拟机通过主机的网络访问外网</strong></p></div><div class="tab-pane" id="vmware-3"><p>仅主机模式下，虚拟机只能和主机互通，不能访问外网。<br><strong>适合内网测试或安全环境</strong></p></div></div></div>
+
+<hr>
+<h1 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemcttl stop firewalld    --关闭防火墙</span><br><span class="line">systemctl disable firewalld    --永久关闭防火墙</span><br></pre></td></tr></table></figure>
+
+<h1 id="jdk配置"><a href="#jdk配置" class="headerlink" title="jdk配置"></a>jdk配置</h1><h2 id="1-使用Xftp传输压缩包并解压"><a href="#1-使用Xftp传输压缩包并解压" class="headerlink" title="1.使用Xftp传输压缩包并解压"></a>1.使用Xftp传输压缩包并解压</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@master opt]# pwd</span><br><span class="line">/opt</span><br><span class="line">[root@master opt]# mkdir module #解压后的位置</span><br><span class="line">[root@master opt]# mkdir software #压缩包</span><br><span class="line">[root@master opt]# cd software</span><br><span class="line">[root@master software]# ll</span><br><span class="line">total 1488592</span><br><span class="line">-rw-r--r--. 1 root root  87380462 Aug 27 10:59 apache-flume-1.11.0-bin.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root  22347776 Aug 27 10:59 apache-hive-3.1.2-bin.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root  14853274 Aug 27 10:59 apache-zookeeper-3.8.3-bin.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 730107476 Aug 27 10:59 hadoop-3.3.6.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 141600542 Aug 27 10:59 jdk-8u401-linux-x64.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 528015360 Aug 27 10:59 mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line">[root@master software]# tar -zvxf jdk-8u401-linux-x64.tar.gz -C ../module #解压jdk压缩包</span><br><span class="line">[root@master software]# tar -zvxf hadoop-3.3.6.tar.gz -C ../module/ #解压hadoop压缩包</span><br><span class="line">[root@master software]# cd ../module/                              </span><br><span class="line">[root@master module]# ll</span><br><span class="line">total 8</span><br><span class="line">drwxr-xr-x. 10 1000 1000 4096 Jun 18  2023 hadoop-3.3.6</span><br><span class="line">drwxr-x---.  8 root root 4096 Aug 27 11:02 jdk1.8.0_401</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2.配置环境变量"></a>2.配置环境变量</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@master module]# cd jdk1.8.0_401/</span><br><span class="line">[root@master jdk1.8.0_401]# pwd</span><br><span class="line">/opt/module/jdk1.8.0_401</span><br><span class="line"></span><br><span class="line">[root@master module]# vi /etc/profile</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/opt/module/jdk1.8.0_401</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"></span><br><span class="line">[root@master module]# source /etc/profile #刷新环境变量</span><br><span class="line">[root@master ~]# jps</span><br><span class="line">508 Jps</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="克隆三台虚拟机"><a href="#克隆三台虚拟机" class="headerlink" title="克隆三台虚拟机"></a>克隆三台虚拟机</h1><p>在克隆之前建议配置好<a href="#1.%E6%9B%B4%E6%94%B9hosts">hosts文件</a>为下一步做准备</p>
+<p>配置好后依次更改主机名</p>
+<p>这里不过多赘述</p>
+<h1 id="配置免密—SSH"><a href="#配置免密—SSH" class="headerlink" title="配置免密—SSH"></a>配置免密—SSH</h1><h2 id="1-更改hosts"><a href="#1-更改hosts" class="headerlink" title="1.更改hosts"></a>1.更改hosts</h2><p>三台虚拟机都更改</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/hosts</span><br><span class="line">[ip-1] [hostname-1]</span><br><span class="line">[ip-2] [hostname-2]</span><br><span class="line">[ip-3] [hostname-3]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-生成并传输密钥"><a href="#2-生成并传输密钥" class="headerlink" title="2.生成并传输密钥"></a>2.生成并传输密钥</h2><p>在<span class = "inline-note " title = "一定要更改好hosts后再生成">主节点生成密钥</span></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa #生成密钥</span><br><span class="line">ssh-copy-id [hostname-1&amp;2&amp;3] #传输密钥</span><br></pre></td></tr></table></figure>
+
+<p>输入 yes+对应主机的密码</p>
+<p>成功后可以使用 <code>ssh + [hostname-1&amp;2&amp;3]</code>进行测试</p>
+<p><code>exit</code>命令即可退出</p>
+<h1 id="配置Hadoop配置文件"><a href="#配置Hadoop配置文件" class="headerlink" title="配置Hadoop配置文件"></a>配置Hadoop配置文件</h1><p>以下配置文件的路径为<code>$hadoop_home/etc/hadoop/</code></p>
+<h2 id="core-site-xml"><a href="#core-site-xml" class="headerlink" title="core-site.xml"></a>core-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/root/software/hadoop-3.3.4/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    --hadoop路径</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="hdfs-site-xml"><a href="#hdfs-site-xml" class="headerlink" title="hdfs-site.xml"></a>hdfs-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.secondary.http-address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>master:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="mapred-site-xml"><a href="#mapred-site-xml" class="headerlink" title="mapred-site.xml"></a>mapred-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.app.mapreduce.am.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=/root/software/hadoop-3.3.4<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.map.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=/root/software/hadoop-3.3.4<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.reduce.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=/root/software/hadoop-3.3.4<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="yarn-site-xml"><a href="#yarn-site-xml" class="headerlink" title="yarn-site.xml"></a>yarn-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.env-whitelist<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,</span><br><span class="line">HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,</span><br><span class="line">HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>master<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.resource.memory-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>4096<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="hadoop-env-sh"><a href="#hadoop-env-sh" class="headerlink" title="hadoop-env.sh"></a>hadoop-env.sh</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">export JAVA_HOME=$JAVA_HOME</span><br></pre></td></tr></table></figure>
+
+<h2 id="workers"><a href="#workers" class="headerlink" title="workers"></a>workers</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">三台机器的名字</span><br></pre></td></tr></table></figure>
+<h1 id="配置并刷新环境变量"><a href="#配置并刷新环境变量" class="headerlink" title="配置并刷新环境变量"></a>配置并刷新环境变量</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#hadoop</span><br><span class="line">export HADOOP_HOME=/root/software/hadoop-3.3.4</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/bin</span><br><span class="line"></span><br><span class="line">export HDFS_NAMENODE_USER=root</span><br><span class="line">export HDFS_DATANODE_USER=root</span><br><span class="line">export HDFS_SECONDARYNAMENODE_USER=root</span><br><span class="line">export YARN_RESOURCEMANAGER_USER=root</span><br><span class="line">export YARN_NODEMANAGER_USER=root</span><br></pre></td></tr></table></figure>
+<p>刷新环境变量   <code>source /etc/profile</code></p>
+<h1 id="SSH-传输"><a href="#SSH-传输" class="headerlink" title="SSH 传输"></a>SSH 传输</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp [-1246BCpqrv]  [-c cipher]  [-F ssh_config]  [-i identity_file]  [-l limit]  [-o ssh_option]  [-P port]  [-S program]  [[user@]host1:]file1 [...]  [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
+<p>依次传输Hadoop、环境变量到其他虚拟机</p>
+<h1 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h1><p><span class = "inline-note" title ="注意都在主节点运行"><strong>Hadoop 启动与停止命令一览</strong></span></p>
+<h2 id="1-启动-停止所有守护进程"><a href="#1-启动-停止所有守护进程" class="headerlink" title="1. 启动&#x2F;停止所有守护进程"></a>1. 启动&#x2F;停止所有守护进程</h2><ul>
+<li><p><strong>启动所有守护进程</strong></p>
+<p><code>sbin/start-all.sh</code></p>
+</li>
+</ul>
+<p>启动内容包括：NameNode、Secondary NameNode、DataNode、ResourceManager、NodeManager</p>
+<ul>
+<li><p><strong>停止所有守护进程</strong></p>
+<p><code>sbin/stop-all.sh</code></p>
+</li>
+</ul>
+<p>停止内容包括：NameNode、Secondary NameNode、DataNode、ResourceManager、NodeManager</p>
+<hr>
+<h2 id="2-HDFS-守护进程"><a href="#2-HDFS-守护进程" class="headerlink" title="2. HDFS 守护进程"></a>2. HDFS 守护进程</h2><ul>
+<li><p><strong>启动 HDFS 守护进程</strong></p>
+<p><code>sbin/start-dfs.sh</code></p>
+</li>
+</ul>
+<p>启动内容：NameNode、Secondary NameNode、DataNode</p>
+<ul>
+<li><p><strong>停止 HDFS 守护进程</strong></p>
+<p><code>sbin/stop-dfs.sh</code></p>
+</li>
+</ul>
+<p>停止内容：NameNode、Secondary NameNode、DataNode</p>
+<h3 id="单独启动-停止-HDFS-守护进程"><a href="#单独启动-停止-HDFS-守护进程" class="headerlink" title="单独启动&#x2F;停止 HDFS 守护进程"></a>单独启动&#x2F;停止 HDFS 守护进程</h3><ul>
+<li><p><strong>NameNode</strong></p>
+<p><code>sbin/hadoop-daemons.sh start namenode</code></p>
+<p><code>sbin/hadoop-daemons.sh stop namenode</code></p>
+</li>
+<li><p><strong>DataNode</strong></p>
+<p><code>sbin/hadoop-daemons.sh start datanode</code></p>
+<p><code>sbin/hadoop-daemons.sh stop datanode</code></p>
+</li>
+<li><p><strong>Secondary NameNode</strong></p>
+<p><code>sbin/hadoop-daemons.sh start secondarynamenode</code></p>
+<p><code>sbin/hadoop-daemons.sh stop secondarynamenode</code></p>
+</li>
+</ul>
+<hr>
+<h2 id="3-YARN-守护进程"><a href="#3-YARN-守护进程" class="headerlink" title="3. YARN 守护进程"></a>3. YARN 守护进程</h2><ul>
+<li><p><strong>启动 YARN 守护进程</strong></p>
+<p><code>sbin/start-yarn.sh</code></p>
+</li>
+</ul>
+<p>启动内容：ResourceManager、NodeManager</p>
+<ul>
+<li><p><strong>停止 YARN 守护进程</strong></p>
+<p><code>sbin/stop-yarn.sh</code></p>
+</li>
+</ul>
+<p>停止内容：ResourceManager、NodeManager</p>
+<h3 id="单独启动-停止-YARN-守护进程"><a href="#单独启动-停止-YARN-守护进程" class="headerlink" title="单独启动&#x2F;停止 YARN 守护进程"></a>单独启动&#x2F;停止 YARN 守护进程</h3><ul>
+<li><p><strong>ResourceManager</strong></p>
+<p><code>sbin/yarn-daemon.sh start resourcemanager</code></p>
+<p>&#96;&#96;sbin&#x2F;yarn-daemon.sh stop resourcemanager&#96;</p>
+</li>
+<li><p><strong>NodeManager</strong></p>
+<p><code>sbin/yarn-daemons.sh start nodemanager</code></p>
+<p>&#96;&#96;sbin&#x2F;yarn-daemons.sh stop nodemanager&#96;</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-MapReduce-JobHistory-服务"><a href="#4-MapReduce-JobHistory-服务" class="headerlink" title="4. MapReduce JobHistory 服务"></a>4. MapReduce JobHistory 服务</h2><ul>
+<li><p><strong>启动 JobHistory</strong></p>
+<p><code>sbin/mr-jobhistory-daemon.sh start historyserver</code></p>
+</li>
+<li><p><strong>停止 JobHistory</strong></p>
+<p><code>sbin/mr-jobhistory-daemon.sh stop historyserver</code></p>
+</li>
+</ul>
+<h1 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h1><ul>
+<li><p>先使用jps查看进程，查看是否成功启动所有进程</p>
+</li>
+<li><p>打开网页 主节点的ip地址:9870<br>查看是否有web ui,在这里你能看到你所搭建的集群的基本信息</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>大数据</category>
+        <category>搭建</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 学习笔记</title>
+    <url>/Python_1.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="0d1e0d2ee91ea2c4fed5ccdfba08e1a67624a72765e80e579f7265f5a507821a">172b901311fda5dafa89e27317358587749f6b88053833814a240761be71973790ebbe06846f2440e034d3d366d915c5a38504e790b8fce97d523ee15e69a2ae67450fe5822b521e85c2f5208f1515ea07866f04a6ca3bf0bdb73254ec02fd68e7e6cdbb1060508571575042ecd908a839af15bb0b543b0574f553c6564c054f97c6993d9793546a1215996719c924d9c4ca0d060a5466d22c3dda7be952a04361fb532b1827d1b2785e56912576ff6072ba29b39cbb3805fa4bfe25e9a6add011fd5532eacda48ce154ce36e38fe503b403788d778cf5493311725793b75058c30830e10080c9f236b1a9e216f7799c29ab499e2c674dd1913f7e628143f67d95eddd4f99d63fda94ec76c84042f64c89bab1c8e7a71df5f66dfac35558e96c45740a6ab5cd9350f1565005f32433cc851cbfcda500a20561b1299532c1dd5069f36a2627eb7b6a4bccecf2dfe9d8318538f38551ab02c8361e55278678cc5d470b85ccd27f36fa993c2d6a65b936a3d3ff2054367a6afcc504a14c47626e567932be8d1671048fc41524c357897139bbdd2e1710cebe5678352d06d822273c5e9bebee249c06d454ca8d7c64793fdf71744d0e8e3fa3d55a482fa5906f422b922b29117261e792c39f7f6e56d5c8f1655f3ff3d39aa5fd037c6659ce52365f49101d396de592e07abbd938c5b7b55f7ffa3cfde7361fd18790cbdaac221ed8a0571442031ff5f8e64f6ae43318f7d8a4c255a25e16209c8d536f577cf7d41f792afb6b8683c191a4b369bcc6ec0a644a68942973f7ccdbcc4243f2a40419540b63b4b192d4f0c7b350e0c164ed86037ab4e761f2ea0580c6bba4d351f0081f6915bd19927c3f119c3e26d5fe47c68643f482b06f0c0e5a6b07e2247fc6f1f3b08c25f0c9e63f7190dc3b0ba4588caf7c83046c7d1098a63c3ed6db97712a9468eece40a1725662699b3c7d730095f64c4ca7cd129a5b544e8d09fd9ba50f329a91a7d0d0d5482ee7cbf9c44c1934647adc225f945929d11cd676cda3e9eaecea8ca56c5c56713609bd6535512461ff957ffef64b34ac5940e49e3881ebbeb4090f14408227d2b1a7b8561a5a2cbf60dec1a9d7e0d8bca7e2dbb6e6838f1cf73e5a42c38c154fcfca36c1e56fb57f7d8d1b3e0c40fb7fe50ee74e903ade15c6056d8aae4ee182a63982a70a214d69b512b3573195abf5f16528fa9943f14152ba43fdd09aa04eac02e6a4416d6f96676038e78b81e2b4be2c0e399b7d086cf5d20b6c70de6d932ecf52c53f423c72d49a2a11f717d7e09294c9513046895d174bcc33973a4e62bc2e0058a376a2ec293faac6da41bddfa4343774c59b5bc75bfd300a07ca7a13d2a034612ac58a72df89b527567900f6e306b26162169f99ba98a2efcb7e1ed7a846c55e4d88a99b5d6758ccdcf189200e868ef9f5e4b2bba5b8d7e0743bc8015cb13a18beb8ff4c867177c45fb9ac90b95be63cd462247ded1adb3cfdc8785fc1cbf1bc8faa9e9209fb31ce7168d80e0cdfd9d865f0b848e4b4afc56ab108d7cb7602e0f46c7cd86d616ae2f11b7f5d893b7f61392ea6d6752a87175ec95a0e3145b8f7a5995f91bfe6d2dfdd8021f3faa57ea80e2c9b975995bb26457ab03c174affdbd263d9e0a5e2566d3cc0badb08be0e81ee77e6f9e02d6cd002e1484593c383d82ce14c870a94bc3ef6df6697f6776de263efbe0af91f91a5ee27f7b6f954bc1fbddf81d0030cdff1fed4a62e78895b86eccc3429cf1edcbaf9de1e8bb9c63d660f8b681865ee9445a16e35888af2f5d98dcacd0547c123b04b05bd4d5a652b3327fefbc2c762853de4696245640a6a1c33daa17f5c38c10b57de474c7e28c232155899b14063c838608cc867f9d1c8cfa11271583c8f8f770a7423a798fec12822afabb0f5058dbcc3bf9e650aa3718fac37b02adadde4149d711ba3a239a4cf47d9aa26af18e6ba026cf263ff75c497287bd15eb556b4cc92c6e79f56178e9129acb01cf07497aad08a8301944f60c0f8cb56f9331623d8ea70a77353a3eeca0a99ea6a373c68a3783fcf3630cc4c58c1be07925221bd5ad9fb5aa948981b41c7e40523c275e7abb6df30aa2010496570af7471c5af765c884280926c6e94b1de8702e06c913591abe946982d6ac0e60ce8ba041b3c08e11e3d1d3c0438ce694c5483f63bfdb92e750220835bd8f1068ffa97ecb6b1e1c8ee0323fbfe2283521885ba1966cd77c6d807748b10e8af4dfda6a70d0e390a87af222d1fc474a02ad8847f7a74d3af5b2386012a1647fac1c80850f7fb80bc6cc828243b11070f8ae737932d7086dbc2bd3a49d789873671bae063d770da568a43cf158f1f61b9a8f6e450dcf26b367580b5c8b4e71f0d369148d621027ffdbee72599f287f6d3c536db4c0572384f88183013741e59d75e7bd41168ee780c24ba6135ff780a4b5da6101d308fe98d6f1ad8f5da62c4f9067c2b82b4dc92a44671b6c710bae34f60a02afb08033355b01c68d89af468f9122a53e2ccf2a2e6dd8bbad00fcf655a85965743ceda6ecfe93ec342d32a1eb9a8a683aa6a720a5b7edc07ef21fce53922d8cfa1b3c5c2d2dcd71809ec341a8717718b1ee0501aa5195330d80fb8038f9d3b32b6ddc9a046f921e2793be8cf1dba04e0b7ff9130795728f693f82c9467ecfb4017241e6a2306bed1f4281d5e9132d4c74a0af14279810ca37e14ea60bf876163c3ba95a681275da31e89fc771179cc4f054ace1c74e4536093ec7bb2d2b1b698838a05d5f6877b1cd653c2163c1c439d72c3a9748e10a7eef49e93f81b609525689e3bd85774a61f881eb355100944165ac40db51b15be0e35009e02f9c55525803b175b0b6d7d6e876b764124575c753756d270293cbdc97ff39d3d641b54754308b5b838729b2a7b7a1048520292212c7587637eeb4822f3fdb2d55c1de4f6fe549c550795c5490eeddbd35a7c1d17372c36de40316c99b50552f3b65c87ca23d1e1060311118a091179202a7c564c6e1f4cdece382ea1a0cd30b619615c3eb10f33cc3c2d17ca0ee1d8cacbfa03a933c8a65577facea72a73336655f1ffe1c8e184270d762d477a05eb55b7266e7e124f1dcce9c5e7c661b88b299f1d4838e947337c27e74e7bb3e9615354857669eace2a5e3d2641e9a2b8245dcf40cdd326e3169540f32bcf11644b6c1efa83cbb210676c66513457b74826d27449c9853f934517ca82225daab5fe3e96892fbd53ec6499213e4e459bc699d036424c2fa18135439eb8fcaf8ac3f7c65086785c68a1b5b545ae4d7823453a0892f7ba85b58d5d91a787f47c77787561c9683588f3564ace364031f15a5d804e839c748c3861f317ca5b92c2b95855773fb64fe980ec06550663f445ce2394591eefa7409b38ea79ecdbe52c98f058fac17b44636b189301be6f2cebcab463ce561dffc6281ed3e7e5a19b6b1239967303af905f04c70ba7996fc212e08d71137dc0f01ded90fc58138d7e27624825561af67ccccbbebcd845eda080f1f573174b9d405610bb180ccae83b34d33758eb54e69b40c0e58f1b053da9fd9b1d60b9133e7a10e90e743685cf3e2b4ba91bb740ff887147e6caa40af095313791d448608eb978c655d1d1c833b70e7ee7f56b048077ec91732fa0e3f67e742e330a46b5c3c38709ef7fa136f3af2e738e8e30dd9d1b981c634f309369e72ee065af1a980b696681166380c32e9d140834138d1026b07051e18975fb80e2a46db41f490c0206a538d866e6a0d939ff9396ca282f954232c483dc4913039d9334f42f2c032722dbf193ef4501a8330a211cf9ae3fae4fc749cee311a3516f64e6d3c1d3de1afaf2795eb337d584d4ccce7aa7cb846516f0a3bd7fd4901b1c76a9af579754cfea2577a3a51f20bd0b7b5c7275a2c22a92ccf8439e3c91d73c69e8458f27d86fd96072643bcf40b7518280584b8dacb98231fe3e38bb572924360becee71a7417b1cd89d8a7fec2ac0e11ba3a8241e8977f51aee02c22f639c63e2227e19c7b969b5dd528db447e64bf9f6050aff3bd0c6fd78635b54c00824e4fa0b9f46ccc60c0d8ad9cf0bb818bd6ee85ce982a8c8c088a57dca2c09d1863118c303856658095f2ffca3490b40b2d95b27e06dd89e1500f3758c3f37d25f7f30a9bf6608e29f7e7d3dc03ab2f7e435b292993627b68a72229b33058ff704a32983efc1299d0a1f276da810b2227213df73b20c746ae79c425ecaae50cc1f86b1261109cba4c30e36d55fcf193b30ccb2b9aad8beb89a15ee89e4d8e02dbcecea92e98c6206f98c9fc7e4c78b01ea9aa8306b88099fd3b22ffba053d766e89beec1dff8818ef49d77611a4d736097f3313b5087c3e6609a14995bf3fbb662ee05bb966b29fc1022d4b77c0a72acee756099090ff9faed769ef1fa5a7c127daf90c55b1d51ea9e2ed137771d1aeab33d7fb677100590fc3cd34a66973d2e71bed6dfc8433697b65d64ac48a7713079cd12fb795578d6931a0d5c16c6a8e31a108328671a8a861d391b55d8db1fbc8f68ba9d07a6db81c4ce6580a3fbc88e7b6e7bde2f60e8ca3295521a63057a7ace86fa5c2eef7931378f5f07d5d3ee6488b7580f6bd6df78f8f0e78d71e481c2a66a8b950463d36fd74c06f335edec1b3c32c15518e8b18e59b002cc78cf20fa0dd5cc15d16688e71e408f755336e5baf32822fdd58ea3cb5833b81f5b664e8b2a0a6454ebce9df3b3a022629564115b7ab62dd3a2c37c47a0acbfefcccced4b081d41c8e8afff913b8ba0ef2059c2b5f27453fd167dade36ed2b8ec50b6e270884b50da204febef2a44d460b3d0e935a8ba89fef1743d0cb2251002e24f5270c541978607815ba7feeffc80abdef09f95a395749ad4aec374f53a6473bfa0f3c3743f89f2eb78b413431465d12ca29309b96d823abced501449fc3902106e0ef8297fdb608291ec7144e85c9306ce4bc83bb123e782002999eed82936c1b43c4c1f96edc55647218d1a02091303a26043833f078c3bdda9abbe0e17f07c4185a3e49c6a50d298b3362df9fca182774ce9ffa3cf1a13cd907186699a0105b299537d4b1196f5f5dda2aca7b5f84d779a178f0bc52970551185489520bc56b0acd2a02a262759f53bc323e7169605177dcbdc7d96c2ae60658ec1e1d91d4ec2283ab9dccdf19721f946fb3b0b8e1c1293c00d7e8430a541101d8f23da743aa8cafc641b0db0d98841b872b611e5a3b1e79c5a8f77f8327b2a9682079223009f157ed7d5b51718e566a19a7468578ba7076445c6f816b27c4a27fd5c00ccf819f0a7ec5d5500586d20de85556252277c434537c218d828ff268e9eb225b2cd4c1f591d164c97f9169181f1d6953d711533d08be87ae7f6e8a619382336e4fcd799ffb34fb68c03e53bb6b26cae7d52d53c98d11aa937428aecb57f22c1c1608db76b1b24a26697c6e152af98041c9c1263e26f8654ca4aac36ae0dbac9002f1cab6a84c2587d21b17a102a9dbac11eb91f8f586ebd70f17f56cf23069d8d0198bd8a972030ca1549e4a0e221fcd16c0d768f0fd2f345b915824d578d957d4f93b04eb879f08a21b9c5066c8ae6df90a0882c38d2eb0a3d328db23f8b6b5a9a1fc3c4aa8da3313bac07665707bbf0939f18851bcb9f244553a9cfefe5763eb51ea527cce335160dbfc0688836d0df08414a2088e6eb2d7a114a99e3df979246666f2744bfb5133a504071a8fb7e090bfeac2c81f2bd64cd746aa9e3c20c793d54b9724deafa902e88d066cc6744f94f7b44a28b3cac09ad0279e4c8ddc423fd459846e222d63432d354eac5037c61bf457185e97ffa83962cd053d2f8a53b807f410b826cd2bcacc24ad66120bce200dfe2238d333313ee49c0a5d6e4e9762583dc58177fb3636dc117f4f68613036a21fa20b40cded458fec8b823e3f0bc3bdbb96a50fd50743d464660afb526abdc5638ed165922f82a3ac1340962c641c54fcaccbe522e5aabc0056a3e790f077d0d6a245edc43fb95612ce71d66c2316f96ef6153f4fdbe1ae91cd02f45ed0cf5f97facf088daf7037fc06b8695deffd5cb906ae33c800229790cc93371804182f12c2715ab051092392c3819ad667ef3b95aa6194a8e017e50023cf6185630b6c84b334ef7f53c6f8de627004d6452d2f3f309e00248796bb9e0fff44e690e2b1725f1357b5f142fa449981a088519ed34f1aff6e6e61368801edfb2adf729f7a7285e151a60006214f0f7aadbe827585b39c2caf466f49a8d884cb801111e8909e3ff7c45d5db2c177629ec3ca66bb5bfde00135c46b3f6131c9c9e225e45137183ae90ba87d64dcec1d8048642724c6178389299d978ee5739250099c53bd028ee0d820556345e8ac0edb422dc3ddda2c4167d8b7ba9fd8cc1d3c1d46e82659a27ea40561772898aa1de4bbd407dd739ef1da044089f626bcb9033447fdbe959cbaf1ece50f14a936790a3613a2bd0b6e3e69a3e1231587e7c914af2ee7ee33993654f8bddd3363002047db34215db34116b0804428a8a35511d257987d3ef2c18801f3f0f76a374fa45a03c1be0b2edbdacfc5d607470b2f1cc1cfc129dc65c69111caccc69055888307bbf6cf772016b73babb6dfeaec785cdb2f948600525b09cbb08a7f7e9dc05eb727cd10be3e8159e3fdac3fdf37b857dde0d44e3d7181f34410885dd737f8136705c48250313a740459f7fdef2a8b0c59bc2538870d5ec2a7512fc6c5c5f30ab8226d2f61dfeb4a529039a25f4ad569acc5f70abe2cb17c9d3686c4c7ab5253039c105fd912155fdaf04cf6e68ff57e6cffe9c0d0e39a0d84d2684275ed212b9560c7c7d2757f06064bda61124b16504cbbc1536c373cca731924d13b46ae098d12da5a546d7a2bb45eee33edee864a366644a905d0b05475ceed7673411b10baea6320571b14bc57b1d22c1f38b256fc0c4140988a45628dc767605716126a20d491de4accdffe7144868339aa9267880871133a21f266ec45056b45c8831b92dbdb66f926b272c3fde37f957cde7fb81af49c0a50b475d4b5f6dcdb04e816f2482e06269c15ff3d0692c011c45c7f0518028c55c26d92aa43b604e35469453c8b0a020eaaf3fd59f8babde4db7f5856d58f572f2e1d7827eb3eb3971d1526ba8fcafa1e2adc9d58eff5a51cf6549dcce7ff53c47b9f1a40bcc37993cb7082449c4ae428d3248e49399bf69d43e2660ea1cc321622377c87330974a90eb04242126f3d433964eb291f1beb7cf272b4f941d27f31d5e09700f52ad0d923eab1255dbb8e9117272f00438290098b9c95eee6e28ebbd5f4240aae71ebd7abd6b20d98e81ad36e9569cbe926e62c33006f2d9e909b65a86fd82eb31220094a3beec8119c6fb743dbe0c57ff4ae8ca1d540bfa99bc715aa35a4a358996d3dddfaa2a3c33ebd3bd781b5f5e0f38907294818f44896174c2a818852ce3930a36029bb9bcd02ab200667a3216a2ec3f0ceb7f46976e0f6a62b5e33f7708cae3d37bfd2aaf30aa39954ea9ca7199333bd53386e4e86686949b20fd6bcf3fce7f7ce8e9c227fb6428d2dda3e3eb1ff45bac1e475138bf555057ea172ec1297b4562a19d87f23248bd698a0c4c7ee75ae1e3b2da11794aa60b6ed309b1d2b4d27b9f427298afc5b4ad0c6455e073499f0c228cff8a4a24463c7e1d89f62d74a896d1b733d93dfe08fad23da516776fd2bcd1f899eb5d8669e367d10f0c9dbb05b1f1da3cb8f99ee4b9877fc022a2209e586e2d3a59e249ed1ba5ce271d74cbe72567009f4f1816af07d8833aea6e459430defbe3399358a15cab991feaa403035fef5f481190d744fb2feacdc57d2ac82246cb85bf18cb2d38c99f976f7c1413f45bfccfaff59be069c9e85c3d3ada71d1e2f6d5491129f2be6d08b047cc06f4ec31c07d3236e171daa8fe6d899264f0ce50ee4ee6d7f38bd2781aa64ea872c51cd9c3d75453fab5257d2bf56b471dd71a6b2d403a5eb554aadeb95febab03d6240c9e1711936a384db9b02055e2c663d48ee3be4b30433e79db18fff967b82eb51804049946caa422f66c7a24915aaa4cadf20fb50611de7a1267cad1ed2e4e842a0ddb7ef62c67bed999fedf7af42e56d15f011cd30d3e3c9fb879bd4f0ce68fbe4d6034bd5dc39712026bea9a37bc0060da39b7b5aead1136f920d374d48528ab8cb29236be0e81f8dc2767729c27ce0aa4d95a0920515b2934e9b940f276df4718498c6c3ae7693fea724ef77577452da2c795f39083c0fc9302f82d8228b23a1621abba70998e7a6fc0a20f343a3cd19c4c63caaf937a753e32b33b43aed76a2bc74a6b08ff4cd1c3d77250a8bad741d725e98d5b34e131de4c3c2d9ca83d35c23adcaf3b479fb1e1bdc275c395f8f70616c2651e2490874511b69299d20274430c436288a85f09d329e641e4c2c36b8ef76610a1fda5e32d549bc78c3b0eb4358f573ef2505041a8db960926e8bb305f56d4efdc85c5257ebcec2cb7551ceef432f7fab7e0a50e8dc010d34452869af532350f538963ad61e4893f9909f168cf82af11d9760b07ecea6129b5755d932e19dcb8b00f7aa68219da9dc182979c8e46eddd976800f9eb9571ba4e2fb2ffb1160d681ac2b1d5c75cd111bd34119ebd211213483db1b88153c5dd3b628bb87dd1c36a79904b2d6d0dfa78b636abdd0b5dc8f30d7a1eb653d28849bb5b407192cb86382906fa86bdb660b10b692367eb8a63af1c37cb4b85d3bcbf6ff579a8ce29b9d77f78980f80f81b1e373ced29fe03dbd410151e36b54e9ca2f736fbb40d208368d1f34911afd40e7e093b45ab9e72ed8dede2f7ca53c084b503222910e816eed4c955038c8e933f340b6389218def9277c89c47354c0c4f4eb7ccc49289540a7a638fd84526f6daaab1dc4fe433b9be67479c6a681cd3925baff6ece0cf542ce81e4c2b327c5742196a99b917f87c09faeff2cd442a5d6a25d9c800ec38a5bdc27d938e2d86b1a8b9d245ab9e28486d78f722472e52390daa45ee4f2611ae876f79e36e1ad19ee61248a15a9a2de05f9e06e272f75cb0f3e4b87ebc6c1dacf72b7771d308ed23b7dd815f430ddb51e47d3c8fe62b1d48d6441b60552a03e4262bcc63e8e7295a176b8ee81cacc1fdf25c1c0b485888d2ef076602cdc53febeb462243add1fdd39349b0b0e20c4bc2bed43aa7a73a9c24bfaacca87e73bb13e61c2c2ae683e1715a5eec48270370834c3ff5cb7191bf6dea41897eee124f67e0a98ac4165f616126b5884dedccefe977661713b0df8dd8ee5a79f2e5111779c6f88ba230c788e3f73d28297a8faf077f05267b77</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu24.04使用记录</title>
+    <url>/ubuntu_demo.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
+<span id="more"></span>
+
+<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>[^更新并安装]: </p>
+<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo博文编写</title>
     <url>/hexo-optimize.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>编写博文的笔记，分为入门和实用进阶两篇。</p>
@@ -124,6 +425,119 @@
       <tags>
         <tag>博客</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 学习——远程仓库部分</title>
+    <url>/git_2.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——远程仓库部分 oio</p>
+<style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+<p><code>git clone</code>在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。</p>
+<p>远程分支反映了远程仓库**(在你上次和它通信时)的状态。**</p>
+<p>远程分支的命名格式：- <code>&lt;remote name&gt;/&lt;branch name&gt;</code><br>e.g. 如果你看到一个名为 <code>origin/main</code> 的分支，那么这个分支就叫 <code>main</code>，远程仓库的名称就是 <code>origin</code>(git的默认远程仓库名称就是这个)</p>
+<p>远程分支有一个特别的属性，在你切换到远程分支时，自动进入分离 HEAD 状态。<br><code>git checkout o/main; git commit</code><br><font color="grey">当添加新的提交时 <code>o/main</code> 也不会更新。这是因为 <code>o/main</code> 只有在远程仓库中相应的分支更新了以后才会更新。</font></p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511231939516.png?40l" alt="image-20251123193905423"></p>
+<p><code>git fetch</code>从远程仓库<strong>获取数据</strong><br>将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
+<p>&#x2F;&#x2F; 通常通过互联网（使用 <code>http://</code> 或 <code>git://</code> 协议) 与远程仓库通信。<br>&#x2F;&#x2F;单纯的下载操作,但是<strong>并没有</strong>修改你本地的文件</p>
+<p><code>git pull</code> 下载他人的分享</p>
+<p><code>git pull</code> 就是 git fetch 和 git merge 的缩写</p>
+<p><code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
+<p>&#x2F;&#x2F;替代方法：</p>
+<ul>
+<li><code>git cherry-pick o/main</code></li>
+<li><code>git rebase o/main</code></li>
+<li><code>git merge o/main</code></li>
+</ul>
+<p><code>git fakeTeamwork &lt;分支名&gt; &lt;数量&gt;</code><br>默认操作就是在远程仓库的 main 分支上做一次提交，但通过参数可以调整分支和数量。</p>
+<p><code>git push</code> 将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录</p>
+<blockquote>
+<p>[!NOTE]<br> <em>注意 —— <code>git push</code> 不带任何参数时的行为与 Git 的一个名为 <code>push.default</code> 的配置有关。它的默认值取决于你正使用的 Git 的版本，但是在教程中我们使用的是 <code>upstream</code>。 这没什么太大的影响，但是在你的项目中进行推送之前，最好检查一下这个配置。</em></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos更换yum源</title>
+    <url>/centos_yum.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p>centos7更换为国内yum源</p>
+<span id="more"></span>
+<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.bak</p>
+<h1 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h1><p><span class=“inline-note” title="看什么看，没有注释EmE">这里的命令是centos7的更新命令，可以根据自己的的版本替换一下</span><br>wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
+<h1 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h1><p>yum makecache</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>yum</tag>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>明日清单</title>
+    <url>/todo_list.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>明天要完成的ioi</p>
+<span id="more"></span>
+<ul>
+<li><input disabled="" type="checkbox"> Spring boot</li>
+<li><input disabled="" type="checkbox"> flask</li>
+<li><input disabled="" type="checkbox"> 80% python 进阶</li>
+<li><input disabled="" type="checkbox"> 外卖项目</li>
+<li><input checked="" disabled="" type="checkbox"> ccf比赛赛题</li>
+</ul>
+]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>清单</tag>
       </tags>
   </entry>
   <entry>
@@ -472,362 +886,6 @@
       </categories>
       <tags>
         <tag>Hadoop</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AutoHotkey —— 自动热键软件</title>
-    <url>/AutoHotkey1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-
-<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
-<span id="more"></span>
-
-<blockquote>
-<p>以下全部建立在2.0.19版本的的基础上</p>
-</blockquote>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
-<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
-<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
-<li>双击脚本，即可运行</li>
-</ul>
-<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
-<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
-</blockquote>
-<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
-<ul>
-<li><code>#</code> ：win 键</li>
-<li><code>!</code> ：alt</li>
-<li><code>^</code> ：ctrl</li>
-<li><code>+</code> ：shift</li>
-<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
-</ul>
-<blockquote>
-<p><code>^q</code> 即代表ctrl + q</p>
-</blockquote>
-<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
-<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
-<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
-<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
-<li>一个脚本里可以有多个热键</li>
-<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
-</ul>
-<hr>
-<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-
-<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
-<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
-]]></content>
-      <categories>
-        <category>利器OuO</category>
-      </categories>
-      <tags>
-        <tag>AutoHotkey</tag>
-        <tag>脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 学习——远程仓库部分</title>
-    <url>/git_2.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——远程仓库部分 oio</p>
-<style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-<p><code>git clone</code>在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。</p>
-<p>远程分支反映了远程仓库**(在你上次和它通信时)的状态。**</p>
-<p>远程分支的命名格式：- <code>&lt;remote name&gt;/&lt;branch name&gt;</code><br>e.g. 如果你看到一个名为 <code>origin/main</code> 的分支，那么这个分支就叫 <code>main</code>，远程仓库的名称就是 <code>origin</code>(git的默认远程仓库名称就是这个)</p>
-<p>远程分支有一个特别的属性，在你切换到远程分支时，自动进入分离 HEAD 状态。<br><code>git checkout o/main; git commit</code><br><font color="grey">当添加新的提交时 <code>o/main</code> 也不会更新。这是因为 <code>o/main</code> 只有在远程仓库中相应的分支更新了以后才会更新。</font></p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511231939516.png?40l" alt="image-20251123193905423"></p>
-<p><code>git fetch</code>从远程仓库<strong>获取数据</strong><br>将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
-<p>&#x2F;&#x2F; 通常通过互联网（使用 <code>http://</code> 或 <code>git://</code> 协议) 与远程仓库通信。<br>&#x2F;&#x2F;单纯的下载操作,但是<strong>并没有</strong>修改你本地的文件</p>
-<p><code>git pull</code> 下载他人的分享</p>
-<p><code>git pull</code> 就是 git fetch 和 git merge 的缩写</p>
-<p><code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
-<p>&#x2F;&#x2F;替代方法：</p>
-<ul>
-<li><code>git cherry-pick o/main</code></li>
-<li><code>git rebase o/main</code></li>
-<li><code>git merge o/main</code></li>
-</ul>
-<p><code>git fakeTeamwork &lt;分支名&gt; &lt;数量&gt;</code><br>默认操作就是在远程仓库的 main 分支上做一次提交，但通过参数可以调整分支和数量。</p>
-<p><code>git push</code> 将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录</p>
-<blockquote>
-<p>[!NOTE]<br> <em>注意 —— <code>git push</code> 不带任何参数时的行为与 Git 的一个名为 <code>push.default</code> 的配置有关。它的默认值取决于你正使用的 Git 的版本，但是在教程中我们使用的是 <code>upstream</code>。 这没什么太大的影响，但是在你的项目中进行推送之前，最好检查一下这个配置。</em></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hadoop搭建教程</title>
-    <url>/hadoop2.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<p>在<a href="../hadoop1.html">Hadoop入门 </a>中，为大家简单介绍了 <a href="https://hadoop.apache.org/docs/">Hadoop</a> 。</p>
-<!--  [[Hadoop入门]]  -->
-<p>在本文，我将为大家演示基于 linux 的 Hadoop 搭建。</p>
-<span id="more"></span>
-
-<blockquote>
-<p><strong>本文所用软件版本:</strong></p>
-<p>CentOS 7<!--  [[centos7更换yum源]]  --><br>Vmware 16<br>Xshell 7<br>Xftp 7</p>
-</blockquote>
-<div class="note primary"><p><strong>在开始之前你需要提前下载：</strong></p>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion">VMwareWworkstation Pro</a> 虚拟机管理软件</li>
-<li><input checked="" disabled="" type="checkbox"> <a href="https://mirrors.aliyun.com/centos/7/isos/x86_64/">CentOS 7 镜像</a>或者其他版本的镜像</li>
-</ul>
-<p>PS. 镜像下载时间超长</p>
-<p><strong>你需要提前准备:</strong></p>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> 一台配置好 <em><a href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE">网络</a>&amp;主机名&amp;配置好xshell</em> 的虚拟机</li>
-</ul>
-</div>
-
-
-
-<hr>
-<p><span class = "inline-note" title ="小提示">本文将以初学者的视角进行详细讲解，左侧配有目录，大家按需选择阅读章节OuO。</p>
-<p>全文中的重点内容都采用与本条相同的样式，鼠标悬停即可显示简要说明，方便快速理解。</p>
-</span>
-
-<h1 id="VMware-软件使用"><a href="#VMware-软件使用" class="headerlink" title="VMware 软件使用"></a>VMware 软件使用</h1><p>具体从软件配置到创建虚拟机这里不再赘述，大家可以自行搜索，这里只展示我觉得需要注意的点</p>
-<h2 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h2><p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/image-20250814221946282.png"></p>
-<div class="tabs" id="vmware"><ul class="nav-tabs"><li class="tab active"><a href="#vmware-1">桥接模式</a></li><li class="tab"><a href="#vmware-2">NAT模式</a></li><li class="tab"><a href="#vmware-3">仅主机模式</a></li></ul><div class="tab-content"><div class="tab-pane active" id="vmware-1"><p>桥接模式会直接把虚拟机连接到物理网络，就像一台真实电脑。<br><strong>虚拟机直接使用主机所在的局域网IP</strong></p></div><div class="tab-pane" id="vmware-2"><p>NAT模式会通过主机共享网络连接，虚拟机和外网通信时由主机做中转。<br><strong>虚拟机通过主机的网络访问外网</strong></p></div><div class="tab-pane" id="vmware-3"><p>仅主机模式下，虚拟机只能和主机互通，不能访问外网。<br><strong>适合内网测试或安全环境</strong></p></div></div></div>
-
-<hr>
-<h1 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemcttl stop firewalld    --关闭防火墙</span><br><span class="line">systemctl disable firewalld    --永久关闭防火墙</span><br></pre></td></tr></table></figure>
-
-<h1 id="jdk配置"><a href="#jdk配置" class="headerlink" title="jdk配置"></a>jdk配置</h1><h2 id="1-使用Xftp传输压缩包并解压"><a href="#1-使用Xftp传输压缩包并解压" class="headerlink" title="1.使用Xftp传输压缩包并解压"></a>1.使用Xftp传输压缩包并解压</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@master opt]# pwd</span><br><span class="line">/opt</span><br><span class="line">[root@master opt]# mkdir module #解压后的位置</span><br><span class="line">[root@master opt]# mkdir software #压缩包</span><br><span class="line">[root@master opt]# cd software</span><br><span class="line">[root@master software]# ll</span><br><span class="line">total 1488592</span><br><span class="line">-rw-r--r--. 1 root root  87380462 Aug 27 10:59 apache-flume-1.11.0-bin.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root  22347776 Aug 27 10:59 apache-hive-3.1.2-bin.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root  14853274 Aug 27 10:59 apache-zookeeper-3.8.3-bin.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 730107476 Aug 27 10:59 hadoop-3.3.6.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 141600542 Aug 27 10:59 jdk-8u401-linux-x64.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 528015360 Aug 27 10:59 mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line">[root@master software]# tar -zvxf jdk-8u401-linux-x64.tar.gz -C ../module #解压jdk压缩包</span><br><span class="line">[root@master software]# tar -zvxf hadoop-3.3.6.tar.gz -C ../module/ #解压hadoop压缩包</span><br><span class="line">[root@master software]# cd ../module/                              </span><br><span class="line">[root@master module]# ll</span><br><span class="line">total 8</span><br><span class="line">drwxr-xr-x. 10 1000 1000 4096 Jun 18  2023 hadoop-3.3.6</span><br><span class="line">drwxr-x---.  8 root root 4096 Aug 27 11:02 jdk1.8.0_401</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2.配置环境变量"></a>2.配置环境变量</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@master module]# cd jdk1.8.0_401/</span><br><span class="line">[root@master jdk1.8.0_401]# pwd</span><br><span class="line">/opt/module/jdk1.8.0_401</span><br><span class="line"></span><br><span class="line">[root@master module]# vi /etc/profile</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/opt/module/jdk1.8.0_401</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"></span><br><span class="line">[root@master module]# source /etc/profile #刷新环境变量</span><br><span class="line">[root@master ~]# jps</span><br><span class="line">508 Jps</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="克隆三台虚拟机"><a href="#克隆三台虚拟机" class="headerlink" title="克隆三台虚拟机"></a>克隆三台虚拟机</h1><p>在克隆之前建议配置好<a href="#1.%E6%9B%B4%E6%94%B9hosts">hosts文件</a>为下一步做准备</p>
-<p>配置好后依次更改主机名</p>
-<p>这里不过多赘述</p>
-<h1 id="配置免密—SSH"><a href="#配置免密—SSH" class="headerlink" title="配置免密—SSH"></a>配置免密—SSH</h1><h2 id="1-更改hosts"><a href="#1-更改hosts" class="headerlink" title="1.更改hosts"></a>1.更改hosts</h2><p>三台虚拟机都更改</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/hosts</span><br><span class="line">[ip-1] [hostname-1]</span><br><span class="line">[ip-2] [hostname-2]</span><br><span class="line">[ip-3] [hostname-3]</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-生成并传输密钥"><a href="#2-生成并传输密钥" class="headerlink" title="2.生成并传输密钥"></a>2.生成并传输密钥</h2><p>在<span class = "inline-note " title = "一定要更改好hosts后再生成">主节点生成密钥</span></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa #生成密钥</span><br><span class="line">ssh-copy-id [hostname-1&amp;2&amp;3] #传输密钥</span><br></pre></td></tr></table></figure>
-
-<p>输入 yes+对应主机的密码</p>
-<p>成功后可以使用 <code>ssh + [hostname-1&amp;2&amp;3]</code>进行测试</p>
-<p><code>exit</code>命令即可退出</p>
-<h1 id="配置Hadoop配置文件"><a href="#配置Hadoop配置文件" class="headerlink" title="配置Hadoop配置文件"></a>配置Hadoop配置文件</h1><p>以下配置文件的路径为<code>$hadoop_home/etc/hadoop/</code></p>
-<h2 id="core-site-xml"><a href="#core-site-xml" class="headerlink" title="core-site.xml"></a>core-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/root/software/hadoop-3.3.4/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    --hadoop路径</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="hdfs-site-xml"><a href="#hdfs-site-xml" class="headerlink" title="hdfs-site.xml"></a>hdfs-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.secondary.http-address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>master:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="mapred-site-xml"><a href="#mapred-site-xml" class="headerlink" title="mapred-site.xml"></a>mapred-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.app.mapreduce.am.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=/root/software/hadoop-3.3.4<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.map.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=/root/software/hadoop-3.3.4<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.reduce.env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>HADOOP_MAPRED_HOME=/root/software/hadoop-3.3.4<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="yarn-site-xml"><a href="#yarn-site-xml" class="headerlink" title="yarn-site.xml"></a>yarn-site.xml</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.env-whitelist<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,</span><br><span class="line">HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,</span><br><span class="line">HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>master<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.resource.memory-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>4096<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="hadoop-env-sh"><a href="#hadoop-env-sh" class="headerlink" title="hadoop-env.sh"></a>hadoop-env.sh</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">export JAVA_HOME=$JAVA_HOME</span><br></pre></td></tr></table></figure>
-
-<h2 id="workers"><a href="#workers" class="headerlink" title="workers"></a>workers</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">三台机器的名字</span><br></pre></td></tr></table></figure>
-<h1 id="配置并刷新环境变量"><a href="#配置并刷新环境变量" class="headerlink" title="配置并刷新环境变量"></a>配置并刷新环境变量</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#hadoop</span><br><span class="line">export HADOOP_HOME=/root/software/hadoop-3.3.4</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/bin</span><br><span class="line"></span><br><span class="line">export HDFS_NAMENODE_USER=root</span><br><span class="line">export HDFS_DATANODE_USER=root</span><br><span class="line">export HDFS_SECONDARYNAMENODE_USER=root</span><br><span class="line">export YARN_RESOURCEMANAGER_USER=root</span><br><span class="line">export YARN_NODEMANAGER_USER=root</span><br></pre></td></tr></table></figure>
-<p>刷新环境变量   <code>source /etc/profile</code></p>
-<h1 id="SSH-传输"><a href="#SSH-传输" class="headerlink" title="SSH 传输"></a>SSH 传输</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp [-1246BCpqrv]  [-c cipher]  [-F ssh_config]  [-i identity_file]  [-l limit]  [-o ssh_option]  [-P port]  [-S program]  [[user@]host1:]file1 [...]  [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
-<p>依次传输Hadoop、环境变量到其他虚拟机</p>
-<h1 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h1><p><span class = "inline-note" title ="注意都在主节点运行"><strong>Hadoop 启动与停止命令一览</strong></span></p>
-<h2 id="1-启动-停止所有守护进程"><a href="#1-启动-停止所有守护进程" class="headerlink" title="1. 启动&#x2F;停止所有守护进程"></a>1. 启动&#x2F;停止所有守护进程</h2><ul>
-<li><p><strong>启动所有守护进程</strong></p>
-<p><code>sbin/start-all.sh</code></p>
-</li>
-</ul>
-<p>启动内容包括：NameNode、Secondary NameNode、DataNode、ResourceManager、NodeManager</p>
-<ul>
-<li><p><strong>停止所有守护进程</strong></p>
-<p><code>sbin/stop-all.sh</code></p>
-</li>
-</ul>
-<p>停止内容包括：NameNode、Secondary NameNode、DataNode、ResourceManager、NodeManager</p>
-<hr>
-<h2 id="2-HDFS-守护进程"><a href="#2-HDFS-守护进程" class="headerlink" title="2. HDFS 守护进程"></a>2. HDFS 守护进程</h2><ul>
-<li><p><strong>启动 HDFS 守护进程</strong></p>
-<p><code>sbin/start-dfs.sh</code></p>
-</li>
-</ul>
-<p>启动内容：NameNode、Secondary NameNode、DataNode</p>
-<ul>
-<li><p><strong>停止 HDFS 守护进程</strong></p>
-<p><code>sbin/stop-dfs.sh</code></p>
-</li>
-</ul>
-<p>停止内容：NameNode、Secondary NameNode、DataNode</p>
-<h3 id="单独启动-停止-HDFS-守护进程"><a href="#单独启动-停止-HDFS-守护进程" class="headerlink" title="单独启动&#x2F;停止 HDFS 守护进程"></a>单独启动&#x2F;停止 HDFS 守护进程</h3><ul>
-<li><p><strong>NameNode</strong></p>
-<p><code>sbin/hadoop-daemons.sh start namenode</code></p>
-<p><code>sbin/hadoop-daemons.sh stop namenode</code></p>
-</li>
-<li><p><strong>DataNode</strong></p>
-<p><code>sbin/hadoop-daemons.sh start datanode</code></p>
-<p><code>sbin/hadoop-daemons.sh stop datanode</code></p>
-</li>
-<li><p><strong>Secondary NameNode</strong></p>
-<p><code>sbin/hadoop-daemons.sh start secondarynamenode</code></p>
-<p><code>sbin/hadoop-daemons.sh stop secondarynamenode</code></p>
-</li>
-</ul>
-<hr>
-<h2 id="3-YARN-守护进程"><a href="#3-YARN-守护进程" class="headerlink" title="3. YARN 守护进程"></a>3. YARN 守护进程</h2><ul>
-<li><p><strong>启动 YARN 守护进程</strong></p>
-<p><code>sbin/start-yarn.sh</code></p>
-</li>
-</ul>
-<p>启动内容：ResourceManager、NodeManager</p>
-<ul>
-<li><p><strong>停止 YARN 守护进程</strong></p>
-<p><code>sbin/stop-yarn.sh</code></p>
-</li>
-</ul>
-<p>停止内容：ResourceManager、NodeManager</p>
-<h3 id="单独启动-停止-YARN-守护进程"><a href="#单独启动-停止-YARN-守护进程" class="headerlink" title="单独启动&#x2F;停止 YARN 守护进程"></a>单独启动&#x2F;停止 YARN 守护进程</h3><ul>
-<li><p><strong>ResourceManager</strong></p>
-<p><code>sbin/yarn-daemon.sh start resourcemanager</code></p>
-<p>&#96;&#96;sbin&#x2F;yarn-daemon.sh stop resourcemanager&#96;</p>
-</li>
-<li><p><strong>NodeManager</strong></p>
-<p><code>sbin/yarn-daemons.sh start nodemanager</code></p>
-<p>&#96;&#96;sbin&#x2F;yarn-daemons.sh stop nodemanager&#96;</p>
-</li>
-</ul>
-<hr>
-<h2 id="4-MapReduce-JobHistory-服务"><a href="#4-MapReduce-JobHistory-服务" class="headerlink" title="4. MapReduce JobHistory 服务"></a>4. MapReduce JobHistory 服务</h2><ul>
-<li><p><strong>启动 JobHistory</strong></p>
-<p><code>sbin/mr-jobhistory-daemon.sh start historyserver</code></p>
-</li>
-<li><p><strong>停止 JobHistory</strong></p>
-<p><code>sbin/mr-jobhistory-daemon.sh stop historyserver</code></p>
-</li>
-</ul>
-<h1 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h1><ul>
-<li><p>先使用jps查看进程，查看是否成功启动所有进程</p>
-</li>
-<li><p>打开网页 主节点的ip地址:9870<br>查看是否有web ui,在这里你能看到你所搭建的集群的基本信息</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>大数据</category>
-        <category>搭建</category>
-      </categories>
-      <tags>
-        <tag>Hadoop</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu24.04使用记录</title>
-    <url>/ubuntu_demo.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
-<span id="more"></span>
-
-<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
-
-<p>[^更新并安装]: </p>
-<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python 学习笔记</title>
-    <url>/Python_1.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="0d1e0d2ee91ea2c4fed5ccdfba08e1a67624a72765e80e579f7265f5a507821a">172b901311fda5dafa89e27317358587749f6b88053833814a240761be71973790ebbe06846f2440e034d3d366d915c5a38504e790b8fce97d523ee15e69a2ae67450fe5822b521e85c2f5208f1515ea07866f04a6ca3bf0bdb73254ec02fd68e7e6cdbb1060508571575042ecd908a839af15bb0b543b0574f553c6564c054f97c6993d9793546a1215996719c924d9c4ca0d060a5466d22c3dda7be952a04361fb532b1827d1b2785e56912576ff6072ba29b39cbb3805fa4bfe25e9a6add011fd5532eacda48ce154ce36e38fe503b403788d778cf5493311725793b75058c30830e10080c9f236b1a9e216f7799c29ab499e2c674dd1913f7e628143f67d95eddd4f99d63fda94ec76c84042f64c89bab1c8e7a71df5f66dfac35558e96c45740a6ab5cd9350f1565005f32433cc851cbfcda500a20561b1299532c1dd5069f36a2627eb7b6a4bccecf2dfe9d8318538f38551ab02c8361e55278678cc5d470b85ccd27f36fa993c2d6a65b936a3d3ff2054367a6afcc504a14c47626e567932be8d1671048fc41524c357897139bbdd2e1710cebe5678352d06d822273c5e9bebee249c06d454ca8d7c64793fdf71744d0e8e3fa3d55a482fa5906f422b922b29117261e792c39f7f6e56d5c8f1655f3ff3d39aa5fd037c6659ce52365f49101d396de592e07abbd938c5b7b55f7ffa3cfde7361fd18790cbdaac221ed8a0571442031ff5f8e64f6ae43318f7d8a4c255a25e16209c8d536f577cf7d41f792afb6b8683c191a4b369bcc6ec0a644a68942973f7ccdbcc4243f2a40419540b63b4b192d4f0c7b350e0c164ed86037ab4e761f2ea0580c6bba4d351f0081f6915bd19927c3f119c3e26d5fe47c68643f482b06f0c0e5a6b07e2247fc6f1f3b08c25f0c9e63f7190dc3b0ba4588caf7c83046c7d1098a63c3ed6db97712a9468eece40a1725662699b3c7d730095f64c4ca7cd129a5b544e8d09fd9ba50f329a91a7d0d0d5482ee7cbf9c44c1934647adc225f945929d11cd676cda3e9eaecea8ca56c5c56713609bd6535512461ff957ffef64b34ac5940e49e3881ebbeb4090f14408227d2b1a7b8561a5a2cbf60dec1a9d7e0d8bca7e2dbb6e6838f1cf73e5a42c38c154fcfca36c1e56fb57f7d8d1b3e0c40fb7fe50ee74e903ade15c6056d8aae4ee182a63982a70a214d69b512b3573195abf5f16528fa9943f14152ba43fdd09aa04eac02e6a4416d6f96676038e78b81e2b4be2c0e399b7d086cf5d20b6c70de6d932ecf52c53f423c72d49a2a11f717d7e09294c9513046895d174bcc33973a4e62bc2e0058a376a2ec293faac6da41bddfa4343774c59b5bc75bfd300a07ca7a13d2a034612ac58a72df89b527567900f6e306b26162169f99ba98a2efcb7e1ed7a846c55e4d88a99b5d6758ccdcf189200e868ef9f5e4b2bba5b8d7e0743bc8015cb13a18beb8ff4c867177c45fb9ac90b95be63cd462247ded1adb3cfdc8785fc1cbf1bc8faa9e9209fb31ce7168d80e0cdfd9d865f0b848e4b4afc56ab108d7cb7602e0f46c7cd86d616ae2f11b7f5d893b7f61392ea6d6752a87175ec95a0e3145b8f7a5995f91bfe6d2dfdd8021f3faa57ea80e2c9b975995bb26457ab03c174affdbd263d9e0a5e2566d3cc0badb08be0e81ee77e6f9e02d6cd002e1484593c383d82ce14c870a94bc3ef6df6697f6776de263efbe0af91f91a5ee27f7b6f954bc1fbddf81d0030cdff1fed4a62e78895b86eccc3429cf1edcbaf9de1e8bb9c63d660f8b681865ee9445a16e35888af2f5d98dcacd0547c123b04b05bd4d5a652b3327fefbc2c762853de4696245640a6a1c33daa17f5c38c10b57de474c7e28c232155899b14063c838608cc867f9d1c8cfa11271583c8f8f770a7423a798fec12822afabb0f5058dbcc3bf9e650aa3718fac37b02adadde4149d711ba3a239a4cf47d9aa26af18e6ba026cf263ff75c497287bd15eb556b4cc92c6e79f56178e9129acb01cf07497aad08a8301944f60c0f8cb56f9331623d8ea70a77353a3eeca0a99ea6a373c68a3783fcf3630cc4c58c1be07925221bd5ad9fb5aa948981b41c7e40523c275e7abb6df30aa2010496570af7471c5af765c884280926c6e94b1de8702e06c913591abe946982d6ac0e60ce8ba041b3c08e11e3d1d3c0438ce694c5483f63bfdb92e750220835bd8f1068ffa97ecb6b1e1c8ee0323fbfe2283521885ba1966cd77c6d807748b10e8af4dfda6a70d0e390a87af222d1fc474a02ad8847f7a74d3af5b2386012a1647fac1c80850f7fb80bc6cc828243b11070f8ae737932d7086dbc2bd3a49d789873671bae063d770da568a43cf158f1f61b9a8f6e450dcf26b367580b5c8b4e71f0d369148d621027ffdbee72599f287f6d3c536db4c0572384f88183013741e59d75e7bd41168ee780c24ba6135ff780a4b5da6101d308fe98d6f1ad8f5da62c4f9067c2b82b4dc92a44671b6c710bae34f60a02afb08033355b01c68d89af468f9122a53e2ccf2a2e6dd8bbad00fcf655a85965743ceda6ecfe93ec342d32a1eb9a8a683aa6a720a5b7edc07ef21fce53922d8cfa1b3c5c2d2dcd71809ec341a8717718b1ee0501aa5195330d80fb8038f9d3b32b6ddc9a046f921e2793be8cf1dba04e0b7ff9130795728f693f82c9467ecfb4017241e6a2306bed1f4281d5e9132d4c74a0af14279810ca37e14ea60bf876163c3ba95a681275da31e89fc771179cc4f054ace1c74e4536093ec7bb2d2b1b698838a05d5f6877b1cd653c2163c1c439d72c3a9748e10a7eef49e93f81b609525689e3bd85774a61f881eb355100944165ac40db51b15be0e35009e02f9c55525803b175b0b6d7d6e876b764124575c753756d270293cbdc97ff39d3d641b54754308b5b838729b2a7b7a1048520292212c7587637eeb4822f3fdb2d55c1de4f6fe549c550795c5490eeddbd35a7c1d17372c36de40316c99b50552f3b65c87ca23d1e1060311118a091179202a7c564c6e1f4cdece382ea1a0cd30b619615c3eb10f33cc3c2d17ca0ee1d8cacbfa03a933c8a65577facea72a73336655f1ffe1c8e184270d762d477a05eb55b7266e7e124f1dcce9c5e7c661b88b299f1d4838e947337c27e74e7bb3e9615354857669eace2a5e3d2641e9a2b8245dcf40cdd326e3169540f32bcf11644b6c1efa83cbb210676c66513457b74826d27449c9853f934517ca82225daab5fe3e96892fbd53ec6499213e4e459bc699d036424c2fa18135439eb8fcaf8ac3f7c65086785c68a1b5b545ae4d7823453a0892f7ba85b58d5d91a787f47c77787561c9683588f3564ace364031f15a5d804e839c748c3861f317ca5b92c2b95855773fb64fe980ec06550663f445ce2394591eefa7409b38ea79ecdbe52c98f058fac17b44636b189301be6f2cebcab463ce561dffc6281ed3e7e5a19b6b1239967303af905f04c70ba7996fc212e08d71137dc0f01ded90fc58138d7e27624825561af67ccccbbebcd845eda080f1f573174b9d405610bb180ccae83b34d33758eb54e69b40c0e58f1b053da9fd9b1d60b9133e7a10e90e743685cf3e2b4ba91bb740ff887147e6caa40af095313791d448608eb978c655d1d1c833b70e7ee7f56b048077ec91732fa0e3f67e742e330a46b5c3c38709ef7fa136f3af2e738e8e30dd9d1b981c634f309369e72ee065af1a980b696681166380c32e9d140834138d1026b07051e18975fb80e2a46db41f490c0206a538d866e6a0d939ff9396ca282f954232c483dc4913039d9334f42f2c032722dbf193ef4501a8330a211cf9ae3fae4fc749cee311a3516f64e6d3c1d3de1afaf2795eb337d584d4ccce7aa7cb846516f0a3bd7fd4901b1c76a9af579754cfea2577a3a51f20bd0b7b5c7275a2c22a92ccf8439e3c91d73c69e8458f27d86fd96072643bcf40b7518280584b8dacb98231fe3e38bb572924360becee71a7417b1cd89d8a7fec2ac0e11ba3a8241e8977f51aee02c22f639c63e2227e19c7b969b5dd528db447e64bf9f6050aff3bd0c6fd78635b54c00824e4fa0b9f46ccc60c0d8ad9cf0bb818bd6ee85ce982a8c8c088a57dca2c09d1863118c303856658095f2ffca3490b40b2d95b27e06dd89e1500f3758c3f37d25f7f30a9bf6608e29f7e7d3dc03ab2f7e435b292993627b68a72229b33058ff704a32983efc1299d0a1f276da810b2227213df73b20c746ae79c425ecaae50cc1f86b1261109cba4c30e36d55fcf193b30ccb2b9aad8beb89a15ee89e4d8e02dbcecea92e98c6206f98c9fc7e4c78b01ea9aa8306b88099fd3b22ffba053d766e89beec1dff8818ef49d77611a4d736097f3313b5087c3e6609a14995bf3fbb662ee05bb966b29fc1022d4b77c0a72acee756099090ff9faed769ef1fa5a7c127daf90c55b1d51ea9e2ed137771d1aeab33d7fb677100590fc3cd34a66973d2e71bed6dfc8433697b65d64ac48a7713079cd12fb795578d6931a0d5c16c6a8e31a108328671a8a861d391b55d8db1fbc8f68ba9d07a6db81c4ce6580a3fbc88e7b6e7bde2f60e8ca3295521a63057a7ace86fa5c2eef7931378f5f07d5d3ee6488b7580f6bd6df78f8f0e78d71e481c2a66a8b950463d36fd74c06f335edec1b3c32c15518e8b18e59b002cc78cf20fa0dd5cc15d16688e71e408f755336e5baf32822fdd58ea3cb5833b81f5b664e8b2a0a6454ebce9df3b3a022629564115b7ab62dd3a2c37c47a0acbfefcccced4b081d41c8e8afff913b8ba0ef2059c2b5f27453fd167dade36ed2b8ec50b6e270884b50da204febef2a44d460b3d0e935a8ba89fef1743d0cb2251002e24f5270c541978607815ba7feeffc80abdef09f95a395749ad4aec374f53a6473bfa0f3c3743f89f2eb78b413431465d12ca29309b96d823abced501449fc3902106e0ef8297fdb608291ec7144e85c9306ce4bc83bb123e782002999eed82936c1b43c4c1f96edc55647218d1a02091303a26043833f078c3bdda9abbe0e17f07c4185a3e49c6a50d298b3362df9fca182774ce9ffa3cf1a13cd907186699a0105b299537d4b1196f5f5dda2aca7b5f84d779a178f0bc52970551185489520bc56b0acd2a02a262759f53bc323e7169605177dcbdc7d96c2ae60658ec1e1d91d4ec2283ab9dccdf19721f946fb3b0b8e1c1293c00d7e8430a541101d8f23da743aa8cafc641b0db0d98841b872b611e5a3b1e79c5a8f77f8327b2a9682079223009f157ed7d5b51718e566a19a7468578ba7076445c6f816b27c4a27fd5c00ccf819f0a7ec5d5500586d20de85556252277c434537c218d828ff268e9eb225b2cd4c1f591d164c97f9169181f1d6953d711533d08be87ae7f6e8a619382336e4fcd799ffb34fb68c03e53bb6b26cae7d52d53c98d11aa937428aecb57f22c1c1608db76b1b24a26697c6e152af98041c9c1263e26f8654ca4aac36ae0dbac9002f1cab6a84c2587d21b17a102a9dbac11eb91f8f586ebd70f17f56cf23069d8d0198bd8a972030ca1549e4a0e221fcd16c0d768f0fd2f345b915824d578d957d4f93b04eb879f08a21b9c5066c8ae6df90a0882c38d2eb0a3d328db23f8b6b5a9a1fc3c4aa8da3313bac07665707bbf0939f18851bcb9f244553a9cfefe5763eb51ea527cce335160dbfc0688836d0df08414a2088e6eb2d7a114a99e3df979246666f2744bfb5133a504071a8fb7e090bfeac2c81f2bd64cd746aa9e3c20c793d54b9724deafa902e88d066cc6744f94f7b44a28b3cac09ad0279e4c8ddc423fd459846e222d63432d354eac5037c61bf457185e97ffa83962cd053d2f8a53b807f410b826cd2bcacc24ad66120bce200dfe2238d333313ee49c0a5d6e4e9762583dc58177fb3636dc117f4f68613036a21fa20b40cded458fec8b823e3f0bc3bdbb96a50fd50743d464660afb526abdc5638ed165922f82a3ac1340962c641c54fcaccbe522e5aabc0056a3e790f077d0d6a245edc43fb95612ce71d66c2316f96ef6153f4fdbe1ae91cd02f45ed0cf5f97facf088daf7037fc06b8695deffd5cb906ae33c800229790cc93371804182f12c2715ab051092392c3819ad667ef3b95aa6194a8e017e50023cf6185630b6c84b334ef7f53c6f8de627004d6452d2f3f309e00248796bb9e0fff44e690e2b1725f1357b5f142fa449981a088519ed34f1aff6e6e61368801edfb2adf729f7a7285e151a60006214f0f7aadbe827585b39c2caf466f49a8d884cb801111e8909e3ff7c45d5db2c177629ec3ca66bb5bfde00135c46b3f6131c9c9e225e45137183ae90ba87d64dcec1d8048642724c6178389299d978ee5739250099c53bd028ee0d820556345e8ac0edb422dc3ddda2c4167d8b7ba9fd8cc1d3c1d46e82659a27ea40561772898aa1de4bbd407dd739ef1da044089f626bcb9033447fdbe959cbaf1ece50f14a936790a3613a2bd0b6e3e69a3e1231587e7c914af2ee7ee33993654f8bddd3363002047db34215db34116b0804428a8a35511d257987d3ef2c18801f3f0f76a374fa45a03c1be0b2edbdacfc5d607470b2f1cc1cfc129dc65c69111caccc69055888307bbf6cf772016b73babb6dfeaec785cdb2f948600525b09cbb08a7f7e9dc05eb727cd10be3e8159e3fdac3fdf37b857dde0d44e3d7181f34410885dd737f8136705c48250313a740459f7fdef2a8b0c59bc2538870d5ec2a7512fc6c5c5f30ab8226d2f61dfeb4a529039a25f4ad569acc5f70abe2cb17c9d3686c4c7ab5253039c105fd912155fdaf04cf6e68ff57e6cffe9c0d0e39a0d84d2684275ed212b9560c7c7d2757f06064bda61124b16504cbbc1536c373cca731924d13b46ae098d12da5a546d7a2bb45eee33edee864a366644a905d0b05475ceed7673411b10baea6320571b14bc57b1d22c1f38b256fc0c4140988a45628dc767605716126a20d491de4accdffe7144868339aa9267880871133a21f266ec45056b45c8831b92dbdb66f926b272c3fde37f957cde7fb81af49c0a50b475d4b5f6dcdb04e816f2482e06269c15ff3d0692c011c45c7f0518028c55c26d92aa43b604e35469453c8b0a020eaaf3fd59f8babde4db7f5856d58f572f2e1d7827eb3eb3971d1526ba8fcafa1e2adc9d58eff5a51cf6549dcce7ff53c47b9f1a40bcc37993cb7082449c4ae428d3248e49399bf69d43e2660ea1cc321622377c87330974a90eb04242126f3d433964eb291f1beb7cf272b4f941d27f31d5e09700f52ad0d923eab1255dbb8e9117272f00438290098b9c95eee6e28ebbd5f4240aae71ebd7abd6b20d98e81ad36e9569cbe926e62c33006f2d9e909b65a86fd82eb31220094a3beec8119c6fb743dbe0c57ff4ae8ca1d540bfa99bc715aa35a4a358996d3dddfaa2a3c33ebd3bd781b5f5e0f38907294818f44896174c2a818852ce3930a36029bb9bcd02ab200667a3216a2ec3f0ceb7f46976e0f6a62b5e33f7708cae3d37bfd2aaf30aa39954ea9ca7199333bd53386e4e86686949b20fd6bcf3fce7f7ce8e9c227fb6428d2dda3e3eb1ff45bac1e475138bf555057ea172ec1297b4562a19d87f23248bd698a0c4c7ee75ae1e3b2da11794aa60b6ed309b1d2b4d27b9f427298afc5b4ad0c6455e073499f0c228cff8a4a24463c7e1d89f62d74a896d1b733d93dfe08fad23da516776fd2bcd1f899eb5d8669e367d10f0c9dbb05b1f1da3cb8f99ee4b9877fc022a2209e586e2d3a59e249ed1ba5ce271d74cbe72567009f4f1816af07d8833aea6e459430defbe3399358a15cab991feaa403035fef5f481190d744fb2feacdc57d2ac82246cb85bf18cb2d38c99f976f7c1413f45bfccfaff59be069c9e85c3d3ada71d1e2f6d5491129f2be6d08b047cc06f4ec31c07d3236e171daa8fe6d899264f0ce50ee4ee6d7f38bd2781aa64ea872c51cd9c3d75453fab5257d2bf56b471dd71a6b2d403a5eb554aadeb95febab03d6240c9e1711936a384db9b02055e2c663d48ee3be4b30433e79db18fff967b82eb51804049946caa422f66c7a24915aaa4cadf20fb50611de7a1267cad1ed2e4e842a0ddb7ef62c67bed999fedf7af42e56d15f011cd30d3e3c9fb879bd4f0ce68fbe4d6034bd5dc39712026bea9a37bc0060da39b7b5aead1136f920d374d48528ab8cb29236be0e81f8dc2767729c27ce0aa4d95a0920515b2934e9b940f276df4718498c6c3ae7693fea724ef77577452da2c795f39083c0fc9302f82d8228b23a1621abba70998e7a6fc0a20f343a3cd19c4c63caaf937a753e32b33b43aed76a2bc74a6b08ff4cd1c3d77250a8bad741d725e98d5b34e131de4c3c2d9ca83d35c23adcaf3b479fb1e1bdc275c395f8f70616c2651e2490874511b69299d20274430c436288a85f09d329e641e4c2c36b8ef76610a1fda5e32d549bc78c3b0eb4358f573ef2505041a8db960926e8bb305f56d4efdc85c5257ebcec2cb7551ceef432f7fab7e0a50e8dc010d34452869af532350f538963ad61e4893f9909f168cf82af11d9760b07ecea6129b5755d932e19dcb8b00f7aa68219da9dc182979c8e46eddd976800f9eb9571ba4e2fb2ffb1160d681ac2b1d5c75cd111bd34119ebd211213483db1b88153c5dd3b628bb87dd1c36a79904b2d6d0dfa78b636abdd0b5dc8f30d7a1eb653d28849bb5b407192cb86382906fa86bdb660b10b692367eb8a63af1c37cb4b85d3bcbf6ff579a8ce29b9d77f78980f80f81b1e373ced29fe03dbd410151e36b54e9ca2f736fbb40d208368d1f34911afd40e7e093b45ab9e72ed8dede2f7ca53c084b503222910e816eed4c955038c8e933f340b6389218def9277c89c47354c0c4f4eb7ccc49289540a7a638fd84526f6daaab1dc4fe433b9be67479c6a681cd3925baff6ece0cf542ce81e4c2b327c5742196a99b917f87c09faeff2cd442a5d6a25d9c800ec38a5bdc27d938e2d86b1a8b9d245ab9e28486d78f722472e52390daa45ee4f2611ae876f79e36e1ad19ee61248a15a9a2de05f9e06e272f75cb0f3e4b87ebc6c1dacf72b7771d308ed23b7dd815f430ddb51e47d3c8fe62b1d48d6441b60552a03e4262bcc63e8e7295a176b8ee81cacc1fdf25c1c0b485888d2ef076602cdc53febeb462243add1fdd39349b0b0e20c4bc2bed43aa7a73a9c24bfaacca87e73bb13e61c2c2ae683e1715a5eec48270370834c3ff5cb7191bf6dea41897eee124f67e0a98ac4165f616126b5884dedccefe977661713b0df8dd8ee5a79f2e5111779c6f88ba230c788e3f73d28297a8faf077f05267b77</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>记录</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1200,158 +1258,12 @@
       </categories>
       <tags>
         <tag>Linux</tag>
+        <tag>Centos</tag>
         <tag>ccf</tag>
         <tag>dify</tag>
-        <tag>Centos</tag>
         <tag>Gradio</tag>
         <tag>Ollama</tag>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>明日清单</title>
-    <url>/todo_list.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>明天要完成的ioi</p>
-<span id="more"></span>
-<ul>
-<li><input disabled="" type="checkbox"> Spring boot</li>
-<li><input disabled="" type="checkbox"> flask</li>
-<li><input disabled="" type="checkbox"> 80% python 进阶</li>
-<li><input disabled="" type="checkbox"> 外卖项目</li>
-<li><input checked="" disabled="" type="checkbox"> ccf比赛赛题</li>
-</ul>
-]]></content>
-      <categories>
-        <category>记录</category>
-      </categories>
-      <tags>
-        <tag>清单</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>centos更换yum源</title>
-    <url>/centos_yum.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<p>centos7更换为国内yum源</p>
-<span id="more"></span>
-<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.bak</p>
-<h1 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h1><p><span class=“inline-note” title="看什么看，没有注释EmE">这里的命令是centos7的更新命令，可以根据自己的的版本替换一下</span><br>wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
-<h1 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h1><p>yum makecache</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Centos</tag>
-        <tag>yum</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人工智能学习</title>
-    <url>/zhineng.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>很杂的人工智能学习记录——不推荐看</p>
-<span id="more"></span>
-
-<h2 id="提示词-通义星尘"><a href="#提示词-通义星尘" class="headerlink" title="提示词-通义星尘"></a>提示词-通义星尘</h2><p>1、角色定位<br>	明确模型身份（决定语气、专业度）<br>2、核心目标<br>	定义任务边界（避免偏离需求）<br>3、行为准则<br>	规范输出风格&#x2F;逻辑（保证一致性）<br>4、场景约束<br>	适配具体的使用场景（提升实用性）<br>5、参考依据<br>	提供决策支持（增强准确性）</p>
-<h1 id="智能体的运行机制"><a href="#智能体的运行机制" class="headerlink" title="智能体的运行机制"></a>智能体的运行机制</h1><p><img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/1-figures/1757242319667-5.png" alt="**智能体循环 (Agent Loop)**"></p>
-<p>⬆️<strong>智能体循环 (Agent Loop)</strong></p>
-<ol>
-<li><p><strong>感知 (Perception)</strong>：这是循环的起点。智能体通过其传感器（例如，API 的监听端口、用户输入接口）接收来自环境的输入信息。这些信息，即<strong>观察 (Observation)</strong>，既可以是用户的初始指令，也可以是上一步行动所导致的环境状态变化反馈。</p>
-</li>
-<li><p>思考 (Thought)</p>
-<p>：接收到观察信息后，智能体进入其核心决策阶段。对于 LLM 智能体而言，这通常是由大语言模型驱动的内部推理过程。如图所示，“思考”阶段可进一步细分为两个关键环节：</p>
-<ul>
-<li><strong>规划 (Planning)</strong>：智能体基于当前的观察和其内部记忆，更新对任务和环境的理解，并制定或调整一个行动计划。这可能涉及将复杂目标分解为一系列更具体的子任务。</li>
-<li><strong>工具选择 (Tool Selection)</strong>：根据当前计划，智能体从其可用的工具库中，选择最适合执行下一步骤的工具，并确定调用该工具所需的具体参数。</li>
-</ul>
-</li>
-<li><p><strong>行动 (Action)</strong>：决策完成后，智能体通过其执行器（Actuators）执行具体的行动。这通常表现为调用一个选定的工具（如代码解释器、搜索引擎 API），从而对环境施加影响，意图改变环境的状态。</p>
-</li>
-</ol>
-<p>行动并非循环的终点。智能体的行动会引起<strong>环境 (Environment)</strong> 的<strong>状态变化 (State Change)</strong>，环境随即会产生一个新的<strong>观察 (Observation)</strong> 作为结果反馈。这个新的观察又会在下一轮循环中被智能体的感知系统捕获，形成一个持续的“感知-思考-行动-观察”的闭环。智能体正是通过不断重复这一循环，逐步推进任务，从初始状态向目标状态演进。</p>
-<h1 id="5分钟智能体实验-智能旅行助手-HelloAgents"><a href="#5分钟智能体实验-智能旅行助手-HelloAgents" class="headerlink" title="5分钟智能体实验-智能旅行助手-HelloAgents"></a>5分钟智能体实验-智能旅行助手-HelloAgents</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="认识相关Python库"><a href="#认识相关Python库" class="headerlink" title="认识相关Python库"></a>认识相关Python库</h3><p><code>tavily-python</code>是一个强大的 AI 搜索 API 客户端，获取<strong>实时的网络搜索结果</strong></p>
-<p><code>openai</code>是 OpenAI 官方提供的 Python SDK，用于调用 GPT 等大语言模型服务。</p>
-<h4 id="应用层通信技术——网络通信库"><a href="#应用层通信技术——网络通信库" class="headerlink" title="应用层通信技术——网络通信库"></a><strong>应用层通信技术</strong>——网络通信库</h4><p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512041955810.png" alt="image-20251204195550725"></p>
-<h4 id="中间层"><a href="#中间层" class="headerlink" title="中间层"></a><strong>中间层</strong></h4><p>【1. WebSocket 实时通信】</p>
-<ul>
-<li>socket.io</li>
-<li>ws</li>
-<li>websocket-client<br>特点：双向通信，既能收请求又能发消息</li>
-</ul>
-<p>【2. RPC 框架（非 HTTP，但行为像接口）】</p>
-<ul>
-<li>gRPC</li>
-<li>Thrift</li>
-<li>Dubbo<br>特点：像调用本地函数一样调用远程服务</li>
-</ul>
-<p>【3. 消息队列（MQ）】</p>
-<ul>
-<li>RabbitMQ</li>
-<li>Kafka</li>
-<li>Redis Pub&#x2F;Sub<br>特点：不直接处理请求，负责“传递消息”<em>顺序输出</em></li>
-</ul>
-<p>【4. 代理 &#x2F; 转发层（Proxy）】</p>
-<ul>
-<li>Nginx</li>
-<li>HAProxy</li>
-<li>mitmproxy<br>特点：接收请求 → 转发 → 返回，不做业务逻辑</li>
-</ul>
-<p>【5. 低层网络库（Socket）】</p>
-<ul>
-<li>Python socket</li>
-<li>Java Socket</li>
-<li>Node.js net<br>特点：自己手写协议，HTTP 都是它封出来的</li>
-</ul>
-<h2 id="项目实施"><a href="#项目实施" class="headerlink" title="项目实施"></a>项目实施</h2><h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5minute/</span><br><span class="line">├─ main.py            # 主程序，运行 Thought-Action-Observation 循环</span><br><span class="line">├─ OpenAIClient.py    # LLM 客户端类，封装 DashScope / OpenAI 调用逻辑</span><br><span class="line">├─ system_prompt.py   # 系统提示（Prompt）模板，如 AGENT_SYSTEM_PROMPT</span><br><span class="line">└─ tools.py           # 工具函数，包括 get_weather、get_attraction 等</span><br></pre></td></tr></table></figure>
-
-<p>（1）指令模板</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">AGENT_SYSTEM_PROMPT = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">你是一个智能旅行助手。你的任务是分析用户的请求，并使用可用工具一步步地解决问题。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 可用工具:</span></span><br><span class="line"><span class="string">- `get_weather(city: str)`: 查询指定城市的实时天气。</span></span><br><span class="line"><span class="string">- `get_attraction(city: str, weather: str)`: 根据城市和天气搜索推荐的旅游景点。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 行动格式:</span></span><br><span class="line"><span class="string">你的回答必须严格遵循以下格式。首先是你的思考过程，然后是你要执行的具体行动，每次回复只输出一对Thought-Action：</span></span><br><span class="line"><span class="string">Thought: [这里是你的思考过程和下一步计划]</span></span><br><span class="line"><span class="string">Action: [这里是你要调用的工具，格式为 function_name(arg_name=&quot;arg_value&quot;)]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 任务完成:</span></span><br><span class="line"><span class="string">当你收集到足够的信息，能够回答用户的最终问题时，你必须在`Action:`字段后使用 `finish(answer=&quot;...&quot;)` 来输出最终答案。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请开始吧！</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>（2）工具 1：查询真实天气</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">get_weather(city: <span class="built_in">str</span>) -&gt; <span class="built_in">str</span>:<span class="comment">#  wttr.in提取当前天气状况+格式化成自然语言返回</span></span><br></pre></td></tr></table></figure>
-
-<p>（3）工具 2：搜索并推荐旅游景点</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">get_attraction(city: <span class="built_in">str</span>, weather: <span class="built_in">str</span>) -&gt; <span class="built_in">str</span>:Tavily客户端search_attraction构造一个精确的查询</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将所有工具函数放入一个字典，方便后续调用</span></span><br><span class="line">available_tools = &#123;</span><br><span class="line">    <span class="string">&quot;get_weather&quot;</span>: get_weather,</span><br><span class="line">    <span class="string">&quot;get_attraction&quot;</span>: get_attraction,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（4）接入大语言模型</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">OpenAICompatibleClient类: OpenAI+API_KEY、BASE_URL 和 MODEL_ID</span><br></pre></td></tr></table></figure>
-
-<p>（5）执行行动循环</p>
-<p>下面的主循环将整合所有组件，并通过格式化后的 Prompt 驱动 LLM 进行决策。</p>
-<h2 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--- 循环 1 ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 首先需要查询大连今天的天气情况，因此第一步是调用 get_weather 工具。</span><br><span class="line">Action: get_weather(city=&quot;大连&quot;)</span><br><span class="line"></span><br><span class="line">Observation: 大连当前天气:Clear，气温6摄氏度</span><br><span class="line">========================================</span><br><span class="line">--- 循环 2 ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Thought: 已获取大连的天气为晴天（Clear），气温6摄氏度。接下来根据该天气条件，调用 get_attraction 工具推荐合适的旅游景点。</span><br><span class="line">Action: get_attraction(city=&quot;大连&quot;, weather=&quot;Clear&quot;)</span><br><span class="line"></span><br><span class="line">Observation: In clear weather, Dalian&#x27;s best attractions are Xinghai Square, Golden Pebble Beach Scenic Area, and Dalian Forest Zoo. These spots offer great views and activities.</span><br><span class="line">========================================</span><br><span class="line">--- 循环 3 ---</span><br><span class="line"></span><br><span class="line">正在调用大语言模型...</span><br><span class="line">大语言模型响应成功。</span><br><span class="line">模型输出:</span><br><span class="line">Action: finish(answer=&quot;今天大连天气晴朗，气温6摄氏度。推荐的旅游景点包括星海广场、金石滩风景区和大连森林动物园，这些地方在晴天时景色优美，非 常适合游览。&quot;)</span><br><span class="line"></span><br><span class="line">任务完成，最终答案: 今天大连天气晴朗，气温6摄氏度。推荐的旅游景点包括星海广场、金石滩风景区和大连森林动物园，这些地方在晴天时景色优美，非常适合游览。</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><a href="https://book.heterocat.com.cn/">https://book.heterocat.com.cn/</a></p>
-<p>学校扩展培训课程2025.12</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>杂文</tag>
       </tags>
   </entry>
   <entry>
@@ -1591,6 +1503,29 @@
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人工智能学习</title>
+    <url>/zhineng.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="9fc5c93487919f41447b2b0c59ca3cd0c648e2baa04d84a8a21b3ec5be81eb21">16d7201afe1fd683fa5f10a21197b2f2b9efd4b6d4c630322a71f68bf3d33a209767afb9c8cc040753d48ef29c7bfcaf3baa42253dfdd2b685862dc5597585c16ae15ea738e9a5888e7b548d37725f5946c10f46403316fa9472cc1fc3475ce774fd74f602ee189f320aefe65b3c0cbd992694bdebd7b35851d045b4a945af435e1d31cde7dc9373081c0bdb8b37a992f948181193bc3127c37d5f19b3fba68c94c557c2edaf2011c0c31ca54bd8d96229f07acffb326047dc2febf103d173af24b607ae069e59757420e6d8d51ad3f85a91500cca85a99174c19ec60dd1bc327b01212e3895ddd88d932c130b2c11bcb47be2830836f28c57637a0f960bdc82700319299f812e2f4b6c389e18fb6a29ca13bf1aa3d4613181d5716d5fcf476ca86e7ff19b74540e0ac9cb3c3da079bd1520bdf5d9415cc29409978a0fcf3f6f9622954d2095774c1754858dae52b50624deeeca4ccc2d87c59aae5aedf0a9362c924c6b939defb025274b7fe3e22d86991c1367779b96da33f03f86758740ceb7e22842f97c566ccfd8b96ffc004c89a8817c735ec4971dd0ea6eb0b4416b0f762327e866b616158d1d7551ad9e1b4ae67255eb8f733b1fe82170f1ae032aa5e2a153de961df580a3d3315842d10901c7522cc3a02a9a74cbc4cc073cb756acf52b30b10340f2533f1ccf85e95ceeaef7e6ad2f287e996d86e1e00dda2e78239c63a5dfc266647936f52bfe03bc389a2656637a20c288ffaec948c506e714336764f67d72031f34d98b28ca397d11379138576f626322bfd916c0a3979cddbb209e86f7ff0eabb432e6eece0369b3193c6e7a29cabde61dd69a6869daf8f139da22d7e3955bc8f351e9a49b4fae09ae4c2f073d9608777062ebd7c06c05436318fc3acbcc94e372b571d89c5d26b3deb78b8d61ae7f86457b138c1211c69284ce633699071543c4534d0c419a8b4c0fd5c5c2cd72e551922efe8f3eca23f6d3ade9cd96229be19ea3c4cf2ceec119c3466cee4a9b7d961f595dd158b649814adea23192dc73e3f8c7d9b0cec34337ffa366799804c4a0944ebc6be8de6d698324aba0dcb4db4059610c6dc75968703ef1867724cba4d20d96615b010c96b5a0e64d973a87d4c09cee9c7fa961cc2e4d3520d2f9641e081d5c266c73447ca1db6dde1ca9e5ededa8654695d9db4b9e5a67dceb2808542b51cbd68acf9390324fd2d9b727a30bd4a61f708448964ba00250dd00602380904e9141650470880af2379b48819e8e178e33ca5c685bf969b0e90bf467a71780303b8f4859e59d55d165300a8f0aad0a24124c7196486c35590cf0219f814cf9b8008e2f25a46bc816d53b70be02e40ab3ce57f93e451616274f51664094c89654e5f78ccc800a50bc319882904a3f07fbb6f1e15552f8c58b3c87286e64a65cd3913e25d2a56151ca694e51a895da783ccb7bbd4863ea5db09fb231fb3559b4d542d3660fd8740d7d10685085accede367e27813e46b51887d57717241cd6704cd118a041b9f9d5a893edf42375867ee8c1734ee881df23409942bf342125c71857fd10a2f70a61ff1c02687f2345c1cc0586a8270143112a647297a4b773d2f575f8004b2718f6b052fe46357fd5fadc2bd7add46a86d9e8b9b3defb964b632642a1fdc2055d5c579d31231b56c0b9fa1a223926eead9560cd6dbd0aa932c9ce0a23d432833c599067e36ed9c2ee25b17b5c2bacf9bb1cdff54830342a8fe4cfe281490f4b0c2c4c2a91e7f18ad91cfbccf2f65087d5e0cbc01ec8467ebbe1e6bb11dd3d1fee0dd08ef2cc6f234244627d03670796ee46c3c80ac4c5681509b54b919b0d9ab9c9555b6a938e8ed82afaf2c272255ceaa4a8f8cb282fccaea91a6d8236e47817b14a66c0abafc816092b6688c083eeadecd83c0de9da1047f0635c6e7b9dd896816dd9cd3b581f08cd2201e7fab18dd8197b0e768708d43eb0731b1863f300e77eabb31cf1e50f138c3ab9cdf9121b402cc613c717a87bf3749e8afc8d26a0881971a8b2da7720b63fed3410589af07a42fdea826e094799b66b373b3107edddbf656902f192b696c7f9234e52315c098513726fe969ad4584ee6fde5fe30ef3aba8d20a817d0f5562e17d20c58593620ea343fa2487ca8dec3bfae514c16ad616f3cd3432a6626b5e746d150d8db48fc1b855bff75aa624324a78bcff4b28f37f8bbb8e96495e442380b53d7d43a73656a5b3d129a9a309b3303084a6e9abd71fbc177bc1ec27612088654cb836c901012b96d7292b33ec8f705a6af95a967279d517473a3472a75ce198db7ffbab3ffe141ce72a51e01b5d46db54d6231891f475d7900873d3a1a461863024e2839c3777fc1c514282b410bba6a427aea036747648b572e0320f9408a7c54f81daa127a39bb3f849828a1a0183133183471d04f5b472087e7bd34fccdb32018fbecea3064231f33c49e976cf56e78b7aaabe7684e0fc27684db48a55040387e909ea514cfc11aee6e8f4bdaf8a178a7e0b2ddbf913917ede13f18f227a19a2ab24f787195c0f0df4afa56de60e94a57f336b95549c25b3155c675f56da430b574c8834399d2c3023d0d044bab31e68688a194280686defc8ab0620eb9635c3f4086c419c079c07650f3ca59f16be4da105af1b1efeff8a4dd7056b78b5e9d4c87b73bdea753a01b16c28582cb6c14fc4f7def73419651acee1391ec0e069a87c721d151daf175231fc4b7e598c7925a259f99aa84d958659cc5a7c765726a7bea9015180a959b059991e8b16ec2c5c89dffb57fa2f59b58b8d3d875f39bb306ae9870401836f3cd6404b3390393c42c1d8cfcd201eb834738184215df0212036b6699405671364e962d36091c22427256d376f92060ae02b421bd018c62c97116fad24127a64852ba05b69bcda64029ab38686fd7cda916043c6cfbeaa271c41ca935a6da46cc0a98dba9915843d864d3fd146f03eed06d2c00ff5a562b9dc59fcd088e057e4d222c7b7dafaff7cf4e4b4af353ee5e5d0f820944338ecbfc184f71e735f5c65a05268ce5a0e5aebce6f2349c970d0c9f9da73ab3b441ae11ea772fc47f470f5429f914bfda0b61c13651d1660c9b528d2d4bea4d2a42d562d7579633e317b6b1e6938fd788af269fa8fa4311e08ee1db285c51f865339339311bd0a42c50aa2714683bd4bbcbe43798fbad91e2e228cf96bb733ac7c339e3781f72c04aae2358f837b63bf44a48dea9b3d503fc6095c739020ca4d71053c8c2b44b7b8a44dc24c6f3ce43e1ed6e5635d5821662ba74fcb35bae7fa93f023a7c3679fe8cabe086fe3c2bd47383a44c62dc9a489a0a9bcad7d838ba156cd33ba226b6b60daae14b0ae4eb1b0f82ef7efa26926e1ed256375619e3e7bde8e306fae833c98f4cb346549dc9382cad592d15389bdb5ea8cd47e9deb0db185f6bd8b973b7ae8dc81b7b97c265c66b76b9d972b0e2e844bea96ccce544c0322d606228bcb24e1073b6afbd0cf253060eab8b26f1143d6346cbdf217d5542242ca3b6e434d8c0f3948d500cf86eb74da876e61afaba1d6eb0f1284e893d9f2068faf473501922d2e5662357be233b266fd582017134d3aac507b3816554c747caccf3c783fa4235d1cfc5f2ccea37d8c36d573d3c37c31a906a5401e35dba08da3ed74d461c34bb743fd4f861ef08b36a928ffa09113d89134a274483f9f704a61691557b1039d24997fa9e5f8a6f7cfa0181511f3a7af4c683fc1988af04d3f6c4b6157a641f2ba2a660233f744b30c067e24acfdd7be973ee1209a275423074adc7e638ff50e4cd7ceb5e752cf804732fb7b77cee3b64c0889dba0a997f057748bae63af1cb00ec92402cf83ce3fcec66255da2ff5c1acee1310b8a2bd7c954821595728b9df6a54cdd8b55a6c275e04ffeba07f510603b9e2e005c91dbe035137561633a9d3225281fddf0143699d081a09be5c64cb2cbd84341937032bc7a6c6f7ee49b5affed3af6b877dd9878a398b8195a6f5377e3a13ac35ff369d167e3562d6e4769768cb4d702f3fcbfd663c92eb3583e73bda1759b0a6e9bb3218de18cb1670bdf2bff1eb078ac632082b04cffb7b65a2d0176d0ba2a27f881c3924a5897562a29db9d05e9ea5d4e75b29481ec08d853eddb2624f413f00504aa33eef7e3d8fd3d057b1c5cdc7b8ab9dc04b5fb88f3991cb2b9d832b5e86d16f5fc67ec08d60c13330d374b2958330e91fce683bbbf5238bc00a5b51c792a4dd050b1745979c8c061996ad02181fab4a1e991fb084b1e2a11e2120a549a2d915b0c6cca2fc67743871ddfb2a63d0e0070ef12a29798474cf3c42723f324fccb745c0d19f6029d19c3f2136277194a1fe695449d9a428a8eeadd07eb0d2e7b6e9c9b9ab56bd876809391ba6c74c7f4a4f2f1117ebd590b67201eaf314661c3ea42b5d0fca910df9496a92034dcc64faad534ea3e9d98f33620ce0ec224c4536ca41af31eb39e7427c692fbb59d0e2eba39aef2f5d55cb1977ef7fc7cd9f20f7d615f1129e97b7c1e8d64b7af179a868a85f692bb8643fbeb21aed70e014e9dd3c83e37ae694cd3638c038a6ac85febe884451aeae5c6e7240f7579c3c664e9697dfcc0c978a7eb7ebdfa7ada2e833a6624a174c297cc65369a2227da7655758cc8b59003ee8858d6b33e7ece22fbdcae9d165498df0896d82767dadf62594b65721af8f639c966b8737107483ee3f8994d4d54e2438b1ab1d8e321bb191504a59a023938664c551351140830db34b12a7a3ddffc1979b002f2a4821df88b4d63d00fa656046679f471061b0bab4f0c11aba025380185006c013a892133a78e154c6e7f47b46d388a255733e4b14f2363922715b95e8a80df627f9cd836c230389626e7083533c0fc6b01b0ccf650efec03567291d5e202c3549677709ef7878f340854e42ac01d7e97ad6ef47bdfba6fd3bf9743099faedad33c49a4641b1d36a1cb354c1e6196d941bc4ace04e63069704b62df37c6bc053d7ef270317a23c54cdf391aa3b66ec6049bbae45a85c402d712c5241797afdba83e240f1dcec3cb793b24415f15b2a147915db8c6dee25c34564cc861d239f7ba2530bb94c2f681e301de09fdfaf119cf45dd39f35d84dde583d084690732d04f58cbd65d7ace4068035fac53b9377b8170584ef46e23914fd43620e1d94b0f50bcdb62f5508f5406f9708b1ab47ff8141041b5117dfa5f5bb1029f462a61d7e666731fb0713839cdbcd7203fd1a4d655b5f9b4304077574f43f9f9e36fca82d9bf698950bd36b4f7fb8fd034810b0ec874dad0956554b3f61ecb90f42de3fd432f04b0ee05efc8c8d0df8e55529026b8a24a9e0c10ed7d1939afc9f695cc9ce8b4be63be2bc541354d51168b55510f1629623ef9b486e6a7986bbce2ac5d026a74108154a73e69e9a58aa07d4b5e48d213f3c5644924742b07743324e10a213d511dea43d0c8ee11e413b010407158f2d2f0a7c2477acc4b5b2ef0a1dd0746c4e6fc2ee75521839f823c1f27e18aa350c3f9786ec62edb1e8dd06e189be80d685ccf9a316ea61794aed8d7d53fe9ca7a735491aa4694697167bff67c21c5331fa737fcacad839f8072563be0ee6b2a40cc323b81780599861bc7a05215542512257eb7cb462c7e7f6add6ec064a8d3dce64e85986d8443131183d65a68ec25f234e2ae7fb36623af268f014d750981194dd894186a57ce12823ea92b89e1c7bcf25331a2d4a3ecfdb8f6fce0cae4946b2074eb2de9a0d2c2e7d5d95aae2716c64292ee8092b67de535039974c211dbe67ce8097893741284658e5c36bda5d13788f60abca6e16026cc29fb6b02a7388915b2faee1750bfa51cde5740496bce61ca1ac8962a25b206ed9ee7df7e0ea63711f3b9ec1f45ad7c98069438fb188625da2c2f087131b88dd2e2bd4dfc6eb9a3c456ae38e0b026439bed74a460c9d34b20d587479da76eaee28211d9bba734f9660ab557af290172578c957217f77f6574ae0eca49adb7b7c1880727864133ef7e4096f939ca3ac011b770f9530db9aac8141c692ec5e169d2e6c109e5b5c8cd33bad6ad29aec8695589204f2f6c3edf6e102f3a3d516cca137f41bc07cf3b0034f754818ee1520d95e644f245eb6121a5c6d5a83615cf5f9a2544292b67143d9ba25575376bd4468689a7671d01ec40ba9a36e15f07378e00c3c60fbdc337b90497555dc21cbf5c0be0c0167909d0ced7b0949db3ae74fa920353f3a155a348d15e5220cf9ee969b70ec1480749c11a550dfffed8764ad9da10868d54be61e0736ba5b167da981afb8298b4178330d3eb463d9fed9868bb16c21ba4fa8c15be1bcbae9d9b2fdda4cfeb596d6a8bbeaa5f1ed3c3a5d246b98e5bbc6a6592be36fba992d3aece8bcaed95022cd3c7c43312e76c4679c7c25de32169499597f422167575cea1c2c67452606968803cff46c119961447fcc4df30a863d00675ca066e01e45e7312439f1c358cabb08ed689a94dfe634a46660caf503139179835dbec4f74ab8b30b8c6a8c3b91446fad836c8c4c46625e9ca5576a1bd2d0849909356d2b2997453d9f345eca90c4d7bd1286072d8d204152d56c65eaa54bccd244244dc914727a50ff61971cd89d52e43c02cbeb33e3ff0ba79149f91d20797e7833cdbf93ea8d78e904d5dcbbc5fc2f04f8ab5bf6ed8bb1879b05318140b1789e89c3c9e8154da1eed9a4d4b36afaf84c715931035da904af3c8de16d9f59028ce47cd14b2436966b24ec235f33836fdff9ba6f1d7e787cabe6965caec2483ae12fe562fd913b499e95e4edd2fa172ecfddb1382e56466336157297e10ec70f23ead0df6c82a386d6c2313dec2886f2a16c046c4619a2ef3b99180ae416ef07885111f190b1f1afdd7ca50d344bf0e7887a0a974fbc185484d96a40c26555274739a23af791d3a7da8b9f1c1a3cda06ea1293aa6768883566b39731507ef82f33deacd698b26cb32b52a58ccc3e39439f66b0f79e8cdc0eccdce20e3b9ba3b748d103f9fb08765952fc93a577858407e2a5bfb593036ffc29643c4fe4cd9d97ef2760929249a3ae6a53ebf72f1d1a4ce8ce6c4f9fd3f1781ef8b492297c427d4adea69526f26d558779528190abc62f457745dcbd1a08d0b1afdc261d0dbbe77d5ab567cff5e821d925dafae9b5a28306ddcd8ad7c2f94e7dd145d8959dfebe07c376087bedecf49fe41b03577221c285bd6570bb4b6c5d667dae0d80752a360d669aafa4cb663ea78009b1c025547dd0553b788e703c6b28bd3cdd760270e1fdc21b9e96264afc1155f45e60fd2f0449ef18b2986abce292fe4f980587aeb4273b6511abc4051d8f2ad3e749fab2f4772a95249c8e49198ee963c5f44578a2c0ecceb07885a998d085300d7cf4d298bde968577f3e70bdb008d253fa0538f5dc9ceb595a2d2911f16a27f48a087c42e4a273c0e4fb3a3c9e65a2f4329b9b98e5e2c7c7c55ac9b5731d06e628247f04e9daab5a0fcdf2b7247455f15b040c509044ba8134747784a99fca19e86139718c037b8b93269dad70b164f55c8c47daa362a048d7141b96a38a8a81658745e797c225a7d873290e9b411c59fe9a0178deffa950c59d5edac3288779377338c9c44293b2472df8d24956f1aea58ef6ed2b8cfe303d2dced21aa4e76482ec2323866929ab753455ba3802a531728eecc94c90b3e581ae9483e5aa7e2c47abce22f52d9702ae6ccccf0b0b1610015db5aa5e0f11e4210391f43511ffd6df94c06dccd603a0024ea78c5efaf740357224d9139d847bf03cd0a35f7b459e91b07866c32710972a00b6ad5a5d05b14b7943e3802d8e0701fa01ad85d0e890d3d07298053df5cf806c746ab122963369d765844ee6b11b49bf1b3a7f40ad76a45fed38a8f2f76ed297d92d0db29267016288c95bdc0c732131077124f36c1653f0979b032dd279507a563fb1fee5db21422b397e6acb37e42d464a05ea39e4338acd41d680ad66e3ad9235334885c6b394e87468be6871e771cb23cfa61d8a107ae1d1c7b9ac389d624d9fa1903bec30805742de6e826a23a2db16fc5850897d1c2ba5051fdcec125c1a2c8eb561fa3c16d528508f4281b3d0ab9f986b7d267df0986ce416e5f20f414a7f47da79bc3462f06de66595f55595df88cb38841b36ba6b8f06c4109743cd9c59d49eaa48e5697b5b691e0010bc7b188b93fa01a656b7bb21963068946623774c4df680425c6cc9e9e91a4dc612ba7598ba49ba3853fb44d0f319662f6bb1e16adb916e818b797c081421c008a236ac054ce565bec68e21dd4b31123173a27d23692e599f67a8f26bf98cfcccd397eef28d1e7d2d701bb977611e7f7a562811ae394f8dc575fae55e079b08c6ca25c5d82ba9bbddba2cb8037d27a8714adb3d51c495d1d0be397d359f3441abb78229dbfffce6252ab59e4008a3167c53706abc483df383046ec0c6a5754a0a209f4c4b0c05cb30f4d3154d4d86d005baea665118a6ba57cb4a7bd4f649e900dabe58ac4a80527e64ea5adec7324202909f98afd52bd5f4b1b4612bed4c1a946d7330279278355c875ede2e034fd160a4b1203d82fe02a43da5c7d2d7e0062e9492cda6cb35ecc2e70eca6cdec96f6d65a11863c91c9bef3fff628f38f554fcbd00e03db48d407d3c78ee8e1131da83956b4864cd181ea3c3d9d17ac747ea5579af37a4021c3411df81a1ac7e3c03a869462b5ff94eddf0ac087e8993d01fedcaa303bc7709929dde9a33d2963ca8862b25e9af9219d98af0a9a60b4514f38fec81d614a1f0fc613ab081db0f454dcf9a272d186084d348ce76475e360181a00f72117058bff0f48143e6cc81ddde94b3ea91770981f8279acc1b275724cb5a142192eb838310644794d0aa79718ff84628f5a8a1957c174d56a88c85a554a40d458f840006463eadd4c9348b077ac217d9ef36f734672a4e0b4b26248fdc877147405904a3d020935637219e9aafa916b4e6061977feff3bd35db22cd90f01de23d33fbd87a4d01b8469eb0a5dc2d28cd45aed1c1fbbfc217d4716c8aa5af4e9c40fe78b75d4acb85b935f562731e09fbdf5c6a282b7ddcd8576940e5c02e393a23d7092e5ff45d83d1ccc0d669cad58aa7a4ebb6473ba34d8a0e936089aa1750bda706af954d0059fc419a56613583251fcad640f371cd8c76cf1222263f38d9297dada71c2f20a556c117779df5fa6710773be696eadcb74bd2cdcc281aa067fd3ea129307193059f56b58ad8137b88127ebb83def46f745a90d165415d6216fe1a33ad6c6b2dfa816da84c5c58e38eb7800da3667b4a03d793a0db7e2eb61a39b539f850467afa1d7186d9a5bb6d07131ca149e18c5cab8a6011c34b41b514a329867a91066e659ce030b9dc0259574245f7177041b966074db8a6eeb0c72b9ba0fa59e931a57e952eff1c3df13074ab9fc89c2da97d3d0126d6c1c5f95d539ec391bd25fc1a521c6163004849b99eacef9f9e36a85b8f645f0df76f5b78f44b2cca563a8d6d3fcf65fb1f39dec749bc6056f81cc7b942d085267db2898414926f1988218ec09487514c38e834a10ef856cb600af0bc49df4840afc853cd099d49e7e701ca531e8dcab2b958427c5c1389217a352032edcd1bd27b18381ea6d1380f5fe017fe89c745ac826e98199a6fa472fc7884cdfd9ebd74ee8863dda7da1472422fe963b760342d1a3b3ba537d08fa291c02ad91d5f9a3635e2ce844b6bf42ac6b364ef8285a4260e780d065679eeffe2aee97a6abc67437c1e0708ae94843d7b985df1ec7160562ef3c1635c39bb8c7d7c6f7fd256b53b5f6b0264ec0ea80548496fa06fad966342a761a47db02843fa4dcbb0f807612588c122d581c1b26690228ff50ceb2e5f1fe26f07c17f25dc509f65a44199d19786b263419bd490b5d9a662eb3896608ad0cf0fb5a4e14350a2fe4c451be0520c2f6cef24d642a13beb64be3f5748655c552f75a694b2194268b08ef00bb1ff860221b89e317334138f9eb2bf8d1bc23736ccee9bc4faaa0dcce094746f8b357617d121bfeb7ffd34d883ea74fa5c171d8c1df98858c56eeba9bac4441c96704e4459780832bee8c4220f1b7631516b48e74a27cbc075eec063127cfefb8ef415f9f658c8f298458cba4da7f7546ec33cf00bc17fa70735b3cf10165b9f31ee9c9c8729f6dea072e15411ef104a28eecbf11b5f85af6b789a2c2342643a2535431889d5948bd8f655e8bfcf7ac53bdc9f49c154a6ff3301cec16845fe87f8e7c83bcc7185f3c186cd966f9756a2c851df8f9cedc2631f2065d0233d988ce35017bc7324e0729072a3972da958a73458fd26b022da2443ceb61393f3dad27717812e1fb4ed567f94a44e27cd23c230b5a9b514389921e344b4311517e38555e74ee59bf486d790fa16ecfdab11fc3b80e6a38df46d5fea2dda1daccb59a64278ab5ee855b4b6ab4a74f5e09cf40bb9dc14b3638ef612bee0deca7c8d103ca0a88d02b83396805f98e6d13bedf7cb6d3a84a2f138f6f4835971e03c895868cd67b7779813bfc5385258ba4a350b5e31622933cf395623bda92047a4b2ad7803aaffe6b4443dc2dfd63336b32167ff02ed1deda58890641217acced2551ff56f5b0ecd8db9205ca5d78e1547e83307418435d550da10a68a1aa14c11c6f148644dbdbdcb90ebfc03841d5529e9528fa96eb0866ec2fd650fec988a8986f36de3c391e39ceb9a303b4979b57a905e62bddf1b833d2d847a618504fe82fab58667e6ce23b2cecf58fd7685d7b06cc822a722b31364595c39247217e90f3b3254a5fdaa655a430afa26245faecedd9512a93da855c8661cdbaef0c0a46b1d6d67791fa462f7b26b0f7a5737f532be46cd0e72fd1a3a5aca67f4090b836e28a6d07483c34f0a50bb7e51b5948266e4b88ddd67491fa0962c3ba73cbfe5f278d984ccd74bc8ee4a5f61177b0aedbeb2382acbae4d47d9bfa802e9575350a065d823c05409aeb2c6162c1b79acb6c2f5305bf20e8b2375a1d41cc1be60e0d85440ff15030b2fdbb7f1b8f21546f004df1fb099ce6b9301ec774c94af1233dc10b8be842948019784dfecbe916882b6a6a6bb480e2391b3c4e7e449c3b6db59e7dce5bf3eabadc6a955a163bad387b44e8631483bbd5b2ee5eeb14bd50d2d8df02b013edeeb25b689b52f03eb6fa222ca5166c881d99db6a5badf03d55a8210d71a643ca4e150fb2fdef58fda059ac8dc5ae9843f45ce58cd0d657bd7999df548d510598eb537cf49a9cd57fcbe025efdf51590bced52f99bbda9a21c79f71ea89eaf961653d51402e8dbd32a3520b58f4d8bcf986256cbf128b0fddac3bda54676f103d4fab0d0be8e56a157465628e8b3f62a5faec1ec40b912f73632af83088a5a665a0035007ded7cac45abfd04fff4b2ef0502318337e0aaba9cc56656015d8dc884221883a385c06a5efb632767dac64ea2855bc5a2c1e905f30b7319ae2f5bcdfa22e91afef3322541957e05f1acb4b41cb8b9bd6b7448a715544e288925d39ae0960973d67c172a13bbb187df080d223754dacd06cf79394d65a5ffb998cc143c2c06a415a50721dbb446a6bb2886d321f36ac3e2534d2d049efe2c231c15cfae45b245f3872699a3e2936f298a0666c066c0c07ca3f34425e55e3496037eb3923c1f1a63a0c2cb5e2da9408a5bdcbf50603756ede94dab66c05c1fc458d4c5f66fcbf40094397419a5538623a97ae0b48c64cadaf9d701f8e8c1cc9331da66878f47cb499b6cdc86b1b19eabb709ee36b57e6c9a3db0183f4c02a6dff74f1680ab7b923cd67b028a20fdf332ae6e93aa08d94261f0370de3ffc49b5b7de6e18b15093717dd0b3ad99944f6c4f02cefa74587e97da58b9035b6ca02547933416435ac5ddc3f22d409109c3f129e4531b405bdda00f68602dafee3e78512eb2bc448c01b12d9a7df480d58207606cfc61ef9f9fc11e37397b55c5ad54ca8c3a897ae58335382d473631aa4c6836947910c88ce70a85c86fd050d134419690dfd512b2160bbb888aa97ddeba74b8f86c12034ab693df3c6cb5378d2f8879ad11b8c792c68b80463dab29e1e4eec3e0adbc6f1d9373046ef192c46db0f8827a76a06ebfd8363f760b9418affc9145e762c973f4bbb3fdbebfbbcd269f7978218d356be2aa57225074848b64d0b79a94aa147a87aab773380d2567a4578d83d2ef6b68e5d5aa8e8cca0794286e5ec77e1dc453f91111ede23a428fd9ff4ab84c73bc2b1518e822e1fbd1ce725279b868e4efdab94d1e67c2f6e1480b78dffcd4c450e2260c9d5799ca896860b5ea243b359bdeb8fe68cc237d9c0acc06dc83a8a02086d7425a5550622d8eb0b571eb29e09fe1bd2088693835c1d486c822ac7c7da2ddc52e862447090832a63043b03533fabb0b9e416cd82feb4a394ef973276f7a038a2360b3d97da3853c8455f64196d2b46a87c1bd89419d9b3681de5b85b24b0cacfe62908fd0e33a8739b18109dc72abd7ff02be8d576395071cd1c888baf365e02afeb3a254b94603f1ed70b9a37ea487965e0f9297f1362f269ab46471a27678149bb1353eb4308db08c661c8ed0edbbb2b6665c8b9694b9815af57fb4740aa4c9864fd67c0cdd07fa44b8d7deb0929449e92ec8a3dd95a0e333f171afa3f07cdb60b7d9a24de269cb09cf2f394326094dbc9e1d2542eedd71658c8435417bc8b8bb104803fe1b9751f335e2ba9e5cbaf4b46b1ef60ffd10ffcf7dabd92380e66d3c709d4a27059eb75954273277ae3d23e8d792730fcfc0e82e2e45eeaa4449f8e84e5c2ea736e5ec7b3c23f9877ea65d43b60979e12e2a131f387c8fd56620b6a6f014fb38d1d782e77ad73f800ef06fea7eed50fd88c3b6d713b1a831e28a3836d3a5049151e382f739f19daae98af5cfd410d4241b780fa43db5b6499b64887d7279f776bd487c645205961ccddad2cc0a1a3d8f2fbf113e184708ededd9696f1dc93db3fcdbadd3f280c9fb6f1ddc0f0675bc76ab964326ae96cc171571d71cc201ca31eb830eca1c1fc16ea7a030140c5ea2f1eff7a56f979d284403a3636e8cbf9e76fb49a8d32a0bc5f3795b56ca16748a620005770f5af3d3ad391202ee351507bba33cfece8ff85ea35e20c84c8f23014738b6489f3f92de335db1b008ce44a93dc5531ed3527eb3b6a5178e07c98c1f467cc91d24ae4e7588efc17b1710fd3bd175c58c862785ff1b49cf7b6df4b19d85907fdf183730a4cc0daefa58ff3e6b8abd8767caa9938c97bbddfaf12b145e33147ff0c328635a5774d99c7070ef52bab777690ae0d67daf26be225858616e7b53d268d20de88572c81a44c1b0251be6e95692aef5c68aefa946bd790fb9d1d259c547c4ff0a57dc9094b7c39d5cd53349d756d2abb0aecb6b61fabe7e9098ea7f6d4fe3eb8d67789324ce01a5946db970a696ce5c7d7918c0890d96f7bdf56409279863c0c06fecd393f4b172c3cd1f49a4475cc5c03027a3b3970ae791ad7a7f157d1781407aa1890a923ecf7ea960c55c0fca416c7658f7c43066d2ed2e4768459d3052d25fef5c85dd1303d24c35e6e70ede2d287f0c4afa9d518a9d1118547df3c123263e1e8aedc261a896a0fddf578e16297d4bd0a86c17888ef40cc6447d3cc5d7113d80835cc01834f0f7d935157c81d3ecbcb26ba458d95394c6de9c18b9d8339f612a58c0fdc43d98b0eaaedaf218cbc872e1f68515bb99d55225c0cf969519665e19b3e17162e1bc051a999513009ffa10c45fb70a693e3bda6723ee7ab44df84c9e041217bc7dc4e1bee03a82c3833b82910cde74a26128e82a9d513d01868d9861290f055577a7dcfa89adbac035b9fc110d051dc9c832e533a35ffcbe1399496581a715602bba9544985a42975d2c125426df49d0dacbc9707180ec0b1ec3f9a52e44c84f70f737f6c73861ee368b01bd413e5deebb5909a7f769843e1cfb0f20ee5febb9b0884412997b9a4b8f00410117bb5ab6d879b9c3ca7f5d5458d29bd68c0257eb447742b49fcb33e926212d08849c47135d532cdf7f84838953a3d54a4a578b4941bb18f5870871026ce48e2863255aec6cae4a13c75e1c0758c3bdcb3de38ea6530bc844fd2cb0fa305163c15b55af4c7b7124304a81b9443d49225a2dcccd6b482f753a58e3196ee0c5f52384010654518524b94af59f9e5d33bf8708c09cea03f23f84393e89345e2c146f7a548091a53957d29497cb47fed797c108e7aaf70a8511105dee4a0d910774f2c06da465dafe848b0d5dca3a2934f45752982279c8fe59fb120574f260931b8e76f9013d75d78a745e163f6a041ed55907f01f5c228bba9ce255b7d0af6c21b730f4af1b029a7995a88d778330680b6c9e865f07d218457b39c49a8e3283d749ebaf92093b952229d53cf434e33887501ed85bb8b5d753337858297541c9781edc995d77bb408761b23b331fb668eaff2d97b17ecfd21b1e78416db6a68b25c4690dc882af860b6b64bfddf7b248af39557b698512f7729c4de76365d4efb7046af8991d205500e7d50cf680b4b6d207721ad551db27059354ef53a6f7a9b024e88959e4a2d9972b4b17c495d1223b4e6bb4bdf10a12a3e6fea238bd5093e9fa7878ab3aab0950769e2367bb5d05e494a10090ae550e1c576a2f8f08cfd6deb3ed591878008f80f5d25d7a8bc27c1bdd6c631f1fa69cc97fada0e1c4069c6ba453b6c401445b583a32cb894fe4357bf6d811685370ddd5268365158bb62297a098ff05d233a6840c3f66928e51b0f45e62317de03d50a76b36b86e6ac148611a8728b73a7cc20209adcf5c5069d67047c7fc388dbd0f1fa4f4f1839f72e6e7fcaf86f8052f85a5bf7d56a515c62e56ff7e9e7b0114f81dd766de4f99abcbcb97d08c0ded2ce99148b88989bb5d5c59a883c266315b4498650a1af12851ae3dc0165a57e744456a9a89cd75f101b305f50dfd34947fa72bffe0b5c93d01a4fbe7375bd3da3fde05c4e5eb420689847a6f55bb1268853e36c99175b882cf889d83c1bb8dafba474071a6fdb7f4b763438cd73dc98a27316c4db6430f8c040f2e2afa566c88afe28f4762f12c59819d40b02e0d49406f13249ef372f8359582983a43e2f391177356ce997646e61e2db2a6a602dfa564dc154b09384ad3a3c4ac1d37f0edeecf7f59934cec93072dddaf5dd1c1208119ce9f5ec1f9c20d41640834084387659245ef8f4c99f54dd99c189d2faec11a15dd460f5a6bf0496f0d450f038519c9e56b226c088e06fe3a5b2f98918db85678750a3f0a1c4d6318a2ea8b3ae4f5d03592fa7d924d78709b13f5bab7189f3b12fc8b9913524db70732815742828b694d9e5ee1a4918e5bccd87d0ba63acf2f3146470ed199799d03bd1831263b612568813ca0e27545eefc648d10bbef8577b8ebd51ec242d58bee829f7dd05e0ba8800dc0f2158de5e75211a359cfc56c2a8be1709bf9fb4b19105d85b48b02c38d686c8721b59424037be962af7fb28599b409828733d60c1c34bc2c8a10c3bc69b8cc505157abaa8708fbbb6ecf6a096a5b32619540172f1633ae00142a0002647741fd827b9936f837512749709471afe31829a3359584abad38955df7da76ccde02a1c915fe92da62f31a4663f0957dbf8def627f9db59e801d938bdc08ae738a1f487aa02655766ec4c8d73041c115bb0495d8be4266568df11fffa9738c960c323585bec382efb1fd6fbf22a73000b691e1e685c32b8813fa4038dfe07f194a21d275a2856effe8c775d0e5a61825277028ff9ed9a377ee26a0a1e56f09a4db865fd1001b3c8699a0e2bcd60da8c2ed92887e2f769f4068e37a898ff340ae5902098675a02176a56ba8d4202e08af6cabe2e7fe82aa5b814c922e8d130b8fb3b536b59c5798ab8b90723d501ce8099a0b81d0475f17cdf5ffe0eed70c8370a301cd9a973d3c8bd81672585b7d12f4e4328cd796751d02ccbfa05f41fb4054197ca9b1704c7b982d7e679b1c51d2795d6822021569b85aca95cd1602d58b071dbc73a53648b7f373dc12a123ee4f7d98dd7ce5b70f117661ea4d6b50401856de521a2a7e4828a6f0683d47665f5e49bbf6477c4d9ed444b83d95bd78885266528a84a6ef28a9f3cc47e5789a4490c7f8d05dfd6b6eb4394579fdfb4e69807d53310b639fa2cf966b1787e191bc04fba0f5efe3ff15b4f3781885ac00840dadb034c620acc2a7dba3df443e9cdc35852856a0ade85b2e2dfaea29bab2bb874f00c4bc19517512cfb64606b7c4f58a30c77b576c1c6500ba2114c0ae6ab6ce5caf0c3dc60fa70fc5f9562e77ac1d6642eac14c1d3993253062ab640a7019360f59e755810c11a7c55885376b5ab3ebbe2a17e22d0e6ec58c8527af8397de61a036367476a78a0cc4dde3106a55f71fbb59f88b6c41de43fcb09f4f6124f6bd920d513a158d2c85e3c8479306ac26ab66589537a466bdb8317caac69baac6bcbd45fc7e8479a6c30a06dd084cdeb931be0585f2aac6c8e5e93f7b570611a44d2809a567ac309be52273b03974afe217e6ac9f37e3653dac4922cbaa9c2ddd67a9c71593b855ef117c9e1de4c1c841df4818b26c17dcbaf2fb91a7f173f78c69fcd19238afa19ccee8a31ebda7e86348260f15151bf745b91969ac8871cc7700f1c2b99f9d5f1c60e54e8685e4a6a769d8520c9b72bcca4fcc8b02664b31b12c9188a7dc1060db4cac170b6510cde732832051c935bb91dd688c26fd0d7b39dedbeccffff380a3c9423c009e38e85ce8bb434586a04f30abdc5dae7e6be83e96d6d6a3b48dab9db001d29a5f742c0470d7bd5e40e5457ac05bad19973d64ac788e4dc9eacf16ab75e551e79def39d729d58514c8dc8983dc4a8443fb6bdf3afff879fb4a0c7a549c0a1193c37fbf358dcd3767d781890568bf6619e3087e34816f2f8552f7cd0796183e575de21d485146e441837aa06fbef23ab09c32c3e2f40a3270d091dba5a32f719332ccfc053919430d0ed8d59869486a3b37b9c25eca367310f2f09d0afc6f7b089b71e6c96e9aa652fdc9443f1a1bc49ad0e0396e8ce5bc5a6a3046b67646c0cf2315c13ff39e0876d89d4ae54299e5b64ca1f637f3e95b914785afad40a76f2607efb03d7fdd5cedf684c0a32005e3bb8fa13e6f2ed5916c7f7c7a80216f8575f2b0b37f10d92f7f7ce573f499dccb67e5eda278cd20783471e5f37ccf84052a7790c4f75393ba6e263f89508b8319cac80d3f52d9ef57daa6392d1d379f1e1c4b1e5e126718d266cd842cc5316f19f0b235bfcf14127b182a13d2e020a6212b0c4d1ff263d13b7d7a0f8c5057dd4e8ab068e0b427e8ef5987becbf19e691e1fcd36b770197125e260ebdcff30da3cd8de148be92d83b55b12fea302c77e9171f8a2ce5d5f0427794178d359c4b737bdbb9ccd9f529ffe5f067f92843c917549048120a9577a66b9b49d82919b30075f628eceb2215596a1547110911050a4e4a8f01b0ff39750c7497d9f4908abd4712aa0111c043cbbd9e7e7dc055c45d0eb5f5ead405289c13d2a07888accfb7408836decccc765f3d219490493b46fbf04ef665f6666e2ef8a758486401d2b04ce71576f275ab6c209720fa13ec74adeb5513fd4ee06efb4fa56bd409a2a1a126d79d8bbfda6d1bc8ad898352de2c4743d98dc5dde21d947414e628a73d42e465f6a1ef729dc8077821ca03151c2052eeb595f58574382673da59de9c06d8444bba6b9b0dbec82719301b64f0792e90a4c1c9315d2e5029dd93702bbaac6b5f41e9db555c90d45e3b1cdb5219e374908a5e28361de3f7d2009ad016038d9939e1cf09183a7660aa493568e674996835850db97dc92384a6c4e4bfa9e687980f6d230f6a41aa16d54f912dccf6e6b44a8bbe93eba8c2da2ed3d2bd75b0187f8053aa48cd9a20bdaafdcab6d74312d7d3aa1558b2378430b64e9827517cdc54d607ff015d11d564febe006cb471893288f0954592f02ba13ac07f97e59bd3995a3ab29fcfa13700d933e5240773f3c202b208ccff520634a3dc4b43915139f4a1265655944cde14dce046e57952baf1be3d39d4d9a85d33b42f786e8325065ea45c8c83f780489dbdced66b9aa305a4449c69acadb3c506d7c7657e42079ae5ede18ae3b3db9eb24f6673c4bcb2754c733fca5d2e3bd3f8a0446fb19f3972590e3403a5cb7dbbbaf84100434863f9025bd22adadaecf427e895ff2d10d6b168770059af8a7de3cd739de3a4d4d57073fd71578cb59fcbd1bbf22f7c3fbb9a8e44b273a37c6449e5a1da92e0bf154e446ac066dc1f4c6a237b812d680783b2681f8dc0fb7991f66ec4fef5dd1248610a508c43512969fb71336b6f676c879704adb5e88c482bd5235c4b553f7cc94e1af2d2841bb12b15b1f2efc14a04118a36972c308d8de7367ae209193c12f2f49daf658a7395ff5ba700ecb8c982380ce4600a39301948f0f916e4e046f2376cd1057dd4d83a18e09e60d004cdebb7beaaf219574d6710cc7731a7080b2055f8677294e795978494e44fd6d579cbb567ded39d3bff8e7ede9b44cbbf8dfab8b761bad3dbb86815a5c3a896397d3824a04013cd57ac8e174675edbe7366d6d0272aa7a8f6513135263f9b1dff4d033e4e5330e3e7141f5e2253163648c4d5b19e7f0691b1d2bc65bcbec7dd4fb494a1edd345b2ba9f356722af5ebb448c804f868b4ad2b687c263a30d9318ff759d13a0225db89754209ecc32859d965b35b806131936ba8124381b290a3be42a510bec58418c7024e3f49ec343bea7d7851c1b0879e0fdf9d15a84bf4acfbdb73029309ccd2c8996e71a089f4f3fb25ccccf645ce757cb8a35334b17d930896f7a38d54e54ff75ada7d8b31098c3a840f2969e30df641c111738c0c45135caee1524c8c2ed28442e107e2a28a7e6a5398b5b11576ccf556cf71a8fe1b549f2183bff3c19b8083ceb697beb1d00d7947d48d34e5181ead63ccde083da9ea3212151988afece21339530592f107ae05863d1fe0e612bdb2660624913ec8a744c546387a28803e241ab7c1f17fd6d0c16fc731dd6c5dbc4dd4ccc217d2e0f3fe48a0be4b1173a9a80dd3616621797832dc1415795679183a1be0202ca3efdbc71bd77003cab31f45accee7504d8e505c9b2c48171fd54d24dc3530f374dc493a78ab4d13486085a5cf30261047246b3013944348a0eaec814570e507e4373b79eeec1570e02e0943c6f19301bc20229f2ba1d8082271481ca302a7dd8d873a3d937d2eba54a39fd44558d033ada1bf97a39da4247342651bdf00f838fabfadb9b253607f235618b6367cd255ede204fb57fc37c53c874d56cac8532da0d902bb9bf923684244000988082ebc435522b411708f12f4d8a996f2a2293402a85ce1872afff068b667033664064947ed87d919ae83fccd99c9d7e5b8d60ca57cf8aef100052e91320d26ee7768b12684df64da0eb0000468291c1f595f5d6aaff69442a74cb6c6e91a2d14eae488e4be3115d9080ba940f9260adc7d07b49cbe8bfc12ecd0fec752f8dc778d3775c249155699378fc02705d408b496acf9b9ba4139f3ba5a8f7bc3eb721cf0e3837af08b13b3e354971a0b69079df39a8c10c86234e0686f6224bc20f1567ab766001bc059166756704a1214c13c579fbb664a17b239c20f3ddba23cb5ceec45596a6358306a277f87226d54d0891fa495d1375801e3ac38322c41032a7a6086d3a1db9db4a0215a660cedf14269faa254136275cfe1ddf0149e3d2fe7af62d6d2f9ae1b4cf0e3d6dc314ea37548a0e02efb6a38a72c1e1882d3f628ffbb22aa97d9db7edc7790290bf79a2a30fc7846342ff2cdcad4ab6bdcc17d0f953287335a6edfdc0298a7725d9f864c0734619c7dc23f949d5eeda2697356b322df494aa3eab828dac3d3aa431a2b0022c26247fed18f0be7affa9575719cbebda9f9bb5879035689e2c289b69058445302e998bf950baa0a50f519388d903b0e7f40bf98aadb26ade721877797c33a79f4c9405bc4867fefe848944f279d34b7e79921603723421aedc3425c58cacb6abe87837067e21d516a2e67df2c2e0bfd0f1fa3d6ab15b4a48cf0d373b577ee4e7f958559c3214c5f6b73b68a6c3df0cc585b5e17c05d14a460ebf125115da4a5ec310be4583f559a72e57a6f0e670403d213827127b4ea1826aaa175ff597f555811a2dd45</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <tags>
+        <tag>杂文</tag>
       </tags>
   </entry>
   <entry>
