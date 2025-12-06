@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lanouo.xyz/zhineng.html</loc>
+    
+    <lastmod>2025-12-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.lanouo.xyz/errorlist.html</loc>
     
     <lastmod>2025-12-02</lastmod>
@@ -219,13 +228,6 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/Linux/</loc>
-    <lastmod>2025-12-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.lanouo.xyz/tags/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -240,6 +242,13 @@
   </url>
   
   <url>
+    <loc>http://blog.lanouo.xyz/tags/Linux/</loc>
+    <lastmod>2025-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.lanouo.xyz/tags/Python/</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -247,14 +256,14 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/ubuntu/</loc>
+    <loc>http://blog.lanouo.xyz/tags/docker/</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/docker/</loc>
+    <loc>http://blog.lanouo.xyz/tags/ubuntu/</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -276,13 +285,6 @@
   
   <url>
     <loc>http://blog.lanouo.xyz/tags/%E6%B8%85%E5%8D%95/</loc>
-    <lastmod>2025-12-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.lanouo.xyz/tags/%E5%8F%82%E8%80%83%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -311,6 +313,20 @@
   
   <url>
     <loc>http://blog.lanouo.xyz/tags/Ollama/</loc>
+    <lastmod>2025-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.lanouo.xyz/tags/%E5%8F%82%E8%80%83%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2025-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.lanouo.xyz/tags/%E6%9D%82%E6%96%87/</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
