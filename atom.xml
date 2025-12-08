@@ -6,7 +6,7 @@
   <link href="http://blog.lanouo.xyz/atom.xml" rel="self"/>
   
   <link href="http://blog.lanouo.xyz/"/>
-  <updated>2025-12-07T11:20:26.506Z</updated>
+  <updated>2025-12-07T12:10:50.897Z</updated>
   <id>http://blog.lanouo.xyz/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人工智能学习-2</title>
+    <link href="http://blog.lanouo.xyz/zhineng_2.html"/>
+    <id>http://blog.lanouo.xyz/zhineng_2.html</id>
+    <published>2025-12-07T11:20:57.000Z</published>
+    <updated>2025-12-07T12:10:50.897Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>    .inline-note {      display: inline-block;      background-color: #fffbe6;      color: #333;      border-left: 4px solid #f7c948;      padding: 0.2em 0.6em;      margin: 0 0.2em;      font-size: 0.95em;      border-radius: 3px;      box-shadow: 0 1px 2px rgba(0,0,0,0.05);      font-style: italic;      cursor: help;      transition: all 0.2s ease;    }    .inline-note:hover {      background-color: #fff3bf;      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);    }</style><span id="more"></span><p><strong>大语言模型（Large Language Model, LLM）</strong></p><p><strong>公式对应的数学概念</strong></p><ul><li><p><strong>条件概率（Conditional Probability）</strong><br>$$<br>P(A|B) &#x3D; \frac{P(A \cap B)}{P(B)}<br>$$</p><p>表示“在 B 已经发生的情况下，A 发生的概率”。</p></li><li><p><strong>链式法则（Chain Rule of Probability）</strong></p><ul><li>用于将联合概率<br>$$<br>P(w_1, \dots, w_m)<br>$$<br> 拆成一连串条件概率的乘积。</li></ul></li><li><p><strong>联合概率（Joint Probability）</strong></p><ul><li>表示所有事件同时发生的概率。</li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;style&gt;
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+&lt;/style&gt;</summary>
+    
+    
+    
+    <category term="杂文" scheme="http://blog.lanouo.xyz/categories/%E6%9D%82%E6%96%87/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>人工智能学习</title>
@@ -223,9 +262,9 @@
     <link href="http://blog.lanouo.xyz/ubuntu_demo.html"/>
     <id>http://blog.lanouo.xyz/ubuntu_demo.html</id>
     <published>2025-10-26T11:26:55.000Z</published>
-    <updated>2025-11-13T07:44:43.259Z</updated>
+    <updated>2025-12-07T12:12:48.097Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p><span id="more"></span><h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure><p>[^更新并安装]: </p><h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p><span id="more"></span><h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure><h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>]]></content>
     
     
     <summary type="html">&lt;p&gt;&lt;/style&gt;&lt;/p&gt;</summary>
