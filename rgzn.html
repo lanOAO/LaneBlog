@@ -20,20 +20,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.lanouo.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.24.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-solarizedlight.min","dark":"prism-dark.min"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"bounce","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content=".inline-note {       display: inline-block;       background-color: #fffbe6;       color: #333;       border-left: 4px solid #f7c948;       padding: 0.2em 0.6em;       margin: 0 0.2em;       font">
+    <meta name="description" content="有东西被加密了, 请输入密码查看.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="人工智能学习">
 <meta property="og:url" content="http://blog.lanouo.xyz/rgzn.html">
 <meta property="og:site_name" content="幽篁里">
-<meta property="og:description" content=".inline-note {       display: inline-block;       background-color: #fffbe6;       color: #333;       border-left: 4px solid #f7c948;       padding: 0.2em 0.6em;       margin: 0 0.2em;       font">
+<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512081914824.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512081916925.png">
 <meta property="article:published_time" content="2025-12-08T10:58:10.000Z">
-<meta property="article:modified_time" content="2025-12-08T11:21:15.655Z">
+<meta property="article:modified_time" content="2025-12-09T11:09:32.827Z">
 <meta property="article:author" content="LanOoO">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512081914824.png">
 
 
 <link rel="canonical" href="http://blog.lanouo.xyz/rgzn.html">
@@ -235,7 +232,7 @@ customElements.define('an_loading', CharAnimation);
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -248,7 +245,6 @@ customElements.define('an_loading', CharAnimation);
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%87%BD%E6%95%B0%E5%88%B0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">从函数到神经网络</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -337,9 +333,15 @@ customElements.define('an_loading', CharAnimation);
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-12-08 18:58:10 / 修改时间：19:21:15" itemprop="dateCreated datePublished" datetime="2025-12-08T18:58:10+08:00">2025-12-08</time>
+      <time title="创建时间：2025-12-08 18:58:10" itemprop="dateCreated datePublished" datetime="2025-12-08T18:58:10+08:00">2025-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-09 19:09:32" itemprop="dateModified" datetime="2025-12-09T19:09:32+08:00">2025-12-09</time>
     </span>
 
   
@@ -356,7 +358,7 @@ customElements.define('an_loading', CharAnimation);
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>504</span>
+      <span>706</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -373,41 +375,22 @@ customElements.define('an_loading', CharAnimation);
     
     
     
-    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-
-<h1 id="从函数到神经网络"><a href="#从函数到神经网络" class="headerlink" title="从函数到神经网络"></a>从函数到神经网络</h1><p><strong>函数</strong><br><strong>符号主义</strong>：可以用精确的函数表示一且<br><strong>联结主义</strong>：足够接近真实答案的近似解<br><strong>线性</strong>：$f(x)&#x3D;wx+b$<br><strong>非线性（激活函数）</strong>：$f(x)&#x3D;g(wx+b)$  <font color="green">g可以是$sin$、$^2$等等</font><br><strong>神经网络</strong>：</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512081914824.png" alt="image-20251208191427688"></p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512081916925.png" alt="image-20251208191629856"></p>
-<p>其中输入层和隐藏层和输出层都可以无限叠加🎉</p>
-<p><span class = "inline-note" title ="目的">所有的目标都是以已知的一组xy的值猜出所有的w和b</p>
-</span>
-
-<blockquote>
-<p>对应教程第一节</p>
-</blockquote>
-<hr>
-
+    <div class="post-body" itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="95c2e72c0d9cfc340a04625232df2c8d6c532f23f111e0ab0be420ae48d4f124">16d7201afe1fd683fa5f10a21197b2f2b9efd4b6d4c630322a71f68bf3d33a209767afb9c8cc040753d48ef29c7bfcaf3baa42253dfdd2b685862dc5597585c16ae15ea738e9a5888e7b548d37725f5946c10f46403316fa9472cc1fc3475ce774fd74f602ee189f320aefe65b3c0cbdc17bfe76a1a6bb63af78423b11109188c91383c7c2540b82704bb3d0586fe93eeb09baeee5707ac97cfdb5d95687a292ecc32b1a7a7fa31c6d2583670a8ff3e3d68e70843bafe4d10aa8de9c96ab8cbabdc3a81fe6c39bee4f0e398190eec328ffec7a0b323b58eb7e428e0f4303434a80629aae3eeb5df2cdeedd06770480c63aa0b1ba8b7c994c39b905f15fe5b6ee2a529a2bdc61ce89b87066a28a751e3699f584c9b127c20e23c75d5dbab72aa10a965109e8cff1fc3320e75357afcf63275b295cf5967858b4544b64c20125a1c4edeb3bb1f8555f3e715e94b0ecc21f2b2f5cc40619a6195c535c902cd81a1d2a705f2b844a1885821d9a1e09ee2733f9298560f2851045c8b19cae7a1be39e3b5debeb8b4e5cd3dd70a14e26fbedcdcd822610ab4c5248b902f3c1d98b5ce45f8ad316751e5c49a3792a619813a50bfe4f589abb71aa5daea57f093e6a54410f48b058cfa0ffcd8670c6540fd233ac6adcdd81c8cd8889c9ba41eff129416d0b45f3894a7c8837d45ce28bd03b355df22c9031d356a99e8dec02eee1016d3238d2dfb17b70d92adccde8bc1db9cc48b07b3abee0aff2387827904619a2b7821dfc3ac49a08fb72c29fb35c308c745940b01c64704ca9fb18581e6f5a297817a4404b615398ee8698f9f7a2a005c8a9547a8f31dfea56a80a8d6b926e49a8bd8e5708e8e333b8e29b84069eb063e948075b477df2d643d8be29f0dd025b45da0240df80fc92eae7936e4e047b8f4c032b196afccfb6a429e1fb2c4066d1d0024941e6daf933e93b15bb11b2c4a93d586b756fccf0cf24c4b348c9ec75e554cdbe9ec1211e0cd146d302e3d70f1caa35060de169f4acbf8862d3dcbd6981ca75136c3fa2da4e9cb1b31967998b6717fa58abf1de345ec258b1c07342114d9c54195e4df14aa5d4948c6f2bab78dbf274881964a3d52a70ae0b904350d88d39867109b44e226dd4b8b7ac59f3ffe684d16195f8413f3b5126c603da6d750a6113e278c55f45f63ee86decb7a7ad0cd00dde1be5812ee3f798e61854d139691ecf024cb7db32cc6ee6ccafc4d0aa91bbab2a513de3a5e481e6e1ae6a60ac2c28425e8df70745c573762dadb5d8bb915074cedbd841cca7da02d7f48d41871090943764222f59b208790126150aba196e49ae6d614ac6608949780afc556ad3d56ca5adef4ab482f0aa646f96cc303bc07fc75889b5a98c1fde987a1c408af3805391a320d469c4128db1f9359c9e4abda32c671817f0b4e567a8474e1c6aba8f832e22f850ff619553747d62303948a3f47a4c2560ff11f98ad14f85995877bb3bd9576ab35f19cc0007ce2511f590051f2f0a018efc6712900744d8165f5828caadd32a93efdf8dbadca467a3cbfba3532427a0c128055ff980168f2e3c95673d55ff7868c22d76b347d7e6a6099974452c61f266cd9e18c01180062fdffed8be13e5af2c5553baad8a33180ff1fc422d2283fd9332af370200f59eefc04be28a2b0e5e63bc30ec7933ce9176edf7f6b7286f4993c3427a2c27098b21966ec66b3c3b585242d77a0c608d695f87bcfbe17d429d8f05a55c2e2b5097bbbd404535405744ab55bcbc164cb396146aa4a481d10b2484d047989051dbce4a1fc45ca73de30719532e4b9431891da7db766c3344b86981195dda7562917d2715c1bec186d77eda128ae71288093d80cd9078cead1b3252eec0612a54db313618b73eac8680b8231f1c944fbc5ecddeaf97a7b9b1197c489ba8b18fec1d420706f707ba56bd7b26a7b268c508a1d8f9016eaed6f66b6a1075a28a8481418b614be5db0ed6f0c10cf94a97851917f0be0f56eccc083dda968e56e3031e8fa177157666937db1ede305bd66044902e0164eaa3cdb2062a13cfd7f351dceddb03f81422398dd4674f909e42890c0638623a2c1940c464164f2b4c4ee6715d0a0c9bd0a2b93677abe59b7b72cb93d279e12f8f24a4efb84eff3e57a344fe7056e441b205d004a5cfe488ed17c3b20cd0d6eb132adc37a0326c3a875b82df8176a7e3b3ccdf9468d0974090a7345267cb7968d8fe60b5457a4a474c05b409699182cfa5e2d32a78b1e8689969f2ede94253dbb36a7492393af015b302c18026b3def3d7570294a3b52013231a4a0992adf9dbaacd6aeb8f6eafa3b30684455a57163d33e97bd3b3f730b9beed87d102486ffff419d6db81a496326b9291aab0d2c3a37244867a9d910f17abb8e44c1c3c816240447a3509a02b77c9584fdf75002d4e211aace25f8fa4a5a9fd37c803b907ee704721426c9ad9f5abbd146037e9b7969f32a0133a49a95229f210cb17939a9c2f6994e897ec9380df1d047de5dc3c4222708da21126e149dd7cb070c20e70c5fa69e594b13bfe4e98ff5adbd4f3362444c6c91d7fc761dacb45dd6553dd9c35466a86cc4feaa98037ceca9f9bc2a70a4d285efb9aa7e5e2d47c8cd5064a356d478fa22632fff6977d01457f27b4cc373f99204eebdcc86a17d47c601c8afa7e410a2015bc4b0af1844e526518260d607537559ffb24e9cc4f58b97dddc1f50779a4c643e24fcc1f65bc3e027f53efa832a36a22fa91fa56680b1d5a0c81b1742782ad684a8b6dbb24484387e4bf4cea3f1ac243d51b38e3ab1c8d8156574e39e1bd8048628a2ecbcc08ed8733964776f9b7858f8f35c3c8e5553332bd4e74ea222410e21ad4e7027c3e1334e60ae6cff534e639c0523087d872588dc7a6cf3ccfbc86167e74094c169fb9ef85e2739eab989fded305cc921535f7e6db50a8e2106a4051486662088e00f03737d518bd6142a2e44afbdd085fab40de323b69cc5cc9e7a1069fb5815a83eb22d15d2a4849ae44d3ea45bb606b3117a33b32bdeb4454334a932e84cb159ad3f36ee0e3c50c20770d55102603d5c14b89c2204b4967c8f2123a4392cc4fca7daceb610c693792baf1e00928ba6b94dfeb1f743d7c7c12177a8b84d535f5bc0e9b6b94bebe773ae104435028b761857642e33902368318f1673a590ca9eb567f3ea2964f5439168b0f7f96eeef96a5b9e51591497b63e38e9f4fb21e8163ce195f68d7f4aaba60aa89eeca49964845124ceeb3db86b8c7fcaefe5d6e16b9f7a2a101c041c9918ebfed7aa17f833b482609ff823f0a54583fcdbe8798e80b708bb1f6452c32471b7bd0279fa2a8493c7593f4ab9d3a47886d465ad08a2b17a04036a864ef590fc7a8721af6cf7284b381ee4e9aaf007ed986dbfd93977b3e32992f5206869c3f930568b316d048db2f115d82b571da281b94f04fccbdb30703786d56cb3677d1f9a42</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
