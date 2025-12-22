@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://blog.lanouo.xyz/rgzn.html</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>http://blog.lanouo.xyz/errorlist.html</loc>
+    <lastmod>2025-12-22</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/zhineng_2.html</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>http://blog.lanouo.xyz/git_0.html</loc>
+    <lastmod>2025-12-22</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/agent_learn.html</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>http://blog.lanouo.xyz/typescript_1.html</loc>
+    <lastmod>2025-12-18</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/git_progit.html</loc>
+    <lastmod>2025-12-17</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.xyz/centos_yum.html</loc>
@@ -23,10 +27,6 @@
   <url>
     <loc>http://blog.lanouo.xyz/ubuntu_demo.html</loc>
     <lastmod>2025-12-07</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/errorlist.html</loc>
-    <lastmod>2025-12-02</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.xyz/wangluo_1.html</loc>
