@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AutoHotkey —— 自动热键软件</title>
+    <url>/AutoHotkey1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+
+<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>以下全部建立在2.0.19版本的的基础上</p>
+</blockquote>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
+<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
+<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
+<li>双击脚本，即可运行</li>
+</ul>
+<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
+<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
+</blockquote>
+<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
+<ul>
+<li><code>#</code> ：win 键</li>
+<li><code>!</code> ：alt</li>
+<li><code>^</code> ：ctrl</li>
+<li><code>+</code> ：shift</li>
+<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
+</ul>
+<blockquote>
+<p><code>^q</code> 即代表ctrl + q</p>
+</blockquote>
+<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
+<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
+<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
+<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
+<li>一个脚本里可以有多个热键</li>
+<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
+</ul>
+<hr>
+<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+
+<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
+<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
+]]></content>
+      <categories>
+        <category>利器OuO</category>
+      </categories>
+      <tags>
+        <tag>AutoHotkey</tag>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git 学习——基础篇</title>
     <url>/git_1.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——基础篇 oio</p>
@@ -81,82 +157,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AutoHotkey —— 自动热键软件</title>
-    <url>/AutoHotkey1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-
-<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
-<span id="more"></span>
-
-<blockquote>
-<p>以下全部建立在2.0.19版本的的基础上</p>
-</blockquote>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
-<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
-<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
-<li>双击脚本，即可运行</li>
-</ul>
-<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
-<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
-</blockquote>
-<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
-<ul>
-<li><code>#</code> ：win 键</li>
-<li><code>!</code> ：alt</li>
-<li><code>^</code> ：ctrl</li>
-<li><code>+</code> ：shift</li>
-<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
-</ul>
-<blockquote>
-<p><code>^q</code> 即代表ctrl + q</p>
-</blockquote>
-<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
-<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
-<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
-<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
-<li>一个脚本里可以有多个热键</li>
-<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
-</ul>
-<hr>
-<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-
-<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
-<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
-]]></content>
-      <categories>
-        <category>利器OuO</category>
-      </categories>
-      <tags>
-        <tag>AutoHotkey</tag>
-        <tag>脚本</tag>
       </tags>
   </entry>
   <entry>
@@ -871,6 +871,42 @@
       </tags>
   </entry>
   <entry>
+    <title>centos更换yum源</title>
+    <url>/centos_yum.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p>centos7更换为国内yum源</p>
+<span id="more"></span>
+<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.bak</p>
+<h1 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h1><p><span class=“inline-note” title="看什么看，没有注释EmE">这里的命令是centos7的更新命令，可以根据自己的的版本替换一下</span><br>wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
+<h1 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h1><p>yum makecache</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>yum</tag>
+        <tag>Centos</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu24.04使用记录</title>
     <url>/ubuntu_demo.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
@@ -1044,6 +1080,123 @@
       <tags>
         <tag>清单</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>各种各样的参考页面</title>
+    <url>/reference.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="47d238a3d6a1d855e4c45a56e5d6f9225940ac099657b26398762e089661494f">c32395f63df771905c259445e1aa88f3899ee4804f798168a843621515b7539500991886f73e55266910bee5a5b66327e524d8162e2ec9fec6fcfda26661a9930eec9caf050ca5f9c108385159c0f1e968a1b5e142c0c85994af2c696ecc181ce436acc974aa63818589a52609ba5f3a9ad4010ae889f1894b4a9d9e64e2ece134003aab3794ea4436ae924ab54b02accb5b1ea9aba8acbd6abdf03218c8b53bc23a6b11578ff36c383887e99236a09a41e0489303999a2305b8961edd5d9e8017d2237ba846cb2d49e247f457936c1d6891e56c693d86e41fa9a187bd5a4c00b052e9f7ec3faf4cdd3d532d44f6fefa88ce7e06a99b145f57de3deb6599ffd1ed58513371739dc35705cdb74b10b1c927705b553e236c1fb5b2029b6eec53405522a6d42050ccd4756af71dd7134109a567c19a8b0ea663a6ea5db9c9e45b7b04f070ee1352c19a435b5caa75efdc5898372caa257405dee494e723e3d6e068931a5b597a0fded981c717c1811c8b44d98475ef290ad1e2b09710f02f5263398bf87ff4ab0872ac934d900768d632ecec7ff7ac1af1d230d36c12ca300d5eef5646a49eae352984cf9b83bb4f09be3eee51d3e0b56706421729b7e0f5d31ea081349287ab7b21fae891b5b73812921036dbccf9b0e193294c72f09921e7447ee8c06b0932cdedf282f40d73bb727c2a082a1ee8cdffd969f89f5c7988f0dacc75b5b09733090d4f6159df1d76c6b35041eaff47343f7c7ab4a0e900be17b662b292191fd69f363c9bef52f77a56b418fd67ead66543142ea3ee540ec8776891eb8c6273d8f1f70aaaa1135d1ca8d3946fddcde7382e8f10d0bff690c51a433fd6bbc7d6e9a6cad1aa8a9da9b8b25da9ead4ffad254ee88dcd3492733970f1ff8dcccf1d7e00e1a554eb515981c88da13afe81a15104ec87d8b2b06f38e22aa0260f55931cdaed7ba01cd064ef902a9d9084f84fbfca049d4180c1f12019a932085e010ca2339f3adc8bc1564a2e2549f828112fd8d1c724c6b78cda73f1fb517a044ab42e13ea007e1ac0facec239e2d01f90fc5685c3c4f0f9be7ff2187780c14ff1a853df48ea08ec965e4fce6bbd20398d37de1e1c1fec53781709824ab24a0394dcf67d48969f5dcb3204c710fd5a4c4f3ccb7bf2c4be12cf416abdd2baef6fa2d637fa4be636905144e14f07b6bd7118d0378be60995f0cc30528387dc915ab44262a10a3ece914b6f234b340747bd82234be7c519e3ab12a1abe5b362dd9db679a43fe1a1b7944f99d1f4153defcfaa4152b831f33258290fd637af61c25adf14ccc265a8705bfa5d19d478ca4784b58117d1cb67921d7821b1112c4be9a357d2242f64299d8be64d7ba3759a95a039b61b4b809f8747789dd62bc6969f99b12879b2ccc341758e3f85f678d5b40ed442b5d092fa6d924553a9f0fbbcf072c622f663ec0dd34e5ff43a40c4f3a1f0b4f5b79a26850d5f22ac8df5e4bfb6d838e0c2ffb68d5c31e94651edbd2e04e8b813d56fc37f219924b90a2c42b9ac2b4a35e91ddd077b32b809e07acdb44fbfa35a4d84ec74d687bdfeb0dd218ea2ac5bfcb555d34ffe53e5c77b71520cbdaadb22949c18ff5d6d74cfe4cf75998fb4eac5cab10932705033a9fb391ec44cefef2ddc601d9a4bb66d942449e5bbdf958292aa8e8fcc9d3c85e83d8a26754ac107ca0846a0ba66885463fec0f3d19ed31ce0623a6d3d1f2bc1d1d92d298100acce697450e7403d8a31e078a672a3053d0aae72db16a6cd37b617a5d9616c47d68a76d0bb9a99096eba0681ee3ebef986b1b0d82d89ff315071569ca38c866af5ab5a855d2fa4e6777ee5fc0d0a9416132c7f71a0dbe4bf58ed27cd2b6367f46ca51d3e4d341db4e2ce9d2bde14486f9afb1fcd879969c2263ad87890afb42646172afdc24fd05f8a5d9ff1ac9970143cf9932e88b445514fa0815418b09d744001d2be5e79aa7c8c6f2a26ff3fd4f5101729b4b948228a96b9efb3b60820a7e230f224c8280c3348b65bd6fec8f44ff165ef90edc76361ef4697c2ee9ae0a31bc0a85d53626425090cb8fae4e51a4966195926f8bb3ca3b8ad6969de5125f873645637cd27f7de10703b2c4a50dc059c05499b6365b99c654d83b59e1988dfb5bab64c661f8d0f4e2d1100e18be72f878172adaa80ed2ff24def28311d220ed67a6d4d64bc1be4d390e517af8d428f51f0a5c60184dd09b3a8dd78e1bef520f7b4088ac9cfca4c1a0981312b0673acd6f9f263d0d123171f445c3beb6db679cc4ea67268d8c7bbae4df53abad312f2afa24f8abbaa944a91a21d6b0a0942e0c9567c0a290c6da0dc367bbec24aad</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>记录</category>
+      </categories>
+      <tags>
+        <tag>参考记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>报错记录</title>
+    <url>/errorlist.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+
+<h2 id="flutter"><a href="#flutter" class="headerlink" title="flutter"></a>flutter</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先查看下报错信息：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; flutter doctor</span><br><span class="line">Doctor summary (to see all details, run flutter doctor -v):</span><br><span class="line">[✓] Flutter (Channel stable, 3.38.3, on Microsoft Windows [版本 10.0.26100.4946], locale zh-CN)</span><br><span class="line">[✓] Windows Version (11 家庭中文版 64-bit, 24H2, 2009)</span><br><span class="line">[✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0)</span><br><span class="line">[✓] Chrome - develop for the web</span><br><span class="line">[✓] Visual Studio - develop Windows apps (Visual Studio 生成工具 2022 17.14.16)</span><br><span class="line">[✓] Connected device (3 available)</span><br><span class="line">[!] Network resources</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://pub.dev/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://storage.googleapis.com/&quot;: Connection terminated during</span><br><span class="line">      handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://maven.google.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://cocoapods.org/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://github.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br></pre></td></tr></table></figure>
+
+<p>报错信息为：连接不上</p>
+<ul>
+<li><p>pub.dev</p>
+</li>
+<li><p>storage.googleapis.com</p>
+</li>
+<li><p>maven.google.com</p>
+</li>
+<li><p>cocoapods.org</p>
+</li>
+<li><p>github.com</p>
+</li>
+</ul>
+<p>环境为：Win11+Clash Verge全局+系统代理</p>
+<hr>
+<h4 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h4><p>首先使用浏览器查看，发现以上页面都能打开。</p>
+<p>感觉可能是终端没走代理的原因，就把代理调整为TUN模式</p>
+<p>使用终端curl github，成功返回页面</p>
+<p>使用终端curl <a href="https://maven.google.com/com/">https://maven.google.com/com/</a><br>→ 404 That’s an error.（但成功返回页面）</p>
+<p>AI的解释为</p>
+<blockquote>
+<p>因为 <strong>Flutter&#x2F;Gradle 访问 maven.google.com 不是访问 &#x2F;com&#x2F;</strong><br> 它访问的是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">https://maven.google.com/master-index.xml</span><br><span class="line">https://maven.google.com/com/android/tools/build/group-index.xml</span><br></pre></td></tr></table></figure>
+
+<p>并且这些文件需要：</p>
+<ul>
+<li><strong>TLS 1.2 &#x2F; TLS 1.3</strong></li>
+<li><strong>正确的 CA 证书链</strong></li>
+<li><strong>完整的网络握手</strong></li>
+</ul>
+<p>你之前出现的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Connection terminated during handshake</span><br></pre></td></tr></table></figure>
+
+<p>这说明 <strong>TLS 握手阶段就失败了</strong><br> 而 curl 能成功 → 说明：</p>
+<ul>
+<li>你使用的 curl 内置证书是 OK 的</li>
+<li><strong>Java &#x2F; Flutter &#x2F; Dart 使用的证书链不 OK</strong></li>
+</ul>
+<p>❗ <strong>这类问题绝大多数都是 Windows 环境里的 CA 证书缺失&#x2F;损坏 或 代理&#x2F;杀软注入了假证书（MITM）</strong></p>
+</blockquote>
+<p>然后又去检查CA证书</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; certutil -verifystore -user root</span><br><span class="line">root &quot;受信任的根证书颁发机构&quot;</span><br><span class="line">================ 证书 0 ================</span><br><span class="line">序列号: 0aa8d1ed03648306256b92500fd33b224a44f0ea</span><br><span class="line">颁发者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line"> NotBefore: 2023/12/7 16:01</span><br><span class="line"> NotAfter: 2033/12/4 16:01</span><br><span class="line">使用者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line">签名与公钥匹配</span><br><span class="line">根证书: 使用者与颁发者匹配</span><br><span class="line">证书哈希(sha1): 66f8b18f84b329d2aef25446d4e6c3dec0103a95</span><br><span class="line">没有密钥提供程序信息</span><br><span class="line">找不到解密的证书和私钥。</span><br><span class="line">已验证的颁发策略: 全部</span><br><span class="line">已验证的应用程序策略: 全部</span><br><span class="line">证书有效</span><br><span class="line">CertUtil: -verifystore 命令成功完成。</span><br></pre></td></tr></table></figure>
+
+<p>我看到了堡塔……然后把堡塔的证书删掉再次尝试，发现成功</p>
+<p>结束</p>
+<blockquote>
+<p>早知道就不拿电脑瞎折腾了，当初想试一下win安装堡塔来着QAQ</p>
+</blockquote>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>官方docker容器配置文件设置——修改密码<br><a href="https://hub.docker.com/_/redis">docker-redis镜像</a><br>根据官方文档中的：</p>
+<blockquote>
+<h4 id="此外，如果您想使用自己的-redis-conf-文件……"><a href="#此外，如果您想使用自己的-redis-conf-文件……" class="headerlink" title="此外，如果您想使用自己的 redis.conf 文件……"></a>此外，如果您想使用自己的 redis.conf 文件……</h4><p>您可以创建自己的 Dockerfile，将上下文中的 redis.conf 添加到 &#x2F;data&#x2F; 中，如下所示。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> redis</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> redis.conf /usr/local/etc/redis/redis.conf</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+
+<p>或者，您也可以使用选项来指定类似的内容<code>docker run</code>。</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -v /myredis/conf:/usr/local/etc/redis --name myredis redis redis-server /usr/local/etc/redis/redis.conf</span></span><br></pre></td></tr></table></figure>
+
+<p><code>/myredis/conf/</code>本地目录下有你的<code>redis.conf</code>文件。使用此方法意味着你无需为 Redis 容器编写 Dockerfile。</p>
+<p>映射目录应该是可写的，因为根据配置和操作模式，Redis 可能需要创建额外的配置文件或重写现有的配置文件。</p>
+</blockquote>
+<p>这里我选择了第一种方法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建Dockerfile 和 自定义的redis配置文件</span></span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">mkdir</span> myredis </span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">cd</span> myredis/ </span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi redis.conf</span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi Dockerfile </span><br><span class="line"></span><br><span class="line">FROM redis</span><br><span class="line">COPY redis.conf /usr/local/etc/redis/redis.conf</span><br><span class="line">CMD [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建自定义Redis镜像</span></span><br><span class="line">lan@lan123ubuntu:~/myredis$ docker build -t myredis:custom . </span><br><span class="line">DEPRECATED: The legacy builder is deprecated and will be removed <span class="keyword">in</span> a future release. </span><br><span class="line">Install the buildx component to build images with BuildKit: https://docs.docker.com/go/buildx/ </span><br><span class="line">Sending build context to Docker daemon 3.072kB </span><br><span class="line">Step 1/3 : FROM redis:latest </span><br><span class="line">---&gt; 1c390e3bb5cb </span><br><span class="line">Step 2/3 : COPY redis.conf /usr/local/etc/redis/redis.conf </span><br><span class="line">---&gt; 5752eb06dda3 </span><br><span class="line">Step 3/3 : CMD [<span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span>] </span><br><span class="line">---&gt; Running <span class="keyword">in</span> 8f635c9589f5 </span><br><span class="line">---&gt; Removed intermediate container 8f635c9589f5 </span><br><span class="line">---&gt; 2988385cf884 </span><br><span class="line">Successfully built 2988385cf884 </span><br><span class="line">Successfully tagged myredis:custom </span><br><span class="line"><span class="comment">#启动镜像并设置开机自启</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name myredis \</span><br><span class="line">  -v redis-data:/data \</span><br><span class="line">  -p 6379:6379 \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  myredis:custom</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>云原生实践：智能计算平台构建与研发</title>
@@ -1415,166 +1568,13 @@
       </categories>
       <tags>
         <tag>Linux</tag>
+        <tag>Centos</tag>
         <tag>docker</tag>
         <tag>ccf</tag>
         <tag>dify</tag>
-        <tag>Centos</tag>
         <tag>Gradio</tag>
         <tag>Ollama</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>centos更换yum源</title>
-    <url>/centos_yum.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<p>centos7更换为国内yum源</p>
-<span id="more"></span>
-<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.bak</p>
-<h1 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h1><p><span class=“inline-note” title="看什么看，没有注释EmE">这里的命令是centos7的更新命令，可以根据自己的的版本替换一下</span><br>wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p>
-<h1 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h1><p>yum makecache</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Centos</tag>
-        <tag>yum</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各种各样的参考页面</title>
-    <url>/reference.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="47d238a3d6a1d855e4c45a56e5d6f9225940ac099657b26398762e089661494f">c32395f63df771905c259445e1aa88f3899ee4804f798168a843621515b7539500991886f73e55266910bee5a5b66327e524d8162e2ec9fec6fcfda26661a9930eec9caf050ca5f9c108385159c0f1e968a1b5e142c0c85994af2c696ecc181ce436acc974aa63818589a52609ba5f3a9ad4010ae889f1894b4a9d9e64e2ece134003aab3794ea4436ae924ab54b02accb5b1ea9aba8acbd6abdf03218c8b53bc23a6b11578ff36c383887e99236a09a41e0489303999a2305b8961edd5d9e8017d2237ba846cb2d49e247f457936c1d6891e56c693d86e41fa9a187bd5a4c00b052e9f7ec3faf4cdd3d532d44f6fefa88ce7e06a99b145f57de3deb6599ffd1ed58513371739dc35705cdb74b10b1c927705b553e236c1fb5b2029b6eec53405522a6d42050ccd4756af71dd7134109a567c19a8b0ea663a6ea5db9c9e45b7b04f070ee1352c19a435b5caa75efdc5898372caa257405dee494e723e3d6e068931a5b597a0fded981c717c1811c8b44d98475ef290ad1e2b09710f02f5263398bf87ff4ab0872ac934d900768d632ecec7ff7ac1af1d230d36c12ca300d5eef5646a49eae352984cf9b83bb4f09be3eee51d3e0b56706421729b7e0f5d31ea081349287ab7b21fae891b5b73812921036dbccf9b0e193294c72f09921e7447ee8c06b0932cdedf282f40d73bb727c2a082a1ee8cdffd969f89f5c7988f0dacc75b5b09733090d4f6159df1d76c6b35041eaff47343f7c7ab4a0e900be17b662b292191fd69f363c9bef52f77a56b418fd67ead66543142ea3ee540ec8776891eb8c6273d8f1f70aaaa1135d1ca8d3946fddcde7382e8f10d0bff690c51a433fd6bbc7d6e9a6cad1aa8a9da9b8b25da9ead4ffad254ee88dcd3492733970f1ff8dcccf1d7e00e1a554eb515981c88da13afe81a15104ec87d8b2b06f38e22aa0260f55931cdaed7ba01cd064ef902a9d9084f84fbfca049d4180c1f12019a932085e010ca2339f3adc8bc1564a2e2549f828112fd8d1c724c6b78cda73f1fb517a044ab42e13ea007e1ac0facec239e2d01f90fc5685c3c4f0f9be7ff2187780c14ff1a853df48ea08ec965e4fce6bbd20398d37de1e1c1fec53781709824ab24a0394dcf67d48969f5dcb3204c710fd5a4c4f3ccb7bf2c4be12cf416abdd2baef6fa2d637fa4be636905144e14f07b6bd7118d0378be60995f0cc30528387dc915ab44262a10a3ece914b6f234b340747bd82234be7c519e3ab12a1abe5b362dd9db679a43fe1a1b7944f99d1f4153defcfaa4152b831f33258290fd637af61c25adf14ccc265a8705bfa5d19d478ca4784b58117d1cb67921d7821b1112c4be9a357d2242f64299d8be64d7ba3759a95a039b61b4b809f8747789dd62bc6969f99b12879b2ccc341758e3f85f678d5b40ed442b5d092fa6d924553a9f0fbbcf072c622f663ec0dd34e5ff43a40c4f3a1f0b4f5b79a26850d5f22ac8df5e4bfb6d838e0c2ffb68d5c31e94651edbd2e04e8b813d56fc37f219924b90a2c42b9ac2b4a35e91ddd077b32b809e07acdb44fbfa35a4d84ec74d687bdfeb0dd218ea2ac5bfcb555d34ffe53e5c77b71520cbdaadb22949c18ff5d6d74cfe4cf75998fb4eac5cab10932705033a9fb391ec44cefef2ddc601d9a4bb66d942449e5bbdf958292aa8e8fcc9d3c85e83d8a26754ac107ca0846a0ba66885463fec0f3d19ed31ce0623a6d3d1f2bc1d1d92d298100acce697450e7403d8a31e078a672a3053d0aae72db16a6cd37b617a5d9616c47d68a76d0bb9a99096eba0681ee3ebef986b1b0d82d89ff315071569ca38c866af5ab5a855d2fa4e6777ee5fc0d0a9416132c7f71a0dbe4bf58ed27cd2b6367f46ca51d3e4d341db4e2ce9d2bde14486f9afb1fcd879969c2263ad87890afb42646172afdc24fd05f8a5d9ff1ac9970143cf9932e88b445514fa0815418b09d744001d2be5e79aa7c8c6f2a26ff3fd4f5101729b4b948228a96b9efb3b60820a7e230f224c8280c3348b65bd6fec8f44ff165ef90edc76361ef4697c2ee9ae0a31bc0a85d53626425090cb8fae4e51a4966195926f8bb3ca3b8ad6969de5125f873645637cd27f7de10703b2c4a50dc059c05499b6365b99c654d83b59e1988dfb5bab64c661f8d0f4e2d1100e18be72f878172adaa80ed2ff24def28311d220ed67a6d4d64bc1be4d390e517af8d428f51f0a5c60184dd09b3a8dd78e1bef520f7b4088ac9cfca4c1a0981312b0673acd6f9f263d0d123171f445c3beb6db679cc4ea67268d8c7bbae4df53abad312f2afa24f8abbaa944a91a21d6b0a0942e0c9567c0a290c6da0dc367bbec24aad</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>记录</category>
-      </categories>
-      <tags>
-        <tag>参考记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>报错记录</title>
-    <url>/errorlist.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-
-<h2 id="flutter"><a href="#flutter" class="headerlink" title="flutter"></a>flutter</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先查看下报错信息：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; flutter doctor</span><br><span class="line">Doctor summary (to see all details, run flutter doctor -v):</span><br><span class="line">[✓] Flutter (Channel stable, 3.38.3, on Microsoft Windows [版本 10.0.26100.4946], locale zh-CN)</span><br><span class="line">[✓] Windows Version (11 家庭中文版 64-bit, 24H2, 2009)</span><br><span class="line">[✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0)</span><br><span class="line">[✓] Chrome - develop for the web</span><br><span class="line">[✓] Visual Studio - develop Windows apps (Visual Studio 生成工具 2022 17.14.16)</span><br><span class="line">[✓] Connected device (3 available)</span><br><span class="line">[!] Network resources</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://pub.dev/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://storage.googleapis.com/&quot;: Connection terminated during</span><br><span class="line">      handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://maven.google.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://cocoapods.org/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://github.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br></pre></td></tr></table></figure>
-
-<p>报错信息为：连接不上</p>
-<ul>
-<li><p>pub.dev</p>
-</li>
-<li><p>storage.googleapis.com</p>
-</li>
-<li><p>maven.google.com</p>
-</li>
-<li><p>cocoapods.org</p>
-</li>
-<li><p>github.com</p>
-</li>
-</ul>
-<p>环境为：Win11+Clash Verge全局+系统代理</p>
-<hr>
-<h4 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h4><p>首先使用浏览器查看，发现以上页面都能打开。</p>
-<p>感觉可能是终端没走代理的原因，就把代理调整为TUN模式</p>
-<p>使用终端curl github，成功返回页面</p>
-<p>使用终端curl <a href="https://maven.google.com/com/">https://maven.google.com/com/</a><br>→ 404 That’s an error.（但成功返回页面）</p>
-<p>AI的解释为</p>
-<blockquote>
-<p>因为 <strong>Flutter&#x2F;Gradle 访问 maven.google.com 不是访问 &#x2F;com&#x2F;</strong><br> 它访问的是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">https://maven.google.com/master-index.xml</span><br><span class="line">https://maven.google.com/com/android/tools/build/group-index.xml</span><br></pre></td></tr></table></figure>
-
-<p>并且这些文件需要：</p>
-<ul>
-<li><strong>TLS 1.2 &#x2F; TLS 1.3</strong></li>
-<li><strong>正确的 CA 证书链</strong></li>
-<li><strong>完整的网络握手</strong></li>
-</ul>
-<p>你之前出现的错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Connection terminated during handshake</span><br></pre></td></tr></table></figure>
-
-<p>这说明 <strong>TLS 握手阶段就失败了</strong><br> 而 curl 能成功 → 说明：</p>
-<ul>
-<li>你使用的 curl 内置证书是 OK 的</li>
-<li><strong>Java &#x2F; Flutter &#x2F; Dart 使用的证书链不 OK</strong></li>
-</ul>
-<p>❗ <strong>这类问题绝大多数都是 Windows 环境里的 CA 证书缺失&#x2F;损坏 或 代理&#x2F;杀软注入了假证书（MITM）</strong></p>
-</blockquote>
-<p>然后又去检查CA证书</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; certutil -verifystore -user root</span><br><span class="line">root &quot;受信任的根证书颁发机构&quot;</span><br><span class="line">================ 证书 0 ================</span><br><span class="line">序列号: 0aa8d1ed03648306256b92500fd33b224a44f0ea</span><br><span class="line">颁发者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line"> NotBefore: 2023/12/7 16:01</span><br><span class="line"> NotAfter: 2033/12/4 16:01</span><br><span class="line">使用者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line">签名与公钥匹配</span><br><span class="line">根证书: 使用者与颁发者匹配</span><br><span class="line">证书哈希(sha1): 66f8b18f84b329d2aef25446d4e6c3dec0103a95</span><br><span class="line">没有密钥提供程序信息</span><br><span class="line">找不到解密的证书和私钥。</span><br><span class="line">已验证的颁发策略: 全部</span><br><span class="line">已验证的应用程序策略: 全部</span><br><span class="line">证书有效</span><br><span class="line">CertUtil: -verifystore 命令成功完成。</span><br></pre></td></tr></table></figure>
-
-<p>我看到了堡塔……然后把堡塔的证书删掉再次尝试，发现成功</p>
-<p>结束</p>
-<blockquote>
-<p>早知道就不拿电脑瞎折腾了，当初想试一下win安装堡塔来着QAQ</p>
-</blockquote>
-<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>官方docker容器配置文件设置——修改密码<br><a href="https://hub.docker.com/_/redis">docker-redis镜像</a><br>根据官方文档中的：</p>
-<blockquote>
-<h4 id="此外，如果您想使用自己的-redis-conf-文件……"><a href="#此外，如果您想使用自己的-redis-conf-文件……" class="headerlink" title="此外，如果您想使用自己的 redis.conf 文件……"></a>此外，如果您想使用自己的 redis.conf 文件……</h4><p>您可以创建自己的 Dockerfile，将上下文中的 redis.conf 添加到 &#x2F;data&#x2F; 中，如下所示。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> redis</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> redis.conf /usr/local/etc/redis/redis.conf</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
-
-<p>或者，您也可以使用选项来指定类似的内容<code>docker run</code>。</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -v /myredis/conf:/usr/local/etc/redis --name myredis redis redis-server /usr/local/etc/redis/redis.conf</span></span><br></pre></td></tr></table></figure>
-
-<p><code>/myredis/conf/</code>本地目录下有你的<code>redis.conf</code>文件。使用此方法意味着你无需为 Redis 容器编写 Dockerfile。</p>
-<p>映射目录应该是可写的，因为根据配置和操作模式，Redis 可能需要创建额外的配置文件或重写现有的配置文件。</p>
-</blockquote>
-<p>这里我选择了第一种方法</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建Dockerfile 和 自定义的redis配置文件</span></span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">mkdir</span> myredis </span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">cd</span> myredis/ </span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi redis.conf</span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi Dockerfile </span><br><span class="line"></span><br><span class="line">FROM redis</span><br><span class="line">COPY redis.conf /usr/local/etc/redis/redis.conf</span><br><span class="line">CMD [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建自定义Redis镜像</span></span><br><span class="line">lan@lan123ubuntu:~/myredis$ docker build -t myredis:custom . </span><br><span class="line">DEPRECATED: The legacy builder is deprecated and will be removed <span class="keyword">in</span> a future release. </span><br><span class="line">Install the buildx component to build images with BuildKit: https://docs.docker.com/go/buildx/ </span><br><span class="line">Sending build context to Docker daemon 3.072kB </span><br><span class="line">Step 1/3 : FROM redis:latest </span><br><span class="line">---&gt; 1c390e3bb5cb </span><br><span class="line">Step 2/3 : COPY redis.conf /usr/local/etc/redis/redis.conf </span><br><span class="line">---&gt; 5752eb06dda3 </span><br><span class="line">Step 3/3 : CMD [<span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span>] </span><br><span class="line">---&gt; Running <span class="keyword">in</span> 8f635c9589f5 </span><br><span class="line">---&gt; Removed intermediate container 8f635c9589f5 </span><br><span class="line">---&gt; 2988385cf884 </span><br><span class="line">Successfully built 2988385cf884 </span><br><span class="line">Successfully tagged myredis:custom </span><br><span class="line"><span class="comment">#启动镜像并设置开机自启</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name myredis \</span><br><span class="line">  -v redis-data:/data \</span><br><span class="line">  -p 6379:6379 \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  myredis:custom</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>网络学习笔记</title>
