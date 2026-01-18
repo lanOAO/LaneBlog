@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.lanouo.xyz/reference.html</loc>
+    
+    <lastmod>2026-01-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.lanouo.xyz/links/index.html</loc>
     
     <lastmod>2026-01-18</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>http://blog.lanouo.xyz/errorlist.html</loc>
-    
-    <lastmod>2026-01-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.lanouo.xyz/reference.html</loc>
     
     <lastmod>2026-01-18</lastmod>
     
@@ -219,7 +219,7 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/ubuntu/</loc>
+    <loc>http://blog.lanouo.xyz/tags/Python/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -233,14 +233,7 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/Python/</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.lanouo.xyz/tags/docker/</loc>
+    <loc>http://blog.lanouo.xyz/tags/ubuntu/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -254,7 +247,7 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/error/</loc>
+    <loc>http://blog.lanouo.xyz/tags/docker/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -268,7 +261,7 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <loc>http://blog.lanouo.xyz/tags/error/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -309,6 +302,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://blog.lanouo.xyz/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -333,14 +333,14 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/categories/Linux/</loc>
+    <loc>http://blog.lanouo.xyz/categories/%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/categories/%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</loc>
+    <loc>http://blog.lanouo.xyz/categories/Linux/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
