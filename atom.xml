@@ -6,7 +6,7 @@
   <link href="http://blog.lanouo.xyz/atom.xml" rel="self"/>
   
   <link href="http://blog.lanouo.xyz/"/>
-  <updated>2026-01-18T08:28:42.284Z</updated>
+  <updated>2026-01-18T12:38:56.960Z</updated>
   <id>http://blog.lanouo.xyz/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://blog.lanouo.xyz/read_the_linux_command_line.html"/>
     <id>http://blog.lanouo.xyz/read_the_linux_command_line.html</id>
     <published>2026-01-06T06:42:00.000Z</published>
-    <updated>2026-01-18T08:28:42.284Z</updated>
+    <updated>2026-01-18T12:38:56.960Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>介绍 Linux 命令行的入门书</p><span id="more"></span><table><thead><tr><th>按键&#x2F;命令</th><th>功能</th></tr></thead><tbody><tr><td>选中文字+鼠标中键</td><td>复制粘贴</td></tr><tr><td><code>date</code></td><td>显示系统当前时间和日期</td></tr><tr><td><code>cal</code></td><td>显示当前月份的日历</td></tr><tr><td><code>df</code></td><td>查看磁盘剩余空间的数量</td></tr><tr><td><code>free</code></td><td>显示空闲内存的数量</td></tr><tr><td>Alt 和 F1-F6(中的一个)</td><td>命令行→图形化</td></tr><tr><td>Ctrl-Alt-F6</td><td>图形化→命令行</td></tr><tr><td><code>cd ~user_name</code></td><td>更改工作目录到用户家目录。例如, cd ~bob 会更改工作目录到用户“bob”的家目录。</td></tr></tbody></table><blockquote><p>如果你按下鼠标左键，沿着文本拖动鼠标（或者双击一个单词）高亮了一些文本， 那么这些高亮的文本就被拷贝到了一个由 X 管理的缓冲区里面。然后按下鼠标中键， 这些文本就被粘贴到光标所在的位置。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>介绍 Linux 命令行的入门书</p><span id="more"></span><div class="tabs" id="入门"><ul class="nav-tabs"><li class="tab active"><a href="#入门-1">快捷键与命令</a></li><li class="tab"><a href="#入门-2">通配符</a></li></ul><div class="tab-content"><div class="tab-pane active" id="入门-1"><p>快捷键与命令</p><table><thead><tr><th>按键&#x2F;命令</th><th>功能</th></tr></thead><tbody><tr><td>选中文字+鼠标中键</td><td>复制粘贴</td></tr><tr><td><code>date</code></td><td>显示系统当前时间和日期</td></tr><tr><td><code>cal</code></td><td>显示当前月份的日历</td></tr><tr><td><code>df</code></td><td>查看磁盘剩余空间的数量</td></tr><tr><td><code>free</code></td><td>显示空闲内存的数量</td></tr><tr><td>Alt 和 F1-F6(中的一个)</td><td>命令行→图形化</td></tr><tr><td>Ctrl-Alt-F6</td><td>图形化→命令行</td></tr><tr><td><code>cd ~user_name</code></td><td>更改工作目录到用户家目录。例如, cd ~bob 会更改工作目录到用户“bob”的家目录。</td></tr></tbody></table><blockquote><p>如果你按下鼠标左键，沿着文本拖动鼠标（或者双击一个单词）高亮了一些文本， 那么这些高亮的文本就被拷贝到了一个由 X 管理的缓冲区里面。然后按下鼠标中键， 这些文本就被粘贴到光标所在的位置。</p></blockquote></div><div class="tab-pane" id="入门-2"><p>通配符</p><table><thead><tr><th>通配符</th><th>意义</th></tr></thead><tbody><tr><td>*</td><td>匹配任意多个字符（包括零个或一个）</td></tr><tr><td>?</td><td>匹配任意一个字符（不包括零个）</td></tr><tr><td>[characters]</td><td>匹配任意一个属于字符集中的字符</td></tr><tr><td>[!characters]</td><td>匹配任意一个不是字符集中的字符</td></tr><tr><td>[[:class:]]</td><td>匹配任意一个属于指定字符类中的字符|<code>[123][0-9]</code></td></tr></tbody></table><p>普遍使用的字符类</p><table><thead><tr><th>字符类</th><th>意义</th></tr></thead><tbody><tr><td>[:alnum:]</td><td>匹配任意一个字母或数字</td></tr><tr><td>[:alpha:]</td><td>匹配任意一个字母</td></tr><tr><td>[:digit:]</td><td>匹配任意一个数字</td></tr><tr><td>[:lower:]</td><td>匹配任意一个小写字母</td></tr><tr><td>[:upper]</td><td>匹配任意一个大写字母</td></tr></tbody></table></div></div></div><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln file link</span><br></pre></td></tr></table></figure><p>创建硬链接，和：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s item link</span><br></pre></td></tr></table></figure>]]></content>
     
     
     <summary type="html">&lt;p&gt;介绍 Linux 命令行的入门书&lt;/p&gt;</summary>
@@ -307,6 +307,8 @@
     
     <category term="Linux" scheme="http://blog.lanouo.xyz/tags/Linux/"/>
     
+    <category term="docker" scheme="http://blog.lanouo.xyz/tags/docker/"/>
+    
     <category term="ccf" scheme="http://blog.lanouo.xyz/tags/ccf/"/>
     
     <category term="dify" scheme="http://blog.lanouo.xyz/tags/dify/"/>
@@ -316,8 +318,6 @@
     <category term="Gradio" scheme="http://blog.lanouo.xyz/tags/Gradio/"/>
     
     <category term="Ollama" scheme="http://blog.lanouo.xyz/tags/Ollama/"/>
-    
-    <category term="docker" scheme="http://blog.lanouo.xyz/tags/docker/"/>
     
   </entry>
   
