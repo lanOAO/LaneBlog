@@ -263,20 +263,6 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/tags/%E6%B8%85%E5%8D%95/</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.lanouo.xyz/tags/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.lanouo.xyz/tags/ccf/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -306,6 +292,20 @@
   
   <url>
     <loc>http://blog.lanouo.xyz/tags/Ollama/</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.lanouo.xyz/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.lanouo.xyz/tags/%E6%B8%85%E5%8D%95/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -349,14 +349,14 @@
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/categories/Linux/</loc>
+    <loc>http://blog.lanouo.xyz/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://blog.lanouo.xyz/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E6%90%AD%E5%BB%BA/</loc>
+    <loc>http://blog.lanouo.xyz/categories/Linux/</loc>
     <lastmod>2026-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
