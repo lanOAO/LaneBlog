@@ -6,7 +6,7 @@
   <link href="http://blog.lanouo.xyz/atom.xml" rel="self"/>
   
   <link href="http://blog.lanouo.xyz/"/>
-  <updated>2026-01-18T08:28:42.284Z</updated>
+  <updated>2026-01-18T09:25:44.263Z</updated>
   <id>http://blog.lanouo.xyz/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo-next主题的美化记录</title>
+    <link href="http://blog.lanouo.xyz/hexo_next.html"/>
+    <id>http://blog.lanouo.xyz/hexo_next.html</id>
+    <published>2026-01-18T09:21:35.000Z</published>
+    <updated>2026-01-18T09:25:44.263Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>主题美化记录</p><span id="more"></span>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;主题美化记录&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>The Linux Command Line阅读记录</title>
@@ -303,13 +320,13 @@
     
     <category term="Linux" scheme="http://blog.lanouo.xyz/tags/Linux/"/>
     
-    <category term="Centos" scheme="http://blog.lanouo.xyz/tags/Centos/"/>
-    
     <category term="docker" scheme="http://blog.lanouo.xyz/tags/docker/"/>
     
     <category term="ccf" scheme="http://blog.lanouo.xyz/tags/ccf/"/>
     
     <category term="dify" scheme="http://blog.lanouo.xyz/tags/dify/"/>
+    
+    <category term="Centos" scheme="http://blog.lanouo.xyz/tags/Centos/"/>
     
     <category term="Gradio" scheme="http://blog.lanouo.xyz/tags/Gradio/"/>
     
@@ -318,57 +335,13 @@
   </entry>
   
   <entry>
-    <title>centos更换yum源</title>
-    <link href="http://blog.lanouo.xyz/centos_yum.html"/>
-    <id>http://blog.lanouo.xyz/centos_yum.html</id>
-    <published>2025-09-04T08:54:41.000Z</published>
-    <updated>2025-12-09T07:32:20.129Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>    .inline-note {      display: inline-block;      background-color: #fffbe6;      color: #333;      border-left: 4px solid #f7c948;      padding: 0.2em 0.6em;      margin: 0 0.2em;      font-size: 0.95em;      border-radius: 3px;      box-shadow: 0 1px 2px rgba(0,0,0,0.05);      font-style: italic;      cursor: help;      transition: all 0.2s ease;    }    .inline-note:hover {      background-color: #fff3bf;      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);    }</style><p>centos7更换为国内yum源</p><span id="more"></span><h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.bak</p><h1 id="更新yum源"><a href="#更新yum源" class="headerlink" title="更新yum源"></a>更新yum源</h1><p><span class=“inline-note” title="看什么看，没有注释EmE">这里的命令是centos7的更新命令，可以根据自己的的版本替换一下</span><br>wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo">http://mirrors.aliyun.com/repo/Centos-7.repo</a></p><h1 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h1><p>yum makecache</p>]]></content>
-    
-    
-    <summary type="html">&lt;style&gt;
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-&lt;/style&gt;
-&lt;p&gt;centos7更换为国内yum源&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Linux" scheme="http://blog.lanouo.xyz/tags/Linux/"/>
-    
-    <category term="yum" scheme="http://blog.lanouo.xyz/tags/yum/"/>
-    
-    <category term="Centos" scheme="http://blog.lanouo.xyz/tags/Centos/"/>
-    
-  </entry>
-  
-  <entry>
     <title>明日清单</title>
     <link href="http://blog.lanouo.xyz/todo_list.html"/>
     <id>http://blog.lanouo.xyz/todo_list.html</id>
     <published>2025-08-29T17:05:10.000Z</published>
-    <updated>2025-11-15T16:06:38.931Z</updated>
+    <updated>2026-01-18T08:54:08.511Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>明天要完成的ioi</p><span id="more"></span><ul><li><input disabled="" type="checkbox"> Spring boot</li><li><input disabled="" type="checkbox"> flask</li><li><input disabled="" type="checkbox"> 80% python 进阶</li><li><input disabled="" type="checkbox"> 外卖项目</li><li><input checked="" disabled="" type="checkbox"> ccf比赛赛题</li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>明天要完成的ioi</p><span id="more"></span><ul><li><input disabled="" type="checkbox"> Spring boot</li><li><input disabled="" type="checkbox"> flask</li><li><input disabled="" type="checkbox"> 80% python 进阶</li><li><input disabled="" type="checkbox"> 外卖项目</li></ul>]]></content>
     
     
     <summary type="html">&lt;p&gt;明天要完成的ioi&lt;/p&gt;</summary>
