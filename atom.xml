@@ -6,7 +6,7 @@
   <link href="http://blog.lanouo.xyz/atom.xml" rel="self"/>
   
   <link href="http://blog.lanouo.xyz/"/>
-  <updated>2026-01-20T14:15:13.388Z</updated>
+  <updated>2026-01-21T17:43:10.710Z</updated>
   <id>http://blog.lanouo.xyz/</id>
   
   <author>
@@ -17,39 +17,23 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>20260120221513</title>
-    <link href="http://blog.lanouo.xyz/null.html"/>
-    <id>http://blog.lanouo.xyz/null.html</id>
+    <title>ASCII Art存档</title>
+    <link href="http://blog.lanouo.xyz/ascii_art.html"/>
+    <id>http://blog.lanouo.xyz/ascii_art.html</id>
     <published>2026-01-20T14:15:13.000Z</published>
-    <updated>2026-01-20T14:15:13.388Z</updated>
+    <updated>2026-01-21T17:43:10.710Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>    .inline-note {      display: inline-block;      background-color: #fffbe6;      color: #333;      border-left: 4px solid #f7c948;      padding: 0.2em 0.6em;      margin: 0 0.2em;      font-size: 0.95em;      border-radius: 3px;      box-shadow: 0 1px 2px rgba(0,0,0,0.05);      font-style: italic;      cursor: help;      transition: all 0.2s ease;    }    .inline-note:hover {      background-color: #fff3bf;      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);    }</style><span id="more"></span>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>存一些ASCII Art</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">　☆ *　. 　☆　　　　  </span><br><span class="line">　　. ∧＿∧　∩　* ☆  </span><br><span class="line">* ☆ ( ◠︎▿◠︎)/ /  </span><br><span class="line">　. ⊂　　ノ*　☆  </span><br><span class="line">☆ * (つ ノ . ☆  </span><br><span class="line">　　 (ノ　　　☆  </span><br><span class="line">　☆　　☆</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">               ⢀⡞⠳⣄⣀⣀⣀⣠⠞⢷⡀  </span><br><span class="line">               ⣸⠟⠋⠁      ⠈⠙⠻⣇    ⣀  </span><br><span class="line">             ⡾⠁⢰⣿⡆  ⣀  ⢰⣽⡆⠈⢧⢰⠛⡇  </span><br><span class="line">           ⣸⢷⠶⠒⠉  ⠒⠭⠒  ⠉⠒⢶⠾⣏⡼⠃  </span><br><span class="line">           ⣿⠶⣤⣀⣀          ⣀⣀⣤⠶⡟⠁  </span><br><span class="line">           ⢸    ⠈⠉⠉⠙⠛⠛⠉⠉⠁    ⣏⣉⡙⣆  </span><br><span class="line">           ⠘⡆                      ⢸⠃  ⢹⢸  </span><br><span class="line">             ⣇                      ⢸⢀⡴⢣⠇  </span><br><span class="line">             ⢸                      ⣸⠭⠔⠁  </span><br><span class="line">             ⠸⣆⣀              ⣀⣰⠇  </span><br><span class="line">                 ⠉⠙⠓⠒⠒⠒⠚⠋⠉</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">                           ⢀⠤⡀  </span><br><span class="line"> ⢠⠊⣉⠒⠤⢀⡀          ⡐⢁⠴⢜⢄  </span><br><span class="line"> ⡎⢸  ⠉⠐⠢⢌⠑⢄    ⡸  ⡆    ⠣⠱⡀  </span><br><span class="line"> ⡇⢸        ⣀⠗  ⠉⠉⠁  ⠙⠢⠤⡀⢃⢱  </span><br><span class="line"> ⡇⠘⣄⢀⠔⠉                    ⠈⠁⠘⡄  </span><br><span class="line"> ⢇    ⠁                              ⠘⡄  </span><br><span class="line"> ⢸            ⢀⣀⣀⡀        ⢀⣀⣀⡀  ⢣  </span><br><span class="line"> ⡸        ⢴⣾⡿⠿⠽⠇        ⠘⠛⠛⠛  ⠈⢄  </span><br><span class="line">⠰⡁              ⢠⠒⠢⡀⠈⠒⠊      ⡠⢄  ⡘  </span><br><span class="line"> ⠱⣀          ⢀⠜    ⠇        ⢀⠔⠁  ⡏  </span><br><span class="line">     ⠑⠤⢄⣀⠔⠁    ⡜        ⠊⠁  ⢀⠜</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⡿⠷⠤⠒⠒⠒⠤⢄⡀  </span><br><span class="line">⠀⠀⠀⣠⣴⣿⣿⠟⠋⢀⠀⠀⠈⠐⠄⠀⠠⠀⢔⢁⠖⢄  </span><br><span class="line">⢀⣀⣜⣿⣿⡿⠁⠀⠀⠀⠁⠀⠀⠀⠀⢀⠄⠀⠂⠁⢌⠀⠟⢂⠄  </span><br><span class="line">⠁⣿⣾⣿⣿⠁⠁⠄⠀⠀⠀⠈⡀⠀⠀⠀⢀⠀⢄⡴⠒⢗⠠⢑⣄  </span><br><span class="line">⣿⣷⣿⣿⡇⠀⠀⠈⠄⠀⢀⠄⠂⠠⢤⡀⠊⠀⠀⠑⠒⠁⠀⢸⠘  </span><br><span class="line">⣿⣿⣿⣿⡇⠀⠀⠀⠈⠐⠁⠢⠀⠀⣢⠵⠄⠀⠀⠀⠀⠀⢀⢴⠶  </span><br><span class="line">⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⡀⢰⢃⣀⠌⠀⠀⠀⠀⣀⡦⠛⣻⡶⢶⣦⣄  </span><br><span class="line">⠀⠀⠹⣿⣿⣿⣄⠀⠀⠀⠀⠀⠁⠙⢀⠀⠀⢀⢠⡄⣎⢻⢱⣼⣄⠛⣼⡏⠉⢁⣄⣀⡀  </span><br><span class="line">⠀⠀⠀⠈⠉⢻⣿⣷⡀⠀⡀⠀⣀⠈⠀⠈⢉⣠⣾⣿⣏⠃⣓⠯⣷⠿⡀⢤⠐⠋⠫⡁⡀  </span><br><span class="line">⠀⠀⠀⠀⠀⠀⠙⢻⡿⢀⣿⣖⣤⢅⡟⣿⣬⠈⣿⣏⣋⣱⣯⡎⡪⢁⠌⠷⢀⣀⢰⣾⠆  </span><br><span class="line">⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣾⡽⢿⣿⡿⣿⣿⠀⣽⣿⣽⣉⠔⣿⣶⣧⣄⣄⣰⣿⡏⠉</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">⠀⠀⠀⠀⣾⣿⣿⣷⣄  </span><br><span class="line">⠀⠀⠀⢸⣿⣿⣿⣿⣿⣧⣴⣶⣶⣶⣄  </span><br><span class="line">⠀⠀⠀⣀⣿⣿⡿⠻⣿⣿⣿⣿⣿⣿⣿⡄  </span><br><span class="line">⠀⠀⠀⢇⠠⣏⡖⠒⣿⣿⣿⣿⣿⣿⣿⣧⡀  </span><br><span class="line">⠀⠀⢀⣷⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷  </span><br><span class="line">⠀⠀⢸⣿⣿⡿⢋⠁⠀⠀⠀⠀⠉⡙⢿⣿⣿⡇  </span><br><span class="line">⠀⠀⠘⣿⣿⠀⣿⠇⠀⢀⠀⠀⠘⣿⠀⣿⡿⠁  </span><br><span class="line">⠀⠀⠀⠈⠙⠷⠤⣀⣀⣐⣂⣀⣠⠤⠾⠋⠁</span><br></pre></td></tr></table></figure>]]></content>
     
     
-    <summary type="html">&lt;style&gt;
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-&lt;/style&gt;</summary>
+    <summary type="html">&lt;p&gt;存一些ASCII Art&lt;/p&gt;</summary>
     
     
     
+    <category term="个人记录" scheme="http://blog.lanouo.xyz/categories/%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="OvO" scheme="http://blog.lanouo.xyz/tags/OvO/"/>
     
   </entry>
   

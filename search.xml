@@ -1,108 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AutoHotkey —— 自动热键软件</title>
-    <url>/AutoHotkey1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-
-<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
-<span id="more"></span>
-
-<blockquote>
-<p>以下全部建立在2.0.19版本的的基础上</p>
-</blockquote>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
-<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
-<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
-<li>双击脚本，即可运行</li>
-</ul>
-<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
-<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
-</blockquote>
-<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
-<ul>
-<li><code>#</code> ：win 键</li>
-<li><code>!</code> ：alt</li>
-<li><code>^</code> ：ctrl</li>
-<li><code>+</code> ：shift</li>
-<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
-</ul>
-<blockquote>
-<p><code>^q</code> 即代表ctrl + q</p>
-</blockquote>
-<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
-<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
-<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
-<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
-<li>一个脚本里可以有多个热键</li>
-<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
-</ul>
-<hr>
-<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-
-<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
-<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
-]]></content>
-      <categories>
-        <category>利器OuO</category>
-      </categories>
-      <tags>
-        <tag>AutoHotkey</tag>
-        <tag>脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>20260120221513</title>
-    <url>/null.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>]]></content>
-  </entry>
-  <entry>
     <title>Git 学习——基础篇</title>
     <url>/git_1.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——基础篇 oio</p>
@@ -186,6 +84,99 @@
       </tags>
   </entry>
   <entry>
+    <title>ASCII Art存档</title>
+    <url>/ascii_art.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>存一些ASCII Art</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">　☆ *　. 　☆　　　　  </span><br><span class="line">　　. ∧＿∧　∩　* ☆  </span><br><span class="line">* ☆ ( ◠︎▿◠︎)/ /  </span><br><span class="line">　. ⊂　　ノ*　☆  </span><br><span class="line">☆ * (つ ノ . ☆  </span><br><span class="line">　　 (ノ　　　☆  </span><br><span class="line">　☆　　☆</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">               ⢀⡞⠳⣄⣀⣀⣀⣠⠞⢷⡀  </span><br><span class="line">               ⣸⠟⠋⠁      ⠈⠙⠻⣇    ⣀  </span><br><span class="line">             ⡾⠁⢰⣿⡆  ⣀  ⢰⣽⡆⠈⢧⢰⠛⡇  </span><br><span class="line">           ⣸⢷⠶⠒⠉  ⠒⠭⠒  ⠉⠒⢶⠾⣏⡼⠃  </span><br><span class="line">           ⣿⠶⣤⣀⣀          ⣀⣀⣤⠶⡟⠁  </span><br><span class="line">           ⢸    ⠈⠉⠉⠙⠛⠛⠉⠉⠁    ⣏⣉⡙⣆  </span><br><span class="line">           ⠘⡆                      ⢸⠃  ⢹⢸  </span><br><span class="line">             ⣇                      ⢸⢀⡴⢣⠇  </span><br><span class="line">             ⢸                      ⣸⠭⠔⠁  </span><br><span class="line">             ⠸⣆⣀              ⣀⣰⠇  </span><br><span class="line">                 ⠉⠙⠓⠒⠒⠒⠚⠋⠉</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">                           ⢀⠤⡀  </span><br><span class="line"> ⢠⠊⣉⠒⠤⢀⡀          ⡐⢁⠴⢜⢄  </span><br><span class="line"> ⡎⢸  ⠉⠐⠢⢌⠑⢄    ⡸  ⡆    ⠣⠱⡀  </span><br><span class="line"> ⡇⢸        ⣀⠗  ⠉⠉⠁  ⠙⠢⠤⡀⢃⢱  </span><br><span class="line"> ⡇⠘⣄⢀⠔⠉                    ⠈⠁⠘⡄  </span><br><span class="line"> ⢇    ⠁                              ⠘⡄  </span><br><span class="line"> ⢸            ⢀⣀⣀⡀        ⢀⣀⣀⡀  ⢣  </span><br><span class="line"> ⡸        ⢴⣾⡿⠿⠽⠇        ⠘⠛⠛⠛  ⠈⢄  </span><br><span class="line">⠰⡁              ⢠⠒⠢⡀⠈⠒⠊      ⡠⢄  ⡘  </span><br><span class="line"> ⠱⣀          ⢀⠜    ⠇        ⢀⠔⠁  ⡏  </span><br><span class="line">     ⠑⠤⢄⣀⠔⠁    ⡜        ⠊⠁  ⢀⠜</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⡿⠷⠤⠒⠒⠒⠤⢄⡀  </span><br><span class="line">⠀⠀⠀⣠⣴⣿⣿⠟⠋⢀⠀⠀⠈⠐⠄⠀⠠⠀⢔⢁⠖⢄  </span><br><span class="line">⢀⣀⣜⣿⣿⡿⠁⠀⠀⠀⠁⠀⠀⠀⠀⢀⠄⠀⠂⠁⢌⠀⠟⢂⠄  </span><br><span class="line">⠁⣿⣾⣿⣿⠁⠁⠄⠀⠀⠀⠈⡀⠀⠀⠀⢀⠀⢄⡴⠒⢗⠠⢑⣄  </span><br><span class="line">⣿⣷⣿⣿⡇⠀⠀⠈⠄⠀⢀⠄⠂⠠⢤⡀⠊⠀⠀⠑⠒⠁⠀⢸⠘  </span><br><span class="line">⣿⣿⣿⣿⡇⠀⠀⠀⠈⠐⠁⠢⠀⠀⣢⠵⠄⠀⠀⠀⠀⠀⢀⢴⠶  </span><br><span class="line">⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⡀⢰⢃⣀⠌⠀⠀⠀⠀⣀⡦⠛⣻⡶⢶⣦⣄  </span><br><span class="line">⠀⠀⠹⣿⣿⣿⣄⠀⠀⠀⠀⠀⠁⠙⢀⠀⠀⢀⢠⡄⣎⢻⢱⣼⣄⠛⣼⡏⠉⢁⣄⣀⡀  </span><br><span class="line">⠀⠀⠀⠈⠉⢻⣿⣷⡀⠀⡀⠀⣀⠈⠀⠈⢉⣠⣾⣿⣏⠃⣓⠯⣷⠿⡀⢤⠐⠋⠫⡁⡀  </span><br><span class="line">⠀⠀⠀⠀⠀⠀⠙⢻⡿⢀⣿⣖⣤⢅⡟⣿⣬⠈⣿⣏⣋⣱⣯⡎⡪⢁⠌⠷⢀⣀⢰⣾⠆  </span><br><span class="line">⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣾⡽⢿⣿⡿⣿⣿⠀⣽⣿⣽⣉⠔⣿⣶⣧⣄⣄⣰⣿⡏⠉</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">⠀⠀⠀⠀⣾⣿⣿⣷⣄  </span><br><span class="line">⠀⠀⠀⢸⣿⣿⣿⣿⣿⣧⣴⣶⣶⣶⣄  </span><br><span class="line">⠀⠀⠀⣀⣿⣿⡿⠻⣿⣿⣿⣿⣿⣿⣿⡄  </span><br><span class="line">⠀⠀⠀⢇⠠⣏⡖⠒⣿⣿⣿⣿⣿⣿⣿⣧⡀  </span><br><span class="line">⠀⠀⢀⣷⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷  </span><br><span class="line">⠀⠀⢸⣿⣿⡿⢋⠁⠀⠀⠀⠀⠉⡙⢿⣿⣿⡇  </span><br><span class="line">⠀⠀⠘⣿⣿⠀⣿⠇⠀⢀⠀⠀⠘⣿⠀⣿⡿⠁  </span><br><span class="line">⠀⠀⠀⠈⠙⠷⠤⣀⣀⣐⣂⣀⣠⠤⠾⠋⠁</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>个人记录</category>
+      </categories>
+      <tags>
+        <tag>OvO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AutoHotkey —— 自动热键软件</title>
+    <url>/AutoHotkey1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+
+<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>以下全部建立在2.0.19版本的的基础上</p>
+</blockquote>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
+<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
+<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
+<li>双击脚本，即可运行</li>
+</ul>
+<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
+<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
+</blockquote>
+<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
+<ul>
+<li><code>#</code> ：win 键</li>
+<li><code>!</code> ：alt</li>
+<li><code>^</code> ：ctrl</li>
+<li><code>+</code> ：shift</li>
+<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
+</ul>
+<blockquote>
+<p><code>^q</code> 即代表ctrl + q</p>
+</blockquote>
+<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
+<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p>把需要开机启动的脚本，放入 “启动” 文件夹即可。</p>
+<p>目录：{C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup}</p>
+<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
+<li>一个脚本里可以有多个热键</li>
+<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
+</ul>
+<hr>
+<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+
+<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
+<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
+]]></content>
+      <categories>
+        <category>利器OuO</category>
+      </categories>
+      <tags>
+        <tag>AutoHotkey</tag>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git 学习——实践部分</title>
     <url>/git_0.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
@@ -212,6 +203,61 @@
 <span id="more"></span>
 <p>git init 初始化<br>git add .  添加所有文件到Git管理<br>git config –global user.name &lt;此处输入你的GitHub用户名&gt;<br>git config –global user.email &lt;此处输入绑定的邮箱地址&gt;<br>git commit -m “my first commit” 提交并注释</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将本地仓库关联到远程仓库 origin，&lt;这里填入第2步中看到的远程仓库地址&gt;</span></span><br><span class="line">git remote add origin &lt;远程仓库地址&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从远程 master 分支拉取最新代码并在本地进行 rebase，保证提交历史整洁</span></span><br><span class="line">git pull --rebase origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地 master 分支的提交推送到远程 origin 仓库，并设置 upstream（后续可以直接 git push）</span></span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 学习——远程仓库部分</title>
+    <url>/git_2.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——远程仓库部分 oio</p>
+<style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+<p><code>git clone</code>在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。</p>
+<p>远程分支反映了远程仓库**(在你上次和它通信时)的状态。**</p>
+<p>远程分支的命名格式：- <code>&lt;remote name&gt;/&lt;branch name&gt;</code><br>e.g. 如果你看到一个名为 <code>origin/main</code> 的分支，那么这个分支就叫 <code>main</code>，远程仓库的名称就是 <code>origin</code>(git的默认远程仓库名称就是这个)</p>
+<p>远程分支有一个特别的属性，在你切换到远程分支时，自动进入分离 HEAD 状态。<br><code>git checkout o/main; git commit</code><br><font color="grey">当添加新的提交时 <code>o/main</code> 也不会更新。这是因为 <code>o/main</code> 只有在远程仓库中相应的分支更新了以后才会更新。</font></p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511231939516.png?40l" alt="image-20251123193905423"></p>
+<p><code>git fetch</code>从远程仓库<strong>获取数据</strong><br>将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
+<p>&#x2F;&#x2F; 通常通过互联网（使用 <code>http://</code> 或 <code>git://</code> 协议) 与远程仓库通信。<br>&#x2F;&#x2F;单纯的下载操作,但是<strong>并没有</strong>修改你本地的文件</p>
+<p><code>git pull</code> 下载他人的分享</p>
+<p><code>git pull</code> 就是 git fetch 和 git merge 的缩写</p>
+<p><code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
+<p>&#x2F;&#x2F;替代方法：</p>
+<ul>
+<li><code>git cherry-pick o/main</code></li>
+<li><code>git rebase o/main</code></li>
+<li><code>git merge o/main</code></li>
+</ul>
+<p><code>git fakeTeamwork &lt;分支名&gt; &lt;数量&gt;</code><br>默认操作就是在远程仓库的 main 分支上做一次提交，但通过参数可以调整分支和数量。</p>
+<p><code>git push</code> 将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录</p>
+<blockquote>
+<p>[!NOTE]<br> <em>注意 —— <code>git push</code> 不带任何参数时的行为与 Git 的一个名为 <code>push.default</code> 的配置有关。它的默认值取决于你正使用的 Git 的版本，但是在教程中我们使用的是 <code>upstream</code>。 这没什么太大的影响，但是在你的项目中进行推送之前，最好检查一下这个配置。</em></p>
+</blockquote>
+]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -568,58 +614,127 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 学习——远程仓库部分</title>
-    <url>/git_2.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——远程仓库部分 oio</p>
-<style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
+    <title>The Linux Command Line阅读记录</title>
+    <url>/read_the_linux_command_line.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>介绍 Linux 命令行的入门书</p>
 <span id="more"></span>
-<p><code>git clone</code>在真实的环境下的作用是在<strong>本地</strong>创建一个远程仓库的拷贝（比如从 github.com）。</p>
-<p>远程分支反映了远程仓库**(在你上次和它通信时)的状态。**</p>
-<p>远程分支的命名格式：- <code>&lt;remote name&gt;/&lt;branch name&gt;</code><br>e.g. 如果你看到一个名为 <code>origin/main</code> 的分支，那么这个分支就叫 <code>main</code>，远程仓库的名称就是 <code>origin</code>(git的默认远程仓库名称就是这个)</p>
-<p>远程分支有一个特别的属性，在你切换到远程分支时，自动进入分离 HEAD 状态。<br><code>git checkout o/main; git commit</code><br><font color="grey">当添加新的提交时 <code>o/main</code> 也不会更新。这是因为 <code>o/main</code> 只有在远程仓库中相应的分支更新了以后才会更新。</font></p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511231939516.png?40l" alt="image-20251123193905423"></p>
-<p><code>git fetch</code>从远程仓库<strong>获取数据</strong><br>将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
-<p>&#x2F;&#x2F; 通常通过互联网（使用 <code>http://</code> 或 <code>git://</code> 协议) 与远程仓库通信。<br>&#x2F;&#x2F;单纯的下载操作,但是<strong>并没有</strong>修改你本地的文件</p>
-<p><code>git pull</code> 下载他人的分享</p>
-<p><code>git pull</code> 就是 git fetch 和 git merge 的缩写</p>
-<p><code>git pull --rebase</code> 就是 fetch 和 rebase 的简写！</p>
-<p>&#x2F;&#x2F;替代方法：</p>
-<ul>
-<li><code>git cherry-pick o/main</code></li>
-<li><code>git rebase o/main</code></li>
-<li><code>git merge o/main</code></li>
-</ul>
-<p><code>git fakeTeamwork &lt;分支名&gt; &lt;数量&gt;</code><br>默认操作就是在远程仓库的 main 分支上做一次提交，但通过参数可以调整分支和数量。</p>
-<p><code>git push</code> 将<strong>你的</strong>变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录</p>
+
+<div class="tabs" id="入门"><ul class="nav-tabs"><li class="tab active"><a href="#入门-1">快捷键与命令</a></li><li class="tab"><a href="#入门-2">通配符</a></li></ul><div class="tab-content"><div class="tab-pane active" id="入门-1"><p>快捷键与命令</p>
+<table>
+<thead>
+<tr>
+<th>按键&#x2F;命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>选中文字+鼠标中键</td>
+<td>复制粘贴</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>显示系统当前时间和日期</td>
+</tr>
+<tr>
+<td><code>cal</code></td>
+<td>显示当前月份的日历</td>
+</tr>
+<tr>
+<td><code>df</code></td>
+<td>查看磁盘剩余空间的数量</td>
+</tr>
+<tr>
+<td><code>free</code></td>
+<td>显示空闲内存的数量</td>
+</tr>
+<tr>
+<td>Alt 和 F1-F6(中的一个)</td>
+<td>命令行→图形化</td>
+</tr>
+<tr>
+<td>Ctrl-Alt-F6</td>
+<td>图形化→命令行</td>
+</tr>
+<tr>
+<td><code>cd ~user_name</code></td>
+<td>更改工作目录到用户家目录。例如, cd ~bob 会更改工作目录到用户“bob”的家目录。</td>
+</tr>
+</tbody></table>
 <blockquote>
-<p>[!NOTE]<br> <em>注意 —— <code>git push</code> 不带任何参数时的行为与 Git 的一个名为 <code>push.default</code> 的配置有关。它的默认值取决于你正使用的 Git 的版本，但是在教程中我们使用的是 <code>upstream</code>。 这没什么太大的影响，但是在你的项目中进行推送之前，最好检查一下这个配置。</em></p>
-</blockquote>
+<p>如果你按下鼠标左键，沿着文本拖动鼠标（或者双击一个单词）高亮了一些文本， 那么这些高亮的文本就被拷贝到了一个由 X 管理的缓冲区里面。然后按下鼠标中键， 这些文本就被粘贴到光标所在的位置。</p>
+</blockquote></div><div class="tab-pane" id="入门-2"><p>通配符</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>匹配任意多个字符（包括零个或一个）</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配任意一个字符（不包括零个）</td>
+</tr>
+<tr>
+<td>[characters]</td>
+<td>匹配任意一个属于字符集中的字符</td>
+</tr>
+<tr>
+<td>[!characters]</td>
+<td>匹配任意一个不是字符集中的字符</td>
+</tr>
+<tr>
+<td>[[:class:]]</td>
+<td>匹配任意一个属于指定字符类中的字符|<code>[123][0-9]</code></td>
+</tr>
+</tbody></table>
+<p>普遍使用的字符类</p>
+<table>
+<thead>
+<tr>
+<th>字符类</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[:alnum:]</td>
+<td>匹配任意一个字母或数字</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>匹配任意一个字母</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>匹配任意一个数字</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>匹配任意一个小写字母</td>
+</tr>
+<tr>
+<td>[:upper]</td>
+<td>匹配任意一个大写字母</td>
+</tr>
+</tbody></table></div></div></div>
+
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln file link</span><br></pre></td></tr></table></figure>
+
+<p>创建硬链接，和：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s item link</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>笔记</category>
+        <category>阅读记录</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -843,130 +958,6 @@
       <tags>
         <tag>Linux</tag>
         <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>The Linux Command Line阅读记录</title>
-    <url>/read_the_linux_command_line.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>介绍 Linux 命令行的入门书</p>
-<span id="more"></span>
-
-<div class="tabs" id="入门"><ul class="nav-tabs"><li class="tab active"><a href="#入门-1">快捷键与命令</a></li><li class="tab"><a href="#入门-2">通配符</a></li></ul><div class="tab-content"><div class="tab-pane active" id="入门-1"><p>快捷键与命令</p>
-<table>
-<thead>
-<tr>
-<th>按键&#x2F;命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>选中文字+鼠标中键</td>
-<td>复制粘贴</td>
-</tr>
-<tr>
-<td><code>date</code></td>
-<td>显示系统当前时间和日期</td>
-</tr>
-<tr>
-<td><code>cal</code></td>
-<td>显示当前月份的日历</td>
-</tr>
-<tr>
-<td><code>df</code></td>
-<td>查看磁盘剩余空间的数量</td>
-</tr>
-<tr>
-<td><code>free</code></td>
-<td>显示空闲内存的数量</td>
-</tr>
-<tr>
-<td>Alt 和 F1-F6(中的一个)</td>
-<td>命令行→图形化</td>
-</tr>
-<tr>
-<td>Ctrl-Alt-F6</td>
-<td>图形化→命令行</td>
-</tr>
-<tr>
-<td><code>cd ~user_name</code></td>
-<td>更改工作目录到用户家目录。例如, cd ~bob 会更改工作目录到用户“bob”的家目录。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>如果你按下鼠标左键，沿着文本拖动鼠标（或者双击一个单词）高亮了一些文本， 那么这些高亮的文本就被拷贝到了一个由 X 管理的缓冲区里面。然后按下鼠标中键， 这些文本就被粘贴到光标所在的位置。</p>
-</blockquote></div><div class="tab-pane" id="入门-2"><p>通配符</p>
-<table>
-<thead>
-<tr>
-<th>通配符</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配任意多个字符（包括零个或一个）</td>
-</tr>
-<tr>
-<td>?</td>
-<td>匹配任意一个字符（不包括零个）</td>
-</tr>
-<tr>
-<td>[characters]</td>
-<td>匹配任意一个属于字符集中的字符</td>
-</tr>
-<tr>
-<td>[!characters]</td>
-<td>匹配任意一个不是字符集中的字符</td>
-</tr>
-<tr>
-<td>[[:class:]]</td>
-<td>匹配任意一个属于指定字符类中的字符|<code>[123][0-9]</code></td>
-</tr>
-</tbody></table>
-<p>普遍使用的字符类</p>
-<table>
-<thead>
-<tr>
-<th>字符类</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>[:alnum:]</td>
-<td>匹配任意一个字母或数字</td>
-</tr>
-<tr>
-<td>[:alpha:]</td>
-<td>匹配任意一个字母</td>
-</tr>
-<tr>
-<td>[:digit:]</td>
-<td>匹配任意一个数字</td>
-</tr>
-<tr>
-<td>[:lower:]</td>
-<td>匹配任意一个小写字母</td>
-</tr>
-<tr>
-<td>[:upper]</td>
-<td>匹配任意一个大写字母</td>
-</tr>
-</tbody></table></div></div></div>
-
-
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln file link</span><br></pre></td></tr></table></figure>
-
-<p>创建硬链接，和：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s item link</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>阅读记录</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1217,6 +1208,41 @@
       </categories>
       <tags>
         <tag>error</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络学习笔记</title>
+    <url>/wangluo_1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512012004908.png" alt="image-20251201200416861"></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -1620,41 +1646,6 @@
       </categories>
       <tags>
         <tag>参考</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络学习笔记</title>
-    <url>/wangluo_1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512012004908.png" alt="image-20251201200416861"></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
       </tags>
   </entry>
 </search>
