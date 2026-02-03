@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.lanouo.xyz/AutoHotkey1.html</loc>
+    <lastmod>2026-02-03</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/undefined.html</loc>
+    <lastmod>2026-02-02</lastmod>
+  </url>
+  <url>
     <loc>http://blog.lanouo.xyz/ascii_art.html</loc>
     <lastmod>2026-02-01</lastmod>
   </url>
@@ -51,10 +59,6 @@
   <url>
     <loc>http://blog.lanouo.xyz/git_2.html</loc>
     <lastmod>2025-11-25</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/AutoHotkey1.html</loc>
-    <lastmod>2025-11-13</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.xyz/docker_note1.html</loc>
