@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.lanouo.xyz/reference.html</loc>
+    <lastmod>2026-04-14</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/git_progit.html</loc>
+    <lastmod>2026-04-14</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/read_the_linux_command_line.html</loc>
+    <lastmod>2026-04-14</lastmod>
+  </url>
+  <url>
     <loc>http://blog.lanouo.xyz/hexo_1.html</loc>
     <lastmod>2026-04-14</lastmod>
   </url>
@@ -29,18 +41,6 @@
     <lastmod>2026-03-12</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/read_the_linux_command_line.html</loc>
-    <lastmod>2026-03-09</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/reference.html</loc>
-    <lastmod>2026-03-08</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/git_progit.html</loc>
-    <lastmod>2026-03-08</lastmod>
-  </url>
-  <url>
     <loc>http://blog.lanouo.xyz/AutoHotkey1.html</loc>
     <lastmod>2026-02-03</lastmod>
   </url>
@@ -58,10 +58,6 @@
   </url>
   <url>
     <loc>http://blog.lanouo.xyz/hadoop2.html</loc>
-    <lastmod>2026-01-18</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/Python_1.html</loc>
     <lastmod>2026-01-18</lastmod>
   </url>
   <url>
