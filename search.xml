@@ -371,8 +371,81 @@
       </tags>
   </entry>
   <entry>
-    <title>Hadoop入门</title>
-    <url>/hadoop1.html</url>
+    <title>Hexo文档编写记录</title>
+    <url>/hexo_1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>为了方便查阅属性而产生的记录，<a href="https://www.lifeee.top/posts/35048.html">更全的版本指路</a></p>
+<span id="more"></span>
+
+<h1 id="HTML扩展"><a href="#HTML扩展" class="headerlink" title="HTML扩展"></a>HTML扩展</h1><h2 id="键盘按键标签"><a href="#键盘按键标签" class="headerlink" title="键盘按键标签"></a>键盘按键标签</h2><p><kbd>Ctrl</kbd>+<kbd>z</kbd></p>
+<p><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Z&lt;/kbd&gt;</code></p>
+<h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><span  style="color: #729871; ">先给点颜色你看看</span></p>
+<p><code>&lt;span style=&quot;color: #729871; &quot;&gt;先给点颜色你看看&lt;/span&gt;</code></p>
+<h3 id="字体大小"><a href="#字体大小" class="headerlink" title="字体大小"></a>字体大小</h3><p><span  style="font-size:1.3em;">改变字体大小</span></p>
+<p><code>&lt;span style=&quot;font-size:1.3em;&quot;&gt;改变字体大小&lt;/span&gt;</code></p>
+<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p style="text-align:center">试试内容居中</p>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span> //right left</span><br><span class="line">试试内容居中</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="带颜色的分割线"><a href="#带颜色的分割线" class="headerlink" title="带颜色的分割线"></a>带颜色的分割线</h2><hr style="background-color : green;">
+
+<p><code>&lt;hr style=&quot;background-color : green;&quot;&gt;</code></p>
+<h1 id="Next主题特有的语法"><a href="#Next主题特有的语法" class="headerlink" title="Next主题特有的语法"></a>Next主题特有的语法</h1><h2 id="带引用样式的居中"><a href="#带引用样式的居中" class="headerlink" title="带引用样式的居中"></a>带引用样式的居中</h2><blockquote class="blockquote-center">
+<p>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
+<p>——王维《竹里馆》</p>
+
+</blockquote>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%cq%&#125;</span><br><span class="line"></span><br><span class="line">独坐幽篁里，弹琴复长啸。</span><br><span class="line">深林人不知，明月来相照。</span><br><span class="line"></span><br><span class="line">——王维《竹里馆》</span><br><span class="line"></span><br><span class="line">&#123;%endcq%&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><div class="note default"><p>default 提示块标签</p>
+</div>
+
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+
+<div class="note success"><p>success 提示块标签</p>
+</div>
+
+<div class="note info"><p>info 提示块标签</p>
+</div>
+
+<div class="note warning"><p>warning 提示块标签</p>
+</div>
+
+<div class="note danger"><p>danger 提示块标签</p>
+</div>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 选项卡 2 %&#125;</span><br><span class="line">&lt;!-- tab 自定义名称1 --&gt;</span><br><span class="line">这是选项卡 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称2 --&gt;</span><br><span class="line">这是选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称3 --&gt;</span><br><span class="line">这是选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div class="tabs" id="选项卡-2"><ul class="nav-tabs"><li class="tab active"><a href="#选项卡-2-1">自定义名称1</a></li><li class="tab"><a href="#选项卡-2-2">自定义名称2</a></li><li class="tab"><a href="#选项卡-2-3">自定义名称3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="选项卡-2-1"><p>这是选项卡 1</p></div><div class="tab-pane" id="选项卡-2-2"><p>这是选项卡 2</p></div><div class="tab-pane" id="选项卡-2-3"><p>这是选项卡 3</p></div></div></div>
+
+
+
+<h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><p><i class="fa fa-camera-retro fa-lg"></i> fa-lg<br><i class="fa fa-camera-retro fa-2x"></i> fa-2x<br><i class="fa fa-camera-retro fa-3x"></i> fa-3x<br><i class="fa fa-camera-retro fa-4x"></i> fa-4x<br><i class="fa fa-camera-retro fa-5x"></i> fa-5x</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-lg&quot;&gt;&lt;/i&gt; fa-lg</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-2x&quot;&gt;&lt;/i&gt; fa-2x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-3x&quot;&gt;&lt;/i&gt; fa-3x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-4x&quot;&gt;&lt;/i&gt; fa-4x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-5x&quot;&gt;&lt;/i&gt; fa-5x</span><br></pre></td></tr></table></figure>
+
+<h2 id="Button标签"><a href="#Button标签" class="headerlink" title="Button标签"></a>Button标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 标签 方式 --&gt;</span></span><br><span class="line">&#123;% button /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% btn /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- HTML标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>这是标签名Click Me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn #, Text %&#125;&#123;% btn #, Text &amp; Title, home, Title %&#125;</span><br></pre></td></tr></table></figure>
+
+<a class="btn" href="#">Text</a><a class="btn" href="#" title="Title"><i class="fa fa-home"></i>Text & Title</a>
+
+<h2 id="label标签-带颜色的标记效果"><a href="#label标签-带颜色的标记效果" class="headerlink" title="label标签-带颜色的标记效果"></a>label标签-带颜色的标记效果</h2><p><strong>效果：</strong></p>
+<p>我坐在床前，望着窗外，<mark class="label ">回忆满天</mark>。生命是<mark class="label primary">华丽错觉</mark>，时间是贼偷走一切。</p>
+<p>七岁的那一年，抓住那只<mark class="label success">蝉</mark>，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能<mark class="label info">永远</mark>。</p>
+<p>有没有那么一种永远，<mark class="label warning">永远不改变</mark>，拥抱过的美丽，都再也不破碎。<br>让险峻岁月不能，在脸上撒野，让<mark class="label danger">生离和死别都遥远</mark>，有谁能听见。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line">我坐在床前，望着窗外，&#123;% label @回忆满天 %&#125;。生命是&#123;% label primary @华丽错觉 %&#125;，时间是贼偷走一切。</span><br><span class="line"></span><br><span class="line">七岁的那一年，抓住那只&#123;% label success @蝉 %&#125;，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能&#123;% label info @永远 %&#125;。</span><br><span class="line"></span><br><span class="line">有没有那么一种永远，&#123;% label warning @永远不改变 %&#125;，拥抱过的美丽，都再也不破碎。</span><br><span class="line">让险峻岁月不能，在脸上撒野，让&#123;% label danger @生离和死别都遥远 %&#125;，有谁能听见。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pro Git学习记录</title>
+    <url>/git_progit.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
     .inline-note {
       display: inline-block;
@@ -394,328 +467,85 @@
       box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
     }
 </style>
-<p> 一些关于Hadoop的理论知识</p>
 <span id="more"></span>
+<h2 id="文件的三种状态"><a href="#文件的三种状态" class="headerlink" title="文件的三种状态"></a>文件的三种状态</h2><p><strong>已提交（committed）</strong> 表示该文件已经被安全地保存在本地数据库中了。<br><strong>已修改（modified）</strong> 表示修改了某个文件，但还没有提交保存。<br><strong>已暂存（staged）</strong> 表示把已修改的文件放在下次提交时要保存的清单中。</p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512171533481.png" alt="图1-1.工作目录，暂存目录，以及本地仓库"></p>
 <blockquote>
-<p>本篇文章将全篇以 Hadoop 2.x 为基础为大家介绍 Hadoop</p>
-<blockquote>
-<p>Hadoop 2.x 起，YARN 替代了原本的 JobTracker&#x2F;TaskTracker 模式，引入 ResourceManager 与 ApplicationMaster，将资源管理与作业调度解耦。</p>
+<p>暂存区域只不过是个简单的文件，一般都放在 Git 目录中。有时候人们会把这个文件叫做索引文件，不过标准说法还是叫暂存区域</p>
 </blockquote>
-</blockquote>
-<hr>
-<h1 id="Hadoop-是什么？"><a href="#Hadoop-是什么？" class="headerlink" title="Hadoop 是什么？"></a>Hadoop 是什么？</h1><p><a class="inline-note" title="由 Apache 基金会开发，使用 Java 编写" href="https://hadoop.apache.org/">Hadoop</a> 是一个开源的、可扩展的、分布式的大数据处理框架。</p>
-<p>它的设计理念是：<strong>将数据分布到多台普通机器上，并让程序靠近数据运行（移动‘计算’，而不是移动‘数据’）</strong>。</p>
-<h2 id="优势与缺点"><a href="#优势与缺点" class="headerlink" title="优势与缺点"></a>优势与缺点</h2><p>✅ <strong>优势</strong></p>
+<p><strong>基本的 Git 工作流程如下：</strong></p>
+<ol>
+<li>在工作目录中修改某些文件。</li>
+<li>对修改后的文件进行快照，然后保存到暂存区域。</li>
+<li>提交更新，将保存在暂存区域的文件快照永久转储到 Git 目录中。</li>
+</ol>
+<h2 id="初次运行Git的配置"><a href="#初次运行Git的配置" class="headerlink" title="初次运行Git的配置"></a>初次运行Git的配置</h2><p> 查看 Git 配置：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list # 查看当前仓库及全局配置 </span><br><span class="line">git config --global --list # 查看全局配置</span><br></pre></td></tr></table></figure>
+<h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的名字&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><strong>高可靠性</strong>：Hadoop 通过数据<code>多副本机制</code>，确保即使部分节点发生故障，数据依然不会丢失。</li>
-<li><strong>高扩展性</strong>：可<code>横向扩展</code>到成百上千台普通服务器，支持大规模数据处理。</li>
-<li><strong>高效性</strong>：基于 MapReduce <code>并行处理</code>模型，能够显著加快数据处理速度。</li>
-<li><strong>高容错性</strong>：节点或任务失败时，系统能<code>自动检测并重新调度任务</code>，保障任务完成。</li>
+<li><code>--global</code>：表示全局设置，作用于所有仓库；去掉就是只对当前仓库生效。</li>
 </ul>
-<p>❎ <strong>缺点</strong></p>
-<ul>
-<li>MapReduce 编程模型对<strong>实时性不友好</strong>（批处理，延迟高）；</li>
-<li>编程门槛相对较高；</li>
-<li>数据随机访问性能差；</li>
-<li>运维成本大，对硬件和配置依赖强。</li>
-</ul>
-<h1 id="Hadoop-生态系统"><a href="#Hadoop-生态系统" class="headerlink" title="Hadoop 生态系统"></a>Hadoop 生态系统</h1><table>
-<thead>
-<tr>
-<th>组件</th>
-<th>功能描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Hadoop HDFS</strong></td>
-<td>Hadoop 分布式存储系统</td>
-</tr>
-<tr>
-<td><strong>MapReduce</strong></td>
-<td>并行处理框架</td>
-</tr>
-<tr>
-<td><strong>YARN</strong></td>
-<td>资源管理与调度</td>
-</tr>
-<tr>
-<td><strong>Hive</strong></td>
-<td>基于 SQL 的数据仓库工具</td>
-</tr>
-<tr>
-<td><strong>Pig</strong></td>
-<td>数据流脚本语言</td>
-</tr>
-<tr>
-<td><strong>HBase</strong></td>
-<td>分布式列式数据库</td>
-</tr>
-<tr>
-<td><strong>Sqoop</strong></td>
-<td>与关系型数据库之间导入导出</td>
-</tr>
-<tr>
-<td><strong>Flume</strong></td>
-<td>收集日志数据流入 Hadoop</td>
-</tr>
-<tr>
-<td><strong>Zookeeper</strong></td>
-<td>分布式协调服务，提供统一的注册、选举和配置服务（常用于 HBase）</td>
-</tr>
-<tr>
-<td><strong>Oozie</strong></td>
-<td>工作流调度工具</td>
-</tr>
-<tr>
-<td><strong>Spark</strong></td>
-<td>基于内存的快速大数据计算框架</td>
-</tr>
-</tbody></table>
-<p>接下来为大家介绍三个核心组件（HDFS、MapReduce、YARN）^^</p>
-<h2 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h2><p>分布式文件系统，负责<strong>存储数据</strong>。</p>
-<ul>
-<li><p>类似于普通文件系统，但它将文件切分成多个块，分散存储在集群中的多台机器上。</p>
-</li>
-<li><p>每个数据块默认会备份三份，保证<strong>容错性和高可用性</strong>。</p>
-</li>
-<li><p>主节点：<code>NameNode</code>，存储元数据（文件名、位置等）；</p>
-</li>
-<li><p>从节点：<code>DataNode</code>，存储真实数据块。</p>
-</li>
-</ul>
-<h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>分布式计算框架，负责<strong>计算数据</strong>。</p>
-<ul>
-<li><p>编程模型包含两个阶段：Map（映射） 和 Reduce（归约）；</p>
-</li>
-<li><p>用户编写 Map 和 Reduce 函数，框架负责将任务分发到多台机器上执行；</p>
-</li>
-<li><p>特点是<strong>高度容错</strong>，适合批处理。</p>
-</li>
-</ul>
-<blockquote>
-<p>它会把计算任务移动到离数据最近的地方进行执行，因为移动大量数据是非常耗费资源的。</p>
-</blockquote>
-<h2 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h2><p>资源管理系统，负责<strong>资源调度</strong>。</p>
-<ul>
-<li><p>资源管理和任务调度&#x2F;监控功分割成不同的进程</p>
-</li>
-<li><p>主节点：<code>ResourceManager</code>，负责给 application 分配资源</p>
-</li>
-<li><p>从节点：<code>NodeManager</code> ，负责监控容器使用资源情况，并把资源使用情况报告 ResourceManager。这里所说的资源一般是指CPU、内存、磁盘、网络等。</p>
-</li>
-</ul>
-<h1 id="Hadoop工作方式"><a href="#Hadoop工作方式" class="headerlink" title="Hadoop工作方式"></a>Hadoop工作方式</h1><h2 id="主从工作方式"><a href="#主从工作方式" class="headerlink" title="主从工作方式"></a>主从工作方式</h2><p>一个 Master 和多个 Slave 节点，Slave 节点可以扩招到1000个</p>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>主节点（Master）</th>
-<th>从节点（Slave）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>主要职责</strong></td>
-<td>负责元数据管理、任务调度、资源分配等控制类工作</td>
-<td>执行实际的存储或计算任务，如保存数据块、运行 MapReduce 任务等</td>
-</tr>
-<tr>
-<td><strong>HDFS 中角色</strong></td>
-<td><code>NameNode</code>（存储文件系统的目录结构、数据块位置等元数据）</td>
-<td><code>DataNode</code>（存储实际的数据块）</td>
-</tr>
-<tr>
-<td><strong>YARN 中角色</strong></td>
-<td><code>ResourceManager</code>（管理集群资源）<br><code>ApplicationMaster</code>（调度某个应用的任务）</td>
-<td><code>NodeManager</code>（管理本节点资源并报告给 ResourceManager）<br><code>Container</code>（执行任务）</td>
-</tr>
-<tr>
-<td><strong>容错机制</strong></td>
-<td>通常单点故障（如 <code>NameNode</code>）需配置**高可用模式（HA）**来避免整个集群瘫痪</td>
-<td>任意从节点故障，系统可自动将任务&#x2F;副本转移到其他节点，影响较小</td>
-</tr>
-<tr>
-<td><strong>故障影响</strong></td>
-<td>故障可能导致整个系统不可用或任务调度失败</td>
-<td>局部计算或存储失败，影响有限，系统具备自动容错能力</td>
-</tr>
-<tr>
-<td><strong>硬件要求</strong></td>
-<td>对稳定性、内存、网络、磁盘性能要求较高</td>
-<td>可使用普通服务器，但需数量足够以提供分布式计算&#x2F;存储能力</td>
-</tr>
-<tr>
-<td><strong>部署建议</strong></td>
-<td>建议部署在可靠性高、性能优的节点上，并开启冗余&#x2F;主备机制</td>
-<td>可大规模横向扩展，支持动态加入或移除</td>
-</tr>
-</tbody></table>
-<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>Hadoop 主要有4个守护进程:</p>
-<ul>
-<li>NameNode ：它是HDFS运行在Master节点守护进程。</li>
-<li>DataNode：它是 HDFS 运行在Slave节点守护进程。</li>
-<li>ResourceManager：它是 Yarn 运行在 Master 节点守护进程。</li>
-<li>NodeManager：它是 Yarn 运行在 Slave 节点的守护进程。</li>
-</ul>
-<p>除了这些，可能还会有 secondary NameNode，standby NameNode，Job HistoryServer 等进程。</p>
-<h1 id="Hadoop-常用命令"><a href="#Hadoop-常用命令" class="headerlink" title="Hadoop 常用命令"></a>Hadoop 常用命令</h1><p><a href="https://hadoop.apache.ac.cn/docs/stable/hadoop-project-dist/hadoop-common/CommandsManual.html">Apache Hadoop 3.3.6 – Hadoop 命令指南 - Hadoop 框架</a></p>
-<h2 id="📁-HDFS-文件系统命令"><a href="#📁-HDFS-文件系统命令" class="headerlink" title="📁 HDFS 文件系统命令"></a>📁 HDFS 文件系统命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>hadoop fs -ls /</code></td>
-<td>查看根目录下的文件和目录</td>
-</tr>
-<tr>
-<td><code>hadoop fs -mkdir /data</code></td>
-<td>创建新目录 <code>/data</code></td>
-</tr>
-<tr>
-<td><code>hadoop fs -put localfile.txt /data/</code></td>
-<td>上传本地文件到 HDFS</td>
-</tr>
-<tr>
-<td><code>hadoop fs -get /data/file.txt ./</code></td>
-<td>下载 HDFS 文件到本地</td>
-</tr>
-<tr>
-<td><code>hadoop fs -cat /data/file.txt</code></td>
-<td>查看 HDFS 中的文件内容</td>
-</tr>
-<tr>
-<td><code>hadoop fs -rm /data/file.txt</code></td>
-<td>删除 HDFS 中的文件</td>
-</tr>
-<tr>
-<td><code>hadoop fs -rm -r /data/</code></td>
-<td>递归删除目录及其内容</td>
-</tr>
-<tr>
-<td><code>hadoop fs -du -h /data</code></td>
-<td>查看目录或文件占用空间</td>
-</tr>
-<tr>
-<td><code>hadoop fs -chmod 755 /data</code></td>
-<td>修改 HDFS 中文件权限</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🚀-启动-关闭-Hadoop-集群"><a href="#🚀-启动-关闭-Hadoop-集群" class="headerlink" title="🚀 启动&#x2F;关闭 Hadoop 集群"></a>🚀 启动&#x2F;关闭 Hadoop 集群</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>start-dfs.sh</code></td>
-<td>启动 HDFS（NameNode 和 DataNode）</td>
-</tr>
-<tr>
-<td><code>stop-dfs.sh</code></td>
-<td>关闭 HDFS</td>
-</tr>
-<tr>
-<td><code>start-yarn.sh</code></td>
-<td>启动 YARN（ResourceManager 和 NodeManager）</td>
-</tr>
-<tr>
-<td><code>stop-yarn.sh</code></td>
-<td>关闭 YARN</td>
-</tr>
-<tr>
-<td><code>mr-jobhistory-daemon.sh start historyserver</code></td>
-<td>启动 MapReduce JobHistory 服务（可选）</td>
-</tr>
-<tr>
-<td><code>mr-jobhistory-daemon.sh stop historyserver</code></td>
-<td>停止 JobHistory 服务</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🧰-MapReduce-作业相关命令"><a href="#🧰-MapReduce-作业相关命令" class="headerlink" title="🧰 MapReduce 作业相关命令"></a>🧰 MapReduce 作业相关命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>hadoop jar yourjob.jar MainClass /input /output</code></td>
-<td>提交 MapReduce 作业</td>
-</tr>
-<tr>
-<td><code>yarn application -list</code></td>
-<td>查看正在运行的应用</td>
-</tr>
-<tr>
-<td><code>yarn application -status </code></td>
-<td>查看某个应用的状态</td>
-</tr>
-<tr>
-<td><code>yarn application -kill </code></td>
-<td>杀掉某个应用</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="📄-日志查看命令"><a href="#📄-日志查看命令" class="headerlink" title="📄 日志查看命令"></a>📄 日志查看命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>jps</code></td>
-<td>查看 Hadoop 组件进程（需安装 JDK）</td>
-</tr>
-<tr>
-<td><code>tail -f $HADOOP_HOME/logs/*.log</code></td>
-<td>实时查看日志输出</td>
-</tr>
-<tr>
-<td><code>less $HADOOP_HOME/logs/hadoop-*.log</code></td>
-<td>分页查看日志</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="🧪-其他实用命令"><a href="#🧪-其他实用命令" class="headerlink" title="🧪 其他实用命令"></a>🧪 其他实用命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>hdfs dfsadmin -report</code></td>
-<td>查看集群节点、容量、使用情况等摘要</td>
-</tr>
-<tr>
-<td><code>hdfs dfsadmin -safemode get</code></td>
-<td>查看当前是否处于安全模式</td>
-</tr>
-<tr>
-<td><code>hdfs dfsadmin -safemode leave</code></td>
-<td>退出安全模式</td>
-</tr>
-<tr>
-<td><code>hdfs dfs -test -e /path</code></td>
-<td>判断某路径是否存在（返回码为 0 表示存在）</td>
-</tr>
-<tr>
-<td><code>hdfs namenode -format</code></td>
-<td>格式化 HDFS（⚠️仅首次初始化）</td>
-</tr>
-</tbody></table>
+<h3 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global core.editor 编辑器命令/位置</span><br></pre></td></tr></table></figure>
+<h3 id="差异分析工具"><a href="#差异分析工具" class="headerlink" title="差异分析工具"></a>差异分析工具</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global merge.tool vimdiff</span><br></pre></td></tr></table></figure>
+<p>Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息</p>
 ]]></content>
       <categories>
-        <category>大数据</category>
+        <category>笔记</category>
       </categories>
       <tags>
-        <tag>Hadoop</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis安装修改密码</title>
+    <url>/errorlist_redis.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+
+
+
+<h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>官方docker容器配置文件设置——修改密码<br><a href="https://hub.docker.com/_/redis">docker-redis镜像</a><br>根据官方文档中的：</p>
+<blockquote>
+<h4 id="此外，如果您想使用自己的-redis-conf-文件……"><a href="#此外，如果您想使用自己的-redis-conf-文件……" class="headerlink" title="此外，如果您想使用自己的 redis.conf 文件……"></a>此外，如果您想使用自己的 redis.conf 文件……</h4><p>您可以创建自己的 Dockerfile，将上下文中的 redis.conf 添加到 &#x2F;data&#x2F; 中，如下所示。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> redis</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> redis.conf /usr/local/etc/redis/redis.conf</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+
+<p>或者，您也可以使用选项来指定类似的内容<code>docker run</code>。</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -v /myredis/conf:/usr/local/etc/redis --name myredis redis redis-server /usr/local/etc/redis/redis.conf</span></span><br></pre></td></tr></table></figure>
+
+<p><code>/myredis/conf/</code>本地目录下有你的<code>redis.conf</code>文件。使用此方法意味着你无需为 Redis 容器编写 Dockerfile。</p>
+<p>映射目录应该是可写的，因为根据配置和操作模式，Redis 可能需要创建额外的配置文件或重写现有的配置文件。</p>
+</blockquote>
+<p>这里我选择了第一种方法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建Dockerfile 和 自定义的redis配置文件</span></span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">mkdir</span> myredis </span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">cd</span> myredis/ </span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi redis.conf</span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi Dockerfile </span><br><span class="line"></span><br><span class="line">FROM redis</span><br><span class="line">COPY redis.conf /usr/local/etc/redis/redis.conf</span><br><span class="line">CMD [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建自定义Redis镜像</span></span><br><span class="line">lan@lan123ubuntu:~/myredis$ docker build -t myredis:custom . </span><br><span class="line">DEPRECATED: The legacy builder is deprecated and will be removed <span class="keyword">in</span> a future release. </span><br><span class="line">Install the buildx component to build images with BuildKit: https://docs.docker.com/go/buildx/ </span><br><span class="line">Sending build context to Docker daemon 3.072kB </span><br><span class="line">Step 1/3 : FROM redis:latest </span><br><span class="line">---&gt; 1c390e3bb5cb </span><br><span class="line">Step 2/3 : COPY redis.conf /usr/local/etc/redis/redis.conf </span><br><span class="line">---&gt; 5752eb06dda3 </span><br><span class="line">Step 3/3 : CMD [<span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span>] </span><br><span class="line">---&gt; Running <span class="keyword">in</span> 8f635c9589f5 </span><br><span class="line">---&gt; Removed intermediate container 8f635c9589f5 </span><br><span class="line">---&gt; 2988385cf884 </span><br><span class="line">Successfully built 2988385cf884 </span><br><span class="line">Successfully tagged myredis:custom </span><br><span class="line"><span class="comment">#启动镜像并设置开机自启</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name myredis \</span><br><span class="line">  -v redis-data:/data \</span><br><span class="line">  -p 6379:6379 \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  myredis:custom</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>解决方案存档</category>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>error</tag>
+        <tag>flutter</tag>
+        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -892,206 +722,6 @@
       <tags>
         <tag>Hadoop</tag>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo文档编写记录</title>
-    <url>/hexo_1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-
-<p>为了方便查阅属性而发生的记录，<a href="https://www.lifeee.top/posts/35048.html">更全的版本指路</a></p>
-<span id="more"></span>
-
-<h1 id="HTML扩展"><a href="#HTML扩展" class="headerlink" title="HTML扩展"></a>HTML扩展</h1><h2 id="键盘按键标签"><a href="#键盘按键标签" class="headerlink" title="键盘按键标签"></a>键盘按键标签</h2><p><kbd>Ctrl</kbd>+<kbd>z</kbd></p>
-<p><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Z&lt;/kbd&gt;</code></p>
-<h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><span  style="color: #729871; ">先给点颜色你看看</span></p>
-<p><code>&lt;span style=&quot;color: #729871; &quot;&gt;先给点颜色你看看&lt;/span&gt;</code></p>
-<h3 id="字体大小"><a href="#字体大小" class="headerlink" title="字体大小"></a>字体大小</h3><p><span  style="font-size:1.3em;">改变字体大小</span></p>
-<p><code>&lt;span style=&quot;font-size:1.3em;&quot;&gt;改变字体大小&lt;/span&gt;</code></p>
-<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p style="text-align:center">试试内容居中</p>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span> //right left</span><br><span class="line">试试内容居中</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="带颜色的分割线"><a href="#带颜色的分割线" class="headerlink" title="带颜色的分割线"></a>带颜色的分割线</h2><hr style="background-color : green;">
-
-<p><code>&lt;hr style=&quot;background-color : green;&quot;&gt;</code></p>
-<h1 id="Next主题特有的语法"><a href="#Next主题特有的语法" class="headerlink" title="Next主题特有的语法"></a>Next主题特有的语法</h1><h2 id="带引用样式的居中"><a href="#带引用样式的居中" class="headerlink" title="带引用样式的居中"></a>带引用样式的居中</h2><blockquote class="blockquote-center">
-<p>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
-<p>——王维《竹里馆》</p>
-
-</blockquote>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%cq%&#125;</span><br><span class="line"></span><br><span class="line">独坐幽篁里，弹琴复长啸。</span><br><span class="line">深林人不知，明月来相照。</span><br><span class="line"></span><br><span class="line">——王维《竹里馆》</span><br><span class="line"></span><br><span class="line">&#123;%endcq%&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><div class="note default"><p>default 提示块标签</p>
-</div>
-
-<div class="note primary"><p>primary 提示块标签</p>
-</div>
-
-<div class="note success"><p>success 提示块标签</p>
-</div>
-
-<div class="note info"><p>info 提示块标签</p>
-</div>
-
-<div class="note warning"><p>warning 提示块标签</p>
-</div>
-
-<div class="note danger"><p>danger 提示块标签</p>
-</div>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 选项卡 2 %&#125;</span><br><span class="line">&lt;!-- tab 自定义名称1 --&gt;</span><br><span class="line">这是选项卡 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称2 --&gt;</span><br><span class="line">这是选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称3 --&gt;</span><br><span class="line">这是选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<div class="tabs" id="选项卡-2"><ul class="nav-tabs"><li class="tab active"><a href="#选项卡-2-1">自定义名称1</a></li><li class="tab"><a href="#选项卡-2-2">自定义名称2</a></li><li class="tab"><a href="#选项卡-2-3">自定义名称3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="选项卡-2-1"><p>这是选项卡 1</p></div><div class="tab-pane" id="选项卡-2-2"><p>这是选项卡 2</p></div><div class="tab-pane" id="选项卡-2-3"><p>这是选项卡 3</p></div></div></div>
-
-
-
-<h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><p><i class="fa fa-camera-retro fa-lg"></i> fa-lg<br><i class="fa fa-camera-retro fa-2x"></i> fa-2x<br><i class="fa fa-camera-retro fa-3x"></i> fa-3x<br><i class="fa fa-camera-retro fa-4x"></i> fa-4x<br><i class="fa fa-camera-retro fa-5x"></i> fa-5x</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-lg&quot;&gt;&lt;/i&gt; fa-lg</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-2x&quot;&gt;&lt;/i&gt; fa-2x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-3x&quot;&gt;&lt;/i&gt; fa-3x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-4x&quot;&gt;&lt;/i&gt; fa-4x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-5x&quot;&gt;&lt;/i&gt; fa-5x</span><br></pre></td></tr></table></figure>
-
-<h2 id="Button标签"><a href="#Button标签" class="headerlink" title="Button标签"></a>Button标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 标签 方式 --&gt;</span></span><br><span class="line">&#123;% button /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% btn /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- HTML标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>这是标签名Click Me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn #, Text %&#125;&#123;% btn #, Text &amp; Title, home, Title %&#125;</span><br></pre></td></tr></table></figure>
-
-<a class="btn" href="#">Text</a><a class="btn" href="#" title="Title"><i class="fa fa-home"></i>Text & Title</a>
-
-<h2 id="label标签-带颜色的标记效果"><a href="#label标签-带颜色的标记效果" class="headerlink" title="label标签-带颜色的标记效果"></a>label标签-带颜色的标记效果</h2><p><strong>效果：</strong></p>
-<p>我坐在床前，望着窗外，<mark class="label ">回忆满天</mark>。生命是<mark class="label primary">华丽错觉</mark>，时间是贼偷走一切。</p>
-<p>七岁的那一年，抓住那只<mark class="label success">蝉</mark>，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能<mark class="label info">永远</mark>。</p>
-<p>有没有那么一种永远，<mark class="label warning">永远不改变</mark>，拥抱过的美丽，都再也不破碎。<br>让险峻岁月不能，在脸上撒野，让<mark class="label danger">生离和死别都遥远</mark>，有谁能听见。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line">我坐在床前，望着窗外，&#123;% label @回忆满天 %&#125;。生命是&#123;% label primary @华丽错觉 %&#125;，时间是贼偷走一切。</span><br><span class="line"></span><br><span class="line">七岁的那一年，抓住那只&#123;% label success @蝉 %&#125;，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能&#123;% label info @永远 %&#125;。</span><br><span class="line"></span><br><span class="line">有没有那么一种永远，&#123;% label warning @永远不改变 %&#125;，拥抱过的美丽，都再也不破碎。</span><br><span class="line">让险峻岁月不能，在脸上撒野，让&#123;% label danger @生离和死别都遥远 %&#125;，有谁能听见。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pro Git学习记录</title>
-    <url>/git_progit.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-<h2 id="文件的三种状态"><a href="#文件的三种状态" class="headerlink" title="文件的三种状态"></a>文件的三种状态</h2><p><strong>已提交（committed）</strong> 表示该文件已经被安全地保存在本地数据库中了。<br><strong>已修改（modified）</strong> 表示修改了某个文件，但还没有提交保存。<br><strong>已暂存（staged）</strong> 表示把已修改的文件放在下次提交时要保存的清单中。</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512171533481.png" alt="图1-1.工作目录，暂存目录，以及本地仓库"></p>
-<blockquote>
-<p>暂存区域只不过是个简单的文件，一般都放在 Git 目录中。有时候人们会把这个文件叫做索引文件，不过标准说法还是叫暂存区域</p>
-</blockquote>
-<p><strong>基本的 Git 工作流程如下：</strong></p>
-<ol>
-<li>在工作目录中修改某些文件。</li>
-<li>对修改后的文件进行快照，然后保存到暂存区域。</li>
-<li>提交更新，将保存在暂存区域的文件快照永久转储到 Git 目录中。</li>
-</ol>
-<h2 id="初次运行Git的配置"><a href="#初次运行Git的配置" class="headerlink" title="初次运行Git的配置"></a>初次运行Git的配置</h2><p> 查看 Git 配置：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list # 查看当前仓库及全局配置 </span><br><span class="line">git config --global --list # 查看全局配置</span><br></pre></td></tr></table></figure>
-<h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的名字&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>--global</code>：表示全局设置，作用于所有仓库；去掉就是只对当前仓库生效。</li>
-</ul>
-<h3 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global core.editor 编辑器命令/位置</span><br></pre></td></tr></table></figure>
-<h3 id="差异分析工具"><a href="#差异分析工具" class="headerlink" title="差异分析工具"></a>差异分析工具</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global merge.tool vimdiff</span><br></pre></td></tr></table></figure>
-<p>Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis安装修改密码</title>
-    <url>/errorlist_redis.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-
-
-
-<h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>官方docker容器配置文件设置——修改密码<br><a href="https://hub.docker.com/_/redis">docker-redis镜像</a><br>根据官方文档中的：</p>
-<blockquote>
-<h4 id="此外，如果您想使用自己的-redis-conf-文件……"><a href="#此外，如果您想使用自己的-redis-conf-文件……" class="headerlink" title="此外，如果您想使用自己的 redis.conf 文件……"></a>此外，如果您想使用自己的 redis.conf 文件……</h4><p>您可以创建自己的 Dockerfile，将上下文中的 redis.conf 添加到 &#x2F;data&#x2F; 中，如下所示。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> redis</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> redis.conf /usr/local/etc/redis/redis.conf</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
-
-<p>或者，您也可以使用选项来指定类似的内容<code>docker run</code>。</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -v /myredis/conf:/usr/local/etc/redis --name myredis redis redis-server /usr/local/etc/redis/redis.conf</span></span><br></pre></td></tr></table></figure>
-
-<p><code>/myredis/conf/</code>本地目录下有你的<code>redis.conf</code>文件。使用此方法意味着你无需为 Redis 容器编写 Dockerfile。</p>
-<p>映射目录应该是可写的，因为根据配置和操作模式，Redis 可能需要创建额外的配置文件或重写现有的配置文件。</p>
-</blockquote>
-<p>这里我选择了第一种方法</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建Dockerfile 和 自定义的redis配置文件</span></span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">mkdir</span> myredis </span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">cd</span> myredis/ </span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi redis.conf</span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi Dockerfile </span><br><span class="line"></span><br><span class="line">FROM redis</span><br><span class="line">COPY redis.conf /usr/local/etc/redis/redis.conf</span><br><span class="line">CMD [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建自定义Redis镜像</span></span><br><span class="line">lan@lan123ubuntu:~/myredis$ docker build -t myredis:custom . </span><br><span class="line">DEPRECATED: The legacy builder is deprecated and will be removed <span class="keyword">in</span> a future release. </span><br><span class="line">Install the buildx component to build images with BuildKit: https://docs.docker.com/go/buildx/ </span><br><span class="line">Sending build context to Docker daemon 3.072kB </span><br><span class="line">Step 1/3 : FROM redis:latest </span><br><span class="line">---&gt; 1c390e3bb5cb </span><br><span class="line">Step 2/3 : COPY redis.conf /usr/local/etc/redis/redis.conf </span><br><span class="line">---&gt; 5752eb06dda3 </span><br><span class="line">Step 3/3 : CMD [<span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span>] </span><br><span class="line">---&gt; Running <span class="keyword">in</span> 8f635c9589f5 </span><br><span class="line">---&gt; Removed intermediate container 8f635c9589f5 </span><br><span class="line">---&gt; 2988385cf884 </span><br><span class="line">Successfully built 2988385cf884 </span><br><span class="line">Successfully tagged myredis:custom </span><br><span class="line"><span class="comment">#启动镜像并设置开机自启</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name myredis \</span><br><span class="line">  -v redis-data:/data \</span><br><span class="line">  -p 6379:6379 \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  myredis:custom</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>解决方案存档</category>
-        <category>redis</category>
-      </categories>
-      <tags>
-        <tag>error</tag>
-        <tag>flutter</tag>
-        <tag>redis</tag>
       </tags>
   </entry>
   <entry>
@@ -1590,72 +1220,6 @@
       </tags>
   </entry>
   <entry>
-    <title>cs168</title>
-    <url>/cs168.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-<h1 id="引论"><a href="#引论" class="headerlink" title="引论"></a>引论</h1><h2 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h2><p>互联网是<strong>联邦制</strong>且具有可扩展性</p>
-<ol>
-<li><p><strong>联邦制</strong>：使得需要使用同一种<u>协议</u></p>
-</li>
-<li><p><strong>可扩展性</strong>：使得在设计时，不能围绕固定容量上限进行规划（因为容量与需求都在呈指数级增长）。</p>
-</li>
-</ol>
-<blockquote>
-<p><strong>协议</strong></p>
-<p>不同的协议是为不同的需求设计的，</p>
-<p>下面是一个简单的协议示例：Alice 和 Bob 先互相打招呼，然后 Alice 请求一个文件，Bob 再将文件返回。为了定义这个协议，我们需要明确：</p>
-<ul>
-<li><strong>语法（syntax）</strong>：例如，“给我这个文件”如何用 0 和 1 表示</li>
-<li><strong>语义（semantics）</strong>：例如，Alice 必须在收到 Bob 的问候之后，才能发送文件请求</li>
-</ul>
-<p>不同的协议是为不同需求设计的。例如，如果 Alice 希望尽可能快地获取文件，我们可以设计一个不包含初始问候阶段的协议。我们还需要考虑各种边界情况、错误以及恶意行为。</p>
-<p>例如，如果 Alice 请求文件，但 Bob 却回复了一个“hello”，那么 Alice 应该如何处理？</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192021380.png" alt="image-20260413192021275"></p>
-<blockquote>
-<p>好形象的图</p>
-</blockquote>
-<p>互联网：网络的网络</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192210610.png" alt="image-20260413192210513"></p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413193115702.png" alt="img"></p>
-<p>报头：源地址、目标地址</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413194140710.png" alt="image-20260413194140625"></p>
-<blockquote>
-<p>两边不一定非要对称，一边用某种方式另一边不一定得用同样的方式。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413195433604.png" alt="image-20260413195433503"></p>
-<hr>
-<p><a href="https://textbook.cs168.io/">https://textbook.cs168.io/</a></p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>secrect</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VSCode系编辑器使用技巧</title>
     <url>/vscode_trick.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
@@ -1765,6 +1329,415 @@
       <categories>
         <category>技巧</category>
       </categories>
+  </entry>
+  <entry>
+    <title>cs168</title>
+    <url>/cs168.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
+<h1 id="引论"><a href="#引论" class="headerlink" title="引论"></a>引论</h1><h2 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h2><p>互联网是<strong>联邦制</strong>且具有可扩展性</p>
+<ol>
+<li><p><strong>联邦制</strong>：使得需要使用同一种<u>协议</u></p>
+</li>
+<li><p><strong>可扩展性</strong>：使得在设计时，不能围绕固定容量上限进行规划（因为容量与需求都在呈指数级增长）。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>协议</strong></p>
+<p>不同的协议是为不同的需求设计的，</p>
+<p>下面是一个简单的协议示例：Alice 和 Bob 先互相打招呼，然后 Alice 请求一个文件，Bob 再将文件返回。为了定义这个协议，我们需要明确：</p>
+<ul>
+<li><strong>语法（syntax）</strong>：例如，“给我这个文件”如何用 0 和 1 表示</li>
+<li><strong>语义（semantics）</strong>：例如，Alice 必须在收到 Bob 的问候之后，才能发送文件请求</li>
+</ul>
+<p>不同的协议是为不同需求设计的。例如，如果 Alice 希望尽可能快地获取文件，我们可以设计一个不包含初始问候阶段的协议。我们还需要考虑各种边界情况、错误以及恶意行为。</p>
+<p>例如，如果 Alice 请求文件，但 Bob 却回复了一个“hello”，那么 Alice 应该如何处理？</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192021380.png" alt="image-20260413192021275"></p>
+<blockquote>
+<p>好形象的图</p>
+</blockquote>
+<p>互联网：网络的网络</p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192210610.png" alt="image-20260413192210513"></p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413193115702.png" alt="img"></p>
+<p>报头：源地址、目标地址</p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413194140710.png" alt="image-20260413194140625"></p>
+<blockquote>
+<p>两边不一定非要对称，一边用某种方式另一边不一定得用同样的方式。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413195433604.png" alt="image-20260413195433503"></p>
+<hr>
+<p><a href="https://textbook.cs168.io/">https://textbook.cs168.io/</a></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>secrect</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop入门</title>
+    <url>/hadoop1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p> 一些关于Hadoop的理论知识</p>
+<span id="more"></span>
+<blockquote>
+<p>本篇文章将全篇以 Hadoop 2.x 为基础为大家介绍 Hadoop</p>
+<blockquote>
+<p>Hadoop 2.x 起，YARN 替代了原本的 JobTracker&#x2F;TaskTracker 模式，引入 ResourceManager 与 ApplicationMaster，将资源管理与作业调度解耦。</p>
+</blockquote>
+</blockquote>
+<hr>
+<h1 id="Hadoop-是什么？"><a href="#Hadoop-是什么？" class="headerlink" title="Hadoop 是什么？"></a>Hadoop 是什么？</h1><p><a class="inline-note" title="由 Apache 基金会开发，使用 Java 编写" href="https://hadoop.apache.org/">Hadoop</a> 是一个开源的、可扩展的、分布式的大数据处理框架。</p>
+<p>它的设计理念是：<strong>将数据分布到多台普通机器上，并让程序靠近数据运行（移动‘计算’，而不是移动‘数据’）</strong>。</p>
+<h2 id="优势与缺点"><a href="#优势与缺点" class="headerlink" title="优势与缺点"></a>优势与缺点</h2><p>✅ <strong>优势</strong></p>
+<ul>
+<li><strong>高可靠性</strong>：Hadoop 通过数据<code>多副本机制</code>，确保即使部分节点发生故障，数据依然不会丢失。</li>
+<li><strong>高扩展性</strong>：可<code>横向扩展</code>到成百上千台普通服务器，支持大规模数据处理。</li>
+<li><strong>高效性</strong>：基于 MapReduce <code>并行处理</code>模型，能够显著加快数据处理速度。</li>
+<li><strong>高容错性</strong>：节点或任务失败时，系统能<code>自动检测并重新调度任务</code>，保障任务完成。</li>
+</ul>
+<p>❎ <strong>缺点</strong></p>
+<ul>
+<li>MapReduce 编程模型对<strong>实时性不友好</strong>（批处理，延迟高）；</li>
+<li>编程门槛相对较高；</li>
+<li>数据随机访问性能差；</li>
+<li>运维成本大，对硬件和配置依赖强。</li>
+</ul>
+<h1 id="Hadoop-生态系统"><a href="#Hadoop-生态系统" class="headerlink" title="Hadoop 生态系统"></a>Hadoop 生态系统</h1><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Hadoop HDFS</strong></td>
+<td>Hadoop 分布式存储系统</td>
+</tr>
+<tr>
+<td><strong>MapReduce</strong></td>
+<td>并行处理框架</td>
+</tr>
+<tr>
+<td><strong>YARN</strong></td>
+<td>资源管理与调度</td>
+</tr>
+<tr>
+<td><strong>Hive</strong></td>
+<td>基于 SQL 的数据仓库工具</td>
+</tr>
+<tr>
+<td><strong>Pig</strong></td>
+<td>数据流脚本语言</td>
+</tr>
+<tr>
+<td><strong>HBase</strong></td>
+<td>分布式列式数据库</td>
+</tr>
+<tr>
+<td><strong>Sqoop</strong></td>
+<td>与关系型数据库之间导入导出</td>
+</tr>
+<tr>
+<td><strong>Flume</strong></td>
+<td>收集日志数据流入 Hadoop</td>
+</tr>
+<tr>
+<td><strong>Zookeeper</strong></td>
+<td>分布式协调服务，提供统一的注册、选举和配置服务（常用于 HBase）</td>
+</tr>
+<tr>
+<td><strong>Oozie</strong></td>
+<td>工作流调度工具</td>
+</tr>
+<tr>
+<td><strong>Spark</strong></td>
+<td>基于内存的快速大数据计算框架</td>
+</tr>
+</tbody></table>
+<p>接下来为大家介绍三个核心组件（HDFS、MapReduce、YARN）^^</p>
+<h2 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h2><p>分布式文件系统，负责<strong>存储数据</strong>。</p>
+<ul>
+<li><p>类似于普通文件系统，但它将文件切分成多个块，分散存储在集群中的多台机器上。</p>
+</li>
+<li><p>每个数据块默认会备份三份，保证<strong>容错性和高可用性</strong>。</p>
+</li>
+<li><p>主节点：<code>NameNode</code>，存储元数据（文件名、位置等）；</p>
+</li>
+<li><p>从节点：<code>DataNode</code>，存储真实数据块。</p>
+</li>
+</ul>
+<h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>分布式计算框架，负责<strong>计算数据</strong>。</p>
+<ul>
+<li><p>编程模型包含两个阶段：Map（映射） 和 Reduce（归约）；</p>
+</li>
+<li><p>用户编写 Map 和 Reduce 函数，框架负责将任务分发到多台机器上执行；</p>
+</li>
+<li><p>特点是<strong>高度容错</strong>，适合批处理。</p>
+</li>
+</ul>
+<blockquote>
+<p>它会把计算任务移动到离数据最近的地方进行执行，因为移动大量数据是非常耗费资源的。</p>
+</blockquote>
+<h2 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h2><p>资源管理系统，负责<strong>资源调度</strong>。</p>
+<ul>
+<li><p>资源管理和任务调度&#x2F;监控功分割成不同的进程</p>
+</li>
+<li><p>主节点：<code>ResourceManager</code>，负责给 application 分配资源</p>
+</li>
+<li><p>从节点：<code>NodeManager</code> ，负责监控容器使用资源情况，并把资源使用情况报告 ResourceManager。这里所说的资源一般是指CPU、内存、磁盘、网络等。</p>
+</li>
+</ul>
+<h1 id="Hadoop工作方式"><a href="#Hadoop工作方式" class="headerlink" title="Hadoop工作方式"></a>Hadoop工作方式</h1><h2 id="主从工作方式"><a href="#主从工作方式" class="headerlink" title="主从工作方式"></a>主从工作方式</h2><p>一个 Master 和多个 Slave 节点，Slave 节点可以扩招到1000个</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>主节点（Master）</th>
+<th>从节点（Slave）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>主要职责</strong></td>
+<td>负责元数据管理、任务调度、资源分配等控制类工作</td>
+<td>执行实际的存储或计算任务，如保存数据块、运行 MapReduce 任务等</td>
+</tr>
+<tr>
+<td><strong>HDFS 中角色</strong></td>
+<td><code>NameNode</code>（存储文件系统的目录结构、数据块位置等元数据）</td>
+<td><code>DataNode</code>（存储实际的数据块）</td>
+</tr>
+<tr>
+<td><strong>YARN 中角色</strong></td>
+<td><code>ResourceManager</code>（管理集群资源）<br><code>ApplicationMaster</code>（调度某个应用的任务）</td>
+<td><code>NodeManager</code>（管理本节点资源并报告给 ResourceManager）<br><code>Container</code>（执行任务）</td>
+</tr>
+<tr>
+<td><strong>容错机制</strong></td>
+<td>通常单点故障（如 <code>NameNode</code>）需配置**高可用模式（HA）**来避免整个集群瘫痪</td>
+<td>任意从节点故障，系统可自动将任务&#x2F;副本转移到其他节点，影响较小</td>
+</tr>
+<tr>
+<td><strong>故障影响</strong></td>
+<td>故障可能导致整个系统不可用或任务调度失败</td>
+<td>局部计算或存储失败，影响有限，系统具备自动容错能力</td>
+</tr>
+<tr>
+<td><strong>硬件要求</strong></td>
+<td>对稳定性、内存、网络、磁盘性能要求较高</td>
+<td>可使用普通服务器，但需数量足够以提供分布式计算&#x2F;存储能力</td>
+</tr>
+<tr>
+<td><strong>部署建议</strong></td>
+<td>建议部署在可靠性高、性能优的节点上，并开启冗余&#x2F;主备机制</td>
+<td>可大规模横向扩展，支持动态加入或移除</td>
+</tr>
+</tbody></table>
+<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><p>Hadoop 主要有4个守护进程:</p>
+<ul>
+<li>NameNode ：它是HDFS运行在Master节点守护进程。</li>
+<li>DataNode：它是 HDFS 运行在Slave节点守护进程。</li>
+<li>ResourceManager：它是 Yarn 运行在 Master 节点守护进程。</li>
+<li>NodeManager：它是 Yarn 运行在 Slave 节点的守护进程。</li>
+</ul>
+<p>除了这些，可能还会有 secondary NameNode，standby NameNode，Job HistoryServer 等进程。</p>
+<h1 id="Hadoop-常用命令"><a href="#Hadoop-常用命令" class="headerlink" title="Hadoop 常用命令"></a>Hadoop 常用命令</h1><p><a href="https://hadoop.apache.ac.cn/docs/stable/hadoop-project-dist/hadoop-common/CommandsManual.html">Apache Hadoop 3.3.6 – Hadoop 命令指南 - Hadoop 框架</a></p>
+<h2 id="📁-HDFS-文件系统命令"><a href="#📁-HDFS-文件系统命令" class="headerlink" title="📁 HDFS 文件系统命令"></a>📁 HDFS 文件系统命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hadoop fs -ls /</code></td>
+<td>查看根目录下的文件和目录</td>
+</tr>
+<tr>
+<td><code>hadoop fs -mkdir /data</code></td>
+<td>创建新目录 <code>/data</code></td>
+</tr>
+<tr>
+<td><code>hadoop fs -put localfile.txt /data/</code></td>
+<td>上传本地文件到 HDFS</td>
+</tr>
+<tr>
+<td><code>hadoop fs -get /data/file.txt ./</code></td>
+<td>下载 HDFS 文件到本地</td>
+</tr>
+<tr>
+<td><code>hadoop fs -cat /data/file.txt</code></td>
+<td>查看 HDFS 中的文件内容</td>
+</tr>
+<tr>
+<td><code>hadoop fs -rm /data/file.txt</code></td>
+<td>删除 HDFS 中的文件</td>
+</tr>
+<tr>
+<td><code>hadoop fs -rm -r /data/</code></td>
+<td>递归删除目录及其内容</td>
+</tr>
+<tr>
+<td><code>hadoop fs -du -h /data</code></td>
+<td>查看目录或文件占用空间</td>
+</tr>
+<tr>
+<td><code>hadoop fs -chmod 755 /data</code></td>
+<td>修改 HDFS 中文件权限</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-启动-关闭-Hadoop-集群"><a href="#🚀-启动-关闭-Hadoop-集群" class="headerlink" title="🚀 启动&#x2F;关闭 Hadoop 集群"></a>🚀 启动&#x2F;关闭 Hadoop 集群</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>start-dfs.sh</code></td>
+<td>启动 HDFS（NameNode 和 DataNode）</td>
+</tr>
+<tr>
+<td><code>stop-dfs.sh</code></td>
+<td>关闭 HDFS</td>
+</tr>
+<tr>
+<td><code>start-yarn.sh</code></td>
+<td>启动 YARN（ResourceManager 和 NodeManager）</td>
+</tr>
+<tr>
+<td><code>stop-yarn.sh</code></td>
+<td>关闭 YARN</td>
+</tr>
+<tr>
+<td><code>mr-jobhistory-daemon.sh start historyserver</code></td>
+<td>启动 MapReduce JobHistory 服务（可选）</td>
+</tr>
+<tr>
+<td><code>mr-jobhistory-daemon.sh stop historyserver</code></td>
+<td>停止 JobHistory 服务</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧰-MapReduce-作业相关命令"><a href="#🧰-MapReduce-作业相关命令" class="headerlink" title="🧰 MapReduce 作业相关命令"></a>🧰 MapReduce 作业相关命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hadoop jar yourjob.jar MainClass /input /output</code></td>
+<td>提交 MapReduce 作业</td>
+</tr>
+<tr>
+<td><code>yarn application -list</code></td>
+<td>查看正在运行的应用</td>
+</tr>
+<tr>
+<td><code>yarn application -status </code></td>
+<td>查看某个应用的状态</td>
+</tr>
+<tr>
+<td><code>yarn application -kill </code></td>
+<td>杀掉某个应用</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📄-日志查看命令"><a href="#📄-日志查看命令" class="headerlink" title="📄 日志查看命令"></a>📄 日志查看命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>jps</code></td>
+<td>查看 Hadoop 组件进程（需安装 JDK）</td>
+</tr>
+<tr>
+<td><code>tail -f $HADOOP_HOME/logs/*.log</code></td>
+<td>实时查看日志输出</td>
+</tr>
+<tr>
+<td><code>less $HADOOP_HOME/logs/hadoop-*.log</code></td>
+<td>分页查看日志</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧪-其他实用命令"><a href="#🧪-其他实用命令" class="headerlink" title="🧪 其他实用命令"></a>🧪 其他实用命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hdfs dfsadmin -report</code></td>
+<td>查看集群节点、容量、使用情况等摘要</td>
+</tr>
+<tr>
+<td><code>hdfs dfsadmin -safemode get</code></td>
+<td>查看当前是否处于安全模式</td>
+</tr>
+<tr>
+<td><code>hdfs dfsadmin -safemode leave</code></td>
+<td>退出安全模式</td>
+</tr>
+<tr>
+<td><code>hdfs dfs -test -e /path</code></td>
+<td>判断某路径是否存在（返回码为 0 表示存在）</td>
+</tr>
+<tr>
+<td><code>hdfs namenode -format</code></td>
+<td>格式化 HDFS（⚠️仅首次初始化）</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>win11应用快捷方式图标变白解决方案</title>
+    <url>/win11_linkerror.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>故障解决存档</p>
+<span id="more"></span>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
+<p>将上述文件保存为批处理文件（bat）即可</p>
+]]></content>
+      <categories>
+        <category>解决方案存档</category>
+        <category>win11</category>
+      </categories>
+      <tags>
+        <tag>win11</tag>
+      </tags>
   </entry>
   <entry>
     <title>docker 学习笔记</title>
@@ -1901,22 +1874,6 @@
       </tags>
   </entry>
   <entry>
-    <title>win11应用快捷方式图标变白解决方案</title>
-    <url>/win11_linkerror.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>故障解决存档</p>
-<span id="more"></span>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
-<p>将上述文件保存为批处理文件（bat）即可</p>
-]]></content>
-      <categories>
-        <category>解决方案存档</category>
-        <category>win11</category>
-      </categories>
-      <tags>
-        <tag>win11</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>各种各样的参考页面</title>
     <url>/reference.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -1940,33 +1897,6 @@
       </categories>
       <tags>
         <tag>参考</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络学习笔记</title>
-    <url>/wangluo_1.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="8adc0b940d50a178510f62a14da332265ae41c36f4b726588a91bad178196eee">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e1984000582416e1cb3cb7eef326badfeb60d769174f4eb4987f2a65bbb420b5c6bfdbf31737cebc04e98dc20852fec870e25edfa84e01ed4be1a78f451cdd9430caef79dba6b5b59f74335c92501cc4aa6a043d3a615a9efaa58238a35bd770fe34228b817aa721f0ac79c7078c57b33ec740518db1a8f5df84af763f232c03b6f7ff4dc283211c20fd248e7e88cc7d55ad233ec8565f70594e7c2371048c1362db860b6dc240b41ff2d987cbaf1f664858ccd913acfebfc0f84c8120bb586fc119e41e6b634bfb1a17aa131773206e51ac9032767488d064b3833a6aaa4d3ead701269d6fdf39b8a7b69d57339c418aae5b315badfb8fe0632135a829b9e241b23b2b1efadb5d026a88e1c181e32246cb5f48dd3450fb163a884a8555ec9dc6cca610fd6586d4de2f98fe3a450f5e5b86ec2412682a58cc4519d2c1af5eafac789518aa4e7f13863dd8e89506bc25d3290d5f24a4df2c46fbd209382d3295bd4a0c5ef4a04d3d6400090c25f91c9c46c4a189e9844bd7f83333135f488a80276b28a223e80be20a3480effa55606012df152af52ec92b5b9ca88b89bc4584a75a5ebb472c5f372f307dd0d424a46c933a909d1edc7d239e5c267d6f6f817a1c01aa80f2920f5693b4eaa013a59764d9cfcdccc738836520a9a7fa55825fd2ee14eb00afdcd24efcfbae94c335252b512f0d5450c411252e2a8cb976f2d441ec3f476814bfe2866aae6bc4c818129ce9271ef00a62f6a2f6910d52f027722ffcac84d0286b05b522520ee9dc3a77b8c44f82cf4869098631f0d2aed42e93b237e0099607241e2eb5e3d074534939fa13fc19ff4e6b9aa0adaff72cace2833e0a43a7daf4fab6200e3cad2f15fb85a96f44ff109dc65fab13fb7d91fd64215191fe6ae77b2a17eb4b81b1c51cad84a45c19d5d4ce53a7316f32ec006421ac12f76fb3ce5a8cc57070a7b543dbdeaceb4252203c24d7bd14dc17455b3125eac1cd412d22637d19e6d1bdefeb37fc09f4b06fd8d495f4b71467b0c29b09172fe581338abf0d4d71b11276fb94989ec02bf571c3b44a6a448bd9d3ddce6a4e65ae7bd190a8585e96c6eafb2f5054ba4d2b02495c7f72fea2859bcb6603a641df6d1f3f057544f903d83e9fbde5b8705b92f6b3ee6cea6c429cbce711d5eb9b9dbef38426d1a2fee21b3411bb5f280d37c263a591c56b751328aaf31dab4becf906932ae6d9098334d38b01e829a29b1825539bc394dbfa98766874ed1a7fc03728e5f83583fabc09e37cb1b28544b3d3ff3e2dcde50ad3b5e36debfbe73aeb39921bbd50dedb0e8f0cbdab26e3128c4b6c43993cc430f8f5d179fa9442c3011aa4a93ddb678790badb34d0224ab2e5a667e88252ae1425254d4a1f63cf6133fd300989a53ede091407bfce5d207d9f353d96dd5fe8a01638f8953efe2eeb2e98faf679b2ae687bac5d740f08de8f635485e4cc2540a7f709cdefc1636f568a9d5c91723913cc870feee042dc041fc072f310e20814306a3445944ce20619155f3928a7e03688363a2f90259e38d97b8fce5306f4682eba5b3844d03dfa67f1d2710873823815b7f1e6d8e170a15ef968c9b6fe673d28c214bd6d4b748cb519bccfbbb51eacb16b68837565097e8b8ec649cc96b899ca5782aad15733ceae9683768552ade6348272bc6b87a6989d8eb247d3277a279156161c9a4a8c2d250da4be5ab7068d913d37a461f38aaa5620b9ad5d0cb11bfdf428d94563158606c39f15f41d85c940dfa52dde93a0105f1ab035fb2cfbcbe1c87eb8cd2c41408a213f1a5b1096d97ad7cb576575e5b136c27e53e3586a469a60cca1baae0dc7e87d93cd8f0721329102a65f03ef618efac6ad4ccfbd1d792c3d0332ea9dfa510c6b6bde36286ad8e9ca6202217834c95d4064da4474f89b8611ad15b15d730c7b95172738eacd2eb66faa5b500bc573403e631768fba9f9b873a11eece2415161eec92de25a34b5944f626495fe7fe638daba1b7da8ab3d43204da14b7b9bb8973f92d6e8c1513c3b354af48cff47eb82084540434ae3f88244016f2bafcd206df08fc140800aaa4acfce7c36d46b75d7230f61707ec967c2e21b7a1c19360ff3bba1fbe7610d6fd836d445b4ef3989b7a461c4f5adeb6af19a4031e04ad473b99e951bafaddb66c31ae782f28ae8f389f9f932d5a008290f6e54b3392e95e954bcf552777028f711667561d05b309eaf8b57639885b5c56e820b7970c078185d2a240b62f0d3375b2b7baf24ebd948432611c19f73d0b86ca69dadf3f107b9a0ff78c1877b711b3644f87962141e2fb61c742c9fd2d8915ca80f2aab47e59873095f516ea99ef65199a1aee96c2a0b247e6a65797d39638152fbea4586d062cf14a0ba0a57f85e92121b9c242f52b1c6f111798d7997cd0c9e6cf571219c741db84fc16dded02a0a371d7e940ea222121d9417953ce95b38c1ac72f7c36152bf080e499c39582e02673d948693e3f6c6def94aa0c4df53777fcdda5e00aff7d52fcffda09c6d21c65d69649a8132e48f94b727cc6d74d0352d95cc2e91bd5cd0b3f0052951416e718f6f2f612b53bb6c195aab72694109ea83d0109956b8c0e22c8e247f864df35ca76fd5110dd9b377f62fd446cf32e202347bd17b735664973f84c0dc907103a9e9c4e403c851e137beacdd880fc8b2a91586ea8eca33554ca18d534137f69f6dbeed368151acb775ce3e11edccc150a06d1ad8590d06934cd3243f988f8b9315a4787a1a25a0759b633a6c0e8cc929ffa662281241e5e22f129c86a955af7c9c78292f09adb7f097a1054f967db0fd8a53db8f7b506da41f27251ab2b364eaa47eb328b657b2cc6d51baef552e4ae0436a4dc80977e19b0903d4cba773cc4ed5b277ef5a3575700856615bab650675aff5cba587e40c83f81b36d210daf031f86ad47a6cefe444b8200c0e604926690d15a0d15d02143d508cbd7c7cdc37e4675a7cd732febeb5372344fb99ec5b7032a520843f9403cf453bc2bd37670</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
-        <tag>secret</tag>
       </tags>
   </entry>
   <entry>
@@ -2344,6 +2274,42 @@
         <tag>Centos</tag>
         <tag>Gradio</tag>
         <tag>Ollama</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络学习笔记</title>
+    <url>/wangluo_1.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="8adc0b940d50a178510f62a14da332265ae41c36f4b726588a91bad178196eee">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e1984000582416e1cb3cb7eef326badfeb60d769174f4eb4987f2a65bbb420b5c6bfdbf31737cebc04e98dc20852fec870e25edfa84e01ed4be1a78f451cdd9430caef79dba6b5b59f74335c92501cc4aa6a043d3a615a9efaa58238a35bd770fe34228b817aa721f0ac79c7078c57b33ec740518db1a8f5df84af763f232c03b6f7ff4dc283211c20fd248e7e88cc7d55ad233ec8565f70594e7c2371048c1362db860b6dc240b41ff2d987cbaf1f664858ccd913acfebfc0f84c8120bb586fc119e41e6b634bfb1a17aa131773206e51ac9032767488d064b3833a6aaa4d3ead701269d6fdf39b8a7b69d57339c418aae5b315badfb8fe0632135a829b9e241b23b2b1efadb5d026a88e1c181e32246cb5f48dd3450fb163a884a8555ec9dc6cca610fd6586d4de2f98fe3a450f5e5b86ec2412682a58cc4519d2c1af5eafac789518aa4e7f13863dd8e89506bc25d3290d5f24a4df2c46fbd209382d3295bd4a0c5ef4a04d3d6400090c25f91c9c46c4a189e9844bd7f83333135f488a80276b28a223e80be20a3480effa55606012df152af52ec92b5b9ca88b89bc4584a75a5ebb472c5f372f307dd0d424a46c933a909d1edc7d239e5c267d6f6f817a1c01aa80f2920f5693b4eaa013a59764d9cfcdccc738836520a9a7fa55825fd2ee14eb00afdcd24efcfbae94c335252b512f0d5450c411252e2a8cb976f2d441ec3f476814bfe2866aae6bc4c818129ce9271ef00a62f6a2f6910d52f027722ffcac84d0286b05b522520ee9dc3a77b8c44f82cf4869098631f0d2aed42e93b237e0099607241e2eb5e3d074534939fa13fc19ff4e6b9aa0adaff72cace2833e0a43a7daf4fab6200e3cad2f15fb85a96f44ff109dc65fab13fb7d91fd64215191fe6ae77b2a17eb4b81b1c51cad84a45c19d5d4ce53a7316f32ec006421ac12f76fb3ce5a8cc57070a7b543dbdeaceb4252203c24d7bd14dc17455b3125eac1cd412d22637d19e6d1bdefeb37fc09f4b06fd8d495f4b71467b0c29b09172fe581338abf0d4d71b11276fb94989ec02bf571c3b44a6a448bd9d3ddce6a4e65ae7bd190a8585e96c6eafb2f5054ba4d2b02495c7f72fea2859bcb6603a641df6d1f3f057544f903d83e9fbde5b8705b92f6b3ee6cea6c429cbce711d5eb9b9dbef38426d1a2fee21b3411bb5f280d37c263a591c56b751328aaf31dab4becf906932ae6d9098334d38b01e829a29b1825539bc394dbfa98766874ed1a7fc03728e5f83583fabc09e37cb1b28544b3d3ff3e2dcde50ad3b5e36debfbe73aeb39921bbd50dedb0e8f0cbdab26e3128c4b6c43993cc430f8f5d179fa9442c3011aa4a93ddb678790badb34d0224ab2e5a667e88252ae1425254d4a1f63cf6133fd300989a53ede091407bfce5d207d9f353d96dd5fe8a01638f8953efe2eeb2e98faf679b2ae687bac5d740f08de8f635485e4cc2540a7f709cdefc1636f568a9d5c91723913cc870feee042dc041fc072f310e20814306a3445944ce20619155f3928a7e03688363a2f90259e38d97b8fce5306f4682eba5b3844d03dfa67f1d2710873823815b7f1e6d8e170a15ef968c9b6fe673d28c214bd6d4b748cb519bccfbbb51eacb16b68837565097e8b8ec649cc96b899ca5782aad15733ceae9683768552ade6348272bc6b87a6989d8eb247d3277a279156161c9a4a8c2d250da4be5ab7068d913d37a461f38aaa5620b9ad5d0cb11bfdf428d94563158606c39f15f41d85c940dfa52dde93a0105f1ab035fb2cfbcbe1c87eb8cd2c41408a213f1a5b1096d97ad7cb576575e5b136c27e53e3586a469a60cca1baae0dc7e87d93cd8f0721329102a65f03ef618efac6ad4ccfbd1d792c3d0332ea9dfa510c6b6bde36286ad8e9ca6202217834c95d4064da4474f89b8611ad15b15d730c7b95172738eacd2eb66faa5b500bc573403e631768fba9f9b873a11eece2415161eec92de25a34b5944f626495fe7fe638daba1b7da8ab3d43204da14b7b9bb8973f92d6e8c1513c3b354af48cff47eb82084540434ae3f88244016f2bafcd206df08fc140800aaa4acfce7c36d46b75d7230f61707ec967c2e21b7a1c19360ff3bba1fbe7610d6fd836d445b4ef3989b7a461c4f5adeb6af19a4031e04ad473b99e951bafaddb66c31ae782f28ae8f389f9f932d5a008290f6e54b3392e95e954bcf552777028f711667561d05b309eaf8b57639885b5c56e820b7970c078185d2a240b62f0d3375b2b7baf24ebd948432611c19f73d0b86ca69dadf3f107b9a0ff78c1877b711b3644f87962141e2fb61c742c9fd2d8915ca80f2aab47e59873095f516ea99ef65199a1aee96c2a0b247e6a65797d39638152fbea4586d062cf14a0ba0a57f85e92121b9c242f52b1c6f111798d7997cd0c9e6cf571219c741db84fc16dded02a0a371d7e940ea222121d9417953ce95b38c1ac72f7c36152bf080e499c39582e02673d948693e3f6c6def94aa0c4df53777fcdda5e00aff7d52fcffda09c6d21c65d69649a8132e48f94b727cc6d74d0352d95cc2e91bd5cd0b3f0052951416e718f6f2f612b53bb6c195aab72694109ea83d0109956b8c0e22c8e247f864df35ca76fd5110dd9b377f62fd446cf32e202347bd17b735664973f84c0dc907103a9e9c4e403c851e137beacdd880fc8b2a91586ea8eca33554ca18d534137f69f6dbeed368151acb775ce3e11edccc150a06d1ad8590d06934cd3243f988f8b9315a4787a1a25a0759b633a6c0e8cc929ffa662281241e5e22f129c86a955af7c9c78292f09adb7f097a1054f967db0fd8a53db8f7b506da41f27251ab2b364eaa47eb328b657b2cc6d51baef552e4ae0436a4dc80977e19b0903d4cba773cc4ed5b277ef5a3575700856615bab650675aff5cba587e40c83f81b36d210daf031f86ad47a6cefe444b8200c0e604926690d15a0d15d02143d508cbd7c7cdc37e4675a7cd732febeb5372344fb99ec5b7032a520843f9403cf453bc2bd37670</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>secret</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/null.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这里应该有一条简介才对&#x2F;_ \</p>
+<span id="more"></span>]]></content>
+      <tags>
+        <tag>secrect</tag>
       </tags>
   </entry>
 </search>
