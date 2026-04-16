@@ -20,24 +20,21 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.lanouo.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.24.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-solarizedlight.min","dark":"prism-dark.min"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeInUp","post_header":"fadeIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInRight"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="引论互联网互联网是联邦制且具有可扩展性  联邦制：使得需要使用同一种协议  可扩展性：使得在设计时，不能围绕固定容量上限进行规划（因为容量与需求都在呈指数级增长）。    协议 不同的协议是为不同的需求设计的， 下面是一个简单的协议示例：Alice 和 Bob 先互相打招呼，然后 Alice 请求一个文件，Bob 再将文件返回。为了定义这个协议，我们需要明确：  语法（syntax）：例如，“给">
+    <meta name="description" content="这篇文章涓嶆兂琚湅鍒�">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cs168">
 <meta property="og:url" content="http://blog.lanouo.xyz/cs168.html">
 <meta property="og:site_name" content="幽篁里">
-<meta property="og:description" content="引论互联网互联网是联邦制且具有可扩展性  联邦制：使得需要使用同一种协议  可扩展性：使得在设计时，不能围绕固定容量上限进行规划（因为容量与需求都在呈指数级增长）。    协议 不同的协议是为不同的需求设计的， 下面是一个简单的协议示例：Alice 和 Bob 先互相打招呼，然后 Alice 请求一个文件，Bob 再将文件返回。为了定义这个协议，我们需要明确：  语法（syntax）：例如，“给">
+<meta property="og:description" content="这篇文章涓嶆兂琚湅鍒�">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192021380.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192210610.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413193115702.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413194140710.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413195433604.png">
 <meta property="article:published_time" content="2026-04-14T09:15:35.000Z">
-<meta property="article:modified_time" content="2026-04-14T11:48:09.569Z">
+<meta property="article:modified_time" content="2026-04-16T10:47:12.434Z">
 <meta property="article:author" content="LanOoO">
-<meta property="article:tag" content="secrect">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="协议">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="secret">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192021380.png">
 
 
 <link rel="canonical" href="http://blog.lanouo.xyz/cs168.html">
@@ -202,7 +199,7 @@ customElements.define('an_loading', CharAnimation);
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">48</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">20</span></a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -240,7 +237,7 @@ customElements.define('an_loading', CharAnimation);
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -253,7 +250,6 @@ customElements.define('an_loading', CharAnimation);
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">引论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%92%E8%81%94%E7%BD%91"><span class="nav-number">1.1.</span> <span class="nav-text">互联网</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -268,18 +264,18 @@ customElements.define('an_loading', CharAnimation);
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -348,9 +344,15 @@ customElements.define('an_loading', CharAnimation);
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-04-14 17:15:35 / 修改时间：19:48:09" itemprop="dateCreated datePublished" datetime="2026-04-14T17:15:35+08:00">2026-04-14</time>
+      <time title="创建时间：2026-04-14 17:15:35" itemprop="dateCreated datePublished" datetime="2026-04-14T17:15:35+08:00">2026-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-04-16 18:47:12" itemprop="dateModified" datetime="2026-04-16T18:47:12+08:00">2026-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -358,7 +360,11 @@ customElements.define('an_loading', CharAnimation);
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">学习记录</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机科学</span></a>
         </span>
     </span>
 
@@ -393,41 +399,22 @@ customElements.define('an_loading', CharAnimation);
     
     
     
-    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><span id="more"></span>
-<h1 id="引论"><a href="#引论" class="headerlink" title="引论"></a>引论</h1><h2 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h2><p>互联网是<strong>联邦制</strong>且具有可扩展性</p>
-<ol>
-<li><p><strong>联邦制</strong>：使得需要使用同一种<u>协议</u></p>
-</li>
-<li><p><strong>可扩展性</strong>：使得在设计时，不能围绕固定容量上限进行规划（因为容量与需求都在呈指数级增长）。</p>
-</li>
-</ol>
-<blockquote>
-<p><strong>协议</strong></p>
-<p>不同的协议是为不同的需求设计的，</p>
-<p>下面是一个简单的协议示例：Alice 和 Bob 先互相打招呼，然后 Alice 请求一个文件，Bob 再将文件返回。为了定义这个协议，我们需要明确：</p>
-<ul>
-<li><strong>语法（syntax）</strong>：例如，“给我这个文件”如何用 0 和 1 表示</li>
-<li><strong>语义（semantics）</strong>：例如，Alice 必须在收到 Bob 的问候之后，才能发送文件请求</li>
-</ul>
-<p>不同的协议是为不同需求设计的。例如，如果 Alice 希望尽可能快地获取文件，我们可以设计一个不包含初始问候阶段的协议。我们还需要考虑各种边界情况、错误以及恶意行为。</p>
-<p>例如，如果 Alice 请求文件，但 Bob 却回复了一个“hello”，那么 Alice 应该如何处理？</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192021380.png" alt="image-20260413192021275"></p>
-<blockquote>
-<p>好形象的图</p>
-</blockquote>
-<p>互联网：网络的网络</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413192210610.png" alt="image-20260413192210513"></p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413193115702.png" alt="img"></p>
-<p>报头：源地址、目标地址</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413194140710.png" alt="image-20260413194140625"></p>
-<blockquote>
-<p>两边不一定非要对称，一边用某种方式另一边不一定得用同样的方式。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260413195433604.png" alt="image-20260413195433503"></p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://textbook.cs168.io/">https://textbook.cs168.io/</a></p>
-
+    <div class="post-body" itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="1f49c8d06191edb86eb10204801734f039a16063e41ec84c7ae21b5e88fc74a7">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e1988dc00e132e41db1367b2f205dd37c1d1c76162a94c1c28a5605c7002078384d578c0248523a78c6a69b1fb3562bbc8b8ba60442647203e4a41724f187eda859ccca7bf16901fafaa25b846ac36c7d4cb66ebd41e9570db407bef7d7aab1eb7a1c3225f26012515f101f9963c0d593dd2de2ef8d353c815dbc47fd4a4d08db2de5161913adc93aa7a60f6e04c94fa6b74a36bdcec0817b3c41baf6450bbedc09d773be5a08a9be476a62e86c21d82610ea22b480a205cd46081b7bf4c903a400832874b0d4c34d6ef3e2f25575a98a318fed6c875816e5ed7c4aa9fa6dbb5058b6a2bd45c3882d82a367c292c5c000bfcc29eb073867e4ff9999f8276d72202d39867921e96b538d8e9f37419ed93cb4be21b953df291424b18968fb0c0581d3c53f77454fc97bba22ec94711149f557141805bda524821788544965471044093feaec7f0b419e2e933af46a2c28fdcc4ddd41e7a3da0dd9cef2100d3c178f5ce019e7252a2031224bf32e30e6cfdadc4cf64618a0077cd022fe670f1745ae1aa5f06a8c02e7e8f94e580bdf01d34cc1c7e9f0b91d334fced43bff35aa3c17108043f65d92d95c1291311d0bdb2060a7f4d18fce17ce1ffb43fd4e14f4472fb545b0feb242cb3c7b61ccbb45b477e670e01a084f6bcc8469da794a6e584b1a3831cf0a1b1068468b35e83c64132a408dcd3b80e25d28a7f6e344508621e2c103c07f77c645c359c3e173a1934d280b098123b097f282ccb8692e651bfd4a69431355321f6b38c6a6faeb471d548bbd85e22691cebabdc58fceb4f8048ef2e6f41a77065eb9903593af2db1d7b44796522668e1b513e89198d6c1f7aa6fae7032a62737a2f014a7d82ffd2b05b25b0241e323e03c1690d75862642044ed51223e8a14ef21887628f28ba44770a5991fc6478877846d569b7c75fb8513403fbf06e4f1d5b67d0966838d7e79aecbe915f5ef59684062183f81c6ee2aa1888dc88e739faa81a7b27f69d92ff0784d774b043d0b1ee637a2cad9837df8bb47d870d636cf352b1ccc38ec40a11cc3c045339a23e3a7c0fc12765ce3d971c8a640524ad5036d60cafd9837def824cc56d904ee4938ab81642ac68e4f314a216e55f597fc807f449eceffbb19a674479670ff48ce28112275c5a7c74bc17131c9f9d2afe44b172ed9219f3d12822cf0c61fd8e2e0df5ad8a83b23df74d64aa8bd4693737b3e558ceae687f8798244c755e4fdd0d5887cdd883c48de3bc76bae713887f2e26a41281f07ab9408824a65bf71eb4892d5fbbda11c55292697159b6e12c2bdb1cfcdc1ac1ab48849d7888bfe1ffaf87ba596f86873892e70d9b56b1613ab8880dc3563fc811fc57d27deabf33508f5e195296a9c555685f8d69862bc2d7b445fd97284070a57d7c8e4ce7ab86e4f4b9564cc958da6345418264818b770b1a6e47736f55614cc5f0c71c9ec4e369b753473b319a854ce3256f79d258520b6faf8b5803cae334691aa2c8a73cc80d5d40b70dd4e4c25ba425972c5a12d32a575d72b9dbb52862719cfeafde5faf44c17e5d550a435bf4bd930fa2686a4941ca72d4acbee70f0fd166fa651dcbba539783ed5dfd09ba097f2dde5508ed5cc9cadce416c2bfeb45bb823f8d46a0f6375429f19606044f2f3403d57d615f6e0c9dbf4655210c1fbc19a9d4265fc696ea7e053d1b61f9fe0ae0b834606b784dd799fdde1c1e4e14f4d9fec5e8726034ac84b95f3b46e198e32be64c3b25c13ab4f952b523ece636ead52323f3c6f28dbe666bbf417db6e903aa8702e6f74a60901b60275eb4bfde8dfeb2c8615355780dfebe3e167c525992353c23d983a889ba989c8635b927753d4292cb6abc25aac0007ec5ba32178c720333960981ba8208d1e97bfe172944ccc910e4fd7766293277704b12b030ebc25fac093feeb7e33261798c3fe1f3a824fe8e42f80b56fb2500e2b1c155419d4650a47c6704f8e17a54b74d5e8ff9743c2c9ab0461e988c70e49e5fe40c967e0f1f8eb600ff0dfb35b9c0b86267bfca4e64a53011c7dafea9666270f03816058809cef2f7e596214f1a063f453a1b6ce82eba7ac4da34aa24d4c3a2c80887addf4b33e7ab778f2133ad05481891ff6bb464259f6d891b630ff499df5d7e8642ed3e20d75729e2af09078cd38eab47c902bd273a08872f43c9e371d5b5b0f891dc9dba72db981c74b0bc8fbcc5ee2c1c81ae765cafc4add173189dbb9766e1c0bf5161932aa3214a63eff0a8c1cd3d8bd5ffd1ac93c843e1d7303826e2e0fa9100f40e3d0e652449ed73ae752653bbe721a1af3f60fc4cf9ff35b27ee639dbd4afd4650a10b1e001e6bb0b4c69e791c823c1ab7a5f342c0c434c6c56b6adb6c10e0a5dbe0281156ee7c545f79244de117549c5f68dafb6e72721c0e37faa217f115de50cc73cc7653cbe3c4b5d5a1432c91f0a8188a446994770bcdb7ef75634e8cc21ad85f694dcbbd508565fc09f5ec1611ad728bf86022c907bb579c3c34431aa6e0a5f4b45415effe417774e1742d5d5ba983bafa533d0222953b3e4162e055ad675cca35f1a1f66060aca10f914824ffacdd91e6c20011089419fd6fd44000e5bf78a96a0ce0ead8cedefbae6756a79bb8ba13feb7e0fa2a3d543d85460e76749d2c45ba9e4e863530a903273291e7f9446a2d22c0c543729640c5ad286339106ccb58ce4e190d493d0926833e9694f8740c50a94e7f025b898bafd79896ae649e0f29c982a93c204f74a354a607f62f2b008e024f767efd1f51d955ab1f6a24c8586d667f1cfdb01955ab8130bf3aa4d622d61a50c8a8deb281dbd7fe1ae793404b1496417f839a55f39dc07e9e28144176ddcdb8cb6a81ffc73fe1f277b61de4d01672e7e0f6caf1110e9a041303c1d844fe9f9984da19146b79f81f7c40979253960214c5ab166add8f265b4a99bec631263c3acab6eecf53cfe861f546ff9bd19ffaf59311a2b3332d206425f5170605940d73da270a9afed127eccaf2ecbac57bec2a89b37f1e3f1c067c5434492aeaddfce84066b1fb685c2e0bf3e8ed21303c67f9e09e3616cca37dd70a7496dce92ad4bd3877c64aa765e5ab435a4ce762440ef159d2c440b3f830c31e350e64878f95de5aa25cc7b4a88fbc4724bc6dc32a36fe562d1543eac123f09928c5c865077d15f339378fb58b6c563166b7e0f91f151a1af0a01c9a92fef9090c5992572e468cd1e0d802c51d520666e37023c9f48ef34674fcb319861e4d623a0d7b1c6397a8592eb75235bbf7744afbaaf32d4d6a348316606aa1b21fc23339e1f5f99f02d3c26ed65ad8ab5d360ab0292515af5659f78b7b669a3690b5c3210fecdf16632451d37ceb0b974b157025b94075948a3169b9c2f</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -436,7 +423,10 @@ customElements.define('an_loading', CharAnimation);
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/secrect/" rel="tag"><i class="fa fa-tag"></i> secrect</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> 计算机网络</a>
+              <a href="/tags/%E5%8D%8F%E8%AE%AE/" rel="tag"><i class="fa fa-tag"></i> 协议</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 学习笔记</a>
+              <a href="/tags/secret/" rel="tag"><i class="fa fa-tag"></i> secret</a>
           </div>
 
         
@@ -481,7 +471,7 @@ customElements.define('an_loading', CharAnimation);
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">54k</span>
+    <span title="站点总字数">53k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
