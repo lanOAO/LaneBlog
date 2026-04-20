@@ -1,96 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Flutter安装报错记录</title>
-    <url>/errorlist_flutter.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<p>flutter安装报错存档</p>
-<span id="more"></span>
-
-<h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>首先查看下报错信息：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; flutter doctor</span><br><span class="line">Doctor summary (to see all details, run flutter doctor -v):</span><br><span class="line">[✓] Flutter (Channel stable, 3.38.3, on Microsoft Windows [版本 10.0.26100.4946], locale zh-CN)</span><br><span class="line">[✓] Windows Version (11 家庭中文版 64-bit, 24H2, 2009)</span><br><span class="line">[✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0)</span><br><span class="line">[✓] Chrome - develop for the web</span><br><span class="line">[✓] Visual Studio - develop Windows apps (Visual Studio 生成工具 2022 17.14.16)</span><br><span class="line">[✓] Connected device (3 available)</span><br><span class="line">[!] Network resources</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://pub.dev/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://storage.googleapis.com/&quot;: Connection terminated during</span><br><span class="line">      handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://maven.google.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://cocoapods.org/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://github.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br></pre></td></tr></table></figure>
-
-<p>报错信息为：连接不上</p>
-<ul>
-<li><p>pub.dev</p>
-</li>
-<li><p>storage.googleapis.com</p>
-</li>
-<li><p>maven.google.com</p>
-</li>
-<li><p>cocoapods.org</p>
-</li>
-<li><p>github.com</p>
-</li>
-</ul>
-<p>环境为：Win11+Clash Verge全局+系统代理</p>
-<hr>
-<h1 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h1><p>首先使用浏览器查看，发现以上页面都能打开。</p>
-<p>感觉可能是终端没走代理的原因，就把代理调整为TUN模式</p>
-<p>使用终端curl github，成功返回页面</p>
-<p>使用终端curl <a href="https://maven.google.com/com/">https://maven.google.com/com/</a><br>→ 404 That’s an error.（但成功返回页面）</p>
-<p>AI的解释为</p>
-<blockquote>
-<p>因为 <strong>Flutter&#x2F;Gradle 访问 maven.google.com 不是访问 &#x2F;com&#x2F;</strong><br> 它访问的是：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">https://maven.google.com/master-index.xml</span><br><span class="line">https://maven.google.com/com/android/tools/build/group-index.xml</span><br></pre></td></tr></table></figure>
-
-<p>并且这些文件需要：</p>
-<ul>
-<li><strong>TLS 1.2 &#x2F; TLS 1.3</strong></li>
-<li><strong>正确的 CA 证书链</strong></li>
-<li><strong>完整的网络握手</strong></li>
-</ul>
-<p>你之前出现的错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Connection terminated during handshake</span><br></pre></td></tr></table></figure>
-
-<p>这说明 <strong>TLS 握手阶段就失败了</strong><br> 而 curl 能成功 → 说明：</p>
-<ul>
-<li>你使用的 curl 内置证书是 OK 的</li>
-<li><strong>Java &#x2F; Flutter &#x2F; Dart 使用的证书链不 OK</strong></li>
-</ul>
-<p>❗ <strong>这类问题绝大多数都是 Windows 环境里的 CA 证书缺失&#x2F;损坏 或 代理&#x2F;杀软注入了假证书（MITM）</strong></p>
-</blockquote>
-<p>然后又去检查CA证书</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; certutil -verifystore -user root</span><br><span class="line">root &quot;受信任的根证书颁发机构&quot;</span><br><span class="line">================ 证书 0 ================</span><br><span class="line">序列号: 0aa8d1ed03648306256b92500fd33b224a44f0ea</span><br><span class="line">颁发者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line"> NotBefore: 2023/12/7 16:01</span><br><span class="line"> NotAfter: 2033/12/4 16:01</span><br><span class="line">使用者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line">签名与公钥匹配</span><br><span class="line">根证书: 使用者与颁发者匹配</span><br><span class="line">证书哈希(sha1): 66f8b18f84b329d2aef25446d4e6c3dec0103a95</span><br><span class="line">没有密钥提供程序信息</span><br><span class="line">找不到解密的证书和私钥。</span><br><span class="line">已验证的颁发策略: 全部</span><br><span class="line">已验证的应用程序策略: 全部</span><br><span class="line">证书有效</span><br><span class="line">CertUtil: -verifystore 命令成功完成。</span><br></pre></td></tr></table></figure>
-
-<p>我看到了堡塔……然后把堡塔的证书删掉再次尝试，发现成功</p>
-<p>结束</p>
-<blockquote>
-<p>早知道就不拿电脑瞎折腾了，当初想试一下win安装堡塔来着QAQ</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-        <category>系统问题</category>
-      </categories>
-      <tags>
-        <tag>flutter</tag>
-        <tag>error</tag>
-        <tag>安装配置</tag>
-        <tag>错误解决</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ASCII Art存档</title>
     <url>/ascii_art.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>存一些ASCII Art</p>
@@ -202,6 +112,96 @@
         <tag>windows</tag>
         <tag>自动化</tag>
         <tag>效率工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flutter安装报错记录</title>
+    <url>/errorlist_flutter.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p>flutter安装报错存档</p>
+<span id="more"></span>
+
+<h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>首先查看下报错信息：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; flutter doctor</span><br><span class="line">Doctor summary (to see all details, run flutter doctor -v):</span><br><span class="line">[✓] Flutter (Channel stable, 3.38.3, on Microsoft Windows [版本 10.0.26100.4946], locale zh-CN)</span><br><span class="line">[✓] Windows Version (11 家庭中文版 64-bit, 24H2, 2009)</span><br><span class="line">[✓] Android toolchain - develop for Android devices (Android SDK version 36.1.0)</span><br><span class="line">[✓] Chrome - develop for the web</span><br><span class="line">[✓] Visual Studio - develop Windows apps (Visual Studio 生成工具 2022 17.14.16)</span><br><span class="line">[✓] Connected device (3 available)</span><br><span class="line">[!] Network resources</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://pub.dev/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://storage.googleapis.com/&quot;: Connection terminated during</span><br><span class="line">      handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://maven.google.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://cocoapods.org/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br><span class="line">    ✗ A cryptographic error occurred while checking &quot;https://github.com/&quot;: Connection terminated during handshake</span><br><span class="line">      You may be experiencing a man-in-the-middle attack, your network may be compromised, or you may have malware</span><br><span class="line">      installed on your computer.</span><br></pre></td></tr></table></figure>
+
+<p>报错信息为：连接不上</p>
+<ul>
+<li><p>pub.dev</p>
+</li>
+<li><p>storage.googleapis.com</p>
+</li>
+<li><p>maven.google.com</p>
+</li>
+<li><p>cocoapods.org</p>
+</li>
+<li><p>github.com</p>
+</li>
+</ul>
+<p>环境为：Win11+Clash Verge全局+系统代理</p>
+<hr>
+<h1 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h1><p>首先使用浏览器查看，发现以上页面都能打开。</p>
+<p>感觉可能是终端没走代理的原因，就把代理调整为TUN模式</p>
+<p>使用终端curl github，成功返回页面</p>
+<p>使用终端curl <a href="https://maven.google.com/com/">https://maven.google.com/com/</a><br>→ 404 That’s an error.（但成功返回页面）</p>
+<p>AI的解释为</p>
+<blockquote>
+<p>因为 <strong>Flutter&#x2F;Gradle 访问 maven.google.com 不是访问 &#x2F;com&#x2F;</strong><br> 它访问的是：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">https://maven.google.com/master-index.xml</span><br><span class="line">https://maven.google.com/com/android/tools/build/group-index.xml</span><br></pre></td></tr></table></figure>
+
+<p>并且这些文件需要：</p>
+<ul>
+<li><strong>TLS 1.2 &#x2F; TLS 1.3</strong></li>
+<li><strong>正确的 CA 证书链</strong></li>
+<li><strong>完整的网络握手</strong></li>
+</ul>
+<p>你之前出现的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Connection terminated during handshake</span><br></pre></td></tr></table></figure>
+
+<p>这说明 <strong>TLS 握手阶段就失败了</strong><br> 而 curl 能成功 → 说明：</p>
+<ul>
+<li>你使用的 curl 内置证书是 OK 的</li>
+<li><strong>Java &#x2F; Flutter &#x2F; Dart 使用的证书链不 OK</strong></li>
+</ul>
+<p>❗ <strong>这类问题绝大多数都是 Windows 环境里的 CA 证书缺失&#x2F;损坏 或 代理&#x2F;杀软注入了假证书（MITM）</strong></p>
+</blockquote>
+<p>然后又去检查CA证书</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\Users\LJY&gt; certutil -verifystore -user root</span><br><span class="line">root &quot;受信任的根证书颁发机构&quot;</span><br><span class="line">================ 证书 0 ================</span><br><span class="line">序列号: 0aa8d1ed03648306256b92500fd33b224a44f0ea</span><br><span class="line">颁发者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line"> NotBefore: 2023/12/7 16:01</span><br><span class="line"> NotAfter: 2033/12/4 16:01</span><br><span class="line">使用者: C=CN, O=堡塔, CN=堡塔</span><br><span class="line">签名与公钥匹配</span><br><span class="line">根证书: 使用者与颁发者匹配</span><br><span class="line">证书哈希(sha1): 66f8b18f84b329d2aef25446d4e6c3dec0103a95</span><br><span class="line">没有密钥提供程序信息</span><br><span class="line">找不到解密的证书和私钥。</span><br><span class="line">已验证的颁发策略: 全部</span><br><span class="line">已验证的应用程序策略: 全部</span><br><span class="line">证书有效</span><br><span class="line">CertUtil: -verifystore 命令成功完成。</span><br></pre></td></tr></table></figure>
+
+<p>我看到了堡塔……然后把堡塔的证书删掉再次尝试，发现成功</p>
+<p>结束</p>
+<blockquote>
+<p>早知道就不拿电脑瞎折腾了，当初想试一下win安装堡塔来着QAQ</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+        <category>系统问题</category>
+      </categories>
+      <tags>
+        <tag>flutter</tag>
+        <tag>error</tag>
+        <tag>安装配置</tag>
+        <tag>错误解决</tag>
       </tags>
   </entry>
   <entry>
@@ -738,82 +738,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo文档编写记录</title>
-    <url>/hexo_1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>为了方便查阅属性而产生的记录，<a href="https://www.lifeee.top/posts/35048.html">更全的版本指路</a></p>
-<span id="more"></span>
-
-<h1 id="HTML扩展"><a href="#HTML扩展" class="headerlink" title="HTML扩展"></a>HTML扩展</h1><h2 id="键盘按键标签"><a href="#键盘按键标签" class="headerlink" title="键盘按键标签"></a>键盘按键标签</h2><p><kbd>Ctrl</kbd>+<kbd>z</kbd></p>
-<p><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Z&lt;/kbd&gt;</code></p>
-<h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><span  style="color: #729871; ">先给点颜色你看看</span></p>
-<p><code>&lt;span style=&quot;color: #729871; &quot;&gt;先给点颜色你看看&lt;/span&gt;</code></p>
-<h3 id="字体大小"><a href="#字体大小" class="headerlink" title="字体大小"></a>字体大小</h3><p><span  style="font-size:1.3em;">改变字体大小</span></p>
-<p><code>&lt;span style=&quot;font-size:1.3em;&quot;&gt;改变字体大小&lt;/span&gt;</code></p>
-<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p style="text-align:center">试试内容居中</p>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span> //right left</span><br><span class="line">试试内容居中</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="带颜色的分割线"><a href="#带颜色的分割线" class="headerlink" title="带颜色的分割线"></a>带颜色的分割线</h2><hr style="background-color : green;">
-
-<p><code>&lt;hr style=&quot;background-color : green;&quot;&gt;</code></p>
-<h1 id="Next主题特有的语法"><a href="#Next主题特有的语法" class="headerlink" title="Next主题特有的语法"></a>Next主题特有的语法</h1><h2 id="带引用样式的居中"><a href="#带引用样式的居中" class="headerlink" title="带引用样式的居中"></a>带引用样式的居中</h2><blockquote class="blockquote-center">
-<p>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
-<p>——王维《竹里馆》</p>
-
-</blockquote>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%cq%&#125;</span><br><span class="line"></span><br><span class="line">独坐幽篁里，弹琴复长啸。</span><br><span class="line">深林人不知，明月来相照。</span><br><span class="line"></span><br><span class="line">——王维《竹里馆》</span><br><span class="line"></span><br><span class="line">&#123;%endcq%&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><div class="note default"><p>default 提示块标签</p>
-</div>
-
-<div class="note primary"><p>primary 提示块标签</p>
-</div>
-
-<div class="note success"><p>success 提示块标签</p>
-</div>
-
-<div class="note info"><p>info 提示块标签</p>
-</div>
-
-<div class="note warning"><p>warning 提示块标签</p>
-</div>
-
-<div class="note danger"><p>danger 提示块标签</p>
-</div>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 选项卡 2 %&#125;</span><br><span class="line">&lt;!-- tab 自定义名称1 --&gt;</span><br><span class="line">这是选项卡 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称2 --&gt;</span><br><span class="line">这是选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称3 --&gt;</span><br><span class="line">这是选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<div class="tabs" id="选项卡-2"><ul class="nav-tabs"><li class="tab active"><a href="#选项卡-2-1">自定义名称1</a></li><li class="tab"><a href="#选项卡-2-2">自定义名称2</a></li><li class="tab"><a href="#选项卡-2-3">自定义名称3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="选项卡-2-1"><p>这是选项卡 1</p></div><div class="tab-pane" id="选项卡-2-2"><p>这是选项卡 2</p></div><div class="tab-pane" id="选项卡-2-3"><p>这是选项卡 3</p></div></div></div>
-
-
-
-<h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><p><i class="fa fa-camera-retro fa-lg"></i> fa-lg<br><i class="fa fa-camera-retro fa-2x"></i> fa-2x<br><i class="fa fa-camera-retro fa-3x"></i> fa-3x<br><i class="fa fa-camera-retro fa-4x"></i> fa-4x<br><i class="fa fa-camera-retro fa-5x"></i> fa-5x</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-lg&quot;&gt;&lt;/i&gt; fa-lg</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-2x&quot;&gt;&lt;/i&gt; fa-2x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-3x&quot;&gt;&lt;/i&gt; fa-3x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-4x&quot;&gt;&lt;/i&gt; fa-4x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-5x&quot;&gt;&lt;/i&gt; fa-5x</span><br></pre></td></tr></table></figure>
-
-<h2 id="Button标签"><a href="#Button标签" class="headerlink" title="Button标签"></a>Button标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 标签 方式 --&gt;</span></span><br><span class="line">&#123;% button /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% btn /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- HTML标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>这是标签名Click Me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn #, Text %&#125;&#123;% btn #, Text &amp; Title, home, Title %&#125;</span><br></pre></td></tr></table></figure>
-
-<a class="btn" href="#">Text</a><a class="btn" href="#" title="Title"><i class="fa fa-home"></i>Text & Title</a>
-
-<h2 id="label标签-带颜色的标记效果"><a href="#label标签-带颜色的标记效果" class="headerlink" title="label标签-带颜色的标记效果"></a>label标签-带颜色的标记效果</h2><p><strong>效果：</strong></p>
-<p>我坐在床前，望着窗外，<mark class="label ">回忆满天</mark>。生命是<mark class="label primary">华丽错觉</mark>，时间是贼偷走一切。</p>
-<p>七岁的那一年，抓住那只<mark class="label success">蝉</mark>，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能<mark class="label info">永远</mark>。</p>
-<p>有没有那么一种永远，<mark class="label warning">永远不改变</mark>，拥抱过的美丽，都再也不破碎。<br>让险峻岁月不能，在脸上撒野，让<mark class="label danger">生离和死别都遥远</mark>，有谁能听见。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line">我坐在床前，望着窗外，&#123;% label @回忆满天 %&#125;。生命是&#123;% label primary @华丽错觉 %&#125;，时间是贼偷走一切。</span><br><span class="line"></span><br><span class="line">七岁的那一年，抓住那只&#123;% label success @蝉 %&#125;，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能&#123;% label info @永远 %&#125;。</span><br><span class="line"></span><br><span class="line">有没有那么一种永远，&#123;% label warning @永远不改变 %&#125;，拥抱过的美丽，都再也不破碎。</span><br><span class="line">让险峻岁月不能，在脸上撒野，让&#123;% label danger @生离和死别都遥远 %&#125;，有谁能听见。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-        <tag>博客</tag>
-        <tag>markdown</tag>
-        <tag>教程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hadoop搭建教程</title>
     <url>/hadoop2.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
@@ -991,6 +915,82 @@
         <tag>linux</tag>
         <tag>环境搭建</tag>
         <tag>实战</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo文档编写记录</title>
+    <url>/hexo_1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>为了方便查阅属性而产生的记录，<a href="https://www.lifeee.top/posts/35048.html">更全的版本指路</a></p>
+<span id="more"></span>
+
+<h1 id="HTML扩展"><a href="#HTML扩展" class="headerlink" title="HTML扩展"></a>HTML扩展</h1><h2 id="键盘按键标签"><a href="#键盘按键标签" class="headerlink" title="键盘按键标签"></a>键盘按键标签</h2><p><kbd>Ctrl</kbd>+<kbd>z</kbd></p>
+<p><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Z&lt;/kbd&gt;</code></p>
+<h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><span  style="color: #729871; ">先给点颜色你看看</span></p>
+<p><code>&lt;span style=&quot;color: #729871; &quot;&gt;先给点颜色你看看&lt;/span&gt;</code></p>
+<h3 id="字体大小"><a href="#字体大小" class="headerlink" title="字体大小"></a>字体大小</h3><p><span  style="font-size:1.3em;">改变字体大小</span></p>
+<p><code>&lt;span style=&quot;font-size:1.3em;&quot;&gt;改变字体大小&lt;/span&gt;</code></p>
+<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p style="text-align:center">试试内容居中</p>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span> //right left</span><br><span class="line">试试内容居中</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="带颜色的分割线"><a href="#带颜色的分割线" class="headerlink" title="带颜色的分割线"></a>带颜色的分割线</h2><hr style="background-color : green;">
+
+<p><code>&lt;hr style=&quot;background-color : green;&quot;&gt;</code></p>
+<h1 id="Next主题特有的语法"><a href="#Next主题特有的语法" class="headerlink" title="Next主题特有的语法"></a>Next主题特有的语法</h1><h2 id="带引用样式的居中"><a href="#带引用样式的居中" class="headerlink" title="带引用样式的居中"></a>带引用样式的居中</h2><blockquote class="blockquote-center">
+<p>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
+<p>——王维《竹里馆》</p>
+
+</blockquote>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%cq%&#125;</span><br><span class="line"></span><br><span class="line">独坐幽篁里，弹琴复长啸。</span><br><span class="line">深林人不知，明月来相照。</span><br><span class="line"></span><br><span class="line">——王维《竹里馆》</span><br><span class="line"></span><br><span class="line">&#123;%endcq%&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><div class="note default"><p>default 提示块标签</p>
+</div>
+
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+
+<div class="note success"><p>success 提示块标签</p>
+</div>
+
+<div class="note info"><p>info 提示块标签</p>
+</div>
+
+<div class="note warning"><p>warning 提示块标签</p>
+</div>
+
+<div class="note danger"><p>danger 提示块标签</p>
+</div>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 选项卡 2 %&#125;</span><br><span class="line">&lt;!-- tab 自定义名称1 --&gt;</span><br><span class="line">这是选项卡 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称2 --&gt;</span><br><span class="line">这是选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称3 --&gt;</span><br><span class="line">这是选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div class="tabs" id="选项卡-2"><ul class="nav-tabs"><li class="tab active"><a href="#选项卡-2-1">自定义名称1</a></li><li class="tab"><a href="#选项卡-2-2">自定义名称2</a></li><li class="tab"><a href="#选项卡-2-3">自定义名称3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="选项卡-2-1"><p>这是选项卡 1</p></div><div class="tab-pane" id="选项卡-2-2"><p>这是选项卡 2</p></div><div class="tab-pane" id="选项卡-2-3"><p>这是选项卡 3</p></div></div></div>
+
+
+
+<h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><p><i class="fa fa-camera-retro fa-lg"></i> fa-lg<br><i class="fa fa-camera-retro fa-2x"></i> fa-2x<br><i class="fa fa-camera-retro fa-3x"></i> fa-3x<br><i class="fa fa-camera-retro fa-4x"></i> fa-4x<br><i class="fa fa-camera-retro fa-5x"></i> fa-5x</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-lg&quot;&gt;&lt;/i&gt; fa-lg</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-2x&quot;&gt;&lt;/i&gt; fa-2x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-3x&quot;&gt;&lt;/i&gt; fa-3x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-4x&quot;&gt;&lt;/i&gt; fa-4x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-5x&quot;&gt;&lt;/i&gt; fa-5x</span><br></pre></td></tr></table></figure>
+
+<h2 id="Button标签"><a href="#Button标签" class="headerlink" title="Button标签"></a>Button标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 标签 方式 --&gt;</span></span><br><span class="line">&#123;% button /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% btn /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- HTML标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>这是标签名Click Me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn #, Text %&#125;&#123;% btn #, Text &amp; Title, home, Title %&#125;</span><br></pre></td></tr></table></figure>
+
+<a class="btn" href="#">Text</a><a class="btn" href="#" title="Title"><i class="fa fa-home"></i>Text & Title</a>
+
+<h2 id="label标签-带颜色的标记效果"><a href="#label标签-带颜色的标记效果" class="headerlink" title="label标签-带颜色的标记效果"></a>label标签-带颜色的标记效果</h2><p><strong>效果：</strong></p>
+<p>我坐在床前，望着窗外，<mark class="label ">回忆满天</mark>。生命是<mark class="label primary">华丽错觉</mark>，时间是贼偷走一切。</p>
+<p>七岁的那一年，抓住那只<mark class="label success">蝉</mark>，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能<mark class="label info">永远</mark>。</p>
+<p>有没有那么一种永远，<mark class="label warning">永远不改变</mark>，拥抱过的美丽，都再也不破碎。<br>让险峻岁月不能，在脸上撒野，让<mark class="label danger">生离和死别都遥远</mark>，有谁能听见。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line">我坐在床前，望着窗外，&#123;% label @回忆满天 %&#125;。生命是&#123;% label primary @华丽错觉 %&#125;，时间是贼偷走一切。</span><br><span class="line"></span><br><span class="line">七岁的那一年，抓住那只&#123;% label success @蝉 %&#125;，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能&#123;% label info @永远 %&#125;。</span><br><span class="line"></span><br><span class="line">有没有那么一种永远，&#123;% label warning @永远不改变 %&#125;，拥抱过的美丽，都再也不破碎。</span><br><span class="line">让险峻岁月不能，在脸上撒野，让&#123;% label danger @生离和死别都遥远 %&#125;，有谁能听见。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>博客</tag>
+        <tag>markdown</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -1582,60 +1582,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu24.04使用记录</title>
-    <url>/ubuntu_demo.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
-<span id="more"></span>
-
-<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>学习记录</category>
-        <category>系统运维</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>ubuntu</tag>
-        <tag>系统配置</tag>
-        <tag>网络配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cs168</title>
-    <url>/cs168.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="1f49c8d06191edb86eb10204801734f039a16063e41ec84c7ae21b5e88fc74a7">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e1988dc00e132e41db1367b2f205dd37c1d1c76162a94c1c28a5605c7002078384d578c0248523a78c6a69b1fb3562bbc8b8ba60442647203e4a41724f187eda859ccca7bf16901fafaa25b846ac36c7d4cb66ebd41e9570db407bef7d7aab1eb7a1c3225f26012515f101f9963c0d593dd2de2ef8d353c815dbc47fd4a4d08db2de5161913adc93aa7a60f6e04c94fa6b74a36bdcec0817b3c41baf6450bbedc09d773be5a08a9be476a62e86c21d82610ea22b480a205cd46081b7bf4c903a400832874b0d4c34d6ef3e2f25575a98a318fed6c875816e5ed7c4aa9fa6dbb5058b6a2bd45c3882d82a367c292c5c000bfcc29eb073867e4ff9999f8276d72202d39867921e96b538d8e9f37419ed93cb4be21b953df291424b18968fb0c0581d3c53f77454fc97bba22ec94711149f557141805bda524821788544965471044093feaec7f0b419e2e933af46a2c28fdcc4ddd41e7a3da0dd9cef2100d3c178f5ce019e7252a2031224bf32e30e6cfdadc4cf64618a0077cd022fe670f1745ae1aa5f06a8c02e7e8f94e580bdf01d34cc1c7e9f0b91d334fced43bff35aa3c17108043f65d92d95c1291311d0bdb2060a7f4d18fce17ce1ffb43fd4e14f4472fb545b0feb242cb3c7b61ccbb45b477e670e01a084f6bcc8469da794a6e584b1a3831cf0a1b1068468b35e83c64132a408dcd3b80e25d28a7f6e344508621e2c103c07f77c645c359c3e173a1934d280b098123b097f282ccb8692e651bfd4a69431355321f6b38c6a6faeb471d548bbd85e22691cebabdc58fceb4f8048ef2e6f41a77065eb9903593af2db1d7b44796522668e1b513e89198d6c1f7aa6fae7032a62737a2f014a7d82ffd2b05b25b0241e323e03c1690d75862642044ed51223e8a14ef21887628f28ba44770a5991fc6478877846d569b7c75fb8513403fbf06e4f1d5b67d0966838d7e79aecbe915f5ef59684062183f81c6ee2aa1888dc88e739faa81a7b27f69d92ff0784d774b043d0b1ee637a2cad9837df8bb47d870d636cf352b1ccc38ec40a11cc3c045339a23e3a7c0fc12765ce3d971c8a640524ad5036d60cafd9837def824cc56d904ee4938ab81642ac68e4f314a216e55f597fc807f449eceffbb19a674479670ff48ce28112275c5a7c74bc17131c9f9d2afe44b172ed9219f3d12822cf0c61fd8e2e0df5ad8a83b23df74d64aa8bd4693737b3e558ceae687f8798244c755e4fdd0d5887cdd883c48de3bc76bae713887f2e26a41281f07ab9408824a65bf71eb4892d5fbbda11c55292697159b6e12c2bdb1cfcdc1ac1ab48849d7888bfe1ffaf87ba596f86873892e70d9b56b1613ab8880dc3563fc811fc57d27deabf33508f5e195296a9c555685f8d69862bc2d7b445fd97284070a57d7c8e4ce7ab86e4f4b9564cc958da6345418264818b770b1a6e47736f55614cc5f0c71c9ec4e369b753473b319a854ce3256f79d258520b6faf8b5803cae334691aa2c8a73cc80d5d40b70dd4e4c25ba425972c5a12d32a575d72b9dbb52862719cfeafde5faf44c17e5d550a435bf4bd930fa2686a4941ca72d4acbee70f0fd166fa651dcbba539783ed5dfd09ba097f2dde5508ed5cc9cadce416c2bfeb45bb823f8d46a0f6375429f19606044f2f3403d57d615f6e0c9dbf4655210c1fbc19a9d4265fc696ea7e053d1b61f9fe0ae0b834606b784dd799fdde1c1e4e14f4d9fec5e8726034ac84b95f3b46e198e32be64c3b25c13ab4f952b523ece636ead52323f3c6f28dbe666bbf417db6e903aa8702e6f74a60901b60275eb4bfde8dfeb2c8615355780dfebe3e167c525992353c23d983a889ba989c8635b927753d4292cb6abc25aac0007ec5ba32178c720333960981ba8208d1e97bfe172944ccc910e4fd7766293277704b12b030ebc25fac093feeb7e33261798c3fe1f3a824fe8e42f80b56fb2500e2b1c155419d4650a47c6704f8e17a54b74d5e8ff9743c2c9ab0461e988c70e49e5fe40c967e0f1f8eb600ff0dfb35b9c0b86267bfca4e64a53011c7dafea9666270f03816058809cef2f7e596214f1a063f453a1b6ce82eba7ac4da34aa24d4c3a2c80887addf4b33e7ab778f2133ad05481891ff6bb464259f6d891b630ff499df5d7e8642ed3e20d75729e2af09078cd38eab47c902bd273a08872f43c9e371d5b5b0f891dc9dba72db981c74b0bc8fbcc5ee2c1c81ae765cafc4add173189dbb9766e1c0bf5161932aa3214a63eff0a8c1cd3d8bd5ffd1ac93c843e1d7303826e2e0fa9100f40e3d0e652449ed73ae752653bbe721a1af3f60fc4cf9ff35b27ee639dbd4afd4650a10b1e001e6bb0b4c69e791c823c1ab7a5f342c0c434c6c56b6adb6c10e0a5dbe0281156ee7c545f79244de117549c5f68dafb6e72721c0e37faa217f115de50cc73cc7653cbe3c4b5d5a1432c91f0a8188a446994770bcdb7ef75634e8cc21ad85f694dcbbd508565fc09f5ec1611ad728bf86022c907bb579c3c34431aa6e0a5f4b45415effe417774e1742d5d5ba983bafa533d0222953b3e4162e055ad675cca35f1a1f66060aca10f914824ffacdd91e6c20011089419fd6fd44000e5bf78a96a0ce0ead8cedefbae6756a79bb8ba13feb7e0fa2a3d543d85460e76749d2c45ba9e4e863530a903273291e7f9446a2d22c0c543729640c5ad286339106ccb58ce4e190d493d0926833e9694f8740c50a94e7f025b898bafd79896ae649e0f29c982a93c204f74a354a607f62f2b008e024f767efd1f51d955ab1f6a24c8586d667f1cfdb01955ab8130bf3aa4d622d61a50c8a8deb281dbd7fe1ae793404b1496417f839a55f39dc07e9e28144176ddcdb8cb6a81ffc73fe1f277b61de4d01672e7e0f6caf1110e9a041303c1d844fe9f9984da19146b79f81f7c40979253960214c5ab166add8f265b4a99bec631263c3acab6eecf53cfe861f546ff9bd19ffaf59311a2b3332d206425f5170605940d73da270a9afed127eccaf2ecbac57bec2a89b37f1e3f1c067c5434492aeaddfce84066b1fb685c2e0bf3e8ed21303c67f9e09e3616cca37dd70a7496dce92ad4bd3877c64aa765e5ab435a4ce762440ef159d2c440b3f830c31e350e64878f95de5aa25cc7b4a88fbc4724bc6dc32a36fe562d1543eac123f09928c5c865077d15f339378fb58b6c563166b7e0f91f151a1af0a01c9a92fef9090c5992572e468cd1e0d802c51d520666e37023c9f48ef34674fcb319861e4d623a0d7b1c6397a8592eb75235bbf7744afbaaf32d4d6a348316606aa1b21fc23339e1f5f99f02d3c26ed65ad8ab5d360ab0292515af5659f78b7b669a3690b5c3210fecdf16632451d37ceb0b974b157025b94075948a3169b9c2f</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>学习记录</category>
-        <category>计算机科学</category>
-      </categories>
-      <tags>
-        <tag>计算机网络</tag>
-        <tag>协议</tag>
-        <tag>学习笔记</tag>
-        <tag>secret</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VSCode系编辑器使用技巧</title>
     <url>/vscode_trick.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
@@ -1746,6 +1692,60 @@
         <category>工具使用</category>
         <category>编辑器</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Ubuntu24.04使用记录</title>
+    <url>/ubuntu_demo.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
+<span id="more"></span>
+
+<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><h2 id="安装OpenSSH-Sever"><a href="#安装OpenSSH-Sever" class="headerlink" title="安装OpenSSH Sever"></a>安装OpenSSH Sever</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习记录</category>
+        <category>系统运维</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ubuntu</tag>
+        <tag>系统配置</tag>
+        <tag>网络配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cs168</title>
+    <url>/cs168.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="1f49c8d06191edb86eb10204801734f039a16063e41ec84c7ae21b5e88fc74a7">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e1988dc00e132e41db1367b2f205dd37c1d1c76162a94c1c28a5605c7002078384d578c0248523a78c6a69b1fb3562bbc8b8ba60442647203e4a41724f187eda859ccca7bf16901fafaa25b846ac36c7d4cb66ebd41e9570db407bef7d7aab1eb7a1c3225f26012515f101f9963c0d593dd2de2ef8d353c815dbc47fd4a4d08db2de5161913adc93aa7a60f6e04c94fa6b74a36bdcec0817b3c41baf6450bbedc09d773be5a08a9be476a62e86c21d82610ea22b480a205cd46081b7bf4c903a400832874b0d4c34d6ef3e2f25575a98a318fed6c875816e5ed7c4aa9fa6dbb5058b6a2bd45c3882d82a367c292c5c000bfcc29eb073867e4ff9999f8276d72202d39867921e96b538d8e9f37419ed93cb4be21b953df291424b18968fb0c0581d3c53f77454fc97bba22ec94711149f557141805bda524821788544965471044093feaec7f0b419e2e933af46a2c28fdcc4ddd41e7a3da0dd9cef2100d3c178f5ce019e7252a2031224bf32e30e6cfdadc4cf64618a0077cd022fe670f1745ae1aa5f06a8c02e7e8f94e580bdf01d34cc1c7e9f0b91d334fced43bff35aa3c17108043f65d92d95c1291311d0bdb2060a7f4d18fce17ce1ffb43fd4e14f4472fb545b0feb242cb3c7b61ccbb45b477e670e01a084f6bcc8469da794a6e584b1a3831cf0a1b1068468b35e83c64132a408dcd3b80e25d28a7f6e344508621e2c103c07f77c645c359c3e173a1934d280b098123b097f282ccb8692e651bfd4a69431355321f6b38c6a6faeb471d548bbd85e22691cebabdc58fceb4f8048ef2e6f41a77065eb9903593af2db1d7b44796522668e1b513e89198d6c1f7aa6fae7032a62737a2f014a7d82ffd2b05b25b0241e323e03c1690d75862642044ed51223e8a14ef21887628f28ba44770a5991fc6478877846d569b7c75fb8513403fbf06e4f1d5b67d0966838d7e79aecbe915f5ef59684062183f81c6ee2aa1888dc88e739faa81a7b27f69d92ff0784d774b043d0b1ee637a2cad9837df8bb47d870d636cf352b1ccc38ec40a11cc3c045339a23e3a7c0fc12765ce3d971c8a640524ad5036d60cafd9837def824cc56d904ee4938ab81642ac68e4f314a216e55f597fc807f449eceffbb19a674479670ff48ce28112275c5a7c74bc17131c9f9d2afe44b172ed9219f3d12822cf0c61fd8e2e0df5ad8a83b23df74d64aa8bd4693737b3e558ceae687f8798244c755e4fdd0d5887cdd883c48de3bc76bae713887f2e26a41281f07ab9408824a65bf71eb4892d5fbbda11c55292697159b6e12c2bdb1cfcdc1ac1ab48849d7888bfe1ffaf87ba596f86873892e70d9b56b1613ab8880dc3563fc811fc57d27deabf33508f5e195296a9c555685f8d69862bc2d7b445fd97284070a57d7c8e4ce7ab86e4f4b9564cc958da6345418264818b770b1a6e47736f55614cc5f0c71c9ec4e369b753473b319a854ce3256f79d258520b6faf8b5803cae334691aa2c8a73cc80d5d40b70dd4e4c25ba425972c5a12d32a575d72b9dbb52862719cfeafde5faf44c17e5d550a435bf4bd930fa2686a4941ca72d4acbee70f0fd166fa651dcbba539783ed5dfd09ba097f2dde5508ed5cc9cadce416c2bfeb45bb823f8d46a0f6375429f19606044f2f3403d57d615f6e0c9dbf4655210c1fbc19a9d4265fc696ea7e053d1b61f9fe0ae0b834606b784dd799fdde1c1e4e14f4d9fec5e8726034ac84b95f3b46e198e32be64c3b25c13ab4f952b523ece636ead52323f3c6f28dbe666bbf417db6e903aa8702e6f74a60901b60275eb4bfde8dfeb2c8615355780dfebe3e167c525992353c23d983a889ba989c8635b927753d4292cb6abc25aac0007ec5ba32178c720333960981ba8208d1e97bfe172944ccc910e4fd7766293277704b12b030ebc25fac093feeb7e33261798c3fe1f3a824fe8e42f80b56fb2500e2b1c155419d4650a47c6704f8e17a54b74d5e8ff9743c2c9ab0461e988c70e49e5fe40c967e0f1f8eb600ff0dfb35b9c0b86267bfca4e64a53011c7dafea9666270f03816058809cef2f7e596214f1a063f453a1b6ce82eba7ac4da34aa24d4c3a2c80887addf4b33e7ab778f2133ad05481891ff6bb464259f6d891b630ff499df5d7e8642ed3e20d75729e2af09078cd38eab47c902bd273a08872f43c9e371d5b5b0f891dc9dba72db981c74b0bc8fbcc5ee2c1c81ae765cafc4add173189dbb9766e1c0bf5161932aa3214a63eff0a8c1cd3d8bd5ffd1ac93c843e1d7303826e2e0fa9100f40e3d0e652449ed73ae752653bbe721a1af3f60fc4cf9ff35b27ee639dbd4afd4650a10b1e001e6bb0b4c69e791c823c1ab7a5f342c0c434c6c56b6adb6c10e0a5dbe0281156ee7c545f79244de117549c5f68dafb6e72721c0e37faa217f115de50cc73cc7653cbe3c4b5d5a1432c91f0a8188a446994770bcdb7ef75634e8cc21ad85f694dcbbd508565fc09f5ec1611ad728bf86022c907bb579c3c34431aa6e0a5f4b45415effe417774e1742d5d5ba983bafa533d0222953b3e4162e055ad675cca35f1a1f66060aca10f914824ffacdd91e6c20011089419fd6fd44000e5bf78a96a0ce0ead8cedefbae6756a79bb8ba13feb7e0fa2a3d543d85460e76749d2c45ba9e4e863530a903273291e7f9446a2d22c0c543729640c5ad286339106ccb58ce4e190d493d0926833e9694f8740c50a94e7f025b898bafd79896ae649e0f29c982a93c204f74a354a607f62f2b008e024f767efd1f51d955ab1f6a24c8586d667f1cfdb01955ab8130bf3aa4d622d61a50c8a8deb281dbd7fe1ae793404b1496417f839a55f39dc07e9e28144176ddcdb8cb6a81ffc73fe1f277b61de4d01672e7e0f6caf1110e9a041303c1d844fe9f9984da19146b79f81f7c40979253960214c5ab166add8f265b4a99bec631263c3acab6eecf53cfe861f546ff9bd19ffaf59311a2b3332d206425f5170605940d73da270a9afed127eccaf2ecbac57bec2a89b37f1e3f1c067c5434492aeaddfce84066b1fb685c2e0bf3e8ed21303c67f9e09e3616cca37dd70a7496dce92ad4bd3877c64aa765e5ab435a4ce762440ef159d2c440b3f830c31e350e64878f95de5aa25cc7b4a88fbc4724bc6dc32a36fe562d1543eac123f09928c5c865077d15f339378fb58b6c563166b7e0f91f151a1af0a01c9a92fef9090c5992572e468cd1e0d802c51d520666e37023c9f48ef34674fcb319861e4d623a0d7b1c6397a8592eb75235bbf7744afbaaf32d4d6a348316606aa1b21fc23339e1f5f99f02d3c26ed65ad8ab5d360ab0292515af5659f78b7b669a3690b5c3210fecdf16632451d37ceb0b974b157025b94075948a3169b9c2f</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>学习记录</category>
+        <category>计算机科学</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+        <tag>协议</tag>
+        <tag>学习笔记</tag>
+        <tag>secret</tag>
+      </tags>
   </entry>
   <entry>
     <title>docker 学习笔记</title>
@@ -1898,6 +1898,33 @@
       </categories>
       <tags>
         <tag>win11</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>各种各样的参考页面</title>
+    <url>/reference.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="2674a73cf61e28824c384a152cefb01265cb8f025164c15b7e29e66ca8737c53">c32395f63df771905c259445e1aa88f3899ee4804f798168a843621515b7539500991886f73e55266910bee5a5b66327e524d8162e2ec9fec6fcfda26661a9930eec9caf050ca5f9c108385159c0f1e968a1b5e142c0c85994af2c696ecc181ce436acc974aa63818589a52609ba5f3a9ad4010ae889f1894b4a9d9e64e2ece134003aab3794ea4436ae924ab54b02accb5b1ea9aba8acbd6abdf03218c8b53bc23a6b11578ff36c383887e99236a09aa19d515eab28cdf4f17b77ec49d4ef28d0832ca4d991132f0589107411ecdcd0acd99f409e46c2e30a10608094b209a43693d98aa4f5a9e516609ee6c9cbc06d929939490ab176d83fdeebe65ab09c03e8ad1b691dd63a0ef6eff7c425a9c3408c1f744180f3d008af4b483a52189a6f24ca5383f5ef3b36cbf5c264c0c6bdeb1586c0b1c0e5b71b6212eb3b55c649283703c855a9a92238ed7b9dced5e3234f8da84230abe6c9594cfa9cd25ce5266bacda7c1e74d20918f9f7781adb9f6e06864afa9186c18aaa05b33458d62a085a6810a7b3260c63cf25645a8f0e513b4aba4e4ba020ccd35b1227dcbff3f259efbcd38d3d7234fe1a835bb237942e1c86cd66a317298a3e359a8f5e17313d375842fd33ab45a0df2ac2b7d562f518cc926a4d0bbb42e26e3a57037d1561ab6a072972af26a63607b257e09e7104a7b696af30017d53e4f36efa488b15e89bad3303744a7f900d856fab828f5f5a985fedb38991d4fa5045463722b72c7fd537740c844c097a6003befc20204e421993a5005b1a32e4ac99f098ca1d02d6ce470e5f04b49373251f22992a1b422afbb8777bc97252b9a9b4d3abe0a8db92a181c72faa15a534a6252c023b63b330ad5a55d5fe266117320923dc781d8c25494f35f35c067b2d8d2b6e491e8a280b6bd02ac402e28651a8a77748161ed876485632db7941e5f7f6b09cdaadac8092d70ab33ef984948da9baf216db44dd258bbf0475d9601773601fa252f67fc565deec4f86e102dc17581a06c05a3d930806b0134a73891fa32cf9a81d5472d939494e5b74e4df73b9e9366bd453a01b4c4440c31f60f2212dce83da0c5305a887347749affa27c184b726cfce4b2839e64f0f1103191c7263efdfffc73fa0181dd6b1c3ec03bd36bd6e40e4304320df874543b88fd86d85333665b6d2baa6937c3ab85d7ac2f2f883c4934910ac10a6c66887964384dce2daa6b2f0a785d6bf962cd52fc0227b83bf1fcb4059a1896fbbdfd2168c9b9e4b1611b711661ff945d0cefa81d22ba1a9f181a8d767026a10ef0154f6ee86954a5e9b20c23f5b09d4234e445027393ccee8855d3d7bb5a349c19a77a18362f17b2942e9e03c25ce1c93f7b37ec49821ac8b599cc207b6579c1b741ed8efd9880c9e5cdc91d7ee275d84e125e16bd19c550a2b4a1afcd136cd3d418c0036a229b0797145939110cbdab48bc56a1cd07430c419dc0eb081f72fc191d208c87feca893776cdda0bcf6d31a06e4b2bb7804a9740a193c65fcbc36235c6856563dccdb3d610f248518d74b1ebafc53dae9c5d9ad5f3609db9790dbc550a820672ac8cbe5ff28a4316a48ef94d34f16e1b0ea8e9857d9c71ad0cebb453294addf1c1b4d4d1424cd21d4e1360a75159451f4157d3cdce227f21f52881d779789954b09a014ae6cc990452a7c230de0d964943f0608d6058e076e9a4491b79ebad525bf6ba7838da44f76f0af69b47e71d6407323d4dfaccd37a7fe8ceb018127554042bf237a1f1891cf97e09e0f24e0654579d4e12a77d3ebcd82be406f3ec2e302a7f7e450d838209c60d68934353c0e106e0fdf5ece46986dbb247fa73f83b49a8c76040d4c0b4fdb0bdc6469945265477ef16048b8ed1ef8966c508430014710e9b686aad006f4236f39bcc56c5fa649dd9a41bfe1873199fbb6537ab05705b5908f6d36f6dfeec518b51af1924572e6cabbece0e80f26cfca85d8d0b9bc9879bf0617fb23d1b824aecdb4d4567328425b95e07f09c093bd9e86f895b78aecfaa0e09cb44b8b79eeaa2224cbe53d0d3af75b6b998472b0fe935c9d6536542639db2fbfffca4874b2ca35370d207046b13dd6d44d6c00255d07becc11947a1cdcb0fe9dfa08b99356317f201650f5e876ae018effa8e486fa6065371eb1f981dfdd7f8a7bc45c5198297b67b0bc9e782c118c5f7f174e7998278f4eda6dea2ebcf2c9f084e301318cb8106bfbb998a9b131356f17c9b3d3fbbc3c73f49ed31df018b2de178f939a2b241868067157c7e124691a53ee1cdaa624b60ca1b71ba034303f12ebc0100ca03a476daf3a6586f2b1af2a4bc2c31706d1c96a9243d1fd628c3fae7373bca96bb4edd914ef8189e955a079aafa0a444cd3359e0c3359200bd389fba4b50d15aee73af199720250c5f0f6da0624f4feffc00a1c7d02b59d154e969f8d78e42d06219c019748ddc30a8b1ac84f69ae86eaafa1724966301c4fe87bdd35272078b7b12562278937e3da8f177c34ca9bdb8663ee830912c65caeff2ee719bde39bdb4c6057c528a7925699fbf67fd7f65998ec337e68837d923f534adf84b7605d196106575bf144611c7982d5232694127ea343e65527e6d51925687b77838105d5cb00b9f808d7e56f3f3a4688c6c3e2e2af70cb8502ade7999971f0b65355ce0de1cf2c0ba99eb59a6794eb0b02802e55dd52b3a829c087310e6952d0514e0efeb37e9152f775317c83a04acdf3775a8a2317bffdac517f5025a9f560cfbf4fbd887483113906342a657fb271bb60c178ded271077700ccc93e90a1abd8754c9b2f395e28bd9786d5b6980aa492562e7f6d3b3558d01303cf37ffdd3d2ffc6b618373f811200ebccfe082678408f883388f7a71a39a5619c1056446ea90c89ada13065eb3d42dc4f66bdc0e4e30edaad5634dd718f83b4a0f6855cc718edf5d33c429ae0951ac</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>资源存档</category>
+        <category>参考资料</category>
+      </categories>
+      <tags>
+        <tag>参考</tag>
       </tags>
   </entry>
   <entry>
@@ -2307,33 +2334,6 @@
         <tag>大模型</tag>
         <tag>云原生</tag>
         <tag>ccf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各种各样的参考页面</title>
-    <url>/reference.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="2674a73cf61e28824c384a152cefb01265cb8f025164c15b7e29e66ca8737c53">c32395f63df771905c259445e1aa88f3899ee4804f798168a843621515b7539500991886f73e55266910bee5a5b66327e524d8162e2ec9fec6fcfda26661a9930eec9caf050ca5f9c108385159c0f1e968a1b5e142c0c85994af2c696ecc181ce436acc974aa63818589a52609ba5f3a9ad4010ae889f1894b4a9d9e64e2ece134003aab3794ea4436ae924ab54b02accb5b1ea9aba8acbd6abdf03218c8b53bc23a6b11578ff36c383887e99236a09aa19d515eab28cdf4f17b77ec49d4ef28d0832ca4d991132f0589107411ecdcd0acd99f409e46c2e30a10608094b209a43693d98aa4f5a9e516609ee6c9cbc06d929939490ab176d83fdeebe65ab09c03e8ad1b691dd63a0ef6eff7c425a9c3408c1f744180f3d008af4b483a52189a6f24ca5383f5ef3b36cbf5c264c0c6bdeb1586c0b1c0e5b71b6212eb3b55c649283703c855a9a92238ed7b9dced5e3234f8da84230abe6c9594cfa9cd25ce5266bacda7c1e74d20918f9f7781adb9f6e06864afa9186c18aaa05b33458d62a085a6810a7b3260c63cf25645a8f0e513b4aba4e4ba020ccd35b1227dcbff3f259efbcd38d3d7234fe1a835bb237942e1c86cd66a317298a3e359a8f5e17313d375842fd33ab45a0df2ac2b7d562f518cc926a4d0bbb42e26e3a57037d1561ab6a072972af26a63607b257e09e7104a7b696af30017d53e4f36efa488b15e89bad3303744a7f900d856fab828f5f5a985fedb38991d4fa5045463722b72c7fd537740c844c097a6003befc20204e421993a5005b1a32e4ac99f098ca1d02d6ce470e5f04b49373251f22992a1b422afbb8777bc97252b9a9b4d3abe0a8db92a181c72faa15a534a6252c023b63b330ad5a55d5fe266117320923dc781d8c25494f35f35c067b2d8d2b6e491e8a280b6bd02ac402e28651a8a77748161ed876485632db7941e5f7f6b09cdaadac8092d70ab33ef984948da9baf216db44dd258bbf0475d9601773601fa252f67fc565deec4f86e102dc17581a06c05a3d930806b0134a73891fa32cf9a81d5472d939494e5b74e4df73b9e9366bd453a01b4c4440c31f60f2212dce83da0c5305a887347749affa27c184b726cfce4b2839e64f0f1103191c7263efdfffc73fa0181dd6b1c3ec03bd36bd6e40e4304320df874543b88fd86d85333665b6d2baa6937c3ab85d7ac2f2f883c4934910ac10a6c66887964384dce2daa6b2f0a785d6bf962cd52fc0227b83bf1fcb4059a1896fbbdfd2168c9b9e4b1611b711661ff945d0cefa81d22ba1a9f181a8d767026a10ef0154f6ee86954a5e9b20c23f5b09d4234e445027393ccee8855d3d7bb5a349c19a77a18362f17b2942e9e03c25ce1c93f7b37ec49821ac8b599cc207b6579c1b741ed8efd9880c9e5cdc91d7ee275d84e125e16bd19c550a2b4a1afcd136cd3d418c0036a229b0797145939110cbdab48bc56a1cd07430c419dc0eb081f72fc191d208c87feca893776cdda0bcf6d31a06e4b2bb7804a9740a193c65fcbc36235c6856563dccdb3d610f248518d74b1ebafc53dae9c5d9ad5f3609db9790dbc550a820672ac8cbe5ff28a4316a48ef94d34f16e1b0ea8e9857d9c71ad0cebb453294addf1c1b4d4d1424cd21d4e1360a75159451f4157d3cdce227f21f52881d779789954b09a014ae6cc990452a7c230de0d964943f0608d6058e076e9a4491b79ebad525bf6ba7838da44f76f0af69b47e71d6407323d4dfaccd37a7fe8ceb018127554042bf237a1f1891cf97e09e0f24e0654579d4e12a77d3ebcd82be406f3ec2e302a7f7e450d838209c60d68934353c0e106e0fdf5ece46986dbb247fa73f83b49a8c76040d4c0b4fdb0bdc6469945265477ef16048b8ed1ef8966c508430014710e9b686aad006f4236f39bcc56c5fa649dd9a41bfe1873199fbb6537ab05705b5908f6d36f6dfeec518b51af1924572e6cabbece0e80f26cfca85d8d0b9bc9879bf0617fb23d1b824aecdb4d4567328425b95e07f09c093bd9e86f895b78aecfaa0e09cb44b8b79eeaa2224cbe53d0d3af75b6b998472b0fe935c9d6536542639db2fbfffca4874b2ca35370d207046b13dd6d44d6c00255d07becc11947a1cdcb0fe9dfa08b99356317f201650f5e876ae018effa8e486fa6065371eb1f981dfdd7f8a7bc45c5198297b67b0bc9e782c118c5f7f174e7998278f4eda6dea2ebcf2c9f084e301318cb8106bfbb998a9b131356f17c9b3d3fbbc3c73f49ed31df018b2de178f939a2b241868067157c7e124691a53ee1cdaa624b60ca1b71ba034303f12ebc0100ca03a476daf3a6586f2b1af2a4bc2c31706d1c96a9243d1fd628c3fae7373bca96bb4edd914ef8189e955a079aafa0a444cd3359e0c3359200bd389fba4b50d15aee73af199720250c5f0f6da0624f4feffc00a1c7d02b59d154e969f8d78e42d06219c019748ddc30a8b1ac84f69ae86eaafa1724966301c4fe87bdd35272078b7b12562278937e3da8f177c34ca9bdb8663ee830912c65caeff2ee719bde39bdb4c6057c528a7925699fbf67fd7f65998ec337e68837d923f534adf84b7605d196106575bf144611c7982d5232694127ea343e65527e6d51925687b77838105d5cb00b9f808d7e56f3f3a4688c6c3e2e2af70cb8502ade7999971f0b65355ce0de1cf2c0ba99eb59a6794eb0b02802e55dd52b3a829c087310e6952d0514e0efeb37e9152f775317c83a04acdf3775a8a2317bffdac517f5025a9f560cfbf4fbd887483113906342a657fb271bb60c178ded271077700ccc93e90a1abd8754c9b2f395e28bd9786d5b6980aa492562e7f6d3b3558d01303cf37ffdd3d2ffc6b618373f811200ebccfe082678408f883388f7a71a39a5619c1056446ea90c89ada13065eb3d42dc4f66bdc0e4e30edaad5634dd718f83b4a0f6855cc718edf5d33c429ae0951ac</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>资源存档</category>
-        <category>参考资料</category>
-      </categories>
-      <tags>
-        <tag>参考</tag>
       </tags>
   </entry>
 </search>
