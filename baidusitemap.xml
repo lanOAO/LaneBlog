@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.lanouo.xyz/hdfs_ha_start.html</loc>
+    <lastmod>2026-11-01</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/6.11-501-wanzixi.html</loc>
+    <lastmod>2026-06-29</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/6.3-501-wanzixi.html</loc>
+    <lastmod>2026-06-29</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/ros_learn_2.html</loc>
+    <lastmod>2026-06-23</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.xyz/read_the_linux_command_line.html</loc>
+    <lastmod>2026-06-16</lastmod>
+  </url>
+  <url>
     <loc>http://blog.lanouo.xyz/hadoop2.html</loc>
     <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/wangluo_1.html</loc>
-    <lastmod>2026-06-08</lastmod>
-  </url>
-  <url>
     <loc>http://blog.lanouo.xyz/k8s_install.html</loc>
-    <lastmod>2026-06-04</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/hdfs_ha_start.html</loc>
-    <lastmod>2026-06-04</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/6.3-501-wanzixi.html</loc>
     <lastmod>2026-06-04</lastmod>
   </url>
   <url>
@@ -53,10 +61,6 @@
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/ros_learn_2.html</loc>
-    <lastmod>2026-06-02</lastmod>
-  </url>
-  <url>
     <loc>http://blog.lanouo.xyz/git_progit.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
@@ -86,10 +90,6 @@
   </url>
   <url>
     <loc>http://blog.lanouo.xyz/AutoHotkey1.html</loc>
-    <lastmod>2026-04-16</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/read_the_linux_command_line.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>

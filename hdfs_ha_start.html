@@ -20,20 +20,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.lanouo.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.24.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-solarizedlight.min","dark":"prism-dark.min"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"manual"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeInUp","post_header":"fadeIn","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInRight"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="这篇文章涓嶆兂琚湅鍒�">
+    <meta name="description" content="hdfs_ha的启动记录，仅方便查看用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop 3.3.4 + ZooKeeper 3.7.1 的 HDFS HA（双 NameNode）部署流程">
 <meta property="og:url" content="http://blog.lanouo.xyz/hdfs_ha_start.html">
 <meta property="og:site_name" content="幽篁里">
-<meta property="og:description" content="这篇文章涓嶆兂琚湅鍒�">
+<meta property="og:description" content="hdfs_ha的启动记录，仅方便查看用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-05-29T00:28:00.000Z">
-<meta property="article:modified_time" content="2026-06-04T05:13:50.683Z">
+<meta property="article:modified_time" content="2026-11-01T10:32:48.180Z">
 <meta property="article:author" content="LanOoO">
 <meta property="article:tag" content="安装配置">
 <meta property="article:tag" content="大数据">
 <meta property="article:tag" content="Hadoop">
-<meta property="article:tag" content="secret">
 <meta name="twitter:card" content="summary">
 
 
@@ -237,7 +236,7 @@ customElements.define('an_loading', CharAnimation);
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -250,6 +249,7 @@ customElements.define('an_loading', CharAnimation);
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hadoop-HA-%E9%9B%86%E7%BE%A4%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Hadoop HA 集群启动流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%90%AF%E5%8A%A8-ZooKeeper%EF%BC%88%E4%B8%89%E5%8F%B0%E6%9C%BA%E5%99%A8%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. 启动 ZooKeeper（三台机器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8-JournalNode%EF%BC%88%E4%B8%89%E5%8F%B0%E6%9C%BA%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. 启动 JournalNode（三台机器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%90%AF%E5%8A%A8-ZKFC"><span class="nav-number">1.3.</span> <span class="nav-text">3. 启动 ZKFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%9C%A8-master-%E4%B8%8A%E6%89%A7%E8%A1%8C%EF%BC%88%E4%BB%85%E9%9C%80%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. 在 master 上执行（仅需执行一次）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%9C%A8-slave1-%E4%B8%8A%E6%89%A7%E8%A1%8C%EF%BC%88%E4%BB%85%E9%9C%80%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">5. 在 slave1 上执行（仅需执行一次）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9C%A8-master-%E4%B8%8A%E5%90%AF%E5%8A%A8%E9%9B%86%E7%BE%A4"><span class="nav-number">1.6.</span> <span class="nav-text">6. 在 master 上启动集群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB%E6%B5%8B%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">故障转移测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB%E5%90%8E%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="nav-number">3.</span> <span class="nav-text">故障转移后的恢复</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -355,7 +355,7 @@ customElements.define('an_loading', CharAnimation);
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-06-04 13:13:50" itemprop="dateModified" datetime="2026-06-04T13:13:50+08:00">2026-06-04</time>
+      <time title="修改时间：2026-11-01 18:32:48" itemprop="dateModified" datetime="2026-11-01T18:32:48+08:00">2026-11-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -402,22 +402,47 @@ customElements.define('an_loading', CharAnimation);
     
     
     
-    <div class="post-body" itemprop="articleBody"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="8f6c9e13050f00da805b02a88a1cba558eb1b6aa23691d45852323c933e023b5">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e1982a5dd071431fd770c5b15464430011a70fefcf5926b7480b455ec5c283b42553b5b940cc9d69b5035a783ef353a4615047c6b4535eaee20f541d634aaf4102c2332fb8b65f72bb73d5eba12a542ce604c03a96cdff885feb56775eaf69f00ff1705742ab963275da898585682e4658940314c6a0b9fedd6c0016a41236c076e7d3f33cb216d1ba2efb865023b36715d9331107ca4d019a6e9a19550a5b248f646badb41e9ca7ceeb96a63851281d485b11efd3aa381169e0921d42c5af866317892cef24acc29d6733d5d8bc4cb66a9311dc38483ac382f1d13d35ac6e99f5d86f8b4422a81edb12a72ac45a5529e511486542f9e2b3f874457ba828279c8e22ebd249fad1a8ffed51cff9cc3be86766b88e629ab11df32d82b7c8d0b44936ddedc616163ef70b394d6fe23c3c138a1bede285eff4ee6d3538477eafd267e4012c234b867220dbf8a4ac39681b503559a6bf5b4d1b0d548b1129b1b6c287610195db2b336d896fb153e7278a8bdc726b904ffe6a71e6f254ffc0aaeb272dcca1cf4e79ee4428de7d5eb838f7f9df2ee3ed6be9dc1260ec8be99b0f408f84f463df74b96d3f385fab9a8ac09a6cd6f0607b0d3d191917c84c9272f7019470fb9358e41c0a072b9db914d585dda1bb69647a055ad52dda96597328f0f1427be6d410dcb46cb694340db4dcc83beb07c2d668903547fbf8eff1eaebc3677215ee6e98e796e7c44b3bab6389e463729ad8404b79a42b290cd4e7b3aef55aa95da3e2adc86a644a50f34f2c2a1a8093cfae7b9331c9cac2e673fb8177df8346314f628946935c9bdd33dd49e0701e0cfedad5760c6821da3d17e8f8250ec326561130339dc0c52384d9e8dcb49a313e1436b05294120b1c1b459c0fb294f8a50f0a1c16b8215b189a85c02662d4661caba512b331e19b99ad6dd04d43f2f76e2f99b4df0ec5fa2adeccd985085aca28a4932c7dfe0afee7e1da5fadeda2ceaebdf4f21789a3455c8dd3bbd77f997d637486c1bfe291a71eb6add3158aed0d3c1110d2a86e279c45d3ccf950e7d8d103b500941ec844e183829ee7fcd4a44cc513b9c19be626a5e338d17a4f38d787b3c8f65de633bb71096ca4e1fd3bde029e88b9bda98fef5d06fa5ca4860587d708ad2e2feac223b0d9e1b238698edf3461556f8a4f18013d2145f465c2119d65ad8e4618c824923cfd598c91cef76902ba1bd75bbbba62c0146f0f35960fdb5c3542bd7bcb4847e42117ae534a2e4c3f05ebd85a80888087b1821ad1ce212322447bda7d02373bf546ffa9a3bb155d268a0652d0e905fc38cb859965d3894ef16594e131d147654eca791343b0a0b43b87b1c7622167ecd5c3821891251cb224fe31149dc944c4f4dbb8acb428997699ed79813577ad76167ab0d12a4f48ed3056f8bbd96a344dccd5c832c562b72f1774414c28687199ff73d9bd9833d280fff96ffd027c2674be4ece86a2373676d5b198a94a495315cbb0ac1bf298cd62886d0da6fa5817a06d016cca17f9a7abaaa94f39652996be90281fb818db929f9feeb01d7e979d8ec48814c109be469bdb4b1aad5071aa2338bb9d197dd65cfafe7608573643955726094de9a085ebe1870a0d80de7c4ade27d7cc8413b3ac667feef2520c328e2f6d8b04334582432df01192164b6937144acf4c5e339adeec14b0a3ddb66b82f7a45a57084cbd86070b29e4ccd4dda578f40e72fa652616dac72c47e4b15ec860454dbccea0802ce5c868eda47bb35067503228098401ae833c2cdaafba2f1ca6456c6c85de06c56e9290e2ed0423b241fd39e5be63322262b1c17ae1c443e66fe2c9b9e75f66a2feeb01d9626ca2b42ecc264d78155455668e6cd18132ee3aaee2cfd51858b2dd2bcd1ee63d55645398ca7b1863f7cfd09595fae19be06040da53df7f5420a9ef85b392984704d2424068b44de3b1d9cf805a2a057a70beb34e6c7cb468d33899e3f1356fdfc9cb6cba4ca1d7f3ca20cb0a5b0543ec27cc3e6c3ecbfd2c3f4f8a03ce8503f1e0af5f172da8d0a6bfe627b4adbe0d0869f79af0d41d83b02333347c52a07d9f95000d46e5a5498a45d1615ef4a8ef154d5c41a671ffc215470f9914d416d4105a91f8403036f20a9b82fa13aa9359ce5e30111faa653ad23b8415655995c50d783fb881061a50812e5094d3b398cf3bd68b69357f8005ccb6b675932a4d92bec67354c34e67a94f196b25f1148b01d694aaaaa582aaab64f6919b1219b56534737b1ec2f6d94f1b566cbb506c0df3a6b2b02938d0fb12f97c29e8e476ceb11d6a394ba849ffbe3211e8d3b2809367c9fe259e017edc5ccb8e099efb14f79f49a4561e25e705af84f81a1df3b627e56e832b59499751f308b80eafef054ece52636b0b4a26bc49d85790575c51d08ee15245999c5022b49b8048560377d38cb092b3e2e29924891990b24263985238f2c61c4bcc2df99ded66562f9fd29869b55d73daf0ac6affe729cf0e21c5a38f051e2aa5cbf92db43d885ff49c43e0238329383a5baf242a3b24015a03da39b1f18472e6cce46affdcaee2796c3a5887b88bfe915f27eea7b9f84e1959717128939fcca8b6dfe4dd1518ec6df642c745b163e34ad3953ad3acbe332c9f630b6e1b774c2007d0f226a9d4becf8de1b4e1447b0e00c329d766df0d8b077ea46e21986463ac5d6f2fe5bf50106b17c4a4e123b9015c89120c5e317404fb94b52e0f90feb81f77fe418304b2ccceb1d77583cb21f9f734922e9de98cf6b25f966d15ac9dbd4bd1166e9b1bc02aff4729bfb9a7717156a8dd73a030c2342f2eac7e82dc719e5c04257b2c84f2b2a95f30ce56a909fb89d875176a5229c5eca5f3f506cf39d3cf82efa9d5fa93ce551270c4b502a3506a77bdabe69520812b49ed802c6772a99b56632857540168df51ad074e3b51012555109a7b5f98deba83dbec8e6cfeeb65aad8a896c169a56586d475a805c9ccb6c9b9a80fe67cfc729c30f06ca628e450de3af300fb8d0061165557d32f908b11e66cb4e2dd40850a46d85eed45a376fc08a885906e2d582ac143759eaf31c6a90d50ba97bcea290c3b9e4badbbac795624fddff9a9a2b36ac5d920fb39ff291828aaa02301ed71ffdfded80aa55e70fbd7101ec2b2dba948f75892fb3aed19b5f5332f99f29673e126a9eb97e55cd62a94b55955e2a62c90fd971a47d62e21eec3487f0eacd2c60d30e6e2f4ed1493dbbcd1e5de182282ce9b3c1078d79147dfa5218a604d8beef6957b5f321f2d55f328b3fc9a8825f38b5b06355a0875e3a6f361a5ecf0d10d90726b172b504361c6da661de466b56ae95d9966c3b5ef636da349e54e4e32f61802acf26a726687fbafcef1e9826cb3640422c5b0d89af62552082cf427761c05ef35628bdf24ba0059d69e132bec01f51e427b50bd0a43304d4f156fa218ad78439de15a0a8b703dc1c4ae01b79427bb1a25093b0fd05e2ea0042dcd1201108929a2ae810eba897499cdca2a6ea1f9d92c4e429437ebaa57ffcc66e288e655aa6d59b9113a08817ad4d0e48887c40f28190ac14e15e4be894a4a9509a31d8cfcc31dd4e23a13e06894e79bf47befa5da7c76262c8459eccd484ab156884cd4f7af33c477da2e7a39a6d13e957f89571fa5581522a3415cf10ae7cdd5dc43dc97bab05a0d0390f7bd2db49e3c9d25ed8991bd7e11fe8601ca1616a1be126b0011b8d2cbce2d22120627edb5aee6cfe97778e0fe2749ad92c4addfaffcdec3575dfe9489006933f58b3354d56b00496279f5cca9d65da3676d69cd80ebd1c701e012077b4b6414b6fbb360a700e079bee097128f3a9c197a8df097c9f137b54fcb316306ff6de95f13890c40f2c8f65c393692083615679bed6e6acfcad560c41ec2e845029d4aeb6522d8351444d437a0bafcb95b037502281448def127e9fa657dca99c90ae6f9dd995ac4beda40c6f838fac59cae27344a679719425adf333b3e2ebae60eadafd51a48972942daa445a499bf25c9655fc520addd677cc44c52e767aadc6f0046948467f6ab0abbad6cf241894cfd3aa7df8200e9ffe52071ba2456b96c3de9037aababe14e1255045b26d27970bc7968a5382f2b9333f1aae9c575803a5e1056af75c4afd06e9117e748c8e7df1242ec7f6c4cb9bff2945ed70aaaa4f35cdd1f475c78af05ec11d08e1bb5affd3ba2fb8cc87f6c96956bd2aeea8a9a3076490c841e802fdc7e036780e937b5e27a2ac0414de217b2eb8c723197c6b0bf7deb0376915c35d362b3e015bae48f9fe69799c1e267ea6e7edd6cf8adc1fe611c9d8a8a0e3146cac407401110f1c2833767aa1d1f1dcde0951e5f7639ef0c89db4d723d423277c1e15169fe6020a8a218c784b6a902cceb5d775610c0106215a7f6a8d58904748a86cdb5b9e08aba02c0c3d947bc0093e73d18ef2ac8e25e44c5542f94aa8d8f6f6129038e2bc91dbaf97abb9f208eb76cbbac859402ab15adf906cf2ee5b0bcf17ac00002af492942f5ac14be25c33843c4b386cf750c911edab53243bc6ddd78544cf90f209f04398af62a3a330ced4a89e8170d1a0ac13155c433ecd3f3247f027702579ba28671c75beb7848f3a5a909405a6d896d24ceed7c50fd648b739b0d6ad1fc988c4be42148edf44f31ec29e877b7f7f79029d8c3f058f1e8e2f0a62adb0972e23ed0c16fcdc5310b4e416964db5f73bc45f3b6050821d8b7592b4b207825d02621c8b381719c882fda6a6cc797aaa9323d84670daead38895697b552ae1d3b54335c32454df3e0d90b8cd0d5ab38e0c3a390a455a2b33e5757c25c8d55a772f172b5857bee7741410455c8a3ef25f3d5e9831eed194a6a33b8cce744cacd620fc8cd74a4aa91970b7a7937e0e6055c3bfc8307f60e01ca373cf93f32a1b71f44279184fc0b25b73e7052f02b2f9ed4721a83ecad6dd98e35d4ae3483d1efc6bfd08075b3c5513ab2116ca88f1fd0d698a005168003281db5dabfce2a842f8addf19751597f67e40eb840da5021050c6ce2ac21bf32c28a7ee433b5324b9cc8138e9bef2302c4c2467f34a5f8d45c45199e5f6bef55d9860fb929686a5dfc8e6e117024cb91ccae86979f36a1118d8a4750f0536e395b4e0f932a68a1540cf9d94ef1c426fe48d95ee8a6c68a2e46692ee1f4f9c70def78e8ea741e29c250efea081391de3cdf1dae4bd86b13140ac54f783b24786d55cdc42101f82c64fa11fce14aabb525a635535273215e56b8e54f18e83042907400065b054716545d8eeab5a82c76cecb095530df7b3670449247f5f25e76566d9cf8e0d7f3523248b144c52180b412e5e7bd885da63ce9fff06188738b708786c9035413630e863d61f54d786c617e9e7f63d384be55d83d32b74fcd5b15630d87f5cef966fb46a1bab2d1420a016ed649568b6ce97be50181a9b249ca50e99c727fe12ddf7ef6be4410989f1e682102bccca1ff861b5ba7147a4a91578d24e51f54d44551d472eec305c2a7446c665f794750d2ac9626bb50246b6334e60c4a009b5b0c9d2ed16df5d864a114f1d7f8d8470da9524731f35f3bd7fe8d55096f5c8087f8d1ceb74cc36d1cb2bac48856cb3ef86eacf96041fca5471118805cc3c2891b2b4042dafe654fa4266f15208bff5258bae9be784ffe6420690fbf58e02fe15a769c8a468088a8b9e7f5720fda70d1a415cfea77f2557d81ca8fe29307bd8adde3b75cbbb3e4382cd128bff5eb53783a50e3b9f41adc2e6791cd17c0679afbfc1bcf9401d23c672d9b977a07fdbf12bea74d62b33e50391d87d42969a4937a6c7909ed6d464bc992c2da31d37f00696fad271014b3cee1add5136cf134d2faa0c131265b9f65161ea8c235de13843cd720882e38c47cad163f78e51eae0b61f1067bf48b1971105d97102023b3bc2fcb2f1526180523a94b8db40121caa9f714dbe00ab258e24cca07a508b403339144cd64f6765c049d6b0511ca5adf93e23ec1bf00a048d338220376a976a3e5d87520a217f0e6376a35a849f6c690078c63bc5cbe1bde7351911ba0a879bbd8cefafd30458a47e68e8a9b1bad84f5dd54361057051d0e5607d4a4524f2454702fbdb53925db3fd48ef6f978ab8b374635a8cfe55d854dfb62e2f70aed50f5425f85ed98397acb0089fd7fccad076699ae80f1e8e4c8d8e0a2c666db604adff2fc03c81c15b45ce195fb8253c064432da2e325f47effd07596b0b3f4b4fc9d303f0a85868a4f5a1e278e56c8d23f3b48951aabeca2e074df93d6f47135f7f4f3b1361a20f05328426f91487ad51cda2f0ca056a006ff6c4216aa06d285427aa4b7bec0fa42ff090b38f776c5b0cecffff1ebed88f4182e36ad22a91a4aedf704b4946ae407c068647309c2d1e0823f84df02d189ebea76c4db61fbae1e2119397c6c0843d8c2254a76eae386291d</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>hdfs_ha的启动记录，仅方便查看用</p>
+<span id="more"></span>
+<h1 id="Hadoop-HA-集群启动流程"><a href="#Hadoop-HA-集群启动流程" class="headerlink" title="Hadoop HA 集群启动流程"></a>Hadoop HA 集群启动流程</h1><h2 id="1-启动-ZooKeeper（三台机器）"><a href="#1-启动-ZooKeeper（三台机器）" class="headerlink" title="1. 启动 ZooKeeper（三台机器）"></a>1. 启动 ZooKeeper（三台机器）</h2><p>ZooKeeper 安装目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/module/apache-zookeeper-3.7.1-bin</span><br></pre></td></tr></table></figure>
+
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh start</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-启动-JournalNode（三台机器）"><a href="#2-启动-JournalNode（三台机器）" class="headerlink" title="2. 启动 JournalNode（三台机器）"></a>2. 启动 JournalNode（三台机器）</h2><p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs --daemon start journalnode</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-启动-ZKFC"><a href="#3-启动-ZKFC" class="headerlink" title="3. 启动 ZKFC"></a>3. 启动 ZKFC</h2><p>Hadoop 安装目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/module/hadoop-3.3.4/bin</span><br></pre></td></tr></table></figure>
+
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hdfs --daemon start zkfc</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-在-master-上执行（仅需执行一次）"><a href="#4-在-master-上执行（仅需执行一次）" class="headerlink" title="4. 在 master 上执行（仅需执行一次）"></a>4. 在 master 上执行（仅需执行一次）</h2><p>启动 NameNode：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs --daemon start namenode</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-在-slave1-上执行（仅需执行一次）"><a href="#5-在-slave1-上执行（仅需执行一次）" class="headerlink" title="5. 在 slave1 上执行（仅需执行一次）"></a>5. 在 slave1 上执行（仅需执行一次）</h2><p>同步 NameNode 元数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -bootstrapStandby</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-在-master-上启动集群"><a href="#6-在-master-上启动集群" class="headerlink" title="6. 在 master 上启动集群"></a>6. 在 master 上启动集群</h2><p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-all.sh</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="故障转移测试"><a href="#故障转移测试" class="headerlink" title="故障转移测试"></a>故障转移测试</h1><p>关闭当前 Active NameNode：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 &lt;namenode_pid&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="故障转移后的恢复"><a href="#故障转移后的恢复" class="headerlink" title="故障转移后的恢复"></a>故障转移后的恢复</h1><p>启动 HDFS：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-dfs.sh</span><br></pre></td></tr></table></figure>
+
+<p>切换 NameNode 为 Standby：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs haadmin -transitionToStandby --forcemanual nn2</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -429,7 +454,6 @@ customElements.define('an_loading', CharAnimation);
               <a href="/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" rel="tag"><i class="fa fa-tag"></i> 安装配置</a>
               <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag"><i class="fa fa-tag"></i> 大数据</a>
               <a href="/tags/Hadoop/" rel="tag"><i class="fa fa-tag"></i> Hadoop</a>
-              <a href="/tags/secret/" rel="tag"><i class="fa fa-tag"></i> secret</a>
           </div>
 
         
@@ -474,13 +498,13 @@ customElements.define('an_loading', CharAnimation);
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">96k</span>
+    <span title="站点总字数">94k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:27</span>
+    <span title="站点阅读时长">1:26</span>
   </span>
 </div>
 <div class="busuanzi-count">
