@@ -6,7 +6,7 @@
   <link href="http://blog.lanouo.xyz/atom.xml" rel="self"/>
   
   <link href="http://blog.lanouo.xyz/"/>
-  <updated>2026-06-29T02:55:00.487Z</updated>
+  <updated>2026-11-03T10:02:27.508Z</updated>
   <id>http://blog.lanouo.xyz/</id>
   
   <author>
@@ -17,44 +17,27 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>6.11 晚自习</title>
-    <link href="http://blog.lanouo.xyz/6.11-501-wanzixi.html"/>
-    <id>http://blog.lanouo.xyz/6.11-501-wanzixi.html</id>
-    <published>2026-06-03T01:14:00.000Z</published>
-    <updated>2026-06-29T02:55:00.487Z</updated>
+    <title>ubuntu通过systemctl实现服务或脚本开机自启</title>
+    <link href="http://blog.lanouo.xyz/ubuntu-systemctl-enable-boot.html"/>
+    <id>http://blog.lanouo.xyz/ubuntu-systemctl-enable-boot.html</id>
+    <published>2026-06-29T03:00:00.000Z</published>
+    <updated>2026-11-03T10:02:27.508Z</updated>
     
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="9b4e31f6181b9829184b2839aceb35bab005c6a5c4f142a32408bd1d135f4f32">f618d53a829586286d8a540663af3488c65cdc4d26640cbb7b1724ed512b0087fdb01fb438b593d06c50800ef4922f2fdd92c458e343d6f19ac066354f7b1b9fe592aae1e1551112113b7e9d9999107960c0a0bc580f1ed101de6919164a1b93a6b46759bfff0529e483b14a48d9829b90717d87d88d07efc909780b2331f58e705953f1a5e5afeefd79c44679e4beaeea8e884869bd6f46630a14eea8ff34997df4cef7593a87a398281972949075dac5cbd623de279b3096da700222f2c87756ce3886e4aa12742d4b85e190b919ced4d21cb4b338fe0f0b9da732709b8ca41c73681a1ceef48ec8c670189f38225911adb2f6a69d0157559f7e8465e66aeb8e3dee397e7dad4ae4a7d49bc70ffe1b633f73d17b88c4a77d81ef9e6639c0d4dc97175d77d3e7c1c30e3c7970ca748e6901f5a8a2d973f37e8b17775c526f43e279df846eeb9b1ec700f39a875996aff6e17496a3a7fb07c6f2b8a9fedce4636b9772425643e80b0c68d50cb5f8f810fe65a146e806bda22be79d714f0fe1016afe82a4149b500dfe7447aa3bc0208eb615f3f9042aae0c0e24edc467900958f9d0626d4d1958a47a439fdeb75295f2b17bc5d4abca5ca56972330b990fe9ac2fc992a6e278ab0ab94630dbe86e09451ff7f71587bb1f92c82a428ff9baf0e09ff2a18e0f93f0f351bb2f6cd0d12739aadec1fd8383465bd75962f9ea43c968e785c09e6ec8401109f7ad9a495ad736ed38aa10f1ef575b1581b1637e8a039840925685478a8f80afbbdeddb90b4e2c4b95c6eff50e7ca6bb1d59c5914de89e808aa0c785462d21e40580dd9fc4a0d52103850c651df6b648feb856de36480aca2ebab405bfdaa7e7d39e6e6c393d319911728acfe206cbc9210588d73d64e48fd8451b90f730ffae7920e1c4a15a0f4d000b12c750307d24a500589e42f28c</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-xray">      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>      </label>      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>      </svg>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    
-    <summary type="html">课上笔记，密码为教室名+“1”</summary>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这里应该有一条简介才对&#x2F;_ \</p><span id="more"></span><p>在<code>/etc/systemd/system</code>下新建一个文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=ROS2 Web Video Server</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=agilex</span><br><span class="line">WorkingDirectory=/home/agilex/rxzy/systemd</span><br><span class="line"></span><br><span class="line">ExecStart=/home/agilex/rxzy/systemd/start_web_server.sh</span><br><span class="line"></span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=5</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">  </span><br><span class="line">sleep 10</span><br><span class="line"></span><br><span class="line">source  /opt/ros/noetic/setup.bash</span><br><span class="line">source ~/agilex_ws/devel/setup.bash</span><br><span class="line"></span><br><span class="line">exec rosbridge_server rosbridge_websocket.launch</span><br></pre></td></tr></table></figure><p>[Unit]<br>Description&#x3D;ROS1Websocket<br>After&#x3D;network.target</p><p>[Service]<br>Type&#x3D;simple<br>User&#x3D;agilex<br>WorkingDirectory&#x3D;&#x2F;home&#x2F;agilex&#x2F;rxzy&#x2F;systemd</p><p>ExecStart&#x3D;&#x2F;home&#x2F;agilex&#x2F;rxzy&#x2F;systemd&#x2F;start_websocket.sh</p><p>Restart&#x3D;always<br>RestartSec&#x3D;5</p><p>[Install]<br>WantedBy&#x3D;multi-user.target</p>]]></content>
     
     
-    
-    <category term="教学" scheme="http://blog.lanouo.xyz/categories/%E6%95%99%E5%AD%A6/"/>
-    
-    
-    <category term="Linux" scheme="http://blog.lanouo.xyz/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>6.3 晚自习</title>
-    <link href="http://blog.lanouo.xyz/6.3-501-wanzixi.html"/>
-    <id>http://blog.lanouo.xyz/6.3-501-wanzixi.html</id>
-    <published>2026-06-03T01:14:00.000Z</published>
-    <updated>2026-06-29T02:54:41.992Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">  <script id="hbeData" type="hbeData" data-hmacdigest="d944885537386e98793b0e7cb00837119bf3f7d00a8588f2245ece088331b4e8">f618d53a829586286d8a540663af3488c65cdc4d26640cbb7b1724ed512b0087fdb01fb438b593d06c50800ef4922f2fdd92c458e343d6f19ac066354f7b1b9fe592aae1e1551112113b7e9d9999107960c0a0bc580f1ed101de6919164a1b93a6b46759bfff0529e483b14a48d9829b27af4594cee0e6b4b190e5351fc5567507a76a6f57bdce5654425822264e8f0eb3e9365cfb542bdd5e2829f39d4d7d0aed0ac8a89eef6eff3286d0123a504f8f66bb96d57122df7c4f64114aa7030ea36c4a45d45d75213b9e1ad3b5e6bd5df6d88d35b4e12049d336fd8c92d602a96699cde246e9da55185990103482ecd4c893db32e10675efbef3602c6ded4b7a306b72b1b8a8a4e142d417171219b41bed6cbe2922f3842883cb87535708dc9838f7d80b35b35dc19da03f4b32a68057dc634b3b9fa079ca1c2a86255054788f6deb1f7224243922012eec8062b8fbac0baaa2b62115653029b58a43ff99976adda735ee283a0d2ab50457f87cca6c6416100495a9131e4f52c769f82c53ad13fb06dbe96962a25ce83682c66070b20463990cba3cde53c9b8e55e863d80087f0691c1bbbbd12be52bb6a211be271076397885b57b8400384c7c1bb7464a32a66e518cd9880c03c61f021645aef163532dac2557bf1d368580901c7a44c803bf3aae74aa7deb779b811b3c516ab4d68901b85379886b96223eb626b77e13be9b758b146b670bc20daebc99a173d9b4293adcfb007241346009b207df7c7318b0c1ed0ff826e92d159d05bb28b9c75ecc3f4a2009c0dc558f4ceb163935eb3c1f598fd8651d297f617990c716a46cc8881bd4b3f44ab37a5a06c99728bf77e1ce713c03c124aec69538b644662f9a17a27d4571b2abf37ef999cbaeab23e0132ac33c11d7bd46a6a42f37cd2483f79550d477434dc673004f94aeae1c24fba6bceb6987ae1003fd0b52b44b4de37b84ebbceed0302171954d46f44d649bb59a6d4932b2a5b50eed3057ecb41b7c0e3e444f1a7a0d3caa5d477eff32d597027e0587c1321146df77aee9906bce140eb04684bf3a21c1cb5ad27731ce19a8d0cf0a06081624af31dc88e174536b875966fc7cf0e420dfbb4a4a2e2290c8fcc8121d514e48180cfa8e959625b99a9f2e0b66ccd3b1272c2ce0b4cbc191c2648d7c56786c150f0d6b782a1f86197de85f7bd3fc9100999d21f9ebf6d10eb2bc42fd5917ca3e3191b73c10aa923124dbd25866bc549cfcf503d3a9c613b61bccb2ba2a711a5b9a8f34c330c940221e7df0fca89f1272c1b9defa387807677badf5a680ed56c724b445c9cc7be996c75fd0cdb0d016d483e217782e14af1fc5458da0f405ec444d7e7e24df1f7d50e7838569e811e3ca2d79aeadbc55dd14d871770e188d0f4178d1411fa61e7b8619dd063eeadc8c70dc1560bc6d3c2746f70c78302626e7c22b890b82a1f22b0fe83bb23d2d645f0e7cae1d2ba38553e5356bbe91f11d5a4f18d8cd38021f1a6ef70557834ad123d45d28bcb95f483eb0f3cda5b96e842887978d1721da8774ecd464bc4ab0fcfe8c9bb19547158243227de91729e46a140826bae81e9b7caddb1731f1486bc439d483c457a2af188defd208286a30c128dbe700dfea947e109ec58a45ddafb04b64707698b6b152a4d66439ac6d2e60ab5eab96c3402f4e626dd81f90f3f5168e25705aa7159c6c141bba07f1f64866a394e225a862198c98fcbd294bcc77b4c6f6cfad0454759c237df9e55661b962e9b62cad5e6375af13e57eaae719eada8b827f19c94de8b1725340be085debda5a9c2f6ba9ad34a9051cc00b261d18a692587dfd6823e97b3da8b5704ca97b5bcf867a34c5ed5d00f5fb4e92b151bb7bc437d65d85e995401032c5d6cf6512c9e55eb5b06fd6e89bd94e0f32c50cbdeaf22741f7d1e21b09abef9d64f589357950f3f32e476b397b448ab891eddad27f2e41faa97f7c2caa125a9a5c66b963eda9f34e5b2a6e408f9122876b4fc3179cd2af1fbde8c4dd8e24ea9e419c41d19150d365b226ae9e353d1683c8af60c3524ed7d0b044a20b6994f64966e65cac2025c1427336b81a34de8a1a75a4274f8c1d48fa01f9e16a0090c5d60f187406f84f04bd471c6359eb5142d94e14d6aea4be34894b3902c582fae2914ff6d77fbb4981f7c560ab7257ede59867c380299758ee260290c09cb02aa133c03fbf459727d3e991df05c76728421adcf091a47d87c68baaa70e1de226aadf4ea4d9a08c45678f9abd891d04a167deed5d3e2a2c8079a4106a3c9922cfeebe2086af21d338f53224bf5823c755d9d7981644a84dc586187e2d06a05e9c30b5681f3f0439b5df9221b879a0d98ce6be28742d64c50306d1cd3290fec2b7fabb03d147f16ca65c8a62c16bd542d21645617d2c6ddcc4f0c60981c0d689f85fbc9070aa0affde5966057944ae90fcebd4d23d2c81c366b7d5b56c47188b4270dc3b26c92fcb2b049fb2603c23efb79efaa1b56d1b068d985044290e3189e2f0a9640c50dbd20d208b43e85a35de3a2d145883da3a4206634c0798cd7631fe8fa224dac34245faa1671c1cca9c231f188be583011b99bfb70cd7dfeaab03a0a51bd4ef6e9e7f545b204b30f57df6b66d002321fd094f3e23b54b762d7ad161e92d6c2b58706f5f15a60325d8b087ffb013f33ac9ae8b68bc6a6a20ed8a4f8259de9fd1d5952b55408d32afa4fc20b96e16df4841ccef122a61ff6b59bc11a6e44e7f96235d16df365f4ef33a38b3ab9a87869892b773c952c6c27c0250427e63186d409bab0735285f318a6234bb6fb9ed2f7819ae7ff3163b8130d97a8b01d6bc93e202b3be95a36281d7f2941c9291f34f3eaf35e693981563a22db4c32a9c26d957e0e889183cdbb275def75c87a6eb2201df172a9867e453539851f3ce2b3c1cd09fb9b65afc7dbf7928b4d8b4b511e2836c63e1bef91decbf322fb760c3bc2ef2eda852353eab2d9a4045743b226cef7a978f73027222d710efd4ba4fc309209a2be14afebc21e7a76936615ff3b67f72b5d777d00e6aabc58ef7324e42fdaf7914ee2c2c47eacdda3dca66dc118e88b3732adbdc85c0c42dad578269530091a7431d87f2202ea27ed2306632da0b9fa6c78cb14e93107f302dcfcaf90fe24bcf8843d5285e98e58684e4e819f336cc442a179eae0957a377b61909bad5e3e0fc6d040bf830610072604ed7b6f2a2bd9bb0492acaeafdfd53fc4972e207e17cca98aaf6ab48fe177458a04dd04cee33e24fef93a6b7644dabcfd2f0e41208c41a025c3226fcfb3900ac0a3bc69535972999f0f601a6dbb5d9b6a9ab877df0afcc1bdc1d5c9cafe1d6d644560c18bed057366aee7048b536fec1561df8f5aeaf625322dc0f6d3515298faf31f74ab037ccecc8d2bba8e98b920ccb1bcb2316bf20dce0514400ce0e04531b77cff7f445bcf8c0d00324e53e6a39767dc3c1e3ef85f794c2f14620950a98b65e16588ab041d3269d13ef13018ba447637ad1ab34b5bbad5f15c1c2c3d0265404bb649a64fe75df01e2740c53d14a7fbdb0ee68f95fc2a974b7c659e857c0c1512e12508157eeeb5cebd82987b6c81c8ef1ac025939667ddf43aad4032f1c8bf21c179b7d5ec500df8d16db8a74a39aad4bc2979fb3c46c7bafe4ed7ea75b73c46ee97bdb425008002f6e621ac8436ac0f61e2ab24dd8fc0a7b9fef4f41ff594fd4280f1f88371695a234451df834bbdb403e6615d3fb851b</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-xray">      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>      </label>      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>      </svg>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    
-    <summary type="html">6.3课上笔记，密码为教室名+“1”</summary>
+    <summary type="html">&lt;p&gt;这里应该有一条简介才对&amp;#x2F;_ &#92;&lt;/p&gt;</summary>
     
     
     
-    <category term="教学" scheme="http://blog.lanouo.xyz/categories/%E6%95%99%E5%AD%A6/"/>
+    <category term="不知道放到哪OoO" scheme="http://blog.lanouo.xyz/categories/%E4%B8%8D%E7%9F%A5%E9%81%93%E6%94%BE%E5%88%B0%E5%93%AAOoO/"/>
     
     
-    <category term="Linux" scheme="http://blog.lanouo.xyz/tags/Linux/"/>
+    <category term="linux" scheme="http://blog.lanouo.xyz/tags/linux/"/>
+    
+    <category term="ros" scheme="http://blog.lanouo.xyz/tags/ros/"/>
+    
+    <category term="ubuntu" scheme="http://blog.lanouo.xyz/tags/ubuntu/"/>
     
   </entry>
   
@@ -569,6 +552,53 @@
     <category term="命令行" scheme="http://blog.lanouo.xyz/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
     
     <category term="系统管理" scheme="http://blog.lanouo.xyz/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 学习——实践部分</title>
+    <link href="http://blog.lanouo.xyz/git_0.html"/>
+    <id>http://blog.lanouo.xyz/git_0.html</id>
+    <published>2025-12-22T08:40:33.000Z</published>
+    <updated>2026-04-16T10:47:04.044Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>    .inline-note {      display: inline-block;      background-color: #fffbe6;      color: #333;      border-left: 4px solid #f7c948;      padding: 0.2em 0.6em;      margin: 0 0.2em;      font-size: 0.95em;      border-radius: 3px;      box-shadow: 0 1px 2px rgba(0,0,0,0.05);      font-style: italic;      cursor: help;      transition: all 0.2s ease;    }    .inline-note:hover {      background-color: #fff3bf;      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);    }</style><span id="more"></span><p>git init 初始化<br>git add .  添加所有文件到Git管理<br>git config –global user.name &lt;此处输入你的GitHub用户名&gt;<br>git config –global user.email &lt;此处输入绑定的邮箱地址&gt;<br>git commit -m “my first commit” 提交并注释</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将本地仓库关联到远程仓库 origin，&lt;这里填入第2步中看到的远程仓库地址&gt;</span></span><br><span class="line">git remote add origin &lt;远程仓库地址&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从远程 master 分支拉取最新代码并在本地进行 rebase，保证提交历史整洁</span></span><br><span class="line">git pull --rebase origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地 master 分支的提交推送到远程 origin 仓库，并设置 upstream（后续可以直接 git push）</span></span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;style&gt;
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+&lt;/style&gt;</summary>
+    
+    
+    
+    <category term="学习记录" scheme="http://blog.lanouo.xyz/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    <category term="编程语言" scheme="http://blog.lanouo.xyz/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="git" scheme="http://blog.lanouo.xyz/tags/git/"/>
+    
+    <category term="版本控制" scheme="http://blog.lanouo.xyz/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
+    
+    <category term="实践" scheme="http://blog.lanouo.xyz/tags/%E5%AE%9E%E8%B7%B5/"/>
     
   </entry>
   

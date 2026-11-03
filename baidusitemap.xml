@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.lanouo.xyz/ubuntu-systemctl-enable-boot.html</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
     <loc>http://blog.lanouo.xyz/hdfs_ha_start.html</loc>
     <lastmod>2026-11-01</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/6.11-501-wanzixi.html</loc>
-    <lastmod>2026-06-29</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/6.3-501-wanzixi.html</loc>
-    <lastmod>2026-06-29</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.xyz/ros_learn_2.html</loc>
