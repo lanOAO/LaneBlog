@@ -1,123 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://blog.lanouo.xyz/ubuntu-systemctl-enable-boot.html</loc>
+    <loc>http://blog.lanouo.com/null.html</loc>
+    <lastmod>2026-11-19</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.com/ubuntu_demo.html</loc>
+    <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.com/dec18-docs.html</loc>
     <lastmod>2026-11-03</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/hdfs_ha_start.html</loc>
+    <loc>http://blog.lanouo.com/ubuntu-systemctl-enable-boot.html</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.com/hdfs_ha_start.html</loc>
     <lastmod>2026-11-01</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/ros_learn_2.html</loc>
+    <loc>http://blog.lanouo.com/ros_learn_2.html</loc>
     <lastmod>2026-06-23</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/read_the_linux_command_line.html</loc>
+    <loc>http://blog.lanouo.com/read_the_linux_command_line.html</loc>
     <lastmod>2026-06-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/hadoop2.html</loc>
+    <loc>http://blog.lanouo.com/hadoop2.html</loc>
     <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/k8s_install.html</loc>
+    <loc>http://blog.lanouo.com/k8s_install.html</loc>
     <lastmod>2026-06-04</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/hadoop1.html</loc>
+    <loc>http://blog.lanouo.com/hadoop1.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/O-Prompt-engineering.html</loc>
+    <loc>http://blog.lanouo.com/O-Prompt-engineering.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/reference.html</loc>
+    <loc>http://blog.lanouo.com/reference.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/ascii_art.html</loc>
+    <loc>http://blog.lanouo.com/ascii_art.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/dockerInstall_ubuntu24.html</loc>
+    <loc>http://blog.lanouo.com/dockerInstall_ubuntu24.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/vmware_win11.html</loc>
+    <loc>http://blog.lanouo.com/vmware_win11.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/hexo_1.html</loc>
+    <loc>http://blog.lanouo.com/hexo_1.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/Claudecode_list.html</loc>
+    <loc>http://blog.lanouo.com/Claudecode_list.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/git_progit.html</loc>
+    <loc>http://blog.lanouo.com/git_progit.html</loc>
     <lastmod>2026-06-02</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/ros_learn.html</loc>
+    <loc>http://blog.lanouo.com/ros_learn.html</loc>
     <lastmod>2026-05-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/ros_robot.html</loc>
+    <loc>http://blog.lanouo.com/ros_robot.html</loc>
     <lastmod>2026-05-29</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/yolo_learn.html</loc>
+    <loc>http://blog.lanouo.com/yolo_learn.html</loc>
     <lastmod>2026-05-11</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/ubuntu_demo.html</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.xyz/ccf_1.html</loc>
+    <loc>http://blog.lanouo.com/ccf_1.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/vscode_trick.html</loc>
+    <loc>http://blog.lanouo.com/vscode_trick.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/AutoHotkey1.html</loc>
+    <loc>http://blog.lanouo.com/AutoHotkey1.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/docker_note1.html</loc>
+    <loc>http://blog.lanouo.com/docker_note1.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/cs168.html</loc>
+    <loc>http://blog.lanouo.com/cs168.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/git_2.html</loc>
+    <loc>http://blog.lanouo.com/git_2.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/git_0.html</loc>
+    <loc>http://blog.lanouo.com/git_0.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/git_1.html</loc>
+    <loc>http://blog.lanouo.com/git_1.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/win11_linkerror.html</loc>
+    <loc>http://blog.lanouo.com/win11_linkerror.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/errorlist_redis.html</loc>
+    <loc>http://blog.lanouo.com/errorlist_redis.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
   <url>
-    <loc>http://blog.lanouo.xyz/errorlist_flutter.html</loc>
+    <loc>http://blog.lanouo.com/errorlist_flutter.html</loc>
     <lastmod>2026-04-16</lastmod>
   </url>
 </urlset> 
