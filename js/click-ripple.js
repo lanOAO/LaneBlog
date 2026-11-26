@@ -38,17 +38,43 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
+    function randomBetween(min, max) {
+      return min + Math.random() * (max - min);
+    }
+
     function addRippleGroup(x, y) {
+      var baseRadius = Math.min(
+        randomBetween(125, 165),
+        Math.max(105, width * randomBetween(0.115, 0.15))
+      );
+
       rippleGroups.push({
         x: x,
         y: y,
         age: 0,
         rings: [
-          { delay: 0, duration: 1450, radiusScale: 0.52 },
-          { delay: 85, duration: 1850, radiusScale: 0.76 },
-          { delay: 170, duration: 2400, radiusScale: 1, outer: true }
+          {
+            delay: 0,
+            duration: randomBetween(1350, 1550),
+            radiusScale: randomBetween(0.46, 0.57),
+            alphaScale: randomBetween(0.66, 0.78)
+          },
+          {
+            delay: randomBetween(65, 110),
+            duration: randomBetween(1750, 2020),
+            radiusScale: randomBetween(0.7, 0.84),
+            alphaScale: randomBetween(1.08, 1.2)
+          },
+          {
+            delay: randomBetween(145, 210),
+            duration: randomBetween(2250, 2600),
+            radiusScale: randomBetween(0.94, 1.08),
+            alphaScale: randomBetween(0.52, 0.66),
+            outer: true
+          }
         ],
-        maxRadius: Math.min(150, Math.max(105, width * 0.13))
+        maxRadius: baseRadius,
+        verticalScale: randomBetween(0.94, 0.985)
       });
 
       if (rippleGroups.length > 5) rippleGroups.shift();
@@ -69,8 +95,8 @@
       // 波峰先渐显，再随着传播距离和时间自然衰减。
       var appear = Math.min(1, localAge / 210);
       var decay = Math.pow(1 - progress, ring.outer ? 1.55 : 1.3);
-      var ringStrength = appear * decay;
-      var verticalRadius = radius * 0.97;
+      var ringStrength = appear * decay * ring.alphaScale;
+      var verticalRadius = radius * group.verticalScale;
 
       // 外圈末段逐步变宽、变浅、变柔，模拟波边向外消散。
       var dissipate = ring.outer ? Math.max(0, (progress - 0.62) / 0.38) : 0;
