@@ -9,6 +9,8 @@
 
     var canvas = document.createElement("canvas");
     var ctx = canvas.getContext("2d");
+    var rippleCanvas = document.createElement("canvas");
+    var rippleCtx = rippleCanvas.getContext("2d");
     var leaves = [];
     var ripples = [];
     var pointer = { x: -1000, y: -1000, active: false };
@@ -27,6 +29,9 @@
     canvas.id = "leaf-bg-canvas";
     canvas.setAttribute("aria-hidden", "true");
     document.body.appendChild(canvas);
+    rippleCanvas.id = "leaf-ripple-canvas";
+    rippleCanvas.setAttribute("aria-hidden", "true");
+    document.body.appendChild(rippleCanvas);
 
     function makeLeaf(fromTop) {
       var size = 7 + Math.random() * 10;
@@ -34,12 +39,12 @@
         x: Math.random() * width,
         y: fromTop ? -size * 2 : Math.random() * height,
         size: size,
-        vx: (Math.random() - .5) * .12,
-        vy: .08 + Math.random() * .18,
+        vx: (Math.random() - .5) * .035,
+        vy: .018 + Math.random() * .04,
         phase: Math.random() * Math.PI * 2,
-        sway: .2 + Math.random() * .35,
+        sway: .018 + Math.random() * .028,
         angle: Math.random() * Math.PI * 2,
-        spin: (Math.random() - .5) * .0025,
+        spin: (Math.random() - .5) * .0008,
         color: palette[Math.floor(Math.random() * palette.length)]
       };
     }
@@ -57,9 +62,14 @@
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
+      rippleCanvas.width = Math.round(width * dpr);
+      rippleCanvas.height = Math.round(height * dpr);
       canvas.style.width = width + "px";
       canvas.style.height = height + "px";
+      rippleCanvas.style.width = width + "px";
+      rippleCanvas.style.height = height + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      rippleCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
       resetLeaves();
     }
 
@@ -83,7 +93,7 @@
     }
 
     function updateLeaf(leaf, delta, time) {
-      leaf.phase += .00045 * delta;
+      leaf.phase += .0002 * delta;
       leaf.x += (leaf.vx + Math.sin(leaf.phase + time * .00018) * leaf.sway) * delta;
       leaf.y += leaf.vy * delta;
       leaf.angle += leaf.spin * delta;
@@ -93,7 +103,7 @@
         var dy = leaf.y - pointer.y;
         var distanceSquared = dx * dx + dy * dy;
         if (distanceSquared > 1 && distanceSquared < 15000) {
-          var force = (1 - Math.sqrt(distanceSquared) / 123) * .045 * delta;
+          var force = (1 - Math.sqrt(distanceSquared) / 123) * .0025 * delta;
           leaf.x += dx * force;
           leaf.y += dy * force;
         }
@@ -113,11 +123,11 @@
           ripples.splice(i, 1);
           continue;
         }
-        ctx.beginPath();
-        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(65, 133, 87, " + ripple.alpha + ")";
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
+        rippleCtx.beginPath();
+        rippleCtx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        rippleCtx.strokeStyle = "rgba(65, 133, 87, " + ripple.alpha + ")";
+        rippleCtx.lineWidth = 1.2;
+        rippleCtx.stroke();
       }
     }
 
@@ -126,6 +136,7 @@
       var delta = Math.min(32, time - lastTime || 16.7);
       lastTime = time;
       ctx.clearRect(0, 0, width, height);
+      rippleCtx.clearRect(0, 0, width, height);
       for (var i = 0; i < leaves.length; i++) {
         updateLeaf(leaves[i], delta, time);
         drawLeaf(leaves[i]);
