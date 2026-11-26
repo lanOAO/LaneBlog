@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://blog.lanouo.com/rosmaster-a1-motion-control.html</loc>
+    <loc>http://blog.lanouo.com/ros_learn.html</loc>
     <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.com/ubuntu_demo.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.com/k8s_install.html</loc>
+    <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.lanouo.com/rosmaster-a1-motion-control.html</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.com/dec18-docs.html</loc>
@@ -31,10 +39,6 @@
   <url>
     <loc>http://blog.lanouo.com/hadoop2.html</loc>
     <lastmod>2026-06-08</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.com/k8s_install.html</loc>
-    <lastmod>2026-06-04</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.com/hadoop1.html</loc>
@@ -71,10 +75,6 @@
   <url>
     <loc>http://blog.lanouo.com/git_progit.html</loc>
     <lastmod>2026-06-02</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.lanouo.com/ros_learn.html</loc>
-    <lastmod>2026-05-29</lastmod>
   </url>
   <url>
     <loc>http://blog.lanouo.com/ros_robot.html</loc>
