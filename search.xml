@@ -14,6 +14,88 @@
       </tags>
   </entry>
   <entry>
+    <title>AutoHotkey —— 自动热键软件</title>
+    <url>/AutoHotkey1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+
+<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>以下全部建立在2.0.19版本的的基础上</p>
+</blockquote>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
+<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
+<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
+<li>双击脚本，即可运行</li>
+</ul>
+<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
+<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
+</blockquote>
+<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
+<ul>
+<li><code>#</code> ：win 键</li>
+<li><code>!</code> ：alt</li>
+<li><code>^</code> ：ctrl</li>
+<li><code>+</code> ：shift</li>
+<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
+</ul>
+<blockquote>
+<p><code>^q</code> 即代表ctrl + q</p>
+</blockquote>
+<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
+<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260204004245368.png" alt="image-20260204004245260"></p>
+<p>点击此处生成exe文件</p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260204003708249.png" alt="image-20260204003708097"></p>
+<p><code>win</code>+<code>r</code>输入<code>shell:startup</code>,并在此路径下粘贴刚刚生成的exe</p>
+<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
+<li>一个脚本里可以有多个热键</li>
+<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
+</ul>
+<hr>
+<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+
+<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
+<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
+]]></content>
+      <categories>
+        <category>工具使用</category>
+        <category>效率工具</category>
+      </categories>
+      <tags>
+        <tag>autohotkey</tag>
+        <tag>脚本</tag>
+        <tag>windows</tag>
+        <tag>自动化</tag>
+        <tag>效率工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ASCII Art存档</title>
     <url>/ascii_art.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>存一些ASCII Art</p>
@@ -603,88 +685,6 @@
       </categories>
   </entry>
   <entry>
-    <title>AutoHotkey —— 自动热键软件</title>
-    <url>/AutoHotkey1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-
-<p><b><a href="https://autohotkey.com/">AutoHotkey</a></b>是一款windows 平台下的热键脚本语言程序。可以实现诸如窗口置顶、快速输入、快捷操作等丰富多彩的功能。</p>
-<span id="more"></span>
-
-<blockquote>
-<p>以下全部建立在2.0.19版本的的基础上</p>
-</blockquote>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
-<li>进入官网下载并安装<span class = "inline-note" title ="我的建议是下在c盘"><a href="https://autohotkey.com/">AutoHotkey</a></span></li>
-<li>编写脚本并已 <strong>.ahk</strong> 为后缀名</li>
-<li>双击脚本，即可运行</li>
-</ul>
-<h1 id="脚本编写"><a href="#脚本编写" class="headerlink" title="脚本编写"></a>脚本编写</h1><blockquote>
-<p>详细可以看<a href="https://wyagd001.github.io/v2/docs/">脚本语言 | AutoHotkey v2</a>，这里只介绍基础编写</p>
-</blockquote>
-<h2 id="热键标记"><a href="#热键标记" class="headerlink" title="热键标记"></a>热键标记</h2><p>常用热键标记：</p>
-<ul>
-<li><code>#</code> ：win 键</li>
-<li><code>!</code> ：alt</li>
-<li><code>^</code> ：ctrl</li>
-<li><code>+</code> ：shift</li>
-<li><code>&amp;</code> ：用于连接两个按键(含鼠标按键) 合并成一个自定义热键</li>
-</ul>
-<blockquote>
-<p><code>^q</code> 即代表ctrl + q</p>
-</blockquote>
-<p><code>::</code>连接符，当执行前面的后面的也会被执行</p>
-<h2 id="打开程序-网页"><a href="#打开程序-网页" class="headerlink" title="打开程序 &amp; 网页"></a>打开程序 &amp; 网页</h2><p>可以使用<em><strong>Run</strong></em>函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 打开一个程序，为了不报错我建议大家用绝对路径:</span><br><span class="line">; 当然一些程序并不需要完整路径, 如 Windows 标准程序:</span><br><span class="line">Run &quot;notepad.exe&quot;</span><br><span class="line"></span><br><span class="line">; 使用内置变量来打开 &quot;我的文档&quot;:</span><br><span class="line">Run A_MyDocuments</span><br><span class="line"></span><br><span class="line">; 打开一个网址:</span><br><span class="line">Run &quot;https://www.autohotkey.com&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="关于开机自启"><a href="#关于开机自启" class="headerlink" title="关于开机自启"></a>关于开机自启</h2><p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260204004245368.png" alt="image-20260204004245260"></p>
-<p>点击此处生成exe文件</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260204003708249.png" alt="image-20260204003708097"></p>
-<p><code>win</code>+<code>r</code>输入<code>shell:startup</code>,并在此路径下粘贴刚刚生成的exe</p>
-<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><ul>
-<li>一个脚本里可以有多个热键</li>
-<li>支持函数&#x2F;变量…，大家可以自己探索QoQ</li>
-</ul>
-<hr>
-<h1 id="一些案例分享"><a href="#一些案例分享" class="headerlink" title="一些案例分享"></a>一些案例分享</h1><h2 id="ctrl-空格-窗口置顶-取消置顶"><a href="#ctrl-空格-窗口置顶-取消置顶" class="headerlink" title="ctrl 空格 窗口置顶&#x2F;取消置顶"></a>ctrl 空格 窗口置顶&#x2F;取消置顶</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">^SPACE::  ; Ctrl + 空格 键切换置顶状态</span><br><span class="line">WinSet, AlwaysOnTop, Toggle, A</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-
-<h2 id="文字替换-快捷输入"><a href="#文字替换-快捷输入" class="headerlink" title="文字替换&#x2F;快捷输入"></a>文字替换&#x2F;快捷输入</h2><p>ps：这里用了<a href="https://zhuanlan.zhihu.com/p/35379309">crystal</a>的例子</p>
-<p>键盘输入 <code>/2</code>、<code>/h</code> + Tab、空格或回车，触发缩写功能，自动快速输入对应文本。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; / + 缩写 触发，格式 “ ::/缩写::文本 ”</span><br><span class="line">::/qm::123456@qq.com</span><br><span class="line">::/zw::输入中文符号 、 也可触发</span><br><span class="line">::/2::您好，请问有什么可以帮助您的吗？</span><br><span class="line">::/h::哈哈哈哈</span><br><span class="line"></span><br><span class="line">; 结合快捷键命令，按 alt + 1 触发，</span><br><span class="line">; 以下是一条完整的命令，“!1” 为快捷键设置，Send 后跟文本</span><br><span class="line">!1::</span><br><span class="line">Send 快捷键触发输出</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-<p><span class = "inline-note" align = "center">这个真的超级好用，主要是因为摸鱼的时候没法把看番的窗口置顶所以才有了这个OuO</span></p>
-]]></content>
-      <categories>
-        <category>工具使用</category>
-        <category>效率工具</category>
-      </categories>
-      <tags>
-        <tag>autohotkey</tag>
-        <tag>脚本</tag>
-        <tag>windows</tag>
-        <tag>自动化</tag>
-        <tag>效率工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Flutter安装报错记录</title>
     <url>/errorlist_flutter.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
@@ -830,6 +830,183 @@
         <tag>git</tag>
         <tag>版本控制</tag>
         <tag>远程仓库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 学习——基础篇</title>
+    <url>/git_1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——基础篇 oio</p>
+<style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+
+<blockquote>
+<p>学习网站：<a href="https://learngitbranching.js.org/?locale=zh_CN">Learn Git Branching</a></p>
+</blockquote>
+<p>Git 希望提交记录尽可能地轻量，因此在你每次进行提交时，它并不会盲目地复制整个目录。条件允许的情况下，它会将当前版本与仓库中的上一个版本进行对比，并把所有的差异打包到一起作为一个提交记录。</p>
+<h1 id="Git-主要命令"><a href="#Git-主要命令" class="headerlink" title="Git 主要命令"></a>Git 主要命令</h1><p><code>Git Commit</code>：提交新记录，添加新节点</p>
+<p><code>Git Branch &lt;name&gt;</code>：基于这个提交及他所有的parent新建分支<em>仅新建分支</em></p>
+<blockquote>
+<p><code>main*</code>代表你当前在main分支下</p>
+</blockquote>
+<p><code>git checkout &lt;name&gt;</code>：切换分支</p>
+<blockquote>
+<p>创建一个新的分支同时切换到新创建的分支的话，可以通过 <code>git checkout -b &lt;your-branch-name&gt;</code></p>
+<blockquote>
+<p><em>新版本使用</em><code>git</code> <code>switch</code> [<em><options></em>] [<code>--no-guess</code>] <em><branch></em></p>
+</blockquote>
+</blockquote>
+<p><code>git merge &lt;your-branch-name&gt;</code> 合并分支<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181543273.png?40l" alt="git merge"></p>
+<p><code>git rebase &lt;your-branch-name&gt; [your-rebase-name]</code>线性合并分支<br>Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。<br>Rebase 的优势就是可以创造更线性的提交历史。<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181548515.png?40l" alt="git rebase"></p>
+<hr>
+<h1 id="Git-特性"><a href="#Git-特性" class="headerlink" title="Git 特性"></a>Git 特性</h1><h2 id="关于HEAD变量"><a href="#关于HEAD变量" class="headerlink" title="关于HEAD变量:"></a>关于<code>HEAD</code>变量:</h2><p>通过<code>git chekout &lt;name&gt;</code>命令可以切换<code>HEAD</code>的指向</p>
+<blockquote>
+<p> <em>可以<code>HEAD</code>→<code>main</code> →<code>C4</code>（<code>main</code>→<code>C4</code>）</em><br><em>也可以<code>HEAD</code>→<code>C4</code></em></p>
+</blockquote>
+<h2 id="相对引用——"><a href="#相对引用——" class="headerlink" title="相对引用——^,~"></a>相对引用——<code>^</code>,<code>~</code></h2><p><code>git log</code> 查看提交记录的哈希值</p>
+<p>其哈希值可以只输入前几个字母进行匹配<br>但是这样太麻烦了</p>
+<p><strong>^</strong>: 使用 <code>^</code> 向上移动 1 个提交记录 (父节点，且可叠用。<code>HEAD^</code>,<code>main^^</code>)<br><span class = "inline-note" title ="小提示"><br>当<code>^</code>后面加数字时，表示的是移动到他的第几个<code>parent</code>（当我们使用<code>git merge</code>命令时可能会有一个以上的parent）<br></span><br><strong>~</strong>: 使用 <code>~&lt;num&gt;</code> 向上移动多个提交记录，如 <code>~3</code>,<code>HEAD~3</code></p>
+<p>两个符号可以链式操作，例如<code>git checkout HEAD~^2~2</code><br>结合之前的命令实用：<br><strong><code>git branch -f main HEAD~3</code>：将 main 分支强制指向 HEAD 的第 3 级 parent 提交。</strong></p>
+<h2 id="撤销变更-——-git-reset和git-revert"><a href="#撤销变更-——-git-reset和git-revert" class="headerlink" title="撤销变更 —— git reset和git revert"></a>撤销变更 —— <code>git reset</code>和<code>git revert</code></h2><p><code>git reset &lt;参数&gt;</code><br>在reset后， 撤销部分所做的变更还在，但是处于未加入暂存区状态。<strong>本地常用</strong><br><code>git revert &lt;参数&gt;</code><br>把撤销之前的部分作为新分支提交<strong>远程常用</strong></p>
+<hr>
+<h1 id="整理提交记录"><a href="#整理提交记录" class="headerlink" title="整理提交记录"></a>整理提交记录</h1><h2 id="复制git-cherry-pick"><a href="#复制git-cherry-pick" class="headerlink" title="复制git cherry-pick"></a>复制<code>git cherry-pick</code></h2><p><code>git cherry-pick &lt;提交号&gt;...</code><br>将一些提交<strong>复制</strong>到当前所在的位置（<code>HEAD</code>）下面</p>
+<h2 id="交互式的-rebase"><a href="#交互式的-rebase" class="headerlink" title="交互式的 rebase"></a>交互式的 rebase</h2><p><code>git rebase -i HEAD~4</code><br>会有一个交互式的页面供你进行<strong>排序、删除、合并</strong><br>在你完成后，会将处理好的分支放在当前分支下</p>
+<h2 id="只取一个提交记录（实战结合）"><a href="#只取一个提交记录（实战结合）" class="headerlink" title="只取一个提交记录（实战结合）"></a>只取一个提交记录（实战结合）</h2><p>通过以上两个命令把修改bug中最后解决bug的提交记录复制或移动到main分支下</p>
+<h1 id="提交的技巧"><a href="#提交的技巧" class="headerlink" title="提交的技巧"></a>提交的技巧</h1><blockquote>
+<p>当你希望对之前的提交记录进行小小的修改，这里有两个方法。</p>
+</blockquote>
+<p><code>git commit --amend</code>追加提交<br>将不会重复提交而是修改之前的提交于同一位置</p>
+<p>可以先移动顺序，将要修改的放前面来，修改后再排序放回去。最后合并main分支。</p>
+<p>使用<code>git cherry-pick</code>一步步复制修改</p>
+<h1 id="Git-tag-——-标签-锚点"><a href="#Git-tag-——-标签-锚点" class="headerlink" title="Git tag —— 标签&#x2F;锚点"></a>Git tag —— 标签&#x2F;锚点</h1><p><code>git tag &lt;标签名&gt; &lt;指向位置&gt;</code><br><em>可以通过<code>git check</code>移动到标签</em></p>
+<p><code>git describe </code>可以 <strong>描述</strong>离你最近的锚点（也就是标签)</p>
+<p>语法：<code>git describe &lt;ref&gt;</code>^1<br>返回值:<code>&lt;tag&gt;-&lt;numCommits&gt;-g&lt;hash&gt;</code>^2</p>
+<ol>
+<li><p><code>&lt;ref&gt;</code> 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会使用你目前所在的位置（<code>HEAD</code>）。</p>
+</li>
+<li><p><code>tag</code> 表示的是离 <code>ref</code> 最近的标签， <br><code>numCommits</code> 是表示这个 <code>ref</code> 与 <code>tag</code> 相差有多少个提交记录，<br><code>hash</code> 表示的是你所给定的 <code>ref</code> 所表示的提交记录哈希值的前几位。</p>
+</li>
+</ol>
+<h1 id="多分支-rebase"><a href="#多分支-rebase" class="headerlink" title="多分支 rebase"></a>多分支 rebase</h1><p> <code>git rebase &lt;1&gt; &lt;2&gt;</code>1→2<br>2分支中所有的提交记录都将合并到1分支之下</p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>版本控制</tag>
+        <tag>入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop 3.3.4 + ZooKeeper 3.7.1 的 HDFS HA（双 NameNode）部署流程</title>
+    <url>/hdfs_ha_start.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>hdfs_ha的启动记录，仅方便查看用</p>
+<span id="more"></span>
+<h1 id="Hadoop-HA-集群启动流程"><a href="#Hadoop-HA-集群启动流程" class="headerlink" title="Hadoop HA 集群启动流程"></a>Hadoop HA 集群启动流程</h1><h2 id="1-启动-ZooKeeper（三台机器）"><a href="#1-启动-ZooKeeper（三台机器）" class="headerlink" title="1. 启动 ZooKeeper（三台机器）"></a>1. 启动 ZooKeeper（三台机器）</h2><p>ZooKeeper 安装目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/opt/module/apache-zookeeper-3.7.1-bin</span><br></pre></td></tr></table></figure>
+
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin/zkServer.sh start</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-启动-JournalNode（三台机器）"><a href="#2-启动-JournalNode（三台机器）" class="headerlink" title="2. 启动 JournalNode（三台机器）"></a>2. 启动 JournalNode（三台机器）</h2><p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs --daemon start journalnode</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-启动-ZKFC"><a href="#3-启动-ZKFC" class="headerlink" title="3. 启动 ZKFC"></a>3. 启动 ZKFC</h2><p>Hadoop 安装目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/opt/module/hadoop-3.3.4/bin</span><br></pre></td></tr></table></figure>
+
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin/hdfs --daemon start zkfc</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-在-master-上执行（仅需执行一次）"><a href="#4-在-master-上执行（仅需执行一次）" class="headerlink" title="4. 在 master 上执行（仅需执行一次）"></a>4. 在 master 上执行（仅需执行一次）</h2><p>启动 NameNode：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs --daemon start namenode</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-在-slave1-上执行（仅需执行一次）"><a href="#5-在-slave1-上执行（仅需执行一次）" class="headerlink" title="5. 在 slave1 上执行（仅需执行一次）"></a>5. 在 slave1 上执行（仅需执行一次）</h2><p>同步 NameNode 元数据：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs namenode -bootstrapStandby</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-在-master-上启动集群"><a href="#6-在-master-上启动集群" class="headerlink" title="6. 在 master 上启动集群"></a>6. 在 master 上启动集群</h2><p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./start-all.sh</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="故障转移测试"><a href="#故障转移测试" class="headerlink" title="故障转移测试"></a>故障转移测试</h1><p>关闭当前 Active NameNode：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 &lt;namenode_pid&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="故障转移后的恢复"><a href="#故障转移后的恢复" class="headerlink" title="故障转移后的恢复"></a>故障转移后的恢复</h1><p>启动 HDFS：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./start-dfs.sh</span><br></pre></td></tr></table></figure>
+
+<p>切换 NameNode 为 Standby：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs haadmin -transitionToStandby --forcemanual nn2</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术实践</category>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>安装配置</tag>
+        <tag>大数据</tag>
+        <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 学习——实践部分</title>
+    <url>/git_0.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+<p>git init 初始化<br>git add .  添加所有文件到Git管理<br>git config –global user.name &lt;此处输入你的GitHub用户名&gt;<br>git config –global user.email &lt;此处输入绑定的邮箱地址&gt;<br>git commit -m “my first commit” 提交并注释</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将本地仓库关联到远程仓库 origin，&lt;这里填入第2步中看到的远程仓库地址&gt;</span></span><br><span class="line">git remote add origin &lt;远程仓库地址&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从远程 master 分支拉取最新代码并在本地进行 rebase，保证提交历史整洁</span></span><br><span class="line">git pull --rebase origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地 master 分支的提交推送到远程 origin 仓库，并设置 upstream（后续可以直接 git push）</span></span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习记录</category>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>版本控制</tag>
+        <tag>实践</tag>
       </tags>
   </entry>
   <entry>
@@ -1024,263 +1201,6 @@
       <tags>
         <tag>参考</tag>
         <tag>大模型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hadoop 3.3.4 + ZooKeeper 3.7.1 的 HDFS HA（双 NameNode）部署流程</title>
-    <url>/hdfs_ha_start.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>hdfs_ha的启动记录，仅方便查看用</p>
-<span id="more"></span>
-<h1 id="Hadoop-HA-集群启动流程"><a href="#Hadoop-HA-集群启动流程" class="headerlink" title="Hadoop HA 集群启动流程"></a>Hadoop HA 集群启动流程</h1><h2 id="1-启动-ZooKeeper（三台机器）"><a href="#1-启动-ZooKeeper（三台机器）" class="headerlink" title="1. 启动 ZooKeeper（三台机器）"></a>1. 启动 ZooKeeper（三台机器）</h2><p>ZooKeeper 安装目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/opt/module/apache-zookeeper-3.7.1-bin</span><br></pre></td></tr></table></figure>
-
-<p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin/zkServer.sh start</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="2-启动-JournalNode（三台机器）"><a href="#2-启动-JournalNode（三台机器）" class="headerlink" title="2. 启动 JournalNode（三台机器）"></a>2. 启动 JournalNode（三台机器）</h2><p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs --daemon start journalnode</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="3-启动-ZKFC"><a href="#3-启动-ZKFC" class="headerlink" title="3. 启动 ZKFC"></a>3. 启动 ZKFC</h2><p>Hadoop 安装目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/opt/module/hadoop-3.3.4/bin</span><br></pre></td></tr></table></figure>
-
-<p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin/hdfs --daemon start zkfc</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="4-在-master-上执行（仅需执行一次）"><a href="#4-在-master-上执行（仅需执行一次）" class="headerlink" title="4. 在 master 上执行（仅需执行一次）"></a>4. 在 master 上执行（仅需执行一次）</h2><p>启动 NameNode：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs --daemon start namenode</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="5-在-slave1-上执行（仅需执行一次）"><a href="#5-在-slave1-上执行（仅需执行一次）" class="headerlink" title="5. 在 slave1 上执行（仅需执行一次）"></a>5. 在 slave1 上执行（仅需执行一次）</h2><p>同步 NameNode 元数据：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs namenode -bootstrapStandby</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="6-在-master-上启动集群"><a href="#6-在-master-上启动集群" class="headerlink" title="6. 在 master 上启动集群"></a>6. 在 master 上启动集群</h2><p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./start-all.sh</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="故障转移测试"><a href="#故障转移测试" class="headerlink" title="故障转移测试"></a>故障转移测试</h1><p>关闭当前 Active NameNode：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 &lt;namenode_pid&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="故障转移后的恢复"><a href="#故障转移后的恢复" class="headerlink" title="故障转移后的恢复"></a>故障转移后的恢复</h1><p>启动 HDFS：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./start-dfs.sh</span><br></pre></td></tr></table></figure>
-
-<p>切换 NameNode 为 Standby：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs haadmin -transitionToStandby --forcemanual nn2</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术实践</category>
-        <category>大数据</category>
-      </categories>
-      <tags>
-        <tag>安装配置</tag>
-        <tag>大数据</tag>
-        <tag>Hadoop</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 学习——基础篇</title>
-    <url>/git_1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>关于git的学习记录——基础篇 oio</p>
-<style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-
-<blockquote>
-<p>学习网站：<a href="https://learngitbranching.js.org/?locale=zh_CN">Learn Git Branching</a></p>
-</blockquote>
-<p>Git 希望提交记录尽可能地轻量，因此在你每次进行提交时，它并不会盲目地复制整个目录。条件允许的情况下，它会将当前版本与仓库中的上一个版本进行对比，并把所有的差异打包到一起作为一个提交记录。</p>
-<h1 id="Git-主要命令"><a href="#Git-主要命令" class="headerlink" title="Git 主要命令"></a>Git 主要命令</h1><p><code>Git Commit</code>：提交新记录，添加新节点</p>
-<p><code>Git Branch &lt;name&gt;</code>：基于这个提交及他所有的parent新建分支<em>仅新建分支</em></p>
-<blockquote>
-<p><code>main*</code>代表你当前在main分支下</p>
-</blockquote>
-<p><code>git checkout &lt;name&gt;</code>：切换分支</p>
-<blockquote>
-<p>创建一个新的分支同时切换到新创建的分支的话，可以通过 <code>git checkout -b &lt;your-branch-name&gt;</code></p>
-<blockquote>
-<p><em>新版本使用</em><code>git</code> <code>switch</code> [<em><options></em>] [<code>--no-guess</code>] <em><branch></em></p>
-</blockquote>
-</blockquote>
-<p><code>git merge &lt;your-branch-name&gt;</code> 合并分支<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181543273.png?40l" alt="git merge"></p>
-<p><code>git rebase &lt;your-branch-name&gt; [your-rebase-name]</code>线性合并分支<br>Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。<br>Rebase 的优势就是可以创造更线性的提交历史。<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202511181548515.png?40l" alt="git rebase"></p>
-<hr>
-<h1 id="Git-特性"><a href="#Git-特性" class="headerlink" title="Git 特性"></a>Git 特性</h1><h2 id="关于HEAD变量"><a href="#关于HEAD变量" class="headerlink" title="关于HEAD变量:"></a>关于<code>HEAD</code>变量:</h2><p>通过<code>git chekout &lt;name&gt;</code>命令可以切换<code>HEAD</code>的指向</p>
-<blockquote>
-<p> <em>可以<code>HEAD</code>→<code>main</code> →<code>C4</code>（<code>main</code>→<code>C4</code>）</em><br><em>也可以<code>HEAD</code>→<code>C4</code></em></p>
-</blockquote>
-<h2 id="相对引用——"><a href="#相对引用——" class="headerlink" title="相对引用——^,~"></a>相对引用——<code>^</code>,<code>~</code></h2><p><code>git log</code> 查看提交记录的哈希值</p>
-<p>其哈希值可以只输入前几个字母进行匹配<br>但是这样太麻烦了</p>
-<p><strong>^</strong>: 使用 <code>^</code> 向上移动 1 个提交记录 (父节点，且可叠用。<code>HEAD^</code>,<code>main^^</code>)<br><span class = "inline-note" title ="小提示"><br>当<code>^</code>后面加数字时，表示的是移动到他的第几个<code>parent</code>（当我们使用<code>git merge</code>命令时可能会有一个以上的parent）<br></span><br><strong>~</strong>: 使用 <code>~&lt;num&gt;</code> 向上移动多个提交记录，如 <code>~3</code>,<code>HEAD~3</code></p>
-<p>两个符号可以链式操作，例如<code>git checkout HEAD~^2~2</code><br>结合之前的命令实用：<br><strong><code>git branch -f main HEAD~3</code>：将 main 分支强制指向 HEAD 的第 3 级 parent 提交。</strong></p>
-<h2 id="撤销变更-——-git-reset和git-revert"><a href="#撤销变更-——-git-reset和git-revert" class="headerlink" title="撤销变更 —— git reset和git revert"></a>撤销变更 —— <code>git reset</code>和<code>git revert</code></h2><p><code>git reset &lt;参数&gt;</code><br>在reset后， 撤销部分所做的变更还在，但是处于未加入暂存区状态。<strong>本地常用</strong><br><code>git revert &lt;参数&gt;</code><br>把撤销之前的部分作为新分支提交<strong>远程常用</strong></p>
-<hr>
-<h1 id="整理提交记录"><a href="#整理提交记录" class="headerlink" title="整理提交记录"></a>整理提交记录</h1><h2 id="复制git-cherry-pick"><a href="#复制git-cherry-pick" class="headerlink" title="复制git cherry-pick"></a>复制<code>git cherry-pick</code></h2><p><code>git cherry-pick &lt;提交号&gt;...</code><br>将一些提交<strong>复制</strong>到当前所在的位置（<code>HEAD</code>）下面</p>
-<h2 id="交互式的-rebase"><a href="#交互式的-rebase" class="headerlink" title="交互式的 rebase"></a>交互式的 rebase</h2><p><code>git rebase -i HEAD~4</code><br>会有一个交互式的页面供你进行<strong>排序、删除、合并</strong><br>在你完成后，会将处理好的分支放在当前分支下</p>
-<h2 id="只取一个提交记录（实战结合）"><a href="#只取一个提交记录（实战结合）" class="headerlink" title="只取一个提交记录（实战结合）"></a>只取一个提交记录（实战结合）</h2><p>通过以上两个命令把修改bug中最后解决bug的提交记录复制或移动到main分支下</p>
-<h1 id="提交的技巧"><a href="#提交的技巧" class="headerlink" title="提交的技巧"></a>提交的技巧</h1><blockquote>
-<p>当你希望对之前的提交记录进行小小的修改，这里有两个方法。</p>
-</blockquote>
-<p><code>git commit --amend</code>追加提交<br>将不会重复提交而是修改之前的提交于同一位置</p>
-<p>可以先移动顺序，将要修改的放前面来，修改后再排序放回去。最后合并main分支。</p>
-<p>使用<code>git cherry-pick</code>一步步复制修改</p>
-<h1 id="Git-tag-——-标签-锚点"><a href="#Git-tag-——-标签-锚点" class="headerlink" title="Git tag —— 标签&#x2F;锚点"></a>Git tag —— 标签&#x2F;锚点</h1><p><code>git tag &lt;标签名&gt; &lt;指向位置&gt;</code><br><em>可以通过<code>git check</code>移动到标签</em></p>
-<p><code>git describe </code>可以 <strong>描述</strong>离你最近的锚点（也就是标签)</p>
-<p>语法：<code>git describe &lt;ref&gt;</code>^1<br>返回值:<code>&lt;tag&gt;-&lt;numCommits&gt;-g&lt;hash&gt;</code>^2</p>
-<ol>
-<li><p><code>&lt;ref&gt;</code> 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会使用你目前所在的位置（<code>HEAD</code>）。</p>
-</li>
-<li><p><code>tag</code> 表示的是离 <code>ref</code> 最近的标签， <br><code>numCommits</code> 是表示这个 <code>ref</code> 与 <code>tag</code> 相差有多少个提交记录，<br><code>hash</code> 表示的是你所给定的 <code>ref</code> 所表示的提交记录哈希值的前几位。</p>
-</li>
-</ol>
-<h1 id="多分支-rebase"><a href="#多分支-rebase" class="headerlink" title="多分支 rebase"></a>多分支 rebase</h1><p> <code>git rebase &lt;1&gt; &lt;2&gt;</code>1→2<br>2分支中所有的提交记录都将合并到1分支之下</p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>版本控制</tag>
-        <tag>入门</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 学习——实践部分</title>
-    <url>/git_0.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-<p>git init 初始化<br>git add .  添加所有文件到Git管理<br>git config –global user.name &lt;此处输入你的GitHub用户名&gt;<br>git config –global user.email &lt;此处输入绑定的邮箱地址&gt;<br>git commit -m “my first commit” 提交并注释</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将本地仓库关联到远程仓库 origin，&lt;这里填入第2步中看到的远程仓库地址&gt;</span></span><br><span class="line">git remote add origin &lt;远程仓库地址&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从远程 master 分支拉取最新代码并在本地进行 rebase，保证提交历史整洁</span></span><br><span class="line">git pull --rebase origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地 master 分支的提交推送到远程 origin 仓库，并设置 upstream（后续可以直接 git push）</span></span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习记录</category>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>版本控制</tag>
-        <tag>实践</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo文档编写记录</title>
-    <url>/hexo_1.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>为了方便查阅属性而产生的记录，<a href="https://www.lifeee.top/posts/35048.html">更全的版本指路</a></p>
-<span id="more"></span>
-
-<h1 id="HTML扩展"><a href="#HTML扩展" class="headerlink" title="HTML扩展"></a>HTML扩展</h1><h2 id="键盘按键标签"><a href="#键盘按键标签" class="headerlink" title="键盘按键标签"></a>键盘按键标签</h2><p><kbd>Ctrl</kbd>+<kbd>z</kbd></p>
-<p><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Z&lt;/kbd&gt;</code></p>
-<h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><span  style="color: #729871; ">先给点颜色你看看</span></p>
-<p><code>&lt;span style=&quot;color: #729871; &quot;&gt;先给点颜色你看看&lt;/span&gt;</code></p>
-<h3 id="字体大小"><a href="#字体大小" class="headerlink" title="字体大小"></a>字体大小</h3><p><span  style="font-size:1.3em;">改变字体大小</span></p>
-<p><code>&lt;span style=&quot;font-size:1.3em;&quot;&gt;改变字体大小&lt;/span&gt;</code></p>
-<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p style="text-align:center">试试内容居中</p>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span> //right left</span><br><span class="line">试试内容居中</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="带颜色的分割线"><a href="#带颜色的分割线" class="headerlink" title="带颜色的分割线"></a>带颜色的分割线</h2><hr style="background-color : green;">
-
-<p><code>&lt;hr style=&quot;background-color : green;&quot;&gt;</code></p>
-<h1 id="Next主题特有的语法"><a href="#Next主题特有的语法" class="headerlink" title="Next主题特有的语法"></a>Next主题特有的语法</h1><h2 id="带引用样式的居中"><a href="#带引用样式的居中" class="headerlink" title="带引用样式的居中"></a>带引用样式的居中</h2><blockquote class="blockquote-center">
-<p>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
-<p>——王维《竹里馆》</p>
-
-</blockquote>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%cq%&#125;</span><br><span class="line"></span><br><span class="line">独坐幽篁里，弹琴复长啸。</span><br><span class="line">深林人不知，明月来相照。</span><br><span class="line"></span><br><span class="line">——王维《竹里馆》</span><br><span class="line"></span><br><span class="line">&#123;%endcq%&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><div class="note default"><p>default 提示块标签</p>
-</div>
-
-<div class="note primary"><p>primary 提示块标签</p>
-</div>
-
-<div class="note success"><p>success 提示块标签</p>
-</div>
-
-<div class="note info"><p>info 提示块标签</p>
-</div>
-
-<div class="note warning"><p>warning 提示块标签</p>
-</div>
-
-<div class="note danger"><p>danger 提示块标签</p>
-</div>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 选项卡 2 %&#125;</span><br><span class="line">&lt;!-- tab 自定义名称1 --&gt;</span><br><span class="line">这是选项卡 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称2 --&gt;</span><br><span class="line">这是选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称3 --&gt;</span><br><span class="line">这是选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<div class="tabs" id="选项卡-2"><ul class="nav-tabs"><li class="tab active"><a href="#选项卡-2-1">自定义名称1</a></li><li class="tab"><a href="#选项卡-2-2">自定义名称2</a></li><li class="tab"><a href="#选项卡-2-3">自定义名称3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="选项卡-2-1"><p>这是选项卡 1</p></div><div class="tab-pane" id="选项卡-2-2"><p>这是选项卡 2</p></div><div class="tab-pane" id="选项卡-2-3"><p>这是选项卡 3</p></div></div></div>
-
-
-
-<h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><p><i class="fa fa-camera-retro fa-lg"></i> fa-lg<br><i class="fa fa-camera-retro fa-2x"></i> fa-2x<br><i class="fa fa-camera-retro fa-3x"></i> fa-3x<br><i class="fa fa-camera-retro fa-4x"></i> fa-4x<br><i class="fa fa-camera-retro fa-5x"></i> fa-5x</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-lg&quot;&gt;&lt;/i&gt; fa-lg</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-2x&quot;&gt;&lt;/i&gt; fa-2x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-3x&quot;&gt;&lt;/i&gt; fa-3x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-4x&quot;&gt;&lt;/i&gt; fa-4x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-5x&quot;&gt;&lt;/i&gt; fa-5x</span><br></pre></td></tr></table></figure>
-
-<h2 id="Button标签"><a href="#Button标签" class="headerlink" title="Button标签"></a>Button标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 标签 方式 --&gt;</span></span><br><span class="line">&#123;% button /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% btn /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- HTML标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>这是标签名Click Me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn #, Text %&#125;&#123;% btn #, Text &amp; Title, home, Title %&#125;</span><br></pre></td></tr></table></figure>
-
-<a class="btn" href="#">Text</a><a class="btn" href="#" title="Title"><i class="fa fa-home"></i>Text & Title</a>
-
-<h2 id="label标签-带颜色的标记效果"><a href="#label标签-带颜色的标记效果" class="headerlink" title="label标签-带颜色的标记效果"></a>label标签-带颜色的标记效果</h2><p><strong>效果：</strong></p>
-<p>我坐在床前，望着窗外，<mark class="label ">回忆满天</mark>。生命是<mark class="label primary">华丽错觉</mark>，时间是贼偷走一切。</p>
-<p>七岁的那一年，抓住那只<mark class="label success">蝉</mark>，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能<mark class="label info">永远</mark>。</p>
-<p>有没有那么一种永远，<mark class="label warning">永远不改变</mark>，拥抱过的美丽，都再也不破碎。<br>让险峻岁月不能，在脸上撒野，让<mark class="label danger">生离和死别都遥远</mark>，有谁能听见。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line">我坐在床前，望着窗外，&#123;% label @回忆满天 %&#125;。生命是&#123;% label primary @华丽错觉 %&#125;，时间是贼偷走一切。</span><br><span class="line"></span><br><span class="line">七岁的那一年，抓住那只&#123;% label success @蝉 %&#125;，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能&#123;% label info @永远 %&#125;。</span><br><span class="line"></span><br><span class="line">有没有那么一种永远，&#123;% label warning @永远不改变 %&#125;，拥抱过的美丽，都再也不破碎。</span><br><span class="line">让险峻岁月不能，在脸上撒野，让&#123;% label danger @生离和死别都遥远 %&#125;，有谁能听见。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>工具使用</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>博客</tag>
-        <tag>markdown</tag>
-        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -1629,10 +1549,67 @@
         <category>大数据</category>
       </categories>
       <tags>
+        <tag>入门</tag>
         <tag>大数据</tag>
         <tag>Hadoop</tag>
-        <tag>入门</tag>
         <tag>分布式系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pro Git学习记录</title>
+    <url>/git_progit.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+<h2 id="文件的三种状态"><a href="#文件的三种状态" class="headerlink" title="文件的三种状态"></a>文件的三种状态</h2><p><strong>已提交（committed）</strong> 表示该文件已经被安全地保存在本地数据库中了。<br><strong>已修改（modified）</strong> 表示修改了某个文件，但还没有提交保存。<br><strong>已暂存（staged）</strong> 表示把已修改的文件放在下次提交时要保存的清单中。</p>
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512171533481.png" alt="图1-1.工作目录，暂存目录，以及本地仓库"></p>
+<blockquote>
+<p>暂存区域只不过是个简单的文件，一般都放在 Git 目录中。有时候人们会把这个文件叫做索引文件，不过标准说法还是叫暂存区域</p>
+</blockquote>
+<p><strong>基本的 Git 工作流程如下：</strong></p>
+<ol>
+<li>在工作目录中修改某些文件。</li>
+<li>对修改后的文件进行快照，然后保存到暂存区域。</li>
+<li>提交更新，将保存在暂存区域的文件快照永久转储到 Git 目录中。</li>
+</ol>
+<h2 id="初次运行Git的配置"><a href="#初次运行Git的配置" class="headerlink" title="初次运行Git的配置"></a>初次运行Git的配置</h2><p> 查看 Git 配置：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list # 查看当前仓库及全局配置 </span><br><span class="line">git config --global --list # 查看全局配置</span><br></pre></td></tr></table></figure>
+<h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的名字&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>--global</code>：表示全局设置，作用于所有仓库；去掉就是只对当前仓库生效。</li>
+</ul>
+<h3 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global core.editor 编辑器命令/位置</span><br></pre></td></tr></table></figure>
+<h3 id="差异分析工具"><a href="#差异分析工具" class="headerlink" title="差异分析工具"></a>差异分析工具</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global merge.tool vimdiff</span><br></pre></td></tr></table></figure>
+<p>Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息</p>
+]]></content>
+      <categories>
+        <category>学习记录</category>
+        <category>阅读记录</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>版本控制</tag>
+        <tag>读书笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -1815,6 +1792,33 @@
         <tag>linux</tag>
         <tag>环境搭建</tag>
         <tag>实战</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>K8s搭建记录</title>
+    <url>/k8s_install.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="9f54febca541735920b478ee34a62ee1adbe15fdf5e290633f2daf9f895d6a0d">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e198520224d3317094b7eb7f22ef4846a03e5576793fc84bf9a6638e36a55afa1e6dc12686ae83ab82789e9c6ea2492e4f9e5790bb4d92c4b10dda7271bf0c70fdf5e6cc2633aaee12d66acb385ef37deb4ffd009b4985716da902ee19400c406b162d9dec9bcbd3008813a4df8284d36f6ffa4b71c4c62a3fabef9c0bb628f7ba573be8dcd99ae4c4f421c0925c546a644f6c1fcb30d8ddfffbbfb40cccf207357dbfdb41443ad35e6f3af785967eeff87b51a4a8bc0bbd1b1606bbcd283aab3a457b51f680bd61bfc55341f91f450f26ef1785de39ee36ec3529c44c2076b0cbb09e2053e8f87fa95cf6d0a87e3d1aa3e12356fc3ea197454e917f72bdd7d72f94b85ed88baef048077d4f95c5f386849acf6f5e1fbaa22bf490dc6c839cd42341efaa2e067f4e6d865ade173acbfe39870c6d95286007cd8c65e67e073a5b5ab0da8f16d5de03cb9d4343b8ad4d7619d7101dc83d9ac4a98fa00901cf24bbb88257ea12773e9314c2df220a73530f05ca8fa836ec7c8f150cd1203dc25cabb227f6dc223ecb21dc6f8122939aff5ab18b569fdde72b53d9fc3b8f7d4724ac7f8418ce164d95545debeed7bc0372df91976f087f0976941f177fe26fed3d3eabc027cb1cb2fd4005a2db7fa8023a0bbfaa95bac242439b473aa9d5181a831b068dda2b349f8a41216ec94a6351bdee15119990772dd393b6a1565e9844bd13e915e53f4d9e842121708a4801c368c0c3060cf6bd18fdae79d527afd3c5b7e97e3bc2e1f9d9edea9d1e6f992ab4f0e6ff3c6ab2b70817d7dba698a97221240eaa152ab220d6dd2467312edac4aeb8cc603cf28f060df93b18b764abb439740c0b343bd06bf44a85c0bcc426294b1caa1989aa029e4d2ada5cccb3ca128a2b4a9a2e44f35191e8b984eaf14adc57a7cbed216dede0b6d3297ec1d2374cf00360040045a0b694757beb8560965a7488b36833e66f973dbdaef0fe2b208bb3aabb238812fbe8163e9aa31bdd441fa0e3880e5b8ff26bd710a608cc588aca23aa495129d7a10e5c949565c2f413eb5695e1bbbec0c724e66bff1d413af986b6e57942d126fd4e962b7c19e6a9f50efef2e4d6e357af37d3aa653b96426141770bca282417f8579b9530885a2d9c1b53d6c409e9a8e612a6be7c427eaca90759ca7257b09edaa64d8d3df9b4ae49ffce87401810230d5552327313324252abd14b1a17972964c01e41223d504467115997330f6e4fa20627733179ede2bed4f416decc739c881875fa3117b3265876cb47a79789f73d558e03ed009f3c0d56f6b98c7eac9e60eaeb613a123888aaa52f74faea0bbf5eb32ff6686d531d4d65df738a1b9112ef4fcda22d24556af3c3bf644c45f132d24e870bbe88751e2bdfc179f7ea84f71c0f53a4d77a4bfa0a77a13e28fcb262781965d912b0c5099cf3eab2f2ffb867bab01fccd5e02a0862865ce68e97271221ddd64be64d6a90c78319820ac8c5d423247d012879c139f37cf66925f6a50f06b520481241e2dceae76c283d83f7a4586775109dda2a268848d75802ac4fb2ef9d5c2b86b2adb8f692652568a991a1ed6e9b3239ecd6e2f7dd5e737af3f58656e0d970c95f3ca1d1b93862c9957b38e1f8b42acd8d62ab678b0b265a90c8271c12f8d3d09bdabc959de45047bbceb70e7e1dcb9e41b28c24f031da63b83bdfbf1b84eb7ae211e5017105e93a0279b0ef5219bfb0b757774946f2652541c9da42dee1b31c1442dead85e7df61cc52cbbd944821e105ca96a703b261c330370cc95e6a910db61c9c5cc1fe917fe153ed8404601155afdb1628be42f88f8b9e9709ccba4daf1bf0164f3fc5a750bbe99b0622ad8e84b08bfa634ee68e68719493cc90860b86ffa1a9f11e85e9cc7e1f64c8fba2cc95e2f87b0841c995822b585dba0c63be7d65118f9b04ed7508a74bf1f63d6291edea236991517cf870011ba19fb789aea465c6252a1301f8972536b73f67b22590f9bbfdd5d19b34050392480d6d87e2f8e8ae7bc6c91294eaf904264008905fd1860ae0d5edf193cc53dc61951bc0950914d6486cc5a63bab796bc95f7e9b24cf963c635c7b6f614c8a7d15eb5b500128866d0fe92c42721170d1c460e634014d8254004e1230ff96f2182ee7fa96d15eeba7eee6ae68aff66e4bde1924b6622189fcf3b36cfac2fe090930f2302d48854d1f38cd9031388b97588e3293ff259e1a814bf63c7ec097bd10725d81b93ef0c98605d6d45bd3e95b2cae8bb3c94d92e8c9b8176b46c7c7dfac704c8f0271a5459c8c4ce372c7c1d18f420d577971efa4b294fb2dba86839e51d29352c32b51e610b2ca3e6adddae58293846062ab5c3fa7299ec7ad7e79316d88c8408c7f245fc1bf25164bfbc87af1d98078ef09d6036da87db94f39b5d9a130e8a2f53db5ced20b714e2d627b4a8204d987c9b9dbce98a91f77ffc4917dc07c059551c13dda8319b9d515086e3fc062033b4914cba46ac311c8ede9c2b18bf37607b161fc55c84a8d341ef50c7cf42106177be21138485b07e20242864f55270d34f7384b050c2668a5390e33a622193945e5c859074427c027d7982a81a725df285e4cbb0f87b57624ac831efa7fcbc50351a5c5b1eca758c220edd3c11e57540df2957602ed65d04ed53e6854858490084cdc57755e769514e3728c47dfd22384626375d53bd9078122f87e8b3fc1f048fce4ec102588adc4b98ce601554023a4ed57ebcce39300b4115375981f21e85d427c3a4b8e496a96aa8bdab892cff38a8f41cf0de1f0322d05bb5e01dc497b28f390aa284aa8fb9d36667e3f4d5002a5d0d20ab0c928edfb6899dbde20571448becf704ca3077d11be6c9ab0c0fe0f9ac2b8e1b771bec1a0d3412c83d32be39f98d568610de12737572a2ab24a54331f208a37da3c9a12751a41f7c87c5e009f38c836abc6fc603c8fdb0d4ee6d1e27314307351e6fc393991281f0ae05cbeac9bfe8ad1dc2de4d9d037db55f34f165dd67c4c94b6e1c953b5e4ccc412e3df19cb847a2bfd0643c5f22fa41517ee3e422bdd31c873840a433a523ce650f2143d1d8b60bfdfc27e479b763a73b2bd7260f9b0ca62b7757bc8bc05e10dd2a9fc52d28326e2ee14fb2c2c829a58e321e5bd0374cd0f9b228960e218049732327e5619a71276c163735f5b448dca76588a91d8a9aef32a3c00d14b849396614060bc93ef8861b2dc1eca98defd06f209618c6855aca2d18e01a056428b14b85981d97f89140485e0b7d54ccdffccebbe463eee34a6eb1b3816e279f8d940f6b0722adde917e2c434be0ffcf313cfaeb23ae48f12e667e9d50335562f9276350c6202bc042b04117d5929a18880b86d3da9baa4fcdf432ff1109ce5d7f35d160b77b6a36bf76d0ab7cb56e70c73d546e3190e2c61856e2f92141d5dbe63f79ae509ffe4b7cfc862f82c643e9193dbb536f55430991f4282aea5c4ca4dd528cc7b39cbf3602a8130b01760a12287ad6cb309ab182d49dc756df784e917acbf2f4a28f80f567d1f306e697dbd0e68f1edb4d10875aec9ba1f692f3c942b57c4922e09feeb3a845ba71e309755e46e7c6919361137a10df70eab0a9fa6b1217205da138476f8c228adc3a60ef3c8d85bb3e246ac55eadd74c4240d023b02ba0a2d7231995fb4f0cdc41079088b06f0e4de0ca830239072c8e26c192f6fb8312ec374094a4dfacdab016f2d3cc1d03df511753490acd0486a94165cd0dfa9613319a3ab4308c9101d1f9871a26d81d3c11c4499507cf203950ad5115e4ce43f7fa8533af16f76b6829abceb6ebd5ce25c6f2e18ed44c3e5efa5d9dd07e0742864dee4c4e15140c76eb5b5a3be626205ee6676fa58ddb02cb7d91f8f08bc498834856e35be8496fd1fbf5e902fd61518ef0688e294b3905401bd4773676d649915c43a6ec6712c9fac9a0c8870e8ac00bbfe76593d3fb6318d3a6271c2f581333116c98cc7bae26b3cfd95cbbf57f9f285a330b0a7a09d31675478b0ba79001179e24b86bd23821bf6816572f4f0e7d50fa8f973f9883f0000ff6618e6f1025186bac068a335ea51439f51b8224ba23aa611bebe4a7b6e6f5f9ddc4d7bb777c476b6137bab3bab399885deb4f80b619c78f097658ade045865a385eb8b5af1acc389ce623811a5713715ca199da17f09cf21f94920c20e117fa64ba8546f38a3547b262afdb924d3863ae0b8ad6307303fbc1be03e38a683bbdff0c516bd70e2cef2f37c99a9d43e9d32d3d42fe37d3d55d7a5af369e71d2dff47845358cb96e3c151fb64d4b284fa7536a3478f1f01f7460c8518bf6f3dfc1a30ea888f2231febfc5b3db36796f1889dfb70520b8d54909d16903839b4184a726e6f3c2e9a89115a246479f3e478201fbfc74229e93d192a287cfcd6e4efb027d4c0150189197b6d2a4ad4c68e0ad306bf2193fd7b427440891dd722f2e36a16b6f25e97c763635a245bda4b94359503719ab06d5f468a76a2381565bbf0089687c38563cc5040755e577b3b37124860bec545ad3a31864b18bb22b8cc5201c68763bd1b13c841da3197db3503aebe2a9147966dc06908bcaf6bf9a78de08262cd8b485d048c2d4b2fef977a992a29523acca518d983ba1a4162e52743a898819721267136bebd8f18b0f27bf12a624e4e12a5c521ec5e3bba5dd83a2b27584c07ee33659e42ed0681149e0d5d0d0a6efafad5882592268a5d9de0ea7f1f9942365ad37ec3106a8f0847f225b231660e293ec319b0adc1500e4bfa4051e7840b63dbf5c7307a78b795024cc5fd19249a57bfff83686e2c5a6b43938625fd5bfd1a4a8bcee3fca4cf448b7f5ba8f00a6d1bb4090cf6ec1c7fc0eeb9534e83fecae414f83c166bba3c2b5e97ae6f8864010f3c5a887927836053c18a01633a322fa84f849a47e1840217ce893854404b4d1c87068c880708ed2c46bbec502593d634108faf78affd16584a56fd4e3b36014f7eeb31ad8bd1656c7d812e36b627ad79cd323c09ded527856cd7cd39b021936cab57568f6d6d546e2c2e5ce9723edc984315afbff44e67c5623c69bf40847cebcec83f1a8b541062c680b1e2ce449345d58bd3e4869d873ff0d0bed2679af5212a05129428c5c034bc0bf2f88aaf8e07562ecb921edee876bc667550864629fd91e65992537790d9736e4e6ee59d71dc2f9ecad0bdd459f77deab96356599811753f16922a6feb2b5271be29e9859b0c00356053a54a7bba89011767e4ccc7c1d57848185537ba200a258b6baf285bfa7ab0d36c184883d56749d578af67026ac31ff510afa5f1409295efacb0b0e6cca05aae67104f17e103339788cd922e7520abf318a9aa48ec64a744e61d918f1be46f7dd0bd4bb09e9b79f0055c3dcdeacd286f6aba49a1ffc332c44dfc44e20530c0529366e3c4ebdceb67edb197c5d7d6d3e9d44eff7aa1ddc3eace3c7e562b25cb96182d782c1e6e094cbc088d6397670599dcc978062017267932700dd3b9d137a120eccd3e2cadc935d620f90b63b93c958433be9400219ac98dcac0033b9c7d389c1f1021cf4953e6691aaed31b099dd84547a73e86351570bd58e7cef9e04591810f9529feddd1afc5193af43f48486ae490c695c467690f8e464baae5181958e69796f1810bb8b21e41efb38204dda77989110bfef5ff441dd7539fc0c7ed3a4f34e09867f397b966571d698cec94d903fabdade9f0b96c0b01560c27a46e6948bcb99e00657dff758e4e6ded575de058e1644d1595a26f3f91a5de3d000cc5599bb7f8d616a07a3d0d40d915d5c1977e1708fe847ecd35e314718f5e17a10783bf11f19700d4e49d21d23c9f223017f152726f9e3cacfab345712316d064b1addc34698296903ee8f17e9a3c6cb0dc35ed0d0d208134e0aad88f4e60f27f593e3f122a1b752a112d240f0011ab8f383e5e261b3bfa4777310460be4d3246a48bcde7326a572f1d82e574aa946e240535e77316f27c50249d7450aa0dc0caad4a5d6ec81220d93274141f6a4de5a6460a7a3f4eebe4128f6023329bb5a4465dffbe91a26c2a05c2fb67b13717b46d9f6c4c50eedc158f67aa052cfbaf6ae94fad2377d6f487d85a318272e6a3c32c650cc48b489622490befd385373f64133f726a58e9e69d807252639f962b6e505e9578314c630b97358b4268a707d185d7ab76dae4f1ec2e0d2222f70bb702bc9f5c4a87c3387c3cc3dfb0c35454a8378329f65b24b03e7644380da6ec5ea2db93620120607c319f3efc6497c0bd385d75031370197b0b6b62f36beb308219ad476bdf2a4801e0a440d8fab4c58011c72a1ca1b3d89c15a6670a6ef7234335f3cb4fc52292676def58a63ff3cf6da961a0e389e2533e1483a532e2dc3330043aa4565cc993a5fc967ada7549878ee039575ae02cb57076df4de683d17e2ff4aa43e4b4b258f825e2a01e621c7eb10c61012e3b4116db5315777e1c6c3681fee169b55949e163126f3ef9002da748a4ff402a2b3268fa35620d86edc65addacf62a4eea8efd954e802177baf38c4bf5630cd7869bd6eff8792bb396fe321e519e004e91d7f3f15fd1c0f579b148d15e7b03c8ff01e12e551b9e0afbe7a16faab9f0c4f442082bede7213ca369b543d318d9954fd8c3c2321de558207f8b95dc1d5ed4d4b47ea319d000595f6a5f02adc30a8cd29e79fc9a4a74b6225d6ce04b5460e5a7b785a1766da8cb7f48ba290e0ca6ac194281e554f320db34b33d6c0cd352d689d37b828a03b72d514dddf73e0a0fc733c989392953a35198dcb01f52ad768746abeb54f9626d43a2d34a4b99c9b4b00017dab385ee564bff1cc1d0d62db1ce5d8a650ef6d88a604fb6e84b4a4b1ab4c13dc83f4375a7d3b2d5b9475bf9490322bca9a61ef9f41b548fc541944368b8608280fd51110de946cfa84f54a3cdd7d1c7fb25d589481337f5cdef7206a7387db701a8a04c20645ab7ec28ed041d36e1765906217328f0e56466e78c44f4ea336bb5367fe959979bf1b5fb1449f12e5d2c2b6a5a98c06907c46a6b7bb5c96f6d1538713881e295319d972d3b20e18a27d846ccc5d6098523f938eda1440c1ace4c428cd8d855ce955d830f5880ecb13f83bb5c10eef75bc1460d7b1b05d6164599f5752fce124fcded450f391089deabc7fb21e3a7e326e209c1951cbe748f81d66d3411a8704143da13b8f6c74526590810c5db23ebd7029f4f858a7571e7ad529320e1d2f1c2d7662312edb8700bc2373c909aa84d91ecd70ac8a2e2e802bedc1e70d376041719680ad22366992b0ae224ac7b3ef0f666b3bd93a29890a5691991a12c30db6910d81665e423d3fc6c88af3cdeebc3297b7cc6f0fe94f60d261ab8ec5ad250cb45ff39c65b66acab54d4fa4c049ed495244c098bbef27d67d2f311f8308bfc9c05eebb671d3c72beba953d9b22d7fce44b64ec3262860a31ef8ba1318a8a39a79983cf937453977201fa4529030b6fc29ed2d922abd5d9ebd3ee8c771a538abd40170bf23f7d1a4348d4f7f2f169057eba4e757786ff7452d7e89519ffae00cc1f824f5c3a0c5d89a6da9fb7dcfe668192378973927741cf64ea9c09df0e263817b2a1f296068e48084bb902ac034bccde50b3ea4c85d63ee97290970af49ca8f30f8760e04c8db3514e9ed432aea77c65e540e85fff9898928c5621ec1dbe08766733a5864654f8c149f963fbed3b0ca5befab8f16342be3557987cb91e0880d795e035bbe4a2aac73d35680572419407058fdd2ff0488c409ec95cb7d0b312760b51072655e7688fc3b9d73b6c7dc992cc4ca704648869b3b94baa6d01dbd1a367a97f421119ef250557dddde60ff5e02f63514a959ec19c5db52c5460f8f72b5929d22d2a00edd53fc12963def27a046e2cd13cad1f6eda6586a034e62d157753108fa40d85004655452ef615993161113aa3931d0689beb0f5a64dddb8a6333b73fe52c5460a67c88113503df17810d813dac05bf88e72c4ef68fa0d478920442dd6d6c23f8287d07c2eed3756236daa88c93b3688f7da74e4b02aa6039f2486396f48d757af47e1b40a52a86c1c7402c40a50d6aa5171d4aafb8754d7feacce1210ac11b4007f13062af6d8bba2187b2537067e124ad585895c21607ed06f7ab4dae137a87b6071ed92c770211e0839ea461ab90b1ea519d800b10a0ed94a371d75970e1e4748732d087d294f51dd550c4429594b34e648a18ae7b1fe674c7f6b9398b1e450390d65109b41e4dac6675c9643d2079700a162810c6e8ec1cbe9f40bb5c0edd28344a95d8fa5fb3adc6a7c3eaf893bb04cf828ba01e14c284c3aef3beec43bbb29a831b0a1ed1ec1b8b6684854260a542cc9989c8bff9a1b1d31da1e3887ac3bba10f3267c254d50b94d705b03c0265db86b74a2bacc60dfaac43e7d10f6a6a7a75b32d8207e898669d4307b1c00c0ad15f3c817288f46abe1eca2eaf0bb5bc780c8ca01db7ba41fcf04626fff2c3b6843c24477135b000bf51c51405d2ff75e8a87a9f978906a3e327d3be0178100dae0342a6b29b5ca6202cbf044c57cdcc3a36d3678594197cd84e2100f88392d2a6f677b7d66e4f58b94496e9e6ccfd80d2e1088c45f1cd201272d3892c211f31ff64f4babccc9a80990cc2a22c4b0495ce53ba5c2062a475d83fd370333e8cbe067ff7162689b62a3bacca56d60c8dc109056ccc33f25e67eb856f90f8c0f27a83f62e435e52f0354f05f38348756f91a1dad8e863517f5c67403f8075021f296c9a78f0c2f74db06e43f55469e63678d32546921c13e5ca3461d4d31682732ccb74ee76f510f55c797f01d6fcc34a1308d76af78916dfd3cf4edbdb683a7326a962b2ae13bc1d56b68f2d8e313400a154e25dfe5b5e9ab6d57763fda31f73d1abc61d2f581c9634b316c554d14c4a464a1f332ffe5f92de6ec7541f43d606ae0ac8e068d53dbbd09aa249e5e6d018bc6a11cd07e7b8714c196f9cbaca7f54ca50ced2dcc3d7c71e0c2c31b333c959f1362f590f473dc4132e625d189cc34393a0b41e8eb5ef5b8e6bfe205fc4356dac6181e0a9572d74f3b1f99a431d1a9ce0ec3be96f16e4d02df77a943a1750dbaf8e79cfb8453f1c60bdf12e387bea3889b77de39e27fbc8383dc6c5dacb595327dee5021a41faaf1c7b75857d63923c4b874b6174c86230da28f896b2c69d9a824a30a12a373c048470cf5bc4f7b5b7523c0a1179b20c33c6fae74783e5e9ac3b18389b617cd2ee687beaec302844e1a48f11bf3de6fad32933466e9b3982fd153e7627b0e389c80412d04b46b4e6cee46d9b10923fe0810cef77ead7b34301d4e526fc6382555c9157cdf59ab3da461042f7f16dd929830b5b5aa40eb13ef4bd782f39817f2052fff0b31c6eb6ea0abe3222ec6a3daedeb18c1a348401776aadf2ca0348dfb8175e5877a380d20b4f015879073a083dbc22ff2b11750d2524897237badfdcd94505ec2e25b1e9a8e6b2684f8f155818e5b56a21d143dc55ecb5a4fc6496ced411b95f259c965d14c6992157713ac22ae72850e765f06596b61567bc45d656f2871d2f6c03950d4228756764aad6f5149fac5b34a010a84582cbc20c5e20abe49e6b3227953f346e8525fe3d32d11e2fb62094076bc57f3b57306ccbe7cee1350926af425326de9318890be763ec415b33b7c921be2b0e86627ed4cdddc9ca6d8e7f438da2ccd96de7724bdc956dd469c1dd5ec4ff09646db83acb07a26d7e3149796bdfb6277450ce42a6b22d75ca932f4666474731de878617251740ba6380ae8c38a073d5fbb043e4865f45d9c465d4680b61b0fccfdd5e0ee2030c78e8927defb38591e7a8a39460250da84a0753f86037c2aee24e2fa270185a753149545864a8600a2007f868ee4e7e7c5dbc4664ca938ffd874b0b5c21fe7a2ad363f27bc1ecee0455d56f1e5eb9f196a92c0766c43289b9541033f8f04e26464c5b979eeae8fd72746284cc0ffa68d8358c1b50ee561a7c204fe53b25b2554550573f96f4082911af32d4324f7255bd274324f05f3628b7a6fc9915e6577aff5c46f80776852e4d2287cca435b87f308696f9f9382790b5daa9a4035b1394e7c843b260c2375d28e03c5cb84f8a376fd</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>学习记录</category>
+        <category>系统运维</category>
+      </categories>
+      <tags>
+        <tag>secret</tag>
       </tags>
   </entry>
   <entry>
@@ -2021,63 +2025,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Pro Git学习记录</title>
-    <url>/git_progit.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-<h2 id="文件的三种状态"><a href="#文件的三种状态" class="headerlink" title="文件的三种状态"></a>文件的三种状态</h2><p><strong>已提交（committed）</strong> 表示该文件已经被安全地保存在本地数据库中了。<br><strong>已修改（modified）</strong> 表示修改了某个文件，但还没有提交保存。<br><strong>已暂存（staged）</strong> 表示把已修改的文件放在下次提交时要保存的清单中。</p>
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/202512171533481.png" alt="图1-1.工作目录，暂存目录，以及本地仓库"></p>
-<blockquote>
-<p>暂存区域只不过是个简单的文件，一般都放在 Git 目录中。有时候人们会把这个文件叫做索引文件，不过标准说法还是叫暂存区域</p>
-</blockquote>
-<p><strong>基本的 Git 工作流程如下：</strong></p>
-<ol>
-<li>在工作目录中修改某些文件。</li>
-<li>对修改后的文件进行快照，然后保存到暂存区域。</li>
-<li>提交更新，将保存在暂存区域的文件快照永久转储到 Git 目录中。</li>
-</ol>
-<h2 id="初次运行Git的配置"><a href="#初次运行Git的配置" class="headerlink" title="初次运行Git的配置"></a>初次运行Git的配置</h2><p> 查看 Git 配置：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list # 查看当前仓库及全局配置 </span><br><span class="line">git config --global --list # 查看全局配置</span><br></pre></td></tr></table></figure>
-<h3 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的名字&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>--global</code>：表示全局设置，作用于所有仓库；去掉就是只对当前仓库生效。</li>
-</ul>
-<h3 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global core.editor 编辑器命令/位置</span><br></pre></td></tr></table></figure>
-<h3 id="差异分析工具"><a href="#差异分析工具" class="headerlink" title="差异分析工具"></a>差异分析工具</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global merge.tool vimdiff</span><br></pre></td></tr></table></figure>
-<p>Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息</p>
-]]></content>
-      <categories>
-        <category>学习记录</category>
-        <category>阅读记录</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>版本控制</tag>
-        <tag>读书笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ROS仿真机器人</title>
     <url>/ros_robot.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -2107,30 +2054,83 @@
       </tags>
   </entry>
   <entry>
-    <title>K8s搭建记录</title>
-    <url>/k8s_install.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="9f54febca541735920b478ee34a62ee1adbe15fdf5e290633f2daf9f895d6a0d">74ba0eca8a8cd3288e0cffe716599942e1d03166f865dd2a5f65d1390c48a9d43d0240b5b8c6b33a5316d424fcaf23be1f6d642e1b7f36b441706af6256e22179c7cd7304ffa7a667fed0b865cfa1b7c3fc0048d72c2b336a43b8187dbaf7f9fb888d0d93f0d32b19b50323f4de4e198520224d3317094b7eb7f22ef4846a03e5576793fc84bf9a6638e36a55afa1e6dc12686ae83ab82789e9c6ea2492e4f9e5790bb4d92c4b10dda7271bf0c70fdf5e6cc2633aaee12d66acb385ef37deb4ffd009b4985716da902ee19400c406b162d9dec9bcbd3008813a4df8284d36f6ffa4b71c4c62a3fabef9c0bb628f7ba573be8dcd99ae4c4f421c0925c546a644f6c1fcb30d8ddfffbbfb40cccf207357dbfdb41443ad35e6f3af785967eeff87b51a4a8bc0bbd1b1606bbcd283aab3a457b51f680bd61bfc55341f91f450f26ef1785de39ee36ec3529c44c2076b0cbb09e2053e8f87fa95cf6d0a87e3d1aa3e12356fc3ea197454e917f72bdd7d72f94b85ed88baef048077d4f95c5f386849acf6f5e1fbaa22bf490dc6c839cd42341efaa2e067f4e6d865ade173acbfe39870c6d95286007cd8c65e67e073a5b5ab0da8f16d5de03cb9d4343b8ad4d7619d7101dc83d9ac4a98fa00901cf24bbb88257ea12773e9314c2df220a73530f05ca8fa836ec7c8f150cd1203dc25cabb227f6dc223ecb21dc6f8122939aff5ab18b569fdde72b53d9fc3b8f7d4724ac7f8418ce164d95545debeed7bc0372df91976f087f0976941f177fe26fed3d3eabc027cb1cb2fd4005a2db7fa8023a0bbfaa95bac242439b473aa9d5181a831b068dda2b349f8a41216ec94a6351bdee15119990772dd393b6a1565e9844bd13e915e53f4d9e842121708a4801c368c0c3060cf6bd18fdae79d527afd3c5b7e97e3bc2e1f9d9edea9d1e6f992ab4f0e6ff3c6ab2b70817d7dba698a97221240eaa152ab220d6dd2467312edac4aeb8cc603cf28f060df93b18b764abb439740c0b343bd06bf44a85c0bcc426294b1caa1989aa029e4d2ada5cccb3ca128a2b4a9a2e44f35191e8b984eaf14adc57a7cbed216dede0b6d3297ec1d2374cf00360040045a0b694757beb8560965a7488b36833e66f973dbdaef0fe2b208bb3aabb238812fbe8163e9aa31bdd441fa0e3880e5b8ff26bd710a608cc588aca23aa495129d7a10e5c949565c2f413eb5695e1bbbec0c724e66bff1d413af986b6e57942d126fd4e962b7c19e6a9f50efef2e4d6e357af37d3aa653b96426141770bca282417f8579b9530885a2d9c1b53d6c409e9a8e612a6be7c427eaca90759ca7257b09edaa64d8d3df9b4ae49ffce87401810230d5552327313324252abd14b1a17972964c01e41223d504467115997330f6e4fa20627733179ede2bed4f416decc739c881875fa3117b3265876cb47a79789f73d558e03ed009f3c0d56f6b98c7eac9e60eaeb613a123888aaa52f74faea0bbf5eb32ff6686d531d4d65df738a1b9112ef4fcda22d24556af3c3bf644c45f132d24e870bbe88751e2bdfc179f7ea84f71c0f53a4d77a4bfa0a77a13e28fcb262781965d912b0c5099cf3eab2f2ffb867bab01fccd5e02a0862865ce68e97271221ddd64be64d6a90c78319820ac8c5d423247d012879c139f37cf66925f6a50f06b520481241e2dceae76c283d83f7a4586775109dda2a268848d75802ac4fb2ef9d5c2b86b2adb8f692652568a991a1ed6e9b3239ecd6e2f7dd5e737af3f58656e0d970c95f3ca1d1b93862c9957b38e1f8b42acd8d62ab678b0b265a90c8271c12f8d3d09bdabc959de45047bbceb70e7e1dcb9e41b28c24f031da63b83bdfbf1b84eb7ae211e5017105e93a0279b0ef5219bfb0b757774946f2652541c9da42dee1b31c1442dead85e7df61cc52cbbd944821e105ca96a703b261c330370cc95e6a910db61c9c5cc1fe917fe153ed8404601155afdb1628be42f88f8b9e9709ccba4daf1bf0164f3fc5a750bbe99b0622ad8e84b08bfa634ee68e68719493cc90860b86ffa1a9f11e85e9cc7e1f64c8fba2cc95e2f87b0841c995822b585dba0c63be7d65118f9b04ed7508a74bf1f63d6291edea236991517cf870011ba19fb789aea465c6252a1301f8972536b73f67b22590f9bbfdd5d19b34050392480d6d87e2f8e8ae7bc6c91294eaf904264008905fd1860ae0d5edf193cc53dc61951bc0950914d6486cc5a63bab796bc95f7e9b24cf963c635c7b6f614c8a7d15eb5b500128866d0fe92c42721170d1c460e634014d8254004e1230ff96f2182ee7fa96d15eeba7eee6ae68aff66e4bde1924b6622189fcf3b36cfac2fe090930f2302d48854d1f38cd9031388b97588e3293ff259e1a814bf63c7ec097bd10725d81b93ef0c98605d6d45bd3e95b2cae8bb3c94d92e8c9b8176b46c7c7dfac704c8f0271a5459c8c4ce372c7c1d18f420d577971efa4b294fb2dba86839e51d29352c32b51e610b2ca3e6adddae58293846062ab5c3fa7299ec7ad7e79316d88c8408c7f245fc1bf25164bfbc87af1d98078ef09d6036da87db94f39b5d9a130e8a2f53db5ced20b714e2d627b4a8204d987c9b9dbce98a91f77ffc4917dc07c059551c13dda8319b9d515086e3fc062033b4914cba46ac311c8ede9c2b18bf37607b161fc55c84a8d341ef50c7cf42106177be21138485b07e20242864f55270d34f7384b050c2668a5390e33a622193945e5c859074427c027d7982a81a725df285e4cbb0f87b57624ac831efa7fcbc50351a5c5b1eca758c220edd3c11e57540df2957602ed65d04ed53e6854858490084cdc57755e769514e3728c47dfd22384626375d53bd9078122f87e8b3fc1f048fce4ec102588adc4b98ce601554023a4ed57ebcce39300b4115375981f21e85d427c3a4b8e496a96aa8bdab892cff38a8f41cf0de1f0322d05bb5e01dc497b28f390aa284aa8fb9d36667e3f4d5002a5d0d20ab0c928edfb6899dbde20571448becf704ca3077d11be6c9ab0c0fe0f9ac2b8e1b771bec1a0d3412c83d32be39f98d568610de12737572a2ab24a54331f208a37da3c9a12751a41f7c87c5e009f38c836abc6fc603c8fdb0d4ee6d1e27314307351e6fc393991281f0ae05cbeac9bfe8ad1dc2de4d9d037db55f34f165dd67c4c94b6e1c953b5e4ccc412e3df19cb847a2bfd0643c5f22fa41517ee3e422bdd31c873840a433a523ce650f2143d1d8b60bfdfc27e479b763a73b2bd7260f9b0ca62b7757bc8bc05e10dd2a9fc52d28326e2ee14fb2c2c829a58e321e5bd0374cd0f9b228960e218049732327e5619a71276c163735f5b448dca76588a91d8a9aef32a3c00d14b849396614060bc93ef8861b2dc1eca98defd06f209618c6855aca2d18e01a056428b14b85981d97f89140485e0b7d54ccdffccebbe463eee34a6eb1b3816e279f8d940f6b0722adde917e2c434be0ffcf313cfaeb23ae48f12e667e9d50335562f9276350c6202bc042b04117d5929a18880b86d3da9baa4fcdf432ff1109ce5d7f35d160b77b6a36bf76d0ab7cb56e70c73d546e3190e2c61856e2f92141d5dbe63f79ae509ffe4b7cfc862f82c643e9193dbb536f55430991f4282aea5c4ca4dd528cc7b39cbf3602a8130b01760a12287ad6cb309ab182d49dc756df784e917acbf2f4a28f80f567d1f306e697dbd0e68f1edb4d10875aec9ba1f692f3c942b57c4922e09feeb3a845ba71e309755e46e7c6919361137a10df70eab0a9fa6b1217205da138476f8c228adc3a60ef3c8d85bb3e246ac55eadd74c4240d023b02ba0a2d7231995fb4f0cdc41079088b06f0e4de0ca830239072c8e26c192f6fb8312ec374094a4dfacdab016f2d3cc1d03df511753490acd0486a94165cd0dfa9613319a3ab4308c9101d1f9871a26d81d3c11c4499507cf203950ad5115e4ce43f7fa8533af16f76b6829abceb6ebd5ce25c6f2e18ed44c3e5efa5d9dd07e0742864dee4c4e15140c76eb5b5a3be626205ee6676fa58ddb02cb7d91f8f08bc498834856e35be8496fd1fbf5e902fd61518ef0688e294b3905401bd4773676d649915c43a6ec6712c9fac9a0c8870e8ac00bbfe76593d3fb6318d3a6271c2f581333116c98cc7bae26b3cfd95cbbf57f9f285a330b0a7a09d31675478b0ba79001179e24b86bd23821bf6816572f4f0e7d50fa8f973f9883f0000ff6618e6f1025186bac068a335ea51439f51b8224ba23aa611bebe4a7b6e6f5f9ddc4d7bb777c476b6137bab3bab399885deb4f80b619c78f097658ade045865a385eb8b5af1acc389ce623811a5713715ca199da17f09cf21f94920c20e117fa64ba8546f38a3547b262afdb924d3863ae0b8ad6307303fbc1be03e38a683bbdff0c516bd70e2cef2f37c99a9d43e9d32d3d42fe37d3d55d7a5af369e71d2dff47845358cb96e3c151fb64d4b284fa7536a3478f1f01f7460c8518bf6f3dfc1a30ea888f2231febfc5b3db36796f1889dfb70520b8d54909d16903839b4184a726e6f3c2e9a89115a246479f3e478201fbfc74229e93d192a287cfcd6e4efb027d4c0150189197b6d2a4ad4c68e0ad306bf2193fd7b427440891dd722f2e36a16b6f25e97c763635a245bda4b94359503719ab06d5f468a76a2381565bbf0089687c38563cc5040755e577b3b37124860bec545ad3a31864b18bb22b8cc5201c68763bd1b13c841da3197db3503aebe2a9147966dc06908bcaf6bf9a78de08262cd8b485d048c2d4b2fef977a992a29523acca518d983ba1a4162e52743a898819721267136bebd8f18b0f27bf12a624e4e12a5c521ec5e3bba5dd83a2b27584c07ee33659e42ed0681149e0d5d0d0a6efafad5882592268a5d9de0ea7f1f9942365ad37ec3106a8f0847f225b231660e293ec319b0adc1500e4bfa4051e7840b63dbf5c7307a78b795024cc5fd19249a57bfff83686e2c5a6b43938625fd5bfd1a4a8bcee3fca4cf448b7f5ba8f00a6d1bb4090cf6ec1c7fc0eeb9534e83fecae414f83c166bba3c2b5e97ae6f8864010f3c5a887927836053c18a01633a322fa84f849a47e1840217ce893854404b4d1c87068c880708ed2c46bbec502593d634108faf78affd16584a56fd4e3b36014f7eeb31ad8bd1656c7d812e36b627ad79cd323c09ded527856cd7cd39b021936cab57568f6d6d546e2c2e5ce9723edc984315afbff44e67c5623c69bf40847cebcec83f1a8b541062c680b1e2ce449345d58bd3e4869d873ff0d0bed2679af5212a05129428c5c034bc0bf2f88aaf8e07562ecb921edee876bc667550864629fd91e65992537790d9736e4e6ee59d71dc2f9ecad0bdd459f77deab96356599811753f16922a6feb2b5271be29e9859b0c00356053a54a7bba89011767e4ccc7c1d57848185537ba200a258b6baf285bfa7ab0d36c184883d56749d578af67026ac31ff510afa5f1409295efacb0b0e6cca05aae67104f17e103339788cd922e7520abf318a9aa48ec64a744e61d918f1be46f7dd0bd4bb09e9b79f0055c3dcdeacd286f6aba49a1ffc332c44dfc44e20530c0529366e3c4ebdceb67edb197c5d7d6d3e9d44eff7aa1ddc3eace3c7e562b25cb96182d782c1e6e094cbc088d6397670599dcc978062017267932700dd3b9d137a120eccd3e2cadc935d620f90b63b93c958433be9400219ac98dcac0033b9c7d389c1f1021cf4953e6691aaed31b099dd84547a73e86351570bd58e7cef9e04591810f9529feddd1afc5193af43f48486ae490c695c467690f8e464baae5181958e69796f1810bb8b21e41efb38204dda77989110bfef5ff441dd7539fc0c7ed3a4f34e09867f397b966571d698cec94d903fabdade9f0b96c0b01560c27a46e6948bcb99e00657dff758e4e6ded575de058e1644d1595a26f3f91a5de3d000cc5599bb7f8d616a07a3d0d40d915d5c1977e1708fe847ecd35e314718f5e17a10783bf11f19700d4e49d21d23c9f223017f152726f9e3cacfab345712316d064b1addc34698296903ee8f17e9a3c6cb0dc35ed0d0d208134e0aad88f4e60f27f593e3f122a1b752a112d240f0011ab8f383e5e261b3bfa4777310460be4d3246a48bcde7326a572f1d82e574aa946e240535e77316f27c50249d7450aa0dc0caad4a5d6ec81220d93274141f6a4de5a6460a7a3f4eebe4128f6023329bb5a4465dffbe91a26c2a05c2fb67b13717b46d9f6c4c50eedc158f67aa052cfbaf6ae94fad2377d6f487d85a318272e6a3c32c650cc48b489622490befd385373f64133f726a58e9e69d807252639f962b6e505e9578314c630b97358b4268a707d185d7ab76dae4f1ec2e0d2222f70bb702bc9f5c4a87c3387c3cc3dfb0c35454a8378329f65b24b03e7644380da6ec5ea2db93620120607c319f3efc6497c0bd385d75031370197b0b6b62f36beb308219ad476bdf2a4801e0a440d8fab4c58011c72a1ca1b3d89c15a6670a6ef7234335f3cb4fc52292676def58a63ff3cf6da961a0e389e2533e1483a532e2dc3330043aa4565cc993a5fc967ada7549878ee039575ae02cb57076df4de683d17e2ff4aa43e4b4b258f825e2a01e621c7eb10c61012e3b4116db5315777e1c6c3681fee169b55949e163126f3ef9002da748a4ff402a2b3268fa35620d86edc65addacf62a4eea8efd954e802177baf38c4bf5630cd7869bd6eff8792bb396fe321e519e004e91d7f3f15fd1c0f579b148d15e7b03c8ff01e12e551b9e0afbe7a16faab9f0c4f442082bede7213ca369b543d318d9954fd8c3c2321de558207f8b95dc1d5ed4d4b47ea319d000595f6a5f02adc30a8cd29e79fc9a4a74b6225d6ce04b5460e5a7b785a1766da8cb7f48ba290e0ca6ac194281e554f320db34b33d6c0cd352d689d37b828a03b72d514dddf73e0a0fc733c989392953a35198dcb01f52ad768746abeb54f9626d43a2d34a4b99c9b4b00017dab385ee564bff1cc1d0d62db1ce5d8a650ef6d88a604fb6e84b4a4b1ab4c13dc83f4375a7d3b2d5b9475bf9490322bca9a61ef9f41b548fc541944368b8608280fd51110de946cfa84f54a3cdd7d1c7fb25d589481337f5cdef7206a7387db701a8a04c20645ab7ec28ed041d36e1765906217328f0e56466e78c44f4ea336bb5367fe959979bf1b5fb1449f12e5d2c2b6a5a98c06907c46a6b7bb5c96f6d1538713881e295319d972d3b20e18a27d846ccc5d6098523f938eda1440c1ace4c428cd8d855ce955d830f5880ecb13f83bb5c10eef75bc1460d7b1b05d6164599f5752fce124fcded450f391089deabc7fb21e3a7e326e209c1951cbe748f81d66d3411a8704143da13b8f6c74526590810c5db23ebd7029f4f858a7571e7ad529320e1d2f1c2d7662312edb8700bc2373c909aa84d91ecd70ac8a2e2e802bedc1e70d376041719680ad22366992b0ae224ac7b3ef0f666b3bd93a29890a5691991a12c30db6910d81665e423d3fc6c88af3cdeebc3297b7cc6f0fe94f60d261ab8ec5ad250cb45ff39c65b66acab54d4fa4c049ed495244c098bbef27d67d2f311f8308bfc9c05eebb671d3c72beba953d9b22d7fce44b64ec3262860a31ef8ba1318a8a39a79983cf937453977201fa4529030b6fc29ed2d922abd5d9ebd3ee8c771a538abd40170bf23f7d1a4348d4f7f2f169057eba4e757786ff7452d7e89519ffae00cc1f824f5c3a0c5d89a6da9fb7dcfe668192378973927741cf64ea9c09df0e263817b2a1f296068e48084bb902ac034bccde50b3ea4c85d63ee97290970af49ca8f30f8760e04c8db3514e9ed432aea77c65e540e85fff9898928c5621ec1dbe08766733a5864654f8c149f963fbed3b0ca5befab8f16342be3557987cb91e0880d795e035bbe4a2aac73d35680572419407058fdd2ff0488c409ec95cb7d0b312760b51072655e7688fc3b9d73b6c7dc992cc4ca704648869b3b94baa6d01dbd1a367a97f421119ef250557dddde60ff5e02f63514a959ec19c5db52c5460f8f72b5929d22d2a00edd53fc12963def27a046e2cd13cad1f6eda6586a034e62d157753108fa40d85004655452ef615993161113aa3931d0689beb0f5a64dddb8a6333b73fe52c5460a67c88113503df17810d813dac05bf88e72c4ef68fa0d478920442dd6d6c23f8287d07c2eed3756236daa88c93b3688f7da74e4b02aa6039f2486396f48d757af47e1b40a52a86c1c7402c40a50d6aa5171d4aafb8754d7feacce1210ac11b4007f13062af6d8bba2187b2537067e124ad585895c21607ed06f7ab4dae137a87b6071ed92c770211e0839ea461ab90b1ea519d800b10a0ed94a371d75970e1e4748732d087d294f51dd550c4429594b34e648a18ae7b1fe674c7f6b9398b1e450390d65109b41e4dac6675c9643d2079700a162810c6e8ec1cbe9f40bb5c0edd28344a95d8fa5fb3adc6a7c3eaf893bb04cf828ba01e14c284c3aef3beec43bbb29a831b0a1ed1ec1b8b6684854260a542cc9989c8bff9a1b1d31da1e3887ac3bba10f3267c254d50b94d705b03c0265db86b74a2bacc60dfaac43e7d10f6a6a7a75b32d8207e898669d4307b1c00c0ad15f3c817288f46abe1eca2eaf0bb5bc780c8ca01db7ba41fcf04626fff2c3b6843c24477135b000bf51c51405d2ff75e8a87a9f978906a3e327d3be0178100dae0342a6b29b5ca6202cbf044c57cdcc3a36d3678594197cd84e2100f88392d2a6f677b7d66e4f58b94496e9e6ccfd80d2e1088c45f1cd201272d3892c211f31ff64f4babccc9a80990cc2a22c4b0495ce53ba5c2062a475d83fd370333e8cbe067ff7162689b62a3bacca56d60c8dc109056ccc33f25e67eb856f90f8c0f27a83f62e435e52f0354f05f38348756f91a1dad8e863517f5c67403f8075021f296c9a78f0c2f74db06e43f55469e63678d32546921c13e5ca3461d4d31682732ccb74ee76f510f55c797f01d6fcc34a1308d76af78916dfd3cf4edbdb683a7326a962b2ae13bc1d56b68f2d8e313400a154e25dfe5b5e9ab6d57763fda31f73d1abc61d2f581c9634b316c554d14c4a464a1f332ffe5f92de6ec7541f43d606ae0ac8e068d53dbbd09aa249e5e6d018bc6a11cd07e7b8714c196f9cbaca7f54ca50ced2dcc3d7c71e0c2c31b333c959f1362f590f473dc4132e625d189cc34393a0b41e8eb5ef5b8e6bfe205fc4356dac6181e0a9572d74f3b1f99a431d1a9ce0ec3be96f16e4d02df77a943a1750dbaf8e79cfb8453f1c60bdf12e387bea3889b77de39e27fbc8383dc6c5dacb595327dee5021a41faaf1c7b75857d63923c4b874b6174c86230da28f896b2c69d9a824a30a12a373c048470cf5bc4f7b5b7523c0a1179b20c33c6fae74783e5e9ac3b18389b617cd2ee687beaec302844e1a48f11bf3de6fad32933466e9b3982fd153e7627b0e389c80412d04b46b4e6cee46d9b10923fe0810cef77ead7b34301d4e526fc6382555c9157cdf59ab3da461042f7f16dd929830b5b5aa40eb13ef4bd782f39817f2052fff0b31c6eb6ea0abe3222ec6a3daedeb18c1a348401776aadf2ca0348dfb8175e5877a380d20b4f015879073a083dbc22ff2b11750d2524897237badfdcd94505ec2e25b1e9a8e6b2684f8f155818e5b56a21d143dc55ecb5a4fc6496ced411b95f259c965d14c6992157713ac22ae72850e765f06596b61567bc45d656f2871d2f6c03950d4228756764aad6f5149fac5b34a010a84582cbc20c5e20abe49e6b3227953f346e8525fe3d32d11e2fb62094076bc57f3b57306ccbe7cee1350926af425326de9318890be763ec415b33b7c921be2b0e86627ed4cdddc9ca6d8e7f438da2ccd96de7724bdc956dd469c1dd5ec4ff09646db83acb07a26d7e3149796bdfb6277450ce42a6b22d75ca932f4666474731de878617251740ba6380ae8c38a073d5fbb043e4865f45d9c465d4680b61b0fccfdd5e0ee2030c78e8927defb38591e7a8a39460250da84a0753f86037c2aee24e2fa270185a753149545864a8600a2007f868ee4e7e7c5dbc4664ca938ffd874b0b5c21fe7a2ad363f27bc1ecee0455d56f1e5eb9f196a92c0766c43289b9541033f8f04e26464c5b979eeae8fd72746284cc0ffa68d8358c1b50ee561a7c204fe53b25b2554550573f96f4082911af32d4324f7255bd274324f05f3628b7a6fc9915e6577aff5c46f80776852e4d2287cca435b87f308696f9f9382790b5daa9a4035b1394e7c843b260c2375d28e03c5cb84f8a376fd</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">啊偶，好像有东西被加密了, 请输入通行密钥.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
+    <title>Hexo文档编写记录</title>
+    <url>/hexo_1.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>为了方便查阅属性而产生的记录，<a href="https://www.lifeee.top/posts/35048.html">更全的版本指路</a></p>
+<span id="more"></span>
+
+<h1 id="HTML扩展"><a href="#HTML扩展" class="headerlink" title="HTML扩展"></a>HTML扩展</h1><h2 id="键盘按键标签"><a href="#键盘按键标签" class="headerlink" title="键盘按键标签"></a>键盘按键标签</h2><p><kbd>Ctrl</kbd>+<kbd>z</kbd></p>
+<p><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Z&lt;/kbd&gt;</code></p>
+<h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p><span  style="color: #729871; ">先给点颜色你看看</span></p>
+<p><code>&lt;span style=&quot;color: #729871; &quot;&gt;先给点颜色你看看&lt;/span&gt;</code></p>
+<h3 id="字体大小"><a href="#字体大小" class="headerlink" title="字体大小"></a>字体大小</h3><p><span  style="font-size:1.3em;">改变字体大小</span></p>
+<p><code>&lt;span style=&quot;font-size:1.3em;&quot;&gt;改变字体大小&lt;/span&gt;</code></p>
+<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h3><p style="text-align:center">试试内容居中</p>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span> //right left</span><br><span class="line">试试内容居中</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="带颜色的分割线"><a href="#带颜色的分割线" class="headerlink" title="带颜色的分割线"></a>带颜色的分割线</h2><hr style="background-color : green;">
+
+<p><code>&lt;hr style=&quot;background-color : green;&quot;&gt;</code></p>
+<h1 id="Next主题特有的语法"><a href="#Next主题特有的语法" class="headerlink" title="Next主题特有的语法"></a>Next主题特有的语法</h1><h2 id="带引用样式的居中"><a href="#带引用样式的居中" class="headerlink" title="带引用样式的居中"></a>带引用样式的居中</h2><blockquote class="blockquote-center">
+<p>独坐幽篁里，弹琴复长啸。<br>深林人不知，明月来相照。</p>
+<p>——王维《竹里馆》</p>
+
+</blockquote>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%cq%&#125;</span><br><span class="line"></span><br><span class="line">独坐幽篁里，弹琴复长啸。</span><br><span class="line">深林人不知，明月来相照。</span><br><span class="line"></span><br><span class="line">——王维《竹里馆》</span><br><span class="line"></span><br><span class="line">&#123;%endcq%&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><div class="note default"><p>default 提示块标签</p>
 </div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+
+<div class="note success"><p>success 提示块标签</p>
+</div>
+
+<div class="note info"><p>info 提示块标签</p>
+</div>
+
+<div class="note warning"><p>warning 提示块标签</p>
+</div>
+
+<div class="note danger"><p>danger 提示块标签</p>
+</div>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="选项卡"><a href="#选项卡" class="headerlink" title="选项卡"></a>选项卡</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 选项卡 2 %&#125;</span><br><span class="line">&lt;!-- tab 自定义名称1 --&gt;</span><br><span class="line">这是选项卡 1</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称2 --&gt;</span><br><span class="line">这是选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 自定义名称3 --&gt;</span><br><span class="line">这是选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div class="tabs" id="选项卡-2"><ul class="nav-tabs"><li class="tab active"><a href="#选项卡-2-1">自定义名称1</a></li><li class="tab"><a href="#选项卡-2-2">自定义名称2</a></li><li class="tab"><a href="#选项卡-2-3">自定义名称3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="选项卡-2-1"><p>这是选项卡 1</p></div><div class="tab-pane" id="选项卡-2-2"><p>这是选项卡 2</p></div><div class="tab-pane" id="选项卡-2-3"><p>这是选项卡 3</p></div></div></div>
+
+
+
+<h2 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h2><p><i class="fa fa-camera-retro fa-lg"></i> fa-lg<br><i class="fa fa-camera-retro fa-2x"></i> fa-2x<br><i class="fa fa-camera-retro fa-3x"></i> fa-3x<br><i class="fa fa-camera-retro fa-4x"></i> fa-4x<br><i class="fa fa-camera-retro fa-5x"></i> fa-5x</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-lg&quot;&gt;&lt;/i&gt; fa-lg</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-2x&quot;&gt;&lt;/i&gt; fa-2x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-3x&quot;&gt;&lt;/i&gt; fa-3x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-4x&quot;&gt;&lt;/i&gt; fa-4x</span><br><span class="line">&lt;i class=&quot;fa fa-camera-retro fa-5x&quot;&gt;&lt;/i&gt; fa-5x</span><br></pre></td></tr></table></figure>
+
+<h2 id="Button标签"><a href="#Button标签" class="headerlink" title="Button标签"></a>Button标签</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 标签 方式 --&gt;</span></span><br><span class="line">&#123;% button /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></span><br><span class="line">&#123;% btn /path/to/url/, text, icon [class], title %&#125;</span><br><span class="line"><span class="comment">&lt;!-- HTML标签 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>这是标签名Click Me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% btn #, Text %&#125;&#123;% btn #, Text &amp; Title, home, Title %&#125;</span><br></pre></td></tr></table></figure>
+
+<a class="btn" href="#">Text</a><a class="btn" href="#" title="Title"><i class="fa fa-home"></i>Text & Title</a>
+
+<h2 id="label标签-带颜色的标记效果"><a href="#label标签-带颜色的标记效果" class="headerlink" title="label标签-带颜色的标记效果"></a>label标签-带颜色的标记效果</h2><p><strong>效果：</strong></p>
+<p>我坐在床前，望着窗外，<mark class="label ">回忆满天</mark>。生命是<mark class="label primary">华丽错觉</mark>，时间是贼偷走一切。</p>
+<p>七岁的那一年，抓住那只<mark class="label success">蝉</mark>，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能<mark class="label info">永远</mark>。</p>
+<p>有没有那么一种永远，<mark class="label warning">永远不改变</mark>，拥抱过的美丽，都再也不破碎。<br>让险峻岁月不能，在脸上撒野，让<mark class="label danger">生离和死别都遥远</mark>，有谁能听见。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line">我坐在床前，望着窗外，&#123;% label @回忆满天 %&#125;。生命是&#123;% label primary @华丽错觉 %&#125;，时间是贼偷走一切。</span><br><span class="line"></span><br><span class="line">七岁的那一年，抓住那只&#123;% label success @蝉 %&#125;，以为能抓住夏天。十七岁的那年，吻过他的脸，就以为和他能&#123;% label info @永远 %&#125;。</span><br><span class="line"></span><br><span class="line">有没有那么一种永远，&#123;% label warning @永远不改变 %&#125;，拥抱过的美丽，都再也不破碎。</span><br><span class="line">让险峻岁月不能，在脸上撒野，让&#123;% label danger @生离和死别都遥远 %&#125;，有谁能听见。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
-        <category>学习记录</category>
-        <category>系统运维</category>
+        <category>工具使用</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>secret</tag>
+        <tag>hexo</tag>
+        <tag>博客</tag>
+        <tag>markdown</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -2160,6 +2160,208 @@
         <tag>secret</tag>
         <tag>ros</tag>
         <tag>ros1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSCode系编辑器使用技巧</title>
+    <url>/vscode_trick.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<p>一些小技巧 (o-ωｑ)).oO 困</p>
+<span id="more"></span>
+
+<h2 id="关于代码折叠"><a href="#关于代码折叠" class="headerlink" title="关于代码折叠"></a>关于代码折叠</h2><table>
+<thead>
+<tr>
+<th>语言</th>
+<th>区域启动</th>
+<th>终止区域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>蝙蝠</td>
+<td><code>::#region</code>或者<code>REM #region</code></td>
+<td><code>::#endregion</code>或者<code>REM #endregion</code></td>
+</tr>
+<tr>
+<td>C#</td>
+<td><code>#region</code></td>
+<td><code>#endregion</code></td>
+</tr>
+<tr>
+<td>C&#x2F;C++</td>
+<td><code>#pragma region</code></td>
+<td><code>#pragma endregion</code></td>
+</tr>
+<tr>
+<td>CSS&#x2F;Less&#x2F;SCSS</td>
+<td><code>/*#region*/</code></td>
+<td><code>/*#endregion*/</code></td>
+</tr>
+<tr>
+<td>Coffeescript</td>
+<td><code>#region</code></td>
+<td><code>#endregion</code></td>
+</tr>
+<tr>
+<td>F#</td>
+<td><code>//#region</code>或者<code>(#_region)</code></td>
+<td><code>//#endregion</code>或者<code>(#_endregion)</code></td>
+</tr>
+<tr>
+<td>Java</td>
+<td><code>//#region</code>或者<code>//&lt;editor-fold&gt;</code></td>
+<td><code>//#endregion</code>或者<code>//&lt;/editor-fold&gt;</code></td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td><code>&lt;!-- #region --&gt;</code></td>
+<td><code>&lt;!-- #endregion --&gt;</code></td>
+</tr>
+<tr>
+<td>Perl5</td>
+<td><code>#region</code>或者<code>=pod</code></td>
+<td><code>#endregion</code>或者<code>=cut</code></td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><code>#region</code></td>
+<td><code>#endregion</code></td>
+</tr>
+<tr>
+<td>PowerShell</td>
+<td><code>#region</code></td>
+<td><code>#endregion</code></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><code>#region</code>或者<code># region</code></td>
+<td><code>#endregion</code>或者<code># endregion</code></td>
+</tr>
+<tr>
+<td>TypeScript&#x2F;JavaScript</td>
+<td><code>//#region</code></td>
+<td><code>//#endregion</code></td>
+</tr>
+<tr>
+<td>Visual Basic</td>
+<td><code>#Region</code></td>
+<td><code>#End Region</code></td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>工具使用</category>
+        <category>编辑器</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Redis安装修改密码</title>
+    <url>/errorlist_redis.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
+    .inline-note {
+      display: inline-block;
+      background-color: #fffbe6;
+      color: #333;
+      border-left: 4px solid #f7c948;
+      padding: 0.2em 0.6em;
+      margin: 0 0.2em;
+      font-size: 0.95em;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      font-style: italic;
+      cursor: help;
+      transition: all 0.2s ease;
+    }
+
+    .inline-note:hover {
+      background-color: #fff3bf;
+      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
+    }
+</style>
+<span id="more"></span>
+
+
+
+<h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>官方docker容器配置文件设置——修改密码<br><a href="https://hub.docker.com/_/redis">docker-redis镜像</a><br>根据官方文档中的：</p>
+<blockquote>
+<h4 id="此外，如果您想使用自己的-redis-conf-文件……"><a href="#此外，如果您想使用自己的-redis-conf-文件……" class="headerlink" title="此外，如果您想使用自己的 redis.conf 文件……"></a>此外，如果您想使用自己的 redis.conf 文件……</h4><p>您可以创建自己的 Dockerfile，将上下文中的 redis.conf 添加到 &#x2F;data&#x2F; 中，如下所示。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> redis</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> redis.conf /usr/local/etc/redis/redis.conf</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+
+<p>或者，您也可以使用选项来指定类似的内容<code>docker run</code>。</p>
+<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -v /myredis/conf:/usr/local/etc/redis --name myredis redis redis-server /usr/local/etc/redis/redis.conf</span></span><br></pre></td></tr></table></figure>
+
+<p><code>/myredis/conf/</code>本地目录下有你的<code>redis.conf</code>文件。使用此方法意味着你无需为 Redis 容器编写 Dockerfile。</p>
+<p>映射目录应该是可写的，因为根据配置和操作模式，Redis 可能需要创建额外的配置文件或重写现有的配置文件。</p>
+</blockquote>
+<p>这里我选择了第一种方法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建Dockerfile 和 自定义的redis配置文件</span></span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">mkdir</span> myredis </span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">cd</span> myredis/ </span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi redis.conf</span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi Dockerfile </span><br><span class="line"></span><br><span class="line">FROM redis</span><br><span class="line">COPY redis.conf /usr/local/etc/redis/redis.conf</span><br><span class="line">CMD [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建自定义Redis镜像</span></span><br><span class="line">lan@lan123ubuntu:~/myredis$ docker build -t myredis:custom . </span><br><span class="line">DEPRECATED: The legacy builder is deprecated and will be removed <span class="keyword">in</span> a future release. </span><br><span class="line">Install the buildx component to build images with BuildKit: https://docs.docker.com/go/buildx/ </span><br><span class="line">Sending build context to Docker daemon 3.072kB </span><br><span class="line">Step 1/3 : FROM redis:latest </span><br><span class="line">---&gt; 1c390e3bb5cb </span><br><span class="line">Step 2/3 : COPY redis.conf /usr/local/etc/redis/redis.conf </span><br><span class="line">---&gt; 5752eb06dda3 </span><br><span class="line">Step 3/3 : CMD [<span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span>] </span><br><span class="line">---&gt; Running <span class="keyword">in</span> 8f635c9589f5 </span><br><span class="line">---&gt; Removed intermediate container 8f635c9589f5 </span><br><span class="line">---&gt; 2988385cf884 </span><br><span class="line">Successfully built 2988385cf884 </span><br><span class="line">Successfully tagged myredis:custom </span><br><span class="line"><span class="comment">#启动镜像并设置开机自启</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name myredis \</span><br><span class="line">  -v redis-data:/data \</span><br><span class="line">  -p 6379:6379 \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  myredis:custom</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>解决方案</category>
+        <category>系统问题</category>
+      </categories>
+      <tags>
+        <tag>error</tag>
+        <tag>错误解决</tag>
+        <tag>redis</tag>
+        <tag>docker</tag>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu24.04使用记录</title>
+    <url>/ubuntu_demo.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
+<span id="more"></span>
+
+<h1 id="快捷键及其他"><a href="#快捷键及其他" class="headerlink" title="快捷键及其他"></a>快捷键及其他</h1><p><code> Ctrl + Alt + T</code>打开终端</p>
+<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><ol>
+<li><p>如<a href="https://blog.lanouo.com/hadoop2.html#VMware-%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8">Hadoop搭建教程</a>中网络设置中桥接配置部分</p>
+</li>
+<li><p><strong>虚拟机</strong>运行<code>ifconfig</code>命令 <strong>主机</strong>运行<code>ipconfig</code>命令查看并获取信息<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260423195100401.png" alt="虚拟机查看网卡信息"><br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260423194638210.png" alt="image-20260423194638146"></p>
+</li>
+<li><p>根据以上信息配置网卡文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lan@lan-VMware-Virtual-Platform:~$ <span class="built_in">cd</span> /etc/netplan/</span><br><span class="line">lan@lan-VMware-Virtual-Platform:/etc/netplan$ <span class="built_in">sudo</span> nano 50-cloud-init.yaml </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260423195450008.png" alt="image-20260423195449938"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> netplan apply</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>这样就完成了网络的基础配置，可以<code>ping www.baidu.com</code>试一下，之后是一些可选项</p>
+<h2 id="安装OpenSSH-Sever（远程连接配置）"><a href="#安装OpenSSH-Sever（远程连接配置）" class="headerlink" title="安装OpenSSH Sever（远程连接配置）"></a>安装OpenSSH Sever（远程连接配置）</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习记录</category>
+        <category>系统运维</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ubuntu</tag>
+        <tag>系统配置</tag>
+        <tag>网络配置</tag>
       </tags>
   </entry>
   <entry>
@@ -2272,59 +2474,6 @@
       <tags>
         <tag>ros</tag>
         <tag>ros1</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis安装修改密码</title>
-    <url>/errorlist_redis.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<span id="more"></span>
-
-
-
-<h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>官方docker容器配置文件设置——修改密码<br><a href="https://hub.docker.com/_/redis">docker-redis镜像</a><br>根据官方文档中的：</p>
-<blockquote>
-<h4 id="此外，如果您想使用自己的-redis-conf-文件……"><a href="#此外，如果您想使用自己的-redis-conf-文件……" class="headerlink" title="此外，如果您想使用自己的 redis.conf 文件……"></a>此外，如果您想使用自己的 redis.conf 文件……</h4><p>您可以创建自己的 Dockerfile，将上下文中的 redis.conf 添加到 &#x2F;data&#x2F; 中，如下所示。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> redis</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> redis.conf /usr/local/etc/redis/redis.conf</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
-
-<p>或者，您也可以使用选项来指定类似的内容<code>docker run</code>。</p>
-<figure class="highlight console"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">docker run -v /myredis/conf:/usr/local/etc/redis --name myredis redis redis-server /usr/local/etc/redis/redis.conf</span></span><br></pre></td></tr></table></figure>
-
-<p><code>/myredis/conf/</code>本地目录下有你的<code>redis.conf</code>文件。使用此方法意味着你无需为 Redis 容器编写 Dockerfile。</p>
-<p>映射目录应该是可写的，因为根据配置和操作模式，Redis 可能需要创建额外的配置文件或重写现有的配置文件。</p>
-</blockquote>
-<p>这里我选择了第一种方法</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建Dockerfile 和 自定义的redis配置文件</span></span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">mkdir</span> myredis </span><br><span class="line">lan@lan123ubuntu:~$ <span class="built_in">cd</span> myredis/ </span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi redis.conf</span><br><span class="line">lan@lan123ubuntu:~/myredis$ vi Dockerfile </span><br><span class="line"></span><br><span class="line">FROM redis</span><br><span class="line">COPY redis.conf /usr/local/etc/redis/redis.conf</span><br><span class="line">CMD [ <span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span> ]</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建自定义Redis镜像</span></span><br><span class="line">lan@lan123ubuntu:~/myredis$ docker build -t myredis:custom . </span><br><span class="line">DEPRECATED: The legacy builder is deprecated and will be removed <span class="keyword">in</span> a future release. </span><br><span class="line">Install the buildx component to build images with BuildKit: https://docs.docker.com/go/buildx/ </span><br><span class="line">Sending build context to Docker daemon 3.072kB </span><br><span class="line">Step 1/3 : FROM redis:latest </span><br><span class="line">---&gt; 1c390e3bb5cb </span><br><span class="line">Step 2/3 : COPY redis.conf /usr/local/etc/redis/redis.conf </span><br><span class="line">---&gt; 5752eb06dda3 </span><br><span class="line">Step 3/3 : CMD [<span class="string">&quot;redis-server&quot;</span>, <span class="string">&quot;/usr/local/etc/redis/redis.conf&quot;</span>] </span><br><span class="line">---&gt; Running <span class="keyword">in</span> 8f635c9589f5 </span><br><span class="line">---&gt; Removed intermediate container 8f635c9589f5 </span><br><span class="line">---&gt; 2988385cf884 </span><br><span class="line">Successfully built 2988385cf884 </span><br><span class="line">Successfully tagged myredis:custom </span><br><span class="line"><span class="comment">#启动镜像并设置开机自启</span></span><br><span class="line">docker run -d \</span><br><span class="line">  --name myredis \</span><br><span class="line">  -v redis-data:/data \</span><br><span class="line">  -p 6379:6379 \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  myredis:custom</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>解决方案</category>
-        <category>系统问题</category>
-      </categories>
-      <tags>
-        <tag>error</tag>
-        <tag>错误解决</tag>
-        <tag>redis</tag>
-        <tag>docker</tag>
-        <tag>配置</tag>
       </tags>
   </entry>
   <entry>
@@ -2799,159 +2948,49 @@
         <category>阅读记录</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>读书笔记</tag>
+        <tag>linux</tag>
         <tag>命令行</tag>
         <tag>系统管理</tag>
       </tags>
   </entry>
   <entry>
-    <title>VSCode系编辑器使用技巧</title>
-    <url>/vscode_trick.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><style>
-    .inline-note {
-      display: inline-block;
-      background-color: #fffbe6;
-      color: #333;
-      border-left: 4px solid #f7c948;
-      padding: 0.2em 0.6em;
-      margin: 0 0.2em;
-      font-size: 0.95em;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      font-style: italic;
-      cursor: help;
-      transition: all 0.2s ease;
-    }
-
-    .inline-note:hover {
-      background-color: #fff3bf;
-      box-shadow: 0 0 5px rgba(247, 201, 72, 0.4);
-    }
-</style>
-<p>一些小技巧 (o-ωｑ)).oO 困</p>
+    <title>YOLO入门</title>
+    <url>/yolo_learn.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这里应该有一条简介才对&#x2F;_ \</p>
 <span id="more"></span>
-
-<h2 id="关于代码折叠"><a href="#关于代码折叠" class="headerlink" title="关于代码折叠"></a>关于代码折叠</h2><table>
-<thead>
-<tr>
-<th>语言</th>
-<th>区域启动</th>
-<th>终止区域</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>蝙蝠</td>
-<td><code>::#region</code>或者<code>REM #region</code></td>
-<td><code>::#endregion</code>或者<code>REM #endregion</code></td>
-</tr>
-<tr>
-<td>C#</td>
-<td><code>#region</code></td>
-<td><code>#endregion</code></td>
-</tr>
-<tr>
-<td>C&#x2F;C++</td>
-<td><code>#pragma region</code></td>
-<td><code>#pragma endregion</code></td>
-</tr>
-<tr>
-<td>CSS&#x2F;Less&#x2F;SCSS</td>
-<td><code>/*#region*/</code></td>
-<td><code>/*#endregion*/</code></td>
-</tr>
-<tr>
-<td>Coffeescript</td>
-<td><code>#region</code></td>
-<td><code>#endregion</code></td>
-</tr>
-<tr>
-<td>F#</td>
-<td><code>//#region</code>或者<code>(#_region)</code></td>
-<td><code>//#endregion</code>或者<code>(#_endregion)</code></td>
-</tr>
-<tr>
-<td>Java</td>
-<td><code>//#region</code>或者<code>//&lt;editor-fold&gt;</code></td>
-<td><code>//#endregion</code>或者<code>//&lt;/editor-fold&gt;</code></td>
-</tr>
-<tr>
-<td>Markdown</td>
-<td><code>&lt;!-- #region --&gt;</code></td>
-<td><code>&lt;!-- #endregion --&gt;</code></td>
-</tr>
-<tr>
-<td>Perl5</td>
-<td><code>#region</code>或者<code>=pod</code></td>
-<td><code>#endregion</code>或者<code>=cut</code></td>
-</tr>
-<tr>
-<td>PHP</td>
-<td><code>#region</code></td>
-<td><code>#endregion</code></td>
-</tr>
-<tr>
-<td>PowerShell</td>
-<td><code>#region</code></td>
-<td><code>#endregion</code></td>
-</tr>
-<tr>
-<td>Python</td>
-<td><code>#region</code>或者<code># region</code></td>
-<td><code>#endregion</code>或者<code># endregion</code></td>
-</tr>
-<tr>
-<td>TypeScript&#x2F;JavaScript</td>
-<td><code>//#region</code></td>
-<td><code>//#endregion</code></td>
-</tr>
-<tr>
-<td>Visual Basic</td>
-<td><code>#Region</code></td>
-<td><code>#End Region</code></td>
-</tr>
-</tbody></table>
-]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">新建环境</span><br><span class="line">github下载源码</span><br><span class="line">pip install -e .</span><br><span class="line">mss</span><br><span class="line">jupyterlab</span><br></pre></td></tr></table></figure>
+<p>demo1</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 加载模型  </span></span><br><span class="line">model = YOLO(<span class="string">&quot;yolov8n.pt&quot;</span>,task = <span class="string">&quot;detect&quot;</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 预测图片  </span></span><br><span class="line">results = model.predict(source=<span class="string">&quot;screen&quot;</span>,save = <span class="literal">True</span>) </span><br><span class="line"><span class="comment"># screen屏幕。0摄像头，或是一个明确的地址  </span></span><br><span class="line"><span class="comment"># save参数确定为True。保存检测到的结果  </span></span><br><span class="line"><span class="comment"># conf0.25 越低，检测到的框越多</span></span><br><span class="line"><span class="comment"># ioc0.7 与conf相反</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;检测完成&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pyqt5==5.15.7  </span><br><span class="line">pip install labelImg==1.8.6</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>工具使用</category>
-        <category>编辑器</category>
+        <category>学习记录</category>
       </categories>
   </entry>
   <entry>
-    <title>Ubuntu24.04使用记录</title>
-    <url>/ubuntu_demo.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></style></p>
+    <title>ubuntu通过systemctl实现服务或脚本开机自启</title>
+    <url>/ubuntu-systemctl-enable-boot.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这里应该有一条简介才对&#x2F;_ \</p>
 <span id="more"></span>
+<p>在<code>/etc/systemd/system</code>下新建一个文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=ROS2 Web Video Server</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=agilex</span><br><span class="line">WorkingDirectory=/home/agilex/rxzy/systemd</span><br><span class="line"></span><br><span class="line">ExecStart=/home/agilex/rxzy/systemd/start_web_server.sh</span><br><span class="line"></span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=5</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 
-<h1 id="快捷键及其他"><a href="#快捷键及其他" class="headerlink" title="快捷键及其他"></a>快捷键及其他</h1><p><code> Ctrl + Alt + T</code>打开终端</p>
-<h1 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h1><ol>
-<li><p>如<a href="https://blog.lanouo.com/hadoop2.html#VMware-%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8">Hadoop搭建教程</a>中网络设置中桥接配置部分</p>
-</li>
-<li><p><strong>虚拟机</strong>运行<code>ifconfig</code>命令 <strong>主机</strong>运行<code>ipconfig</code>命令查看并获取信息<br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260423195100401.png" alt="虚拟机查看网卡信息"><br><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260423194638210.png" alt="image-20260423194638146"></p>
-</li>
-<li><p>根据以上信息配置网卡文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lan@lan-VMware-Virtual-Platform:~$ <span class="built_in">cd</span> /etc/netplan/</span><br><span class="line">lan@lan-VMware-Virtual-Platform:/etc/netplan$ <span class="built_in">sudo</span> nano 50-cloud-init.yaml </span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/lanOAO/blog_img/main/20260423195450008.png" alt="image-20260423195449938"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> netplan apply</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>这样就完成了网络的基础配置，可以<code>ping www.baidu.com</code>试一下，之后是一些可选项</p>
-<h2 id="安装OpenSSH-Sever（远程连接配置）"><a href="#安装OpenSSH-Sever（远程连接配置）" class="headerlink" title="安装OpenSSH Sever（远程连接配置）"></a>安装OpenSSH Sever（远程连接配置）</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">  </span><br><span class="line">sleep 10</span><br><span class="line"></span><br><span class="line">source  /opt/ros/noetic/setup.bash</span><br><span class="line">source ~/agilex_ws/devel/setup.bash</span><br><span class="line"></span><br><span class="line">exec rosbridge_server rosbridge_websocket.launch</span><br></pre></td></tr></table></figure>
 
 
-
-<h2 id="更换镜像源"><a href="#更换镜像源" class="headerlink" title="更换镜像源"></a>更换镜像源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo bash -c &#x27;cat &gt; /etc/apt/sources.list&#x27; &lt;&lt;EOF</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-security main restricted universe multiverse</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo apt clean</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade -y</span><br><span class="line">sudo apt install vim -y</span><br><span class="line">lan@lan-VMware-Virtual-Platform:~$ </span><br></pre></td></tr></table></figure>
-
+<p>[Unit]<br>Description&#x3D;ROS1Websocket<br>After&#x3D;network.target</p>
+<p>[Service]<br>Type&#x3D;simple<br>User&#x3D;agilex<br>WorkingDirectory&#x3D;&#x2F;home&#x2F;agilex&#x2F;rxzy&#x2F;systemd</p>
+<p>ExecStart&#x3D;&#x2F;home&#x2F;agilex&#x2F;rxzy&#x2F;systemd&#x2F;start_websocket.sh</p>
+<p>Restart&#x3D;always<br>RestartSec&#x3D;5</p>
+<p>[Install]<br>WantedBy&#x3D;multi-user.target</p>
 ]]></content>
       <categories>
-        <category>学习记录</category>
-        <category>系统运维</category>
+        <category>不知道放到哪OoO</category>
       </categories>
       <tags>
         <tag>linux</tag>
+        <tag>ros</tag>
         <tag>ubuntu</tag>
-        <tag>系统配置</tag>
-        <tag>网络配置</tag>
       </tags>
   </entry>
   <entry>
@@ -3092,26 +3131,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker安装速查-ubuntu24</title>
-    <url>/dockerInstall_ubuntu24.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这里应该有一条简介才对&#x2F;_ \</p>
-<span id="more"></span>
-<h1 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt install ca-certificates curl</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> install -m 0755 -d /etc/apt/keyrings</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> a+r /etc/apt/keyrings/docker.asc</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.sources &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">Types: deb</span></span><br><span class="line"><span class="string">URIs: https://download.docker.com/linux/ubuntu</span></span><br><span class="line"><span class="string">Suites: $(. /etc/os-release &amp;&amp; echo &quot;$&#123;UBUNTU_CODENAME:-$VERSION_CODENAME&#125;&quot;)</span></span><br><span class="line"><span class="string">Components: stable</span></span><br><span class="line"><span class="string">Architectures: $(dpkg --print-architecture)</span></span><br><span class="line"><span class="string">Signed-By: /etc/apt/keyrings/docker.asc</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status docker</span><br><span class="line"><span class="built_in">sudo</span> docker run hello-world</span><br></pre></td></tr></table></figure>
-<p>常用命令 <a href="https://docs.docker.com/get-started/docker_cheatsheet.pdf">https://docs.docker.com/get-started/docker_cheatsheet.pdf</a></p>
-<h1 id="更改镜像源"><a href="#更改镜像源" class="headerlink" title="更改镜像源"></a>更改镜像源</h1><p>编辑或创建 <code>/etc/docker/daemon.json</code>，例如：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https://docker.registry.cyou&quot;,</span><br><span class="line">    &quot;https://mirror.aliyuncs.com&quot;,</span><br><span class="line">    &quot;https://docker.m.daocloud.io&quot;,</span><br><span class="line">    &quot;https://docker.mirrors.ustc.edu.cn&quot;,</span><br><span class="line">    &quot;https://mirror.baidubce.com&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;max-concurrent-downloads&quot;: 10,</span><br><span class="line">  &quot;max-concurrent-uploads&quot;: 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>保存后重启 Docker：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<p>你可以通过 <code>docker info</code> 查看是否生效：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">docker info | grep -i &quot;Registry Mirrors&quot; -A 5</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习记录</category>
-        <category>系统运维</category>
-      </categories>
-  </entry>
-  <entry>
     <title>cs168</title>
     <url>/cs168.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -3142,29 +3161,19 @@
       </tags>
   </entry>
   <entry>
-    <title>ubuntu通过systemctl实现服务或脚本开机自启</title>
-    <url>/ubuntu-systemctl-enable-boot.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这里应该有一条简介才对&#x2F;_ \</p>
+    <title>win11应用快捷方式图标变白解决方案</title>
+    <url>/win11_linkerror.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>故障解决存档</p>
 <span id="more"></span>
-<p>在<code>/etc/systemd/system</code>下新建一个文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=ROS2 Web Video Server</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=agilex</span><br><span class="line">WorkingDirectory=/home/agilex/rxzy/systemd</span><br><span class="line"></span><br><span class="line">ExecStart=/home/agilex/rxzy/systemd/start_web_server.sh</span><br><span class="line"></span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=5</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">  </span><br><span class="line">sleep 10</span><br><span class="line"></span><br><span class="line">source  /opt/ros/noetic/setup.bash</span><br><span class="line">source ~/agilex_ws/devel/setup.bash</span><br><span class="line"></span><br><span class="line">exec rosbridge_server rosbridge_websocket.launch</span><br></pre></td></tr></table></figure>
-
-
-<p>[Unit]<br>Description&#x3D;ROS1Websocket<br>After&#x3D;network.target</p>
-<p>[Service]<br>Type&#x3D;simple<br>User&#x3D;agilex<br>WorkingDirectory&#x3D;&#x2F;home&#x2F;agilex&#x2F;rxzy&#x2F;systemd</p>
-<p>ExecStart&#x3D;&#x2F;home&#x2F;agilex&#x2F;rxzy&#x2F;systemd&#x2F;start_websocket.sh</p>
-<p>Restart&#x3D;always<br>RestartSec&#x3D;5</p>
-<p>[Install]<br>WantedBy&#x3D;multi-user.target</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
+<p>将上述文件保存为批处理文件（bat）即可</p>
 ]]></content>
       <categories>
-        <category>不知道放到哪OoO</category>
+        <category>解决方案</category>
+        <category>系统问题</category>
       </categories>
       <tags>
-        <tag>linux</tag>
-        <tag>ros</tag>
-        <tag>ubuntu</tag>
+        <tag>win11</tag>
       </tags>
   </entry>
   <entry>
@@ -3195,33 +3204,24 @@
       </tags>
   </entry>
   <entry>
-    <title>YOLO入门</title>
-    <url>/yolo_learn.html</url>
+    <title>docker安装速查-ubuntu24</title>
+    <url>/dockerInstall_ubuntu24.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这里应该有一条简介才对&#x2F;_ \</p>
 <span id="more"></span>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">新建环境</span><br><span class="line">github下载源码</span><br><span class="line">pip install -e .</span><br><span class="line">mss</span><br><span class="line">jupyterlab</span><br></pre></td></tr></table></figure>
-<p>demo1</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 加载模型  </span></span><br><span class="line">model = YOLO(<span class="string">&quot;yolov8n.pt&quot;</span>,task = <span class="string">&quot;detect&quot;</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 预测图片  </span></span><br><span class="line">results = model.predict(source=<span class="string">&quot;screen&quot;</span>,save = <span class="literal">True</span>) </span><br><span class="line"><span class="comment"># screen屏幕。0摄像头，或是一个明确的地址  </span></span><br><span class="line"><span class="comment"># save参数确定为True。保存检测到的结果  </span></span><br><span class="line"><span class="comment"># conf0.25 越低，检测到的框越多</span></span><br><span class="line"><span class="comment"># ioc0.7 与conf相反</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;检测完成&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pyqt5==5.15.7  </span><br><span class="line">pip install labelImg==1.8.6</span><br></pre></td></tr></table></figure>]]></content>
+<h1 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt install ca-certificates curl</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> install -m 0755 -d /etc/apt/keyrings</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> a+r /etc/apt/keyrings/docker.asc</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.sources &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">Types: deb</span></span><br><span class="line"><span class="string">URIs: https://download.docker.com/linux/ubuntu</span></span><br><span class="line"><span class="string">Suites: $(. /etc/os-release &amp;&amp; echo &quot;$&#123;UBUNTU_CODENAME:-$VERSION_CODENAME&#125;&quot;)</span></span><br><span class="line"><span class="string">Components: stable</span></span><br><span class="line"><span class="string">Architectures: $(dpkg --print-architecture)</span></span><br><span class="line"><span class="string">Signed-By: /etc/apt/keyrings/docker.asc</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status docker</span><br><span class="line"><span class="built_in">sudo</span> docker run hello-world</span><br></pre></td></tr></table></figure>
+<p>常用命令 <a href="https://docs.docker.com/get-started/docker_cheatsheet.pdf">https://docs.docker.com/get-started/docker_cheatsheet.pdf</a></p>
+<h1 id="更改镜像源"><a href="#更改镜像源" class="headerlink" title="更改镜像源"></a>更改镜像源</h1><p>编辑或创建 <code>/etc/docker/daemon.json</code>，例如：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https://docker.registry.cyou&quot;,</span><br><span class="line">    &quot;https://mirror.aliyuncs.com&quot;,</span><br><span class="line">    &quot;https://docker.m.daocloud.io&quot;,</span><br><span class="line">    &quot;https://docker.mirrors.ustc.edu.cn&quot;,</span><br><span class="line">    &quot;https://mirror.baidubce.com&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;max-concurrent-downloads&quot;: 10,</span><br><span class="line">  &quot;max-concurrent-uploads&quot;: 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存后重启 Docker：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>你可以通过 <code>docker info</code> 查看是否生效：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">docker info | grep -i &quot;Registry Mirrors&quot; -A 5</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>学习记录</category>
+        <category>系统运维</category>
       </categories>
-  </entry>
-  <entry>
-    <title>win11应用快捷方式图标变白解决方案</title>
-    <url>/win11_linkerror.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>故障解决存档</p>
-<span id="more"></span>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
-<p>将上述文件保存为批处理文件（bat）即可</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-        <category>系统问题</category>
-      </categories>
-      <tags>
-        <tag>win11</tag>
-      </tags>
   </entry>
   <entry>
     <title>各种各样的参考页面</title>

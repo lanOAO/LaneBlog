@@ -1,108 +1,171 @@
-window.addEventListener("load", function() {
-    var c = document.createElement("canvas"),
-        ctx = c.getContext("2d"),
-        leaves = [],
-        mouse = { x: null, y: null },
-        w = window.innerWidth,
-        h = window.innerHeight,
-        rAF = window.requestAnimationFrame || function(f){ setTimeout(f, 1000/45) };
+(function () {
+  "use strict";
 
-    c.id = "leaf-bg-canvas";
-    c.style.cssText = "position:fixed;top:0;left:0;z-index:-1;pointer-events:none;opacity:0.45;width:100vw;height:100vh;";
-    document.body.appendChild(c);
+  function startFreshBackground() {
+    if (document.getElementById("leaf-bg-canvas")) return;
 
-    function initLeaves() {
-        leaves = [];
-        var count = Math.min(50, Math.floor(w/30));
-        for (var i = 0; i < count; i++) {
-            leaves.push({
-                x: Math.random()*w,
-                y: Math.random()*h,
-                size: Math.random()*15 + 10,
-                speedX: Math.random() * 0.5 - 0.25,
-                speedY: Math.random() * 0.5 + 0.2,
-                angle: Math.random()*360,
-                spin: Math.random()*0.5 - 0.25,
-                flip: Math.random() * Math.PI,        // 3D 翻转角度
-                flipSpeed: Math.random() * 0.05 + 0.01, // 翻转速度
-                color: ["#c5d9c5","#9aba9a","#e3ebe3","#a8c0a8"][Math.floor(Math.random()*4)]
-            });
-        }
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduceMotion.matches) return;
+
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    var leaves = [];
+    var ripples = [];
+    var pointer = { x: -1000, y: -1000, active: false };
+    var width = 0;
+    var height = 0;
+    var dpr = 1;
+    var running = true;
+    var lastTime = performance.now();
+    var palette = [
+      "rgba(72, 139, 91, .25)",
+      "rgba(111, 166, 112, .22)",
+      "rgba(148, 190, 132, .20)",
+      "rgba(61, 122, 82, .18)"
+    ];
+
+    canvas.id = "leaf-bg-canvas";
+    canvas.setAttribute("aria-hidden", "true");
+    document.body.appendChild(canvas);
+
+    function makeLeaf(fromTop) {
+      var size = 7 + Math.random() * 10;
+      return {
+        x: Math.random() * width,
+        y: fromTop ? -size * 2 : Math.random() * height,
+        size: size,
+        vx: (Math.random() - .5) * .12,
+        vy: .08 + Math.random() * .18,
+        phase: Math.random() * Math.PI * 2,
+        sway: .2 + Math.random() * .35,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - .5) * .0025,
+        color: palette[Math.floor(Math.random() * palette.length)]
+      };
+    }
+
+    function resetLeaves() {
+      leaves = [];
+      var count = Math.max(14, Math.min(34, Math.round(width / 48)));
+      if (width < 768) count = Math.min(count, 16);
+      for (var i = 0; i < count; i++) leaves.push(makeLeaf(false));
     }
 
     function resize() {
-        w = window.innerWidth;
-        h = window.innerHeight;
-        c.width = w;
-        c.height = h;
-        initLeaves();
+      width = window.innerWidth;
+      height = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      resetLeaves();
     }
 
-    function drawLeaf(ctx, l) {
-        ctx.beginPath();
-        // 绘制叶子主体（贝塞尔曲线模拟叶形）
-        ctx.moveTo(0, -l.size); 
-        ctx.quadraticCurveTo(l.size * 0.6, -l.size * 0.3, 0, l.size); // 右半边
-        ctx.quadraticCurveTo(-l.size * 0.6, -l.size * 0.3, 0, -l.size); // 左半边
-        ctx.fillStyle = l.color;
-        ctx.fill();
-        
-        // 绘制叶脉（可选，增加细节）
-        ctx.beginPath();
-        ctx.moveTo(0, -l.size);
-        ctx.lineTo(0, l.size);
-        ctx.strokeStyle = "rgba(255,255,255,0.3)";
-        ctx.lineWidth = 1;
-        ctx.stroke();
+    function drawLeaf(leaf) {
+      ctx.save();
+      ctx.translate(leaf.x, leaf.y);
+      ctx.rotate(leaf.angle);
+      ctx.beginPath();
+      ctx.moveTo(0, -leaf.size);
+      ctx.bezierCurveTo(leaf.size * .72, -leaf.size * .45, leaf.size * .62, leaf.size * .56, 0, leaf.size);
+      ctx.bezierCurveTo(-leaf.size * .62, leaf.size * .56, -leaf.size * .72, -leaf.size * .45, 0, -leaf.size);
+      ctx.fillStyle = leaf.color;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0, -leaf.size * .72);
+      ctx.lineTo(0, leaf.size * .72);
+      ctx.strokeStyle = "rgba(255, 255, 255, .38)";
+      ctx.lineWidth = .7;
+      ctx.stroke();
+      ctx.restore();
     }
 
-    function draw() {
-        ctx.clearRect(0, 0, w, h);
-        for (var i = 0; i < leaves.length; i++) {
-            var l = leaves[i];
+    function updateLeaf(leaf, delta, time) {
+      leaf.phase += .00045 * delta;
+      leaf.x += (leaf.vx + Math.sin(leaf.phase + time * .00018) * leaf.sway) * delta;
+      leaf.y += leaf.vy * delta;
+      leaf.angle += leaf.spin * delta;
 
-            // 自然飘动
-            l.x += l.speedX + Math.sin(l.y * 0.01) * 0.2;
-            l.y += l.speedY;
-            l.angle += l.spin;
-            l.flip += l.flipSpeed; // 更新翻转角度
-
-            // 鼠标排斥
-            if(mouse.x !== null){
-                var dx = l.x - mouse.x,
-                    dy = l.y - mouse.y,
-                    dist = Math.sqrt(dx*dx + dy*dy);
-                if(dist < 100){
-                    var force = (100 - dist) / 100 * 1; 
-                    l.x += dx / dist * force;
-                    l.y += dy / dist * force;
-                }
-            }
-
-            if(l.y > h + 20){
-                l.y = -20;
-                l.x = Math.random() * w;
-            }
-
-            ctx.save();
-            ctx.translate(l.x, l.y);
-            ctx.rotate(l.angle * Math.PI / 180);
-            
-            // 模拟 3D 翻转效果：通过缩放 X 轴模拟叶片在空中翻滚
-            var flipScale = Math.cos(l.flip);
-            ctx.scale(flipScale, 1);
-            
-            drawLeaf(ctx, l);
-            ctx.restore();
+      if (pointer.active) {
+        var dx = leaf.x - pointer.x;
+        var dy = leaf.y - pointer.y;
+        var distanceSquared = dx * dx + dy * dy;
+        if (distanceSquared > 1 && distanceSquared < 15000) {
+          var force = (1 - Math.sqrt(distanceSquared) / 123) * .045 * delta;
+          leaf.x += dx * force;
+          leaf.y += dy * force;
         }
-        rAF(draw);
+      }
+
+      if (leaf.y > height + leaf.size * 2 || leaf.x < -40 || leaf.x > width + 40) {
+        Object.assign(leaf, makeLeaf(true));
+      }
     }
 
-    window.onmousemove = function(e){ mouse.x = e.clientX; mouse.y = e.clientY; };
-    window.onmouseout = function(){ mouse.x = null; mouse.y = null; };
-    window.onresize = resize;
+    function drawRipples(delta) {
+      for (var i = ripples.length - 1; i >= 0; i--) {
+        var ripple = ripples[i];
+        ripple.radius += delta * .07;
+        ripple.alpha -= delta * .00065;
+        if (ripple.alpha <= 0) {
+          ripples.splice(i, 1);
+          continue;
+        }
+        ctx.beginPath();
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(65, 133, 87, " + ripple.alpha + ")";
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      }
+    }
+
+    function animate(time) {
+      if (!running) return;
+      var delta = Math.min(32, time - lastTime || 16.7);
+      lastTime = time;
+      ctx.clearRect(0, 0, width, height);
+      for (var i = 0; i < leaves.length; i++) {
+        updateLeaf(leaves[i], delta, time);
+        drawLeaf(leaves[i]);
+      }
+      drawRipples(delta);
+      window.requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("pointermove", function (event) {
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+      pointer.active = true;
+    }, { passive: true });
+
+    document.addEventListener("pointerleave", function () {
+      pointer.active = false;
+    });
+
+    window.addEventListener("pointerdown", function (event) {
+      if (event.button !== undefined && event.button !== 0) return;
+      ripples.push({ x: event.clientX, y: event.clientY, radius: 6, alpha: .28 });
+      if (ripples.length > 5) ripples.shift();
+    }, { passive: true });
+
+    window.addEventListener("resize", resize, { passive: true });
+    document.addEventListener("visibilitychange", function () {
+      running = !document.hidden;
+      if (running) {
+        lastTime = performance.now();
+        window.requestAnimationFrame(animate);
+      }
+    });
 
     resize();
-    initLeaves();
-    draw();
-});
+    window.requestAnimationFrame(animate);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startFreshBackground, { once: true });
+  } else {
+    startFreshBackground();
+  }
+})();
