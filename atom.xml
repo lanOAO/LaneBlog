@@ -231,9 +231,9 @@
     
     <category term="secret" scheme="http://blog.lanouo.com/tags/secret/"/>
     
-    <category term="ros1" scheme="http://blog.lanouo.com/tags/ros1/"/>
-    
     <category term="ros" scheme="http://blog.lanouo.com/tags/ros/"/>
+    
+    <category term="ros1" scheme="http://blog.lanouo.com/tags/ros1/"/>
     
   </entry>
   
@@ -258,9 +258,9 @@
     
     <category term="secret" scheme="http://blog.lanouo.com/tags/secret/"/>
     
-    <category term="ros1" scheme="http://blog.lanouo.com/tags/ros1/"/>
-    
     <category term="ros" scheme="http://blog.lanouo.com/tags/ros/"/>
+    
+    <category term="ros1" scheme="http://blog.lanouo.com/tags/ros1/"/>
     
   </entry>
   
@@ -283,9 +283,9 @@
     <category term="ROS" scheme="http://blog.lanouo.com/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/ROS/"/>
     
     
-    <category term="ros1" scheme="http://blog.lanouo.com/tags/ros1/"/>
-    
     <category term="ros" scheme="http://blog.lanouo.com/tags/ros/"/>
+    
+    <category term="ros1" scheme="http://blog.lanouo.com/tags/ros1/"/>
     
   </entry>
   
