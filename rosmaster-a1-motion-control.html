@@ -28,9 +28,9 @@
 <meta property="og:description" content="本文整理 Yahboom ROSMASTER A1 官方教程中与小车运动控制有关的 Python 函数，包括连续速度控制、方向控制、电机 PWM 控制、阿克曼转向控制以及运动状态读取。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-11-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-26T02:57:54.041Z">
+<meta property="article:modified_time" content="2026-11-26T04:36:39.778Z">
 <meta property="article:author" content="LanOoO">
-<meta property="article:tag" content="ROSMASTER A1">
+<meta property="article:tag" content="ROSMASTERA1">
 <meta property="article:tag" content="ROS2">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="机器人控制">
@@ -162,8 +162,8 @@ customElements.define('an_loading', CharAnimation);
 <!-- hexo injector head_end start -->
     <script src="/js/hexo_resize_image.js"></script>
     <script src="/js/leaf-background.js"></script>
-  <!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="幽篁里" type="application/atom+xml">
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+  <!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="幽篁里" type="application/atom+xml">
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -199,7 +199,7 @@ customElements.define('an_loading', CharAnimation);
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>links</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -265,7 +265,7 @@ customElements.define('an_loading', CharAnimation);
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -350,7 +350,7 @@ customElements.define('an_loading', CharAnimation);
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-11-26 00:00:00 / 修改时间：10:57:54" itemprop="dateCreated datePublished" datetime="2026-11-26T00:00:00+08:00">2026-11-26</time>
+      <time title="创建时间：2026-11-26 00:00:00 / 修改时间：12:36:39" itemprop="dateCreated datePublished" datetime="2026-11-26T00:00:00+08:00">2026-11-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -594,7 +594,7 @@ customElements.define('an_loading', CharAnimation);
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ROSMASTER-A1/" rel="tag"><i class="fa fa-tag"></i> ROSMASTER A1</a>
+              <a href="/tags/ROSMASTERA1/" rel="tag"><i class="fa fa-tag"></i> ROSMASTERA1</a>
               <a href="/tags/ROS2/" rel="tag"><i class="fa fa-tag"></i> ROS2</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
               <a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8E%A7%E5%88%B6/" rel="tag"><i class="fa fa-tag"></i> 机器人控制</a>
@@ -604,8 +604,8 @@ customElements.define('an_loading', CharAnimation);
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/null.html" rel="prev" title="">
-                  <i class="fa fa-angle-left"></i> 
+                <a href="/ubuntu-systemctl-enable-boot.html" rel="prev" title="ubuntu通过systemctl实现服务或脚本开机自启">
+                  <i class="fa fa-angle-left"></i> ubuntu通过systemctl实现服务或脚本开机自启
                 </a>
             </div>
             <div class="post-nav-item">
